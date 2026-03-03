@@ -1,7 +1,15 @@
 @charset "UTF-8";
 /* ================================================================
    ENFONO — Premium ERP Company Website
-   Brand: Blue #010ED0 + Amber #F59E0B  (matching Enfono logo)
+   ── Color System ──
+   Primary:     #0A2540  (Deep Navy — hero, dark sections)
+   Brand Blue:  #010ED0  (Enfono brand accent)
+   Warm Accent: #E8983E  (Golden amber — CTAs, highlights)
+   Light BG:    #F8FAFC  (Off-white sections)
+   Card BG:     #FFFFFF
+   Text Dark:   #0F172A
+   Text Muted:  #64748B
+   Border:      #E2E8F0
    ================================================================ */
 /* ── Base resets ── */
 *, *::before, *::after {
@@ -80,7 +88,7 @@
   align-items: center;
 }
 .enfono-logo-text span {
-  color: #F59E0B;
+  color: #E8983E;
 }
 
 .enfono-nav-desktop {
@@ -176,7 +184,7 @@
   color: #fff !important;
 }
 .enfono-dropdown-item:hover .enfono-dropdown-icon {
-  color: #F59E0B;
+  color: #E8983E;
 }
 
 .enfono-dropdown-icon {
@@ -368,7 +376,7 @@
   display: flex;
   align-items: center;
   overflow: hidden;
-  background: #020820;
+  background: #0A2540;
   padding-top: 74px;
 }
 .enfono-hero-new::before {
@@ -421,7 +429,7 @@
   font-family: "Inter", sans-serif;
   font-size: 11px;
   font-weight: 700;
-  color: #FCD34D;
+  color: #F0B060;
   letter-spacing: 2px;
   text-transform: uppercase;
   margin-bottom: 24px;
@@ -458,7 +466,7 @@
   letter-spacing: -1.5px;
 }
 .enfono-hero-title .highlight {
-  background: linear-gradient(135deg, #6B7FED 0%, #F59E0B 100%);
+  background: linear-gradient(135deg, #6B7FED 0%, #E8983E 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -657,7 +665,7 @@
   border-color: rgba(245, 158, 11, 0.3);
 }
 .edm-stat.highlight .edm-stat-val {
-  color: #F59E0B;
+  color: #E8983E;
 }
 
 .edm-chart-area {
@@ -690,7 +698,7 @@
   transform-origin: bottom;
 }
 .edm-bar.hi {
-  background: linear-gradient(180deg, #F59E0B 0%, #FCD34D 100%);
+  background: linear-gradient(180deg, #E8983E 0%, #F0B060 100%);
   opacity: 0.9;
 }
 
@@ -750,7 +758,7 @@
   font-family: "Poppins", sans-serif;
   font-size: 22px;
   font-weight: 800;
-  color: #F59E0B;
+  color: #E8983E;
   line-height: 1;
   margin-bottom: 2px;
 }
@@ -813,7 +821,7 @@
    STATS BAR — Redesigned gradient glass cards
    ================================================================ */
 .enfono-stats-section {
-  background: linear-gradient(135deg, #020820 0%, #0A1628 50%, #0F1B4D 100%);
+  background: linear-gradient(135deg, #0A2540 0%, #0A1628 50%, #163356 100%);
   padding: 60px 0;
   position: relative;
   overflow: hidden;
@@ -874,7 +882,7 @@
 }
 .enfono-stat-cell .estat-icon i {
   font-size: 20px;
-  color: #F59E0B;
+  color: #E8983E;
 }
 .enfono-stat-cell .estat-num {
   font-family: "Poppins", sans-serif;
@@ -885,7 +893,7 @@
   margin-bottom: 8px;
 }
 .enfono-stat-cell .estat-num span {
-  color: #FCD34D;
+  color: #F0B060;
 }
 .enfono-stat-cell .estat-label {
   font-family: "Inter", sans-serif;
@@ -1017,7 +1025,7 @@
   box-shadow: 0 6px 20px rgba(1, 14, 208, 0.08);
 }
 .e-industry-card:hover i {
-  color: #F59E0B;
+  color: #E8983E;
 }
 
 /* ================================================================
@@ -1142,7 +1150,7 @@
 }
 .e-trust-badge i {
   font-size: 24px;
-  color: #F59E0B;
+  color: #E8983E;
 }
 
 .etb-val {
@@ -1197,7 +1205,7 @@
   font-weight: 700;
   letter-spacing: 2.5px;
   text-transform: uppercase;
-  color: #F59E0B;
+  color: #E8983E;
   margin-bottom: 14px;
 }
 
@@ -1313,7 +1321,7 @@
   border-color: rgba(245, 158, 11, 0.25);
 }
 .e-service-card.ai-card::after {
-  background: linear-gradient(90deg, #F59E0B, #FCD34D);
+  background: linear-gradient(90deg, #E8983E, #F0B060);
 }
 .e-service-card.ai-card .esc-icon {
   background: rgba(245, 158, 11, 0.1);
@@ -1325,7 +1333,7 @@
   box-shadow: 0 20px 60px rgba(245, 158, 11, 0.12);
 }
 .e-service-card.ai-card:hover .esc-icon {
-  background: #F59E0B;
+  background: #E8983E;
 }
 .e-service-card.ai-card:hover .esc-icon i {
   color: #fff;
@@ -1407,7 +1415,7 @@
 }
 
 .ai-card .esc-features li::before {
-  background: #F59E0B;
+  background: #E8983E;
 }
 
 .esc-link {
@@ -1442,7 +1450,7 @@
    ================================================================ */
 .e-ai-section {
   padding: 100px 0;
-  background: #020820;
+  background: #0A2540;
   position: relative;
   overflow: hidden;
 }
@@ -1545,7 +1553,7 @@
   background: rgba(245, 158, 11, 0.15);
 }
 .e-ai-feat.amber-feat .eaf-icon i {
-  color: #F59E0B;
+  color: #E8983E;
 }
 
 .e-ai-visual {
@@ -1633,7 +1641,7 @@
   box-shadow: 0 0 8px rgba(1, 14, 208, 0.7);
 }
 .eai-insight .eai-dot.amber {
-  background: #F59E0B;
+  background: #E8983E;
   box-shadow: 0 0 8px rgba(245, 158, 11, 0.7);
 }
 .eai-insight .eai-dot.green {
@@ -1823,7 +1831,7 @@
   position: relative;
   border-radius: 20px;
   overflow: hidden;
-  background: linear-gradient(145deg, #020820 0%, #060D2E 100%);
+  background: linear-gradient(145deg, #0A2540 0%, #0F2847 100%);
   border: 1px solid rgba(1, 14, 208, 0.2);
   padding: 32px;
   transition: all 0.35s;
@@ -1888,7 +1896,7 @@
    ================================================================ */
 .e-brands-section {
   padding: 80px 0;
-  background: #020820;
+  background: #0A2540;
   border-top: 1px solid rgba(1, 14, 208, 0.15);
   border-bottom: 1px solid rgba(1, 14, 208, 0.15);
 }
@@ -2073,7 +2081,7 @@
    ================================================================ */
 .e-testimonials-section {
   padding: 100px 0;
-  background: #020820;
+  background: #0A2540;
   position: relative;
   overflow: hidden;
 }
@@ -2117,7 +2125,7 @@
 }
 .etc-stars i {
   font-size: 13px;
-  color: #F59E0B;
+  color: #E8983E;
 }
 
 .etc-quote {
@@ -2273,7 +2281,7 @@
    FOOTER — NEW
    ================================================================ */
 .enfono-footer-new {
-  background: #020820;
+  background: #0A2540;
 }
 
 .enfono-footer-cta-band {
@@ -2400,7 +2408,7 @@
   letter-spacing: -0.5px;
 }
 .ef-logo-text span {
-  color: #F59E0B;
+  color: #E8983E;
 }
 
 .ef-tagline {
@@ -2479,7 +2487,7 @@
 }
 .ef-office .ef-office-badge i {
   font-size: 12px;
-  color: #F59E0B;
+  color: #E8983E;
 }
 .ef-office p {
   font-family: "Inter", sans-serif;
@@ -2506,7 +2514,7 @@
 }
 .ef-contact-links a i {
   font-size: 12px;
-  color: #F59E0B;
+  color: #E8983E;
 }
 .ef-contact-links a:hover {
   color: rgba(255, 255, 255, 0.75);
@@ -2555,7 +2563,7 @@
    ================================================================ */
 .e-page-hero {
   padding: 140px 0 80px;
-  background: linear-gradient(135deg, #020820 0%, #060D2E 60%, #0F1B4D 100%);
+  background: linear-gradient(135deg, #0A2540 0%, #0F2847 60%, #163356 100%);
   position: relative;
   overflow: hidden;
 }
@@ -2595,13 +2603,13 @@
   text-decoration: none;
 }
 .e-breadcrumb a:hover {
-  color: #F59E0B;
+  color: #E8983E;
 }
 .e-breadcrumb i {
   font-size: 10px;
 }
 .e-breadcrumb span {
-  color: #F59E0B;
+  color: #E8983E;
 }
 
 /* ================================================================
@@ -2619,7 +2627,7 @@
 
 .e-dark-section {
   padding: 100px 0;
-  background: #020820;
+  background: #0A2540;
 }
 
 .e-btn-primary {
@@ -2777,7 +2785,7 @@
 /* Dark hero for inner pages - same as e-page-hero */
 .enfono-page-hero {
   padding: 140px 0 80px;
-  background: linear-gradient(135deg, #020820 0%, #060D2E 60%, #0F1B4D 100%);
+  background: linear-gradient(135deg, #0A2540 0%, #0F2847 60%, #163356 100%);
   position: relative;
   overflow: hidden;
 }
@@ -2828,10 +2836,10 @@
   transition: color 0.2s;
 }
 .enfono-page-hero .breadcrumb .breadcrumb-item a:hover {
-  color: #F59E0B;
+  color: #E8983E;
 }
 .enfono-page-hero .breadcrumb .breadcrumb-item.active {
-  color: #F59E0B;
+  color: #E8983E;
 }
 
 /* Hero headings and description */
@@ -2860,7 +2868,7 @@
   font-weight: 700;
   letter-spacing: 2.5px;
   text-transform: uppercase;
-  color: #F59E0B;
+  color: #E8983E;
   margin-bottom: 14px;
 }
 
@@ -2869,7 +2877,7 @@
   font-family: "Poppins", sans-serif;
   font-size: clamp(26px, 3.5vw, 38px);
   font-weight: 800;
-  color: #020820;
+  color: #0A2540;
   line-height: 1.25;
   margin: 0 0 20px;
 }

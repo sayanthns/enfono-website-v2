@@ -188,7 +188,7 @@ export default function EnfonoHome() {
                     </div>
                     <div className="ehtrust-divider" />
                     <div className="ehtrust-item">
-                      <span className="ehtrust-num">67+</span>
+                      <span className="ehtrust-num">120+</span>
                       <span className="ehtrust-label">Projects Done</span>
                     </div>
                     <div className="ehtrust-divider" />
@@ -275,8 +275,8 @@ export default function EnfonoHome() {
         <section className="enfono-stats-section">
           <div className="enfono-container">
             <div className="enfono-stats-inner">
-              <StatCell end={67} suffix="+" label="Projects Delivered" icon="fas fa-project-diagram" />
-              <StatCell end={45} suffix="+" label="Clients Worldwide" icon="fas fa-handshake" />
+              <StatCell end={120} suffix="+" label="Projects Delivered" icon="fas fa-project-diagram" />
+              <StatCell end={60} suffix="+" label="Customers Worldwide" icon="fas fa-handshake" />
               <StatCell end={8} suffix="+" label="Countries Served" icon="fas fa-globe-americas" />
               <StatCell end={85} suffix="%" label="Client Retention" icon="fas fa-heart" />
             </div>
@@ -385,7 +385,7 @@ export default function EnfonoHome() {
                 variants={fadeLeft}
               >
                 <div className="e-section-label-amber">AI Analytics &amp; Business Intelligence</div>
-                <h2 className="e-section-title-light">The Future of ERP<br />is <span style={{ color: '#F59E0B' }}>Intelligent</span></h2>
+                <h2 className="e-section-title-light">The Future of ERP<br />is <span style={{ color: '#E8983E' }}>Intelligent</span></h2>
                 <p className="e-section-sub-light" style={{ marginBottom: '16px' }}>
                   Our AI-powered ERP goes beyond traditional automation. Predictive analytics, smart dashboards, and natural language reporting help your business grow faster with data-driven decisions.
                 </p>

@@ -71,10 +71,9 @@ export default function EnfonoHeader() {
         {/* Logo */}
         <Link to="/" className="enfono-logo-link">
           <img
-            src="https://www.enfono.com/images/logo/Enfono_Logo_Blue.png"
-            alt="Enfono"
+            src="/assets/img/enfono-logo.png"
+            alt="Enfono Technologies"
             className="enfono-logo-img"
-            onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex' }}
           />
           <span className="enfono-logo-text" style={{ display: 'none' }}>
             enfo<span>no</span>

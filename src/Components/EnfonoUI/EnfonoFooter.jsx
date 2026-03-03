@@ -28,17 +28,10 @@ export default function EnfonoFooter() {
             <div className="ef-col ef-col-brand">
               <Link to="/" className="ef-logo-link">
                 <img
-                  src="https://www.enfono.com/images/logo/Enfono_Logo_White.png"
-                  alt="Enfono"
+                  src="/assets/img/enfono-logo.png"
+                  alt="Enfono Technologies"
                   className="ef-logo"
-                  onError={(e) => {
-                    e.target.style.display = 'none'
-                    e.target.nextSibling.style.display = 'inline'
-                  }}
                 />
-                <span className="ef-logo-text" style={{ display: 'none' }}>
-                  enfo<span>no</span>
-                </span>
               </Link>
               <p className="ef-tagline">
                 GCC's trusted ERP partner — powering digital transformation across Saudi Arabia, UAE, and Oman with ERPNext and AI-driven solutions.
@@ -63,12 +56,12 @@ export default function EnfonoFooter() {
             <div className="ef-col">
               <h4 className="ef-col-title">Services</h4>
               <ul className="ef-links">
-                <li><Link to="/services/erpnext-implementation">ERPNext Implementation</Link></li>
-                <li><Link to="/services/custom-erp">Custom ERP Development</Link></li>
+                <li><Link to="/services">ERPNext Implementation</Link></li>
+                <li><Link to="/services">Custom ERP Development</Link></li>
                 <li><Link to="/ai-erp">AI-Powered ERP</Link></li>
-                <li><Link to="/services/erp-consulting">ERP Consulting</Link></li>
-                <li><Link to="/services/support">Support & Maintenance</Link></li>
-                <li><Link to="/services/cloud">Cloud Migration</Link></li>
+                <li><Link to="/services">ERP Consulting</Link></li>
+                <li><Link to="/services">Support & Maintenance</Link></li>
+                <li><Link to="/services">Cloud Migration</Link></li>
               </ul>
             </div>
 
@@ -90,16 +83,23 @@ export default function EnfonoFooter() {
               <div className="ef-office">
                 <div className="ef-office-badge">
                   <i className="fas fa-building" />
-                  Saudi Arabia (HQ)
+                  Saudi Arabia
                 </div>
-                <p>Riyadh, Kingdom of Saudi Arabia</p>
+                <p>Sharafiyah, Jeddah, KSA</p>
               </div>
               <div className="ef-office">
                 <div className="ef-office-badge">
                   <i className="fas fa-building" />
-                  India Office
+                  India — Kochi
                 </div>
-                <p>Kerala, India</p>
+                <p>2nd Floor, Suite 598, Valamkottil Towers, Kakkanad, Kochi - 682021</p>
+              </div>
+              <div className="ef-office">
+                <div className="ef-office-badge">
+                  <i className="fas fa-building" />
+                  India — Calicut
+                </div>
+                <p>Safar Arcade, Near Calicut International Airport, Kerala 673638</p>
               </div>
               <div className="ef-contact-links">
                 <a href="mailto:contact@enfono.com">
@@ -107,6 +107,9 @@ export default function EnfonoFooter() {
                 </a>
                 <a href="tel:+966573528619">
                   <i className="fas fa-phone" /> +966 57 352 8619
+                </a>
+                <a href="tel:+917593922039">
+                  <i className="fas fa-phone" /> +91 75939 22039
                 </a>
               </div>
             </div>
@@ -120,20 +123,15 @@ export default function EnfonoFooter() {
           <div className="ef-bottom-inner">
             <div className="ef-bottom-logo">
               <img
-                src="https://www.enfono.com/images/logo/Enfono_Logo_White.png"
+                src="/assets/img/enfono-logo.png"
                 alt="Enfono"
                 className="ef-bottom-logo-img"
-                onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex' }}
               />
-              <span className="ef-logo-text" style={{ display: 'none', fontSize: '18px' }}>
-                enfo<span>no</span>
-              </span>
             </div>
             <p>&copy; {new Date().getFullYear()} Enfono Technologies. All rights reserved.</p>
             <div className="ef-bottom-links">
               <Link to="/privacy">Privacy Policy</Link>
               <Link to="/terms">Terms of Service</Link>
-              <Link to="/sitemap">Sitemap</Link>
             </div>
           </div>
         </div>
