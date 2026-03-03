@@ -14,7 +14,7 @@ const brands = [
     headline: 'ZATCA-Compliant e-Invoicing Made Simple',
     desc: 'Generate, validate, and submit ZATCA Phase 2-compliant e-invoices instantly. Built for Saudi businesses of all sizes with seamless ERPNext integration.',
     features: ['Phase 1 & 2 compliant', 'QR code generation', 'ERPNext integration', 'Arabic PDF output', 'Auto-submission to ZATCA', 'Batch invoicing'],
-    color: '#010ED0',
+    color: '#10B981',
     status: 'Available',
     link: '#',
   },
@@ -24,7 +24,7 @@ const brands = [
     headline: 'AI-Powered Business Intelligence for ERPNext',
     desc: 'Turn your ERPNext data into actionable insights with predictive dashboards, natural language queries, and automated anomaly detection.',
     features: ['Predictive analytics', 'Natural language reports', 'Anomaly detection', 'Custom KPI dashboards', 'Multi-company consolidation', 'Mobile app'],
-    color: '#F59E0B',
+    color: '#34D399',
     status: 'Available',
     link: '#',
   },
@@ -34,7 +34,7 @@ const brands = [
     headline: 'Mobile-First Field Operations Platform',
     desc: 'Empower your field teams with a mobile app that syncs with ERPNext in real-time — sales orders, delivery tracking, service requests, and more.',
     features: ['Offline-first mobile app', 'GPS tracking', 'Real-time ERPNext sync', 'Digital signatures', 'Route optimization', 'Service ticketing'],
-    color: '#010ED0',
+    color: '#10B981',
     status: 'Beta',
     link: '#',
   },
@@ -44,7 +44,7 @@ const brands = [
     headline: 'Intelligent Inventory Management',
     desc: 'AI-driven inventory optimization that predicts demand, suggests reorder points, and eliminates stockouts — fully integrated with ERPNext.',
     features: ['Demand forecasting', 'Auto reorder rules', 'Multi-warehouse', 'Barcode & RFID', 'Expiry management', 'Supplier scoring'],
-    color: '#F59E0B',
+    color: '#34D399',
     status: 'Coming Soon',
     link: '#',
   },
@@ -124,7 +124,7 @@ export default function EnfonoBrands() {
                     alignItems: 'center',
                     padding: '40px',
                     background: '#fff',
-                    border: '1.5px solid #E2E8F0',
+                    border: '1.5px solid #E5E7EB',
                     borderRadius: '24px',
                     direction: i % 2 === 0 ? 'ltr' : 'ltr',
                   }}
@@ -134,35 +134,35 @@ export default function EnfonoBrands() {
                       <div style={{
                         width: '52px', height: '52px',
                         display: 'flex', alignItems: 'center', justifyContent: 'center',
-                        background: brand.color === '#010ED0' ? 'rgba(1,14,208,0.08)' : 'rgba(245,158,11,0.1)',
+                        background: brand.color === '#10B981' ? 'rgba(16,185,129,0.08)' : 'rgba(52,211,153,0.1)',
                         borderRadius: '14px',
                       }}>
                         <i className={brand.icon} style={{ fontSize: '22px', color: brand.color }} />
                       </div>
                       <div>
-                        <div style={{ fontFamily: 'Poppins,sans-serif', fontSize: '22px', fontWeight: 800, color: '#0F172A', lineHeight: 1 }}>{brand.name}</div>
+                        <div style={{ fontFamily: 'Poppins,sans-serif', fontSize: '22px', fontWeight: 800, color: '#1A1A1A', lineHeight: 1 }}>{brand.name}</div>
                       </div>
                       <span style={{
                         marginLeft: 'auto',
                         padding: '4px 12px',
-                        background: brand.status === 'Available' ? 'rgba(34,197,94,0.1)' : brand.status === 'Beta' ? 'rgba(1,14,208,0.08)' : 'rgba(245,158,11,0.1)',
-                        border: `1px solid ${brand.status === 'Available' ? 'rgba(34,197,94,0.3)' : brand.status === 'Beta' ? 'rgba(1,14,208,0.2)' : 'rgba(245,158,11,0.3)'}`,
+                        background: brand.status === 'Available' ? 'rgba(34,197,94,0.1)' : brand.status === 'Beta' ? 'rgba(16,185,129,0.08)' : 'rgba(52,211,153,0.1)',
+                        border: `1px solid ${brand.status === 'Available' ? 'rgba(34,197,94,0.3)' : brand.status === 'Beta' ? 'rgba(16,185,129,0.2)' : 'rgba(52,211,153,0.3)'}`,
                         borderRadius: '100px',
                         fontSize: '11px', fontWeight: 700,
-                        color: brand.status === 'Available' ? '#16a34a' : brand.status === 'Beta' ? '#010ED0' : '#D97706',
+                        color: brand.status === 'Available' ? '#16a34a' : brand.status === 'Beta' ? '#10B981' : '#D97706',
                       }}>
                         {brand.status}
                       </span>
                     </div>
                     <div style={{
                       display: 'inline-block', padding: '3px 12px',
-                      background: brand.color === '#010ED0' ? 'rgba(1,14,208,0.08)' : 'rgba(245,158,11,0.1)',
+                      background: brand.color === '#10B981' ? 'rgba(16,185,129,0.08)' : 'rgba(52,211,153,0.1)',
                       borderRadius: '100px', fontSize: '11px', fontWeight: 700,
                       color: brand.color, marginBottom: '16px', textTransform: 'uppercase', letterSpacing: '1px',
                     }}>
                       {brand.tag}
                     </div>
-                    <h3 style={{ fontFamily: 'Poppins,sans-serif', fontSize: '24px', fontWeight: 800, color: '#0F172A', margin: '0 0 14px', lineHeight: 1.2 }}>{brand.headline}</h3>
+                    <h3 style={{ fontFamily: 'Poppins,sans-serif', fontSize: '24px', fontWeight: 800, color: '#1A1A1A', margin: '0 0 14px', lineHeight: 1.2 }}>{brand.headline}</h3>
                     <p style={{ fontFamily: 'Inter,sans-serif', fontSize: '15px', lineHeight: 1.7, color: '#64748B', margin: '0 0 24px' }}>{brand.desc}</p>
                     <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
                       {brand.status !== 'Coming Soon' ? (
@@ -170,7 +170,7 @@ export default function EnfonoBrands() {
                           Get Started <i className="fas fa-arrow-right" />
                         </a>
                       ) : (
-                        <button disabled style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '14px 28px', background: '#F1F5F9', color: '#94A3B8', fontFamily: 'Inter,sans-serif', fontSize: '14px', fontWeight: 600, borderRadius: '11px', border: '1.5px solid #E2E8F0', cursor: 'not-allowed' }}>
+                        <button disabled style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '14px 28px', background: '#F1F5F9', color: '#94A3B8', fontFamily: 'Inter,sans-serif', fontSize: '14px', fontWeight: 600, borderRadius: '11px', border: '1.5px solid #E5E7EB', cursor: 'not-allowed' }}>
                           <i className="fas fa-clock" /> Coming Soon
                         </button>
                       )}
@@ -179,11 +179,11 @@ export default function EnfonoBrands() {
                   </div>
                   <div style={{ order: i % 2 === 1 ? 1 : 2 }}>
                     <div style={{
-                      background: brand.color === '#010ED0' ? 'linear-gradient(135deg,#E8EBFF 0%,#F5F7FF 100%)' : 'linear-gradient(135deg,#FFFBEB 0%,#FFF 100%)',
+                      background: brand.color === '#10B981' ? 'linear-gradient(135deg,#ECFDF5 0%,#F8FAF9 100%)' : 'linear-gradient(135deg,#ECFDF5 0%,#FFF 100%)',
                       borderRadius: '20px',
                       padding: '32px',
                     }}>
-                      <div style={{ fontFamily: 'Poppins,sans-serif', fontSize: '14px', fontWeight: 700, color: '#0F172A', marginBottom: '16px' }}>Key Features</div>
+                      <div style={{ fontFamily: 'Poppins,sans-serif', fontSize: '14px', fontWeight: 700, color: '#1A1A1A', marginBottom: '16px' }}>Key Features</div>
                       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
                         {brand.features.map(f => (
                           <div key={f} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontFamily: 'Inter,sans-serif', fontSize: '13px', color: '#475569' }}>

@@ -11,25 +11,25 @@
     --xs: 575px;
     --xxs: 480px;
 
-    /* Enfono Brand Colors — Blue-first identity matching logo */
-    --enfono-blue: #010ED0;
-    --enfono-blue-dark: #000B8C;
-    --enfono-blue-light: #2B3DE8;
-    --enfono-blue-pale: #E8EBFF;
-    --enfono-amber: #F59E0B;
-    --enfono-amber-light: #FCD34D;
-    --enfono-dark: #020820;
-    --enfono-dark-2: #060D2E;
-    --enfono-mid: #0F1B4D;
-    --enfono-light: #F5F7FF;
+    /* Enfono Brand Colors — Obsidian & Emerald */
+    --enfono-blue: #10B981;
+    --enfono-blue-dark: #0D0D0D;
+    --enfono-blue-light: #34D399;
+    --enfono-blue-pale: #ECFDF5;
+    --enfono-amber: #10B981;
+    --enfono-amber-light: #6EE7B7;
+    --enfono-dark: #0D0D0D;
+    --enfono-dark-2: #111111;
+    --enfono-mid: #1A1A1A;
+    --enfono-light: #F8FAF9;
     --enfono-white: #FFFFFF;
-    --enfono-text: #0F172A;
+    --enfono-text: #1A1A1A;
     --enfono-text-muted: #64748B;
 
     /* Gradients */
-    --enfono-gradient: linear-gradient(135deg, #000B8C 0%, #010ED0 50%, #2B3DE8 100%);
-    --enfono-hero-gradient: linear-gradient(135deg, #020820 0%, #060D2E 50%, #0F1B4D 100%);
-    --enfono-accent-gradient: linear-gradient(135deg, #F59E0B 0%, #FCD34D 100%);
-    --enfono-card-gradient: linear-gradient(135deg, #010ED0 0%, #2B3DE8 100%);
-    --enfono-section-bg: #F5F7FF;
+    --enfono-gradient: linear-gradient(135deg, #0D0D0D 0%, #10B981 50%, #34D399 100%);
+    --enfono-hero-gradient: linear-gradient(135deg, #0D0D0D 0%, #111111 50%, #1A1A1A 100%);
+    --enfono-accent-gradient: linear-gradient(135deg, #10B981 0%, #6EE7B7 100%);
+    --enfono-card-gradient: linear-gradient(135deg, #10B981 0%, #34D399 100%);
+    --enfono-section-bg: #F8FAF9;
 }

@@ -18,9 +18,9 @@ const features = [
 ]
 
 const useCases = [
-  { industry: 'Manufacturing', icon: 'fas fa-industry', headline: 'Predictive maintenance alerts saved Al-Rashid 18% in equipment downtime', result: '18% downtime reduction', color: '#010ED0' },
-  { industry: 'Retail', icon: 'fas fa-store', headline: 'AI demand forecasting reduced overstock by 32% across 50 stores in UAE', result: '32% overstock reduction', color: '#F59E0B' },
-  { industry: 'Construction', icon: 'fas fa-hard-hat', headline: 'Automated procurement approvals cut processing time from 5 days to 4 hours', result: '95% faster approvals', color: '#010ED0' },
+  { industry: 'Manufacturing', icon: 'fas fa-industry', headline: 'Predictive maintenance alerts saved Al-Rashid 18% in equipment downtime', result: '18% downtime reduction', color: '#10B981' },
+  { industry: 'Retail', icon: 'fas fa-store', headline: 'AI demand forecasting reduced overstock by 32% across 50 stores in UAE', result: '32% overstock reduction', color: '#34D399' },
+  { industry: 'Construction', icon: 'fas fa-hard-hat', headline: 'Automated procurement approvals cut processing time from 5 days to 4 hours', result: '95% faster approvals', color: '#10B981' },
 ]
 
 export default function EnfonoAI() {
@@ -160,7 +160,7 @@ export default function EnfonoAI() {
                 <m.div key={uc.industry} className="e-cs-card" variants={fadeUp}>
                   <div className="ecc-meta"><i className={uc.icon} style={{ marginRight: '6px' }} />{uc.industry}</div>
                   <div className="ecc-title">{uc.headline}</div>
-                  <div className="ecc-result" style={{ background: uc.color === '#F59E0B' ? 'rgba(245,158,11,0.15)' : undefined, borderColor: uc.color === '#F59E0B' ? 'rgba(245,158,11,0.4)' : undefined, color: uc.color === '#F59E0B' ? '#F59E0B' : undefined }}>
+                  <div className="ecc-result" style={{ background: uc.color === '#34D399' ? 'rgba(52,211,153,0.15)' : undefined, borderColor: uc.color === '#34D399' ? 'rgba(52,211,153,0.4)' : undefined, color: uc.color === '#34D399' ? '#34D399' : undefined }}>
                     <i className="fas fa-chart-line" />{uc.result}
                   </div>
                 </m.div>

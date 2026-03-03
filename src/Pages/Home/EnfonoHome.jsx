@@ -385,7 +385,7 @@ export default function EnfonoHome() {
                 variants={fadeLeft}
               >
                 <div className="e-section-label-amber">AI Analytics &amp; Business Intelligence</div>
-                <h2 className="e-section-title-light">The Future of ERP<br />is <span style={{ color: '#E8983E' }}>Intelligent</span></h2>
+                <h2 className="e-section-title-light">The Future of ERP<br />is <span style={{ color: '#10B981' }}>Intelligent</span></h2>
                 <p className="e-section-sub-light" style={{ marginBottom: '16px' }}>
                   Our AI-powered ERP goes beyond traditional automation. Predictive analytics, smart dashboards, and natural language reporting help your business grow faster with data-driven decisions.
                 </p>
@@ -562,7 +562,7 @@ export default function EnfonoHome() {
                 <div className="e-section-label">Client Success Stories</div>
                 <h2 className="e-section-title" style={{ margin: 0 }}>Real Results for<br />Real Businesses</h2>
               </div>
-              <Link to="/case-studies" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontFamily: 'Inter,sans-serif', fontSize: '14px', fontWeight: 600, color: '#010ED0', textDecoration: 'none' }}>
+              <Link to="/case-studies" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontFamily: 'Inter,sans-serif', fontSize: '14px', fontWeight: 600, color: '#10B981', textDecoration: 'none' }}>
                 View All Case Studies <i className="fas fa-arrow-right" style={{ fontSize: '12px' }} />
               </Link>
             </m.div>

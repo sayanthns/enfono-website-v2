@@ -62,11 +62,11 @@ export default function EnfonoCareers() {
                 </m.p>
                 <m.div variants={fadeUp} custom={0.15} style={{ marginTop: '32px', display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
                   <span style={{ fontFamily: 'Inter,sans-serif', fontSize: '14px', color: 'rgba(255,255,255,0.6)' }}>
-                    <i className="fas fa-map-marker-alt" style={{ color: '#F59E0B', marginRight: '6px' }} />
+                    <i className="fas fa-map-marker-alt" style={{ color: '#34D399', marginRight: '6px' }} />
                     Riyadh · Dubai · Remote
                   </span>
                   <span style={{ fontFamily: 'Inter,sans-serif', fontSize: '14px', color: 'rgba(255,255,255,0.6)' }}>
-                    <i className="fas fa-briefcase" style={{ color: '#F59E0B', marginRight: '6px' }} />
+                    <i className="fas fa-briefcase" style={{ color: '#34D399', marginRight: '6px' }} />
                     {roles.length} Open Positions
                   </span>
                 </m.div>
@@ -94,12 +94,12 @@ export default function EnfonoCareers() {
                 <m.div
                   key={v.title}
                   variants={fadeUp}
-                  style={{ padding: '28px', background: '#F5F7FF', borderRadius: '18px', border: '1px solid #E2E8F0' }}
+                  style={{ padding: '28px', background: '#F8FAF9', borderRadius: '18px', border: '1px solid #E5E7EB' }}
                 >
-                  <div style={{ width: '48px', height: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(1,14,208,0.07)', borderRadius: '14px', marginBottom: '16px' }}>
-                    <i className={v.icon} style={{ fontSize: '18px', color: '#010ED0' }} />
+                  <div style={{ width: '48px', height: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(16,185,129,0.07)', borderRadius: '14px', marginBottom: '16px' }}>
+                    <i className={v.icon} style={{ fontSize: '18px', color: '#10B981' }} />
                   </div>
-                  <div style={{ fontFamily: 'Poppins,sans-serif', fontSize: '16px', fontWeight: 700, color: '#0F172A', marginBottom: '8px' }}>{v.title}</div>
+                  <div style={{ fontFamily: 'Poppins,sans-serif', fontSize: '16px', fontWeight: 700, color: '#1A1A1A', marginBottom: '8px' }}>{v.title}</div>
                   <p style={{ fontFamily: 'Inter,sans-serif', fontSize: '13.5px', lineHeight: 1.6, color: '#64748B', margin: 0 }}>{v.desc}</p>
                 </m.div>
               ))}
@@ -125,13 +125,13 @@ export default function EnfonoCareers() {
                 <m.div
                   key={p.title}
                   variants={fadeUp}
-                  style={{ display: 'flex', gap: '16px', padding: '24px', background: '#fff', borderRadius: '16px', border: '1.5px solid #E2E8F0' }}
+                  style={{ display: 'flex', gap: '16px', padding: '24px', background: '#fff', borderRadius: '16px', border: '1.5px solid #E5E7EB' }}
                 >
-                  <div style={{ width: '48px', height: '48px', minWidth: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(1,14,208,0.07)', borderRadius: '12px' }}>
-                    <i className={p.icon} style={{ fontSize: '18px', color: '#010ED0' }} />
+                  <div style={{ width: '48px', height: '48px', minWidth: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(16,185,129,0.07)', borderRadius: '12px' }}>
+                    <i className={p.icon} style={{ fontSize: '18px', color: '#10B981' }} />
                   </div>
                   <div>
-                    <div style={{ fontFamily: 'Poppins,sans-serif', fontSize: '15px', fontWeight: 700, color: '#0F172A', marginBottom: '6px' }}>{p.title}</div>
+                    <div style={{ fontFamily: 'Poppins,sans-serif', fontSize: '15px', fontWeight: 700, color: '#1A1A1A', marginBottom: '6px' }}>{p.title}</div>
                     <p style={{ fontFamily: 'Inter,sans-serif', fontSize: '13.5px', lineHeight: 1.6, color: '#64748B', margin: 0 }}>{p.desc}</p>
                   </div>
                 </m.div>
@@ -173,22 +173,22 @@ export default function EnfonoCareers() {
                   variants={fadeUp}
                   style={{
                     display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '20px',
-                    padding: '24px 28px', background: '#fff', border: '1.5px solid #E2E8F0',
+                    padding: '24px 28px', background: '#fff', border: '1.5px solid #E5E7EB',
                     borderRadius: '16px', transition: 'all 0.25s',
                   }}
                 >
                   <div style={{ flex: 1 }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap', marginBottom: '8px' }}>
-                      <div style={{ fontFamily: 'Poppins,sans-serif', fontSize: '16px', fontWeight: 700, color: '#0F172A' }}>{role.title}</div>
-                      <span style={{ padding: '2px 10px', background: 'rgba(1,14,208,0.07)', borderRadius: '100px', fontSize: '11px', fontWeight: 700, color: '#010ED0' }}>{role.dept}</span>
+                      <div style={{ fontFamily: 'Poppins,sans-serif', fontSize: '16px', fontWeight: 700, color: '#1A1A1A' }}>{role.title}</div>
+                      <span style={{ padding: '2px 10px', background: 'rgba(16,185,129,0.07)', borderRadius: '100px', fontSize: '11px', fontWeight: 700, color: '#10B981' }}>{role.dept}</span>
                     </div>
                     <p style={{ fontFamily: 'Inter,sans-serif', fontSize: '13.5px', lineHeight: 1.6, color: '#64748B', margin: '0 0 12px' }}>{role.desc}</p>
                     <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
                       <span style={{ fontFamily: 'Inter,sans-serif', fontSize: '12px', color: '#94A3B8', display: 'flex', alignItems: 'center', gap: '5px' }}>
-                        <i className="fas fa-map-marker-alt" style={{ color: '#F59E0B' }} />{role.location}
+                        <i className="fas fa-map-marker-alt" style={{ color: '#34D399' }} />{role.location}
                       </span>
                       <span style={{ fontFamily: 'Inter,sans-serif', fontSize: '12px', color: '#94A3B8', display: 'flex', alignItems: 'center', gap: '5px' }}>
-                        <i className="fas fa-clock" style={{ color: '#F59E0B' }} />{role.type}
+                        <i className="fas fa-clock" style={{ color: '#34D399' }} />{role.type}
                       </span>
                     </div>
                   </div>
@@ -201,7 +201,7 @@ export default function EnfonoCareers() {
 
             {filtered.length === 0 && (
               <div style={{ textAlign: 'center', padding: '60px 0', color: '#94A3B8', fontFamily: 'Inter,sans-serif' }}>
-                No open positions in this department right now. <Link to="/contact" style={{ color: '#010ED0' }}>Send us your CV anyway</Link>.
+                No open positions in this department right now. <Link to="/contact" style={{ color: '#10B981' }}>Send us your CV anyway</Link>.
               </div>
             )}
           </div>
