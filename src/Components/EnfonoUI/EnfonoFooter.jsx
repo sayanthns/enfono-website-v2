@@ -1,0 +1,143 @@
+import React from 'react'
+import { Link } from 'react-router-dom'
+
+export default function EnfonoFooter() {
+  return (
+    <footer className="enfono-footer-new">
+      {/* Top CTA Band */}
+      <div className="enfono-footer-cta-band">
+        <div className="enfono-container">
+          <div className="efcta-inner">
+            <div className="efcta-text">
+              <h3>Ready to Transform Your Business?</h3>
+              <p>Book a free 60-minute ERP strategy session with our GCC experts.</p>
+            </div>
+            <div className="efcta-actions">
+              <Link to="/contact" className="efcta-btn-primary">Get Free Consultation</Link>
+              <a href="tel:+966573528619" className="efcta-btn-outline"><i className="fas fa-phone" style={{ marginRight: '6px' }} /> +966 57 352 8619</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Footer */}
+      <div className="enfono-footer-main">
+        <div className="enfono-container">
+          <div className="ef-grid">
+            {/* Brand Column */}
+            <div className="ef-col ef-col-brand">
+              <Link to="/" className="ef-logo-link">
+                <img
+                  src="https://www.enfono.com/images/logo/Enfono_Logo_White.png"
+                  alt="Enfono"
+                  className="ef-logo"
+                  onError={(e) => {
+                    e.target.style.display = 'none'
+                    e.target.nextSibling.style.display = 'inline'
+                  }}
+                />
+                <span className="ef-logo-text" style={{ display: 'none' }}>
+                  enfo<span>no</span>
+                </span>
+              </Link>
+              <p className="ef-tagline">
+                GCC's trusted ERP partner — powering digital transformation across Saudi Arabia, UAE, and Oman with ERPNext and AI-driven solutions.
+              </p>
+              <div className="ef-social">
+                <a href="https://linkedin.com/company/enfono" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                  <i className="fab fa-linkedin-in" />
+                </a>
+                <a href="https://twitter.com/enfono" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                  <i className="fab fa-x-twitter" />
+                </a>
+                <a href="https://youtube.com/@enfono" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                  <i className="fab fa-youtube" />
+                </a>
+                <a href="https://instagram.com/enfono" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                  <i className="fab fa-instagram" />
+                </a>
+              </div>
+            </div>
+
+            {/* Services */}
+            <div className="ef-col">
+              <h4 className="ef-col-title">Services</h4>
+              <ul className="ef-links">
+                <li><Link to="/services/erpnext-implementation">ERPNext Implementation</Link></li>
+                <li><Link to="/services/custom-erp">Custom ERP Development</Link></li>
+                <li><Link to="/ai-erp">AI-Powered ERP</Link></li>
+                <li><Link to="/services/erp-consulting">ERP Consulting</Link></li>
+                <li><Link to="/services/support">Support & Maintenance</Link></li>
+                <li><Link to="/services/cloud">Cloud Migration</Link></li>
+              </ul>
+            </div>
+
+            {/* Company */}
+            <div className="ef-col">
+              <h4 className="ef-col-title">Company</h4>
+              <ul className="ef-links">
+                <li><Link to="/about">About Enfono</Link></li>
+                <li><Link to="/case-studies">Case Studies</Link></li>
+                <li><Link to="/brands">Our Brands</Link></li>
+                <li><Link to="/careers">Careers</Link></li>
+                <li><Link to="/contact">Contact Us</Link></li>
+              </ul>
+            </div>
+
+            {/* Offices */}
+            <div className="ef-col">
+              <h4 className="ef-col-title">Our Offices</h4>
+              <div className="ef-office">
+                <div className="ef-office-badge">
+                  <i className="fas fa-building" />
+                  Saudi Arabia (HQ)
+                </div>
+                <p>Riyadh, Kingdom of Saudi Arabia</p>
+              </div>
+              <div className="ef-office">
+                <div className="ef-office-badge">
+                  <i className="fas fa-building" />
+                  India Office
+                </div>
+                <p>Kerala, India</p>
+              </div>
+              <div className="ef-contact-links">
+                <a href="mailto:contact@enfono.com">
+                  <i className="fas fa-envelope" /> contact@enfono.com
+                </a>
+                <a href="tel:+966573528619">
+                  <i className="fas fa-phone" /> +966 57 352 8619
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="enfono-footer-bottom">
+        <div className="enfono-container">
+          <div className="ef-bottom-inner">
+            <div className="ef-bottom-logo">
+              <img
+                src="https://www.enfono.com/images/logo/Enfono_Logo_White.png"
+                alt="Enfono"
+                className="ef-bottom-logo-img"
+                onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex' }}
+              />
+              <span className="ef-logo-text" style={{ display: 'none', fontSize: '18px' }}>
+                enfo<span>no</span>
+              </span>
+            </div>
+            <p>&copy; {new Date().getFullYear()} Enfono Technologies. All rights reserved.</p>
+            <div className="ef-bottom-links">
+              <Link to="/privacy">Privacy Policy</Link>
+              <Link to="/terms">Terms of Service</Link>
+              <Link to="/sitemap">Sitemap</Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  )
+}

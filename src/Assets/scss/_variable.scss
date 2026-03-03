@@ -1,0 +1,35 @@
+/* Transition */
+:root {
+    --default-transition: all 0.3s cubic-bezier(0.2, 0, 0.3, 1);
+    --alt-font: 'Poppins', sans-serif;
+    --primary-font: 'Inter', sans-serif;
+    --viewport-height: 100vh;
+    --xl: 1600px;
+    --lg: 1199px;
+    --md: 991px;
+    --sm: 767px;
+    --xs: 575px;
+    --xxs: 480px;
+
+    /* Enfono Brand Colors — Blue-first identity matching logo */
+    --enfono-blue: #010ED0;
+    --enfono-blue-dark: #000B8C;
+    --enfono-blue-light: #2B3DE8;
+    --enfono-blue-pale: #E8EBFF;
+    --enfono-amber: #F59E0B;
+    --enfono-amber-light: #FCD34D;
+    --enfono-dark: #020820;
+    --enfono-dark-2: #060D2E;
+    --enfono-mid: #0F1B4D;
+    --enfono-light: #F5F7FF;
+    --enfono-white: #FFFFFF;
+    --enfono-text: #0F172A;
+    --enfono-text-muted: #64748B;
+
+    /* Gradients */
+    --enfono-gradient: linear-gradient(135deg, #000B8C 0%, #010ED0 50%, #2B3DE8 100%);
+    --enfono-hero-gradient: linear-gradient(135deg, #020820 0%, #060D2E 50%, #0F1B4D 100%);
+    --enfono-accent-gradient: linear-gradient(135deg, #F59E0B 0%, #FCD34D 100%);
+    --enfono-card-gradient: linear-gradient(135deg, #010ED0 0%, #2B3DE8 100%);
+    --enfono-section-bg: #F5F7FF;
+}

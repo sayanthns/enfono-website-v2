@@ -1,0 +1,8 @@
+@tailwind components;
+@tailwind utilities;
+
+// Enfono Brand Variables
+@import './Assets/scss/_variable';
+
+// Enfono Custom Styles (compiled by webpack sass-loader)
+@import './Assets/scss/pages/enfono';
