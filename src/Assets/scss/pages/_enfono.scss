@@ -2806,8 +2806,8 @@
 }
 
 .enfono-footer-cta-band {
-  background: linear-gradient(135deg, #0D0D0D 0%, #7BBB9B 100%);
-  padding: 56px 0;
+  background: linear-gradient(135deg, #0F766E 0%, #34D399 100%);
+  padding: 70px 0;
 }
 
 .efcta-inner {
@@ -4209,6 +4209,59 @@
   .e-tool-card {
     &:hover {
       border-color: rgba(16, 185, 129, 0.3) !important;
+    }
+  }
+}
+
+/* ================================================================
+   FLOATING CONTACT WIDGET
+   ================================================================ */
+.enfono-floating-widget {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  background: #020617;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-right: none;
+  overflow: hidden;
+
+  .efw-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    color: #fff;
+    font-size: 20px;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #34D399;
+    }
+
+    &.efw-arrow {
+      i {
+        transform: rotate(-90deg);
+      }
     }
   }
 }

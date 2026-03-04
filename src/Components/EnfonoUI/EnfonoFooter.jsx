@@ -9,15 +9,28 @@ export default function EnfonoFooter() {
         <div className="enfono-container">
           <div className="efcta-inner">
             <div className="efcta-text">
-              <h3>Ready to Transform Your Business?</h3>
-              <p>Book a free 60-minute ERP strategy session with our GCC experts.</p>
+              <h3>Ready to Transform<br />Your Business with ERP?</h3>
+              <p>Book a free 60-minute ERP strategy session with our Industry experts. No commitment required.</p>
             </div>
             <div className="efcta-actions">
-              <Link to="/contact" className="efcta-btn-primary">Get Free Consultation</Link>
+              <Link to="/contact" className="efcta-btn-primary"><i className="fas fa-calendar-check" style={{ marginRight: '6px' }} /> Get Free Consultation</Link>
               <a href="tel:+966573528619" className="efcta-btn-outline"><i className="fas fa-phone" style={{ marginRight: '6px' }} /> +966 57 352 8619</a>
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Floating Contact Widget */}
+      <div className="enfono-floating-widget">
+        <button className="efw-item efw-arrow" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+          <i className="fas fa-arrow-right" />
+        </button>
+        <a href="https://wa.me/966573528619" target="_blank" rel="noreferrer" className="efw-item efw-wa">
+          <i className="fab fa-whatsapp" />
+        </a>
+        <a href="tel:+966573528619" className="efw-item efw-phone">
+          <i className="fas fa-phone-alt" />
+        </a>
       </div>
 
       {/* Main Footer */}
