@@ -58,6 +58,10 @@
     background: rgba(13, 13, 13, 0.98);
     backdrop-filter: blur(20px);
   }
+
+  &.nav-hidden {
+    transform: translateY(-100%);
+  }
 }
 
 .enfono-header-inner {
@@ -4263,5 +4267,41 @@
         transform: rotate(-90deg);
       }
     }
+  }
+}
+
+.enfono-chatbot-trigger {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 60px;
+  height: 60px;
+  background: #0047AB;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 24px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0, 71, 171, 0.4);
+  z-index: 9999;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  &:hover {
+    transform: scale(1.1);
+    background: #003380;
+  }
+
+  .ecb-status-dot {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 14px;
+    height: 14px;
+    background: #10B981;
+    border: 2px solid #0047AB;
+    border-radius: 50%;
   }
 }

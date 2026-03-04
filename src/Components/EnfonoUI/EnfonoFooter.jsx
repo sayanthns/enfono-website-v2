@@ -25,9 +25,6 @@ export default function EnfonoFooter() {
         <button className="efw-item efw-arrow" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
           <i className="fas fa-arrow-right" />
         </button>
-        <button className="efw-item efw-chat" onClick={() => alert('Chatbot coming soon!')}>
-          <i className="fas fa-comment-dots" />
-        </button>
         <a href="https://wa.me/966573528619" target="_blank" rel="noreferrer" className="efw-item efw-wa">
           <i className="fab fa-whatsapp" />
         </a>
@@ -35,6 +32,13 @@ export default function EnfonoFooter() {
           <i className="fas fa-phone-alt" />
         </a>
       </div>
+
+      {/* Dedicated Chatbot Trigger */}
+      <button className="enfono-chatbot-trigger" onClick={() => alert('Chatbot coming soon!')}>
+        <i className="fas fa-comment-dots" />
+        <span className="ecb-status-dot"></span>
+      </button>
+
 
       {/* Main Footer */}
       <div className="enfono-footer-main">

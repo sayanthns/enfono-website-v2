@@ -25,16 +25,30 @@ const navLinks = [
 
 export default function EnfonoHeader() {
   const [scrolled, setScrolled] = useState(false)
+  const [hidden, setHidden] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState(null)
   const [mobileExpanded, setMobileExpanded] = useState(null)
   const location = useLocation()
   const headerRef = useRef(null)
   const dropdownTimer = useRef(null)
+  const lastScrollY = useRef(0)
   const { isDark, toggleTheme } = useTheme()
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 30)
+    const onScroll = () => {
+      const currentScrollY = window.scrollY
+
+      setScrolled(currentScrollY > 30)
+
+      if (currentScrollY > 100 && currentScrollY > lastScrollY.current) {
+        setHidden(true)
+      } else {
+        setHidden(false)
+      }
+      lastScrollY.current = currentScrollY
+    }
+
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
@@ -67,7 +81,7 @@ export default function EnfonoHeader() {
   return (
     <header
       ref={headerRef}
-      className={`enfono-header-new ${scrolled ? 'scrolled' : ''} ${mobileOpen ? 'mobile-open' : ''}`}
+      className={`enfono-header-new ${scrolled ? 'scrolled' : ''} ${mobileOpen ? 'mobile-open' : ''} ${hidden ? 'nav-hidden' : ''}`}
     >
       <div className="enfono-header-inner">
         {/* Logo */}
