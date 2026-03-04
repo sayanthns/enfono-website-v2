@@ -102,69 +102,90 @@ const process = [
 
 const EnfonoServices = () => {
     return (
-        <div style={{ fontFamily: 'Inter, sans-serif' }}>
+        <div className="enfono-services-premium" style={{ background: '#0D0D0D', color: '#fff', fontFamily: 'Inter, sans-serif' }}>
             <EnfonoHeader />
 
             {/* Page Hero */}
-            <div className="enfono-page-hero">
+            <div className="enfono-hero-new" style={{ padding: '140px 0 80px' }}>
                 <Container>
-                    <nav aria-label="breadcrumb"><ol className="breadcrumb mb-4"><li className="breadcrumb-item"><Link to="/">Home</Link></li><li className="breadcrumb-item active">Services</li></ol></nav>
-                    <span className="enfono-section-label">What We Do</span>
-                    <h1 className="page-hero-title mb-4">Our ERP Services</h1>
-                    <p className="page-hero-desc" style={{ maxWidth: '600px' }}>
-                        End-to-end ERP solutions for GCC businesses — from strategy and implementation to ongoing support and optimization.
-                    </p>
+                    <div className="e-breadcrumb" style={{ marginBottom: '32px' }}>
+                        <Link to="/">Home</Link>
+                        <i className="fas fa-chevron-right" />
+                        <span>Services</span>
+                    </div>
+                    <m.div initial="hidden" animate="visible" variants={staggerContainer}>
+                        <m.div variants={fadeIn} className="enfono-section-label-amber">Propelling Digital Growth</m.div>
+                        <m.h1 variants={fadeIn} className="enfono-hero-title" style={{ maxWidth: '800px', marginBottom: '24px' }}>
+                            Strategic ERP Solutions for<br />
+                            Modern Enterprises
+                        </m.h1>
+                        <m.p variants={fadeIn} className="enfono-hero-subtitle" style={{ maxWidth: '640px', marginBottom: '0' }}>
+                            End-to-end ERP implementations, business process optimization, and AI-driven orchestration tailored for the competitive GCC market.
+                        </m.p>
+                    </m.div>
                 </Container>
             </div>
 
             {/* Services Deep Dive */}
-            <section style={{ background: '#F8FAFC', padding: '70px 0' }}>
+            <section style={{ background: '#0D0D0D', padding: '100px 0' }}>
                 <Container>
                     <LazyMotion features={domAnimation}>
                         {services.map((svc, i) => (
-                            <m.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}
-                                style={{ background: '#fff', borderRadius: '16px', overflow: 'hidden', marginBottom: '32px', border: '1px solid #E5E7EB' }}
+                            <m.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.2 }} variants={fadeIn}
+                                className="e-service-card-premium"
+                                style={{
+                                    background: 'rgba(26, 26, 26, 0.4)',
+                                    backdropFilter: 'blur(10px)',
+                                    borderRadius: '32px',
+                                    overflow: 'hidden',
+                                    marginBottom: '40px',
+                                    border: '1px solid rgba(16, 185, 129, 0.15)',
+                                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
+                                }}
                             >
                                 <Row className="g-0">
                                     <Col lg={4}>
-                                        <div style={{ background: svc.gradient, padding: '50px 40px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '360px' }}>
-                                            <div>
-                                                <div style={{ width: '64px', height: '64px', background: 'rgba(255,255,255,0.15)', borderRadius: '14px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '24px' }}>
-                                                    <i className={svc.icon} style={{ fontSize: '26px', color: '#fff' }}></i>
+                                        <div style={{ background: svc.gradient, padding: '60px 48px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '400px', position: 'relative' }}>
+                                            <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.4) 100%)', pointerEvents: 'none' }}></div>
+                                            <div style={{ position: 'relative', zIndex: 1 }}>
+                                                <div style={{ width: '72px', height: '72px', background: 'rgba(255,255,255,0.12)', backdropFilter: 'blur(5px)', borderRadius: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '32px', border: '1px solid rgba(255,255,255,0.1)' }}>
+                                                    <i className={svc.icon} style={{ fontSize: '28px', color: '#fff' }}></i>
                                                 </div>
-                                                <div style={{ fontSize: '11px', fontWeight: '700', letterSpacing: '2px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.6)', marginBottom: '10px' }}>{svc.tagline}</div>
-                                                <h2 style={{ fontSize: '26px', fontWeight: '700', color: '#fff', fontFamily: 'Poppins, sans-serif', marginBottom: '16px', lineHeight: '1.3' }}>{svc.title}</h2>
-                                                <p style={{ fontSize: '14px', lineHeight: '1.75', color: 'rgba(255,255,255,0.7)', marginBottom: '24px' }}>{svc.desc}</p>
+                                                <div style={{ fontSize: '11px', fontWeight: '800', letterSpacing: '2.5px', textTransform: 'uppercase', color: 'rgba(255,255,255,0.7)', marginBottom: '12px' }}>{svc.tagline}</div>
+                                                <h2 style={{ fontSize: '32px', fontWeight: '800', color: '#fff', fontFamily: 'Poppins, sans-serif', marginBottom: '20px', lineHeight: '1.2' }}>{svc.title}</h2>
+                                                <p style={{ fontSize: '15px', lineHeight: '1.8', color: 'rgba(255,255,255,0.8)', marginBottom: '32px' }}>{svc.desc}</p>
                                             </div>
-                                            <div style={{ background: 'rgba(255,255,255,0.1)', borderRadius: '8px', padding: '14px 18px', border: '1px solid rgba(255,255,255,0.15)' }}>
-                                                <i className="fas fa-chart-bar" style={{ color: 'rgba(255,255,255,0.6)', marginRight: '8px', fontSize: '12px' }}></i>
-                                                <span style={{ fontSize: '13px', fontWeight: '600', color: '#fff' }}>{svc.highlight}</span>
+                                            <div style={{ position: 'relative', zIndex: 1, background: 'rgba(0,0,0,0.25)', backdropFilter: 'blur(5px)', borderRadius: '12px', padding: '16px 20px', border: '1px solid rgba(255,255,255,0.1)' }}>
+                                                <i className="fas fa-bolt" style={{ color: '#34D399', marginRight: '10px', fontSize: '14px' }}></i>
+                                                <span style={{ fontSize: '14px', fontWeight: '700', color: '#fff' }}>{svc.highlight}</span>
                                             </div>
                                         </div>
                                     </Col>
                                     <Col lg={8}>
-                                        <div style={{ padding: '40px' }}>
+                                        <div style={{ padding: '60px 52px' }}>
                                             <Row>
                                                 <Col md={7}>
-                                                    <div style={{ fontSize: '13px', fontWeight: '700', letterSpacing: '2px', textTransform: 'uppercase', color: '#C4933F', marginBottom: '20px' }}>What's Included</div>
-                                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+                                                    <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '2px', textTransform: 'uppercase', color: '#10B981', marginBottom: '28px' }}>Scope of Services</div>
+                                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '14px' }}>
                                                         {svc.features.map((f, j) => (
-                                                            <div key={j} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: '13px', color: '#374151' }}>
-                                                                <i className="fas fa-check-circle" style={{ color: '#10B981', fontSize: '12px', marginTop: '3px', flexShrink: 0 }}></i>
+                                                            <div key={j} style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', fontSize: '14px', color: '#A1A1AA' }}>
+                                                                <span style={{ width: '18px', height: '18px', background: 'rgba(16, 185, 129, 0.1)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '2px' }}>
+                                                                    <i className="fas fa-check" style={{ color: '#10B981', fontSize: '9px' }}></i>
+                                                                </span>
                                                                 {f}
                                                             </div>
                                                         ))}
                                                     </div>
                                                 </Col>
-                                                <Col md={5} className="mt-4 mt-md-0">
-                                                    <div style={{ fontSize: '13px', fontWeight: '700', letterSpacing: '2px', textTransform: 'uppercase', color: '#C4933F', marginBottom: '16px' }}>Modules Covered</div>
-                                                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '32px' }}>
+                                                <Col md={5} className="mt-5 mt-md-0">
+                                                    <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '2px', textTransform: 'uppercase', color: '#10B981', marginBottom: '20px' }}>Capabilities</div>
+                                                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginBottom: '40px' }}>
                                                         {svc.modules.map((mod, j) => (
-                                                            <span key={j} style={{ background: '#F0F4F8', color: '#1B3A5C', fontSize: '12px', fontWeight: '600', padding: '5px 12px', borderRadius: '6px', border: '1px solid #E5E7EB' }}>{mod}</span>
+                                                            <span key={j} style={{ background: 'rgba(255,255,255,0.03)', color: '#E4E4E7', fontSize: '12px', fontWeight: '600', padding: '6px 14px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.08)' }}>{mod}</span>
                                                         ))}
                                                     </div>
-                                                    <Link to={`/services/${svc.slug}`} className="btn-enfono-primary d-inline-block">
-                                                        Learn More <i className="fas fa-arrow-right ms-2"></i>
+                                                    <Link to={`/services/${svc.slug}`} className="ehero-btn-primary" style={{ padding: '14px 28px', fontSize: '14px' }}>
+                                                        Explore Detail <i className="fas fa-arrow-right ms-2"></i>
                                                     </Link>
                                                 </Col>
                                             </Row>
@@ -178,23 +199,33 @@ const EnfonoServices = () => {
             </section>
 
             {/* Our Process */}
-            <section style={{ background: '#fff', padding: '80px 0' }}>
+            <section style={{ background: '#080808', padding: '120px 0', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
                 <Container>
                     <LazyMotion features={domAnimation}>
-                        <m.div className="text-center mb-14" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}>
-                            <m.span variants={fadeIn} className="enfono-section-label">How We Work</m.span>
-                            <m.h2 variants={fadeIn} className="enfono-section-title">Our Proven Delivery Process</m.h2>
+                        <m.div className="text-center" style={{ marginBottom: '80px' }} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}>
+                            <m.span variants={fadeIn} className="enfono-section-label-amber">The Enfono Methodology</m.span>
+                            <m.h2 variants={fadeIn} className="enfono-hero-title" style={{ fontSize: '42px', margin: '16px 0' }}>Our Proven Framework</m.h2>
+                            <m.p variants={fadeIn} className="enfono-hero-subtitle" style={{ margin: '0 auto' }}>A systematic approach to ensuring your ERP transformation is seamless, scalable, and successful.</m.p>
                         </m.div>
-                        <Row className="g-4">
+                        <Row className="g-5">
                             {process.map((p, i) => (
                                 <Col key={i} lg={2} md={4} sm={6}>
                                     <m.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}>
-                                        <div style={{ textAlign: 'center', position: 'relative' }}>
-                                            <div style={{ width: '64px', height: '64px', background: i % 2 === 0 ? 'var(--enfono-gradient)' : '#F8FAFC', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px', border: i % 2 !== 0 ? '2px solid #E5E7EB' : 'none' }}>
-                                                <span style={{ fontSize: '16px', fontWeight: '800', color: i % 2 === 0 ? '#C4933F' : '#1B3A5C', fontFamily: 'Poppins, sans-serif' }}>{p.step}</span>
+                                        <div style={{ textAlign: 'center' }}>
+                                            <div style={{
+                                                width: '76px', height: '76px',
+                                                background: i % 2 === 0 ? 'linear-gradient(135deg, #10B981 0%, #059669 100%)' : 'rgba(255,255,255,0.03)',
+                                                borderRadius: '24px',
+                                                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                                margin: '0 auto 24px',
+                                                border: '1px solid rgba(255,255,255,0.08)',
+                                                transform: 'rotate(-5deg)',
+                                                boxShadow: i % 2 === 0 ? '0 10px 20px rgba(16, 185, 129, 0.2)' : 'none'
+                                            }}>
+                                                <span style={{ fontSize: '20px', fontWeight: '900', color: i % 2 === 0 ? '#fff' : '#10B981', fontFamily: 'Poppins, sans-serif', transform: 'rotate(5deg)' }}>{p.step}</span>
                                             </div>
-                                            <h4 style={{ fontSize: '16px', fontWeight: '700', color: '#1B3A5C', fontFamily: 'Poppins, sans-serif', marginBottom: '8px' }}>{p.title}</h4>
-                                            <p style={{ fontSize: '13px', lineHeight: '1.65', color: '#6B7280', margin: 0 }}>{p.desc}</p>
+                                            <h4 style={{ fontSize: '17px', fontWeight: '800', color: '#fff', fontFamily: 'Poppins, sans-serif', marginBottom: '12px' }}>{p.title}</h4>
+                                            <p style={{ fontSize: '14px', lineHeight: '1.7', color: '#71717A', margin: 0 }}>{p.desc}</p>
                                         </div>
                                     </m.div>
                                 </Col>
@@ -205,12 +236,12 @@ const EnfonoServices = () => {
             </section>
 
             {/* CTA */}
-            <section className="enfono-cta">
+            <section className="enfono-footer-cta-band" style={{ padding: '80px 0', background: 'linear-gradient(135deg, #0F766E 0%, #34D399 100%)' }}>
                 <Container>
                     <div className="text-center">
-                        <h2 style={{ fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: '700', color: '#fff', fontFamily: 'Poppins, sans-serif', marginBottom: '20px' }}>Not Sure Which Service You Need?</h2>
-                        <p style={{ fontSize: '17px', color: 'rgba(255,255,255,0.8)', maxWidth: '500px', margin: '0 auto 32px' }}>Book a free consultation and our experts will help you identify the right ERP approach for your business.</p>
-                        <Link to="/contact" style={{ background: '#fff', color: '#C4933F', padding: '14px 36px', borderRadius: '4px', fontWeight: '700', fontSize: '15px', textDecoration: 'none' }}>Book Free Consultation</Link>
+                        <h2 style={{ fontSize: 'clamp(32px, 5vw, 48px)', fontWeight: '800', color: '#fff', fontFamily: 'Poppins, sans-serif', marginBottom: '20px' }}>Ready to Scale Your GCC Operations?</h2>
+                        <p style={{ fontSize: '18px', color: 'rgba(255,255,255,0.9)', maxWidth: '600px', margin: '0 auto 40px' }}>Book a free 60-minute strategy session with our industry experts and find the perfect ERP path for your business.</p>
+                        <Link to="/contact" className="ehero-btn-primary" style={{ background: '#fff', color: '#0F766E', border: 'none', padding: '18px 48px' }}>Book Strategy Session <i className="fas fa-arrow-right ms-2"></i></Link>
                     </div>
                 </Container>
             </section>
