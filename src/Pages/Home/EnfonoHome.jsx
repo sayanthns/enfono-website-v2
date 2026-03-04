@@ -161,8 +161,8 @@ export default function EnfonoHome() {
                   </m.div>
 
                   <m.h1 className="enfono-hero-title" variants={fadeUp} custom={0.1}>
-                    Business Process<br />
-                    Optimisation <span className="highlight-ai">AI</span>
+                    Transform Your<br />
+                    Business with <span className="highlight-ai">AI & ERP</span>
                   </m.h1>
 
                   <m.p className="enfono-hero-subtitle" variants={fadeUp} custom={0.15}>
