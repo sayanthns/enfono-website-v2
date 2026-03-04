@@ -39,6 +39,12 @@ const StatCell = ({ end, suffix = '', label, icon }) => {
 
 const services = [
   {
+    icon: 'fas fa-brain', title: 'AI Agentic & Automation', isAI: true,
+    desc: 'Intelligent ERP with predictive analytics, automated workflows, and AI-driven dashboards that grow smarter with your business.',
+    link: '/ai-erp',
+    features: ['Predictive analytics', 'Smart dashboards', 'Natural language reports']
+  },
+  {
     icon: 'fas fa-cubes', title: 'ERPNext Implementation',
     desc: 'Full deployment from setup to go-live — multi-company, Arabic localization, and ZATCA Phase II compliance built in.',
     link: '/services',
@@ -49,12 +55,6 @@ const services = [
     desc: 'Tailored web, mobile (iOS/Android), and desktop applications aligned to your workflows, regulations, and growth plans.',
     link: '/services',
     features: ['Web & mobile apps', 'API integrations', 'Scalable architecture']
-  },
-  {
-    icon: 'fas fa-brain', title: 'AI Analytics & Business Intelligence', isAI: true,
-    desc: 'Intelligent ERP with predictive analytics, automated workflows, and AI-driven dashboards that grow smarter with your business.',
-    link: '/ai-erp',
-    features: ['Predictive analytics', 'Smart dashboards', 'Natural language reports']
   },
   {
     icon: 'fas fa-truck', title: 'Logistics Management Systems',
