@@ -111,10 +111,10 @@ const clientLogos = [
 ]
 
 const brands = [
-  { icon: 'fas fa-building', name: 'Rentpe', desc: 'Property management platform for maintenance, finances & rental performance' },
-  { icon: 'fas fa-drafting-compass', name: 'Arca', desc: 'Architecture management for project planning & document control' },
-  { icon: 'fas fa-users-cog', name: 'TAQMI', desc: 'Full-featured HRMS for employee lifecycle & payroll automation' },
-  { icon: 'fas fa-car', name: 'Drivezy', desc: 'Driving school management — scheduling, progress & certifications' },
+  { logo: 'https://www.enfono.com/_next/static/image/public/images/our-brands/rentpe.f4d52afe93d6cd1051e5eaec9d364224.png', name: 'Rentpe', desc: 'Property management platform for maintenance, finances & rental performance' },
+  { logo: 'https://www.enfono.com/_next/static/image/public/images/our-brands/Arca.676ced51f42b4cdae6865d289e2993ac.png', name: 'Arca', desc: 'Architecture management for project planning & document control' },
+  { logo: 'https://www.enfono.com/_next/static/image/public/images/our-brands/chms.bba80108da4df146400de9c956100225.png', name: 'CHMS', desc: 'Hospital management system for streamlined clinical workflows' },
+  { logo: 'https://www.enfono.com/_next/static/image/public/images/our-brands/Drivezy.b1e29703989e2f1afa65cdf8b505eb17.png', name: 'Drivezy', desc: 'Driving school management — scheduling, progress & certifications' },
 ]
 
 const testimonials = [
@@ -634,7 +634,13 @@ export default function EnfonoHome() {
               {brands.map(b => (
                 <m.div key={b.name} variants={fadeUp}>
                   <Link to="/brands" className="e-brand-card">
-                    <div className="ebc-icon"><i className={b.icon} /></div>
+                    <div className="ebc-icon">
+                      {b.logo ? (
+                        <img src={b.logo} alt={b.name} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                      ) : (
+                        <i className={b.icon} />
+                      )}
+                    </div>
                     <div className="ebc-name">{b.name}</div>
                     <div className="ebc-desc">{b.desc}</div>
                   </Link>
@@ -776,7 +782,9 @@ export default function EnfonoHome() {
                   <h3 className="eev-title">Media One Future Summit — Jeddah</h3>
                   <p className="eev-desc">Discussing the future of enterprise technology, AI-driven digital transformation, and scalable ERP strategies for Saudi Arabia's Vision 2030.</p>
                   <div className="eev-actions">
-                    <span className="eev-link upcoming"><i className="far fa-images" /> Gallery Available Soon</span>
+                    <a href="https://www.instagram.com/stories/highlights/18550941703042890/" target="_blank" rel="noopener noreferrer" className="eev-link ig">
+                      <i className="fab fa-instagram" /> View Stories
+                    </a>
                   </div>
                 </div>
               </m.div>
