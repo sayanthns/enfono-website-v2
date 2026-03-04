@@ -694,6 +694,7 @@ export default function EnfonoHome() {
                   <div className="etb-label">Clutch · 31 Reviews</div>
                 </div>
               </div>
+
               <div className="e-trust-badge">
                 <i className="fab fa-google" />
                 <div>
