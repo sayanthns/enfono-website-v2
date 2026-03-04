@@ -161,13 +161,12 @@ export default function EnfonoHome() {
                   </m.div>
 
                   <m.h1 className="enfono-hero-title" variants={fadeUp} custom={0.1}>
-                    Transform Your<br />
-                    Business with<br />
-                    <span className="highlight">Expert ERP &amp; AI</span>
+                    Business Process<br />
+                    Optimisation <span className="highlight-ai">AI</span>
                   </m.h1>
 
                   <m.p className="enfono-hero-subtitle" variants={fadeUp} custom={0.15}>
-                    We provide customer-centric ERPNext solutions with AI-powered analytics — from consulting and system design to deployment, data migration, and long-term support across the GCC.
+                    We don't just implement ERPs; we power them with intelligent business orchestration. Chat with your live enterprise data, predict outcomes, and automate decisions across the GCC.
                   </m.p>
 
                   <m.div className="enfono-hero-actions" variants={fadeUp} custom={0.2}>
@@ -204,65 +203,89 @@ export default function EnfonoHome() {
                   </m.div>
                 </m.div>
 
-                {/* Right — Dashboard */}
+                {/* Right — Chat Mockup */}
                 <m.div
                   className="enfono-hero-right"
                   initial="hidden"
                   animate="visible"
                   variants={fadeRight}
                 >
-                  <div className="enfono-dashboard-mockup">
-                    <div className="edm-card">
-                      <div className="edm-header">
-                        <div className="edm-title">AI-Powered ERP Dashboard</div>
-                        <div className="edm-live-badge">Live</div>
-                      </div>
-                      <div className="edm-stats-row">
-                        <div className="edm-stat">
-                          <div className="edm-stat-val">SAR 2.4M</div>
-                          <div className="edm-stat-label">Revenue MTD</div>
-                        </div>
-                        <div className="edm-stat highlight">
-                          <div className="edm-stat-val">↑35%</div>
-                          <div className="edm-stat-label">Cost Saved</div>
-                        </div>
-                        <div className="edm-stat">
-                          <div className="edm-stat-val">98.2%</div>
-                          <div className="edm-stat-label">Uptime</div>
+                  <div className="enfono-chat-mockup">
+                    <div className="ecm-header">
+                      <div className="ecm-header-left">
+                        <div className="ecm-avatar"><i className="fas fa-robot" /></div>
+                        <div>
+                          <div className="ecm-title">Enfono AI Assistant</div>
+                          <div className="ecm-status"><span className="dot" /> Connected to ERPNext</div>
                         </div>
                       </div>
-                      <div className="edm-chart-area">
-                        <div className="edm-chart-label">Revenue Trend — 2025</div>
-                        <div className="edm-chart-bars">
-                          {[40, 55, 48, 65, 58, 72, 68, 80, 75, 88, 82, 95].map((h, i) => (
-                            <div
-                              key={i}
-                              className={`edm-bar${i === 11 ? ' hi' : ''}`}
-                              style={{ height: `${h}%`, animationDelay: `${i * 0.06}s` }}
-                            />
-                          ))}
+                      <i className="fas fa-ellipsis-h ecm-menu" />
+                    </div>
+
+                    <div className="ecm-body">
+                      {/* User Message */}
+                      <div className="ecm-message user">
+                        <div className="ecm-bubble">
+                          <p>Compare our operating costs vs revenue for Q1 so far.</p>
                         </div>
                       </div>
-                      <div className="edm-modules">
-                        {[
-                          { icon: 'fas fa-boxes', label: 'Inventory' },
-                          { icon: 'fas fa-file-invoice-dollar', label: 'Finance' },
-                          { icon: 'fas fa-users', label: 'HR & Payroll' },
-                          { icon: 'fas fa-brain', label: 'AI Insights' },
-                        ].map(mod => (
-                          <div key={mod.label} className="edm-module">
-                            <i className={mod.icon} /><span>{mod.label}</span>
+
+                      {/* AI Thinking */}
+                      <div className="ecm-message ai thinking">
+                        <div className="ecm-avatar-small"><i className="fas fa-robot" /></div>
+                        <div className="ecm-bubble">
+                          <span className="typing-dot" /><span className="typing-dot" /><span className="typing-dot" />
+                        </div>
+                      </div>
+
+                      {/* AI Response */}
+                      <div className="ecm-message ai">
+                        <div className="ecm-avatar-small"><i className="fas fa-robot" /></div>
+                        <div className="ecm-bubble">
+                          <p>Here is your Q1 insight. Your cost-to-revenue efficiency has improved by <strong>14.2%</strong> compared to last year.</p>
+
+                          <div className="ecm-widget-chart">
+                            <div className="ecm-chart-header">
+                              <div>Q1 Snapshot</div>
+                              <div className="ecm-badge-green"><i className="fas fa-arrow-up" /> Efficient</div>
+                            </div>
+                            <div className="ecm-bars">
+                              <div className="ecm-bar-group">
+                                <span className="label">Revenue</span>
+                                <div className="bar-bg"><div className="bar-fill blue" style={{ width: '85%' }}></div></div>
+                                <span className="val">SAR 4.2M</span>
+                              </div>
+                              <div className="ecm-bar-group">
+                                <span className="label">Costs</span>
+                                <div className="bar-bg"><div className="bar-fill red" style={{ width: '45%' }}></div></div>
+                                <span className="val">SAR 1.8M</span>
+                              </div>
+                            </div>
                           </div>
-                        ))}
+
+                          <div className="ecm-actions">
+                            <button className="ecm-action-btn"><i className="fas fa-file-export" /> Export PDF</button>
+                            <button className="ecm-action-btn"><i className="fas fa-share-alt" /> Share</button>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                    <div className="edm-float-1">
-                      <div className="ef1-val">+35%</div>
-                      <div className="ef1-label">Efficiency Gain</div>
+
+                    <div className="ecm-footer">
+                      <div className="ecm-input-box">
+                        <i className="fas fa-chart-line ecm-input-icon" />
+                        <span className="ecm-placeholder">Ask Enfono AI about your business...</span>
+                        <button className="ecm-send-btn"><i className="fas fa-paper-plane" /></button>
+                      </div>
                     </div>
-                    <div className="edm-float-2">
-                      <div className="ef2-val">✓ ZATCA Phase II</div>
-                      <div className="ef2-label">Saudi Arabia Ready</div>
+
+                    {/* Floating elements */}
+                    <div className="ecm-float-1">
+                      <div className="ecf-icon"><i className="fas fa-bolt" /></div>
+                      <div>
+                        <div className="ecf-val">Instant Context</div>
+                        <div className="ecf-label">No setup needed</div>
+                      </div>
                     </div>
                   </div>
                 </m.div>
@@ -685,6 +708,78 @@ export default function EnfonoHome() {
                   <div className="etb-label">Frappe Certified</div>
                 </div>
               </div>
+            </m.div>
+          </div>
+        </section>
+
+        {/* ── EVENTS & INSIGHTS ── */}
+        <section className="e-events-section">
+          <div className="enfono-container">
+            <m.div
+              style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px', marginBottom: '40px' }}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={fadeUp}
+            >
+              <div>
+                <div className="e-section-label">Media & Events</div>
+                <h2 className="e-section-title" style={{ margin: 0 }}>Enfono in Action</h2>
+              </div>
+            </m.div>
+
+            <m.div
+              className="e-events-grid"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.1 }}
+              variants={stagger}
+            >
+              {/* Event 1 */}
+              <m.div className="e-event-card" variants={fadeUp}>
+                <div className="eev-image-wrapper">
+                  <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=800" alt="Frappeverse 2025" />
+                  <div className="eev-date-badge">
+                    <span className="day">12</span>
+                    <span className="month">FEB</span>
+                  </div>
+                </div>
+                <div className="eev-content">
+                  <div className="eev-meta">
+                    <span><i className="fas fa-map-marker-alt" /> Global Tech Expo</span>
+                    <span><i className="fas fa-tag" /> Frappeverse</span>
+                  </div>
+                  <h3 className="eev-title">We Presented at Frappeverse 2025</h3>
+                  <p className="eev-desc">Our team showcased the power of AI-driven ERPNext implementations and business process optimization to a global audience of developers and business leaders.</p>
+                  <div className="eev-actions">
+                    <a href="https://youtu.be/eMNhqHINfsI" target="_blank" rel="noopener noreferrer" className="eev-link youtube"><i className="fab fa-youtube" /> Watch Stream</a>
+                    <a href="https://www.instagram.com/p/DTAk-qLCIKe/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer" className="eev-link ig"><i className="fab fa-instagram" /> View Gallery</a>
+                  </div>
+                </div>
+              </m.div>
+
+              {/* Event 2 */}
+              <m.div className="e-event-card" variants={fadeUp}>
+                <div className="eev-image-wrapper">
+                  <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&q=80&w=800" alt="Media One Future Summit" />
+                  <div className="eev-date-badge">
+                    <span className="day">28</span>
+                    <span className="month">NOV</span>
+                  </div>
+                </div>
+                <div className="eev-content">
+                  <div className="eev-meta">
+                    <span><i className="fas fa-map-marker-alt" /> Jeddah, KSA</span>
+                    <span><i className="fas fa-tag" /> Summit</span>
+                  </div>
+                  <h3 className="eev-title">Media One Future Summit — Jeddah</h3>
+                  <p className="eev-desc">Discussing the future of enterprise technology, AI-driven digital transformation, and scalable ERP strategies for Saudi Arabia's Vision 2030.</p>
+                  <div className="eev-actions">
+                    <span className="eev-link upcoming"><i className="far fa-images" /> Gallery Available Soon</span>
+                  </div>
+                </div>
+              </m.div>
+
             </m.div>
           </div>
         </section>
