@@ -738,7 +738,9 @@ export default function EnfonoHome() {
               {/* Event 1 */}
               <m.div className="e-event-card" variants={fadeUp}>
                 <div className="eev-image-wrapper">
-                  <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&q=80&w=800" alt="Frappeverse 2025" />
+                  <div className="eev-placeholder">
+                    <i className="far fa-image" /> Image coming soon
+                  </div>
                   <div className="eev-date-badge">
                     <span className="day">12</span>
                     <span className="month">FEB</span>
@@ -761,7 +763,9 @@ export default function EnfonoHome() {
               {/* Event 2 */}
               <m.div className="e-event-card" variants={fadeUp}>
                 <div className="eev-image-wrapper">
-                  <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&q=80&w=800" alt="Media One Future Summit" />
+                  <div className="eev-placeholder">
+                    <i className="far fa-image" /> Image coming soon
+                  </div>
                   <div className="eev-date-badge">
                     <span className="day">28</span>
                     <span className="month">NOV</span>
