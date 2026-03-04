@@ -148,13 +148,7 @@ export default function EnfonoHome() {
                   animate="visible"
                   variants={stagger}
                 >
-                  <m.div className="enfono-hero-flags" variants={fadeUp}>
-                    <span className="eh-flag-pill">🇸🇦 Saudi Arabia</span>
-                    <span className="eh-flag-pill">🇦🇪 UAE</span>
-                    <span className="eh-flag-pill">🇴🇲 Oman</span>
-                    <span className="eh-flag-pill">🇶🇦 Qatar</span>
-                    <span className="eh-flag-pill">🇧🇭 Bahrain</span>
-                  </m.div>
+
 
                   <m.div className="enfono-hero-eyebrow" variants={fadeUp} custom={0.05}>
                     <i className="fas fa-bolt" /> End-to-End ERP Solutions for GCC Enterprises
@@ -180,27 +174,7 @@ export default function EnfonoHome() {
                     </Link>
                   </m.div>
 
-                  <m.div className="enfono-hero-trust" variants={fadeUp} custom={0.25}>
-                    <div className="ehtrust-item">
-                      <span className="ehtrust-num">5+</span>
-                      <span className="ehtrust-label">Years in GCC</span>
-                    </div>
-                    <div className="ehtrust-divider" />
-                    <div className="ehtrust-item">
-                      <span className="ehtrust-num">120+</span>
-                      <span className="ehtrust-label">Projects Done</span>
-                    </div>
-                    <div className="ehtrust-divider" />
-                    <div className="ehtrust-item">
-                      <span className="ehtrust-num">6+</span>
-                      <span className="ehtrust-label">Countries</span>
-                    </div>
-                    <div className="ehtrust-divider" />
-                    <div className="ehtrust-item">
-                      <span className="ehtrust-num">15000+</span>
-                      <span className="ehtrust-label">Active Users</span>
-                    </div>
-                  </m.div>
+
                 </m.div>
 
                 {/* Right — Chat Mockup */}
