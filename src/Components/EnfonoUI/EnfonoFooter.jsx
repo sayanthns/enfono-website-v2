@@ -38,7 +38,7 @@ export default function EnfonoFooter() {
                 GCC's trusted ERP partner — powering digital transformation across Saudi Arabia, UAE, and Oman with ERPNext and AI-driven solutions.
               </p>
               <div className="ef-social">
-                <a href="https://linkedin.com/company/enfono" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <a href="https://www.linkedin.com/company/enfono-technologies/posts/?feedView=all" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                   <i className="fab fa-linkedin-in" />
                 </a>
                 <a href="https://twitter.com/enfono" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
@@ -47,7 +47,7 @@ export default function EnfonoFooter() {
                 <a href="https://youtube.com/@enfono" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
                   <i className="fab fa-youtube" />
                 </a>
-                <a href="https://instagram.com/enfono" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <a href="https://www.instagram.com/enfono.official/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                   <i className="fab fa-instagram" />
                 </a>
               </div>

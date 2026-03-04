@@ -88,9 +88,9 @@ const industries = [
 ]
 
 const caseStudies = [
+  { meta: 'Govt. & World Bank · Kerala', title: 'KERA Grant Portal', desc: 'Climate resilient grant portal for Govt of Kerala and World Bank. Includes the KERA Product Alliance portal and NAWODHA portal for the agriculture department.', result: 'Multi-portal architecture', icon: 'fas fa-leaf' },
+  { meta: 'Agro Business · Kerala', title: 'KABCO ERP & Website', desc: 'Kerala Agro Business Company — comprehensive ERP implementation and corporate website development to streamline agro businesses.', result: 'Unified digital operations', icon: 'fas fa-tractor' },
   { meta: 'Steel & Manufacturing · KSA', title: 'Steel Force — 25 Branches Unified', desc: 'Deployed ERP across 25 branches and 500+ employees to manage steel production and retail trading operations seamlessly.', result: '25 branches connected', icon: 'fas fa-industry' },
-  { meta: 'Logistics · KSA', title: 'NMCE Logistics — Fleet Operations', desc: 'Integrated unified fleet operations, driver management, and real-time financial visibility across the entire logistics chain.', result: 'Real-time visibility', icon: 'fas fa-truck' },
-  { meta: 'F&B Retail · KSA', title: 'Badriya Sweets — Production & VAN Sales', desc: 'Streamlined production planning, retail billing, and VAN sales operations for a leading sweets manufacturer.', result: 'Full production control', icon: 'fas fa-store' },
 ]
 
 const clientLogos = [
@@ -778,6 +778,30 @@ export default function EnfonoHome() {
                   </div>
                   <h3 className="eev-title">Media One Future Summit — Jeddah</h3>
                   <p className="eev-desc">Discussing the future of enterprise technology, AI-driven digital transformation, and scalable ERP strategies for Saudi Arabia's Vision 2030.</p>
+                  <div className="eev-actions">
+                    <span className="eev-link upcoming"><i className="far fa-images" /> Gallery Available Soon</span>
+                  </div>
+                </div>
+              </m.div>
+
+              {/* Event 3 */}
+              <m.div className="e-event-card" variants={fadeUp}>
+                <div className="eev-image-wrapper">
+                  <div className="eev-placeholder">
+                    <i className="far fa-image" /> Image coming soon
+                  </div>
+                  <div className="eev-date-badge">
+                    <span className="day">05</span>
+                    <span className="month">MAY</span>
+                  </div>
+                </div>
+                <div className="eev-content">
+                  <div className="eev-meta">
+                    <span><i className="fas fa-map-marker-alt" /> Kerala, India</span>
+                    <span><i className="fas fa-tag" /> Govt. Launch</span>
+                  </div>
+                  <h3 className="eev-title">Launching of KERA</h3>
+                  <p className="eev-desc">A Government of Kerala & World Bank initiative. Official launch ceremony highlighting climate-resilient agriculture programs.</p>
                   <div className="eev-actions">
                     <span className="eev-link upcoming"><i className="far fa-images" /> Gallery Available Soon</span>
                   </div>
