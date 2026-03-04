@@ -12,7 +12,6 @@ import { ThemeProvider } from "./Context/ThemeContext";
 import "./Assets/css/icons.css";
 import "./Assets/css/global.css";
 import "./Assets/css/pages.css";
-import "./Assets/css/enfono.css";
 import "./index.scss";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

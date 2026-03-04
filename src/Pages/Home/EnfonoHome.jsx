@@ -192,13 +192,13 @@ export default function EnfonoHome() {
                     </div>
                     <div className="ehtrust-divider" />
                     <div className="ehtrust-item">
-                      <span className="ehtrust-num">8+</span>
+                      <span className="ehtrust-num">6+</span>
                       <span className="ehtrust-label">Countries</span>
                     </div>
                     <div className="ehtrust-divider" />
                     <div className="ehtrust-item">
-                      <span className="ehtrust-num">85%</span>
-                      <span className="ehtrust-label">Retention</span>
+                      <span className="ehtrust-num">15000+</span>
+                      <span className="ehtrust-label">Active Users</span>
                     </div>
                   </m.div>
                 </m.div>
@@ -300,8 +300,8 @@ export default function EnfonoHome() {
             <div className="enfono-stats-inner">
               <StatCell end={120} suffix="+" label="Projects Delivered" icon="fas fa-project-diagram" />
               <StatCell end={60} suffix="+" label="Customers Worldwide" icon="fas fa-handshake" />
-              <StatCell end={8} suffix="+" label="Countries Served" icon="fas fa-globe-americas" />
-              <StatCell end={85} suffix="%" label="Client Retention" icon="fas fa-heart" />
+              <StatCell end={6} suffix="+" label="Countries Served" icon="fas fa-globe-americas" />
+              <StatCell end={15000} suffix="+" label="Active Users" icon="fas fa-user-check" />
             </div>
           </div>
         </section>
