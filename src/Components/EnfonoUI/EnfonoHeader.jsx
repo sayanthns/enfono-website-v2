@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { useTheme } from '../../Context/ThemeContext'
 
 const navLinks = [
   { label: 'Home', path: '/' },
@@ -30,6 +31,7 @@ export default function EnfonoHeader() {
   const location = useLocation()
   const headerRef = useRef(null)
   const dropdownTimer = useRef(null)
+  const { isDark, toggleTheme } = useTheme()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30)
@@ -112,6 +114,13 @@ export default function EnfonoHeader() {
 
         {/* CTA + Hamburger */}
         <div className="enfono-header-actions">
+          <button
+            className="enfono-theme-toggle"
+            onClick={toggleTheme}
+            aria-label="Toggle Theme"
+          >
+            {isDark ? <i className="fas fa-sun" /> : <i className="fas fa-moon" />}
+          </button>
           <Link to="/contact" className="enfono-header-cta">
             Get Free Consultation
           </Link>
@@ -157,9 +166,19 @@ export default function EnfonoHeader() {
               )}
             </div>
           ))}
-          <Link to="/contact" className="enfono-mobile-cta">
-            Get Free Consultation
-          </Link>
+          <div style={{ display: 'flex', gap: '12px', marginTop: '16px' }}>
+            <button
+              className="enfono-theme-toggle"
+              onClick={toggleTheme}
+              aria-label="Toggle Theme"
+              style={{ flexShrink: 0 }}
+            >
+              {isDark ? <i className="fas fa-sun" /> : <i className="fas fa-moon" />}
+            </button>
+            <Link to="/contact" className="enfono-mobile-cta" style={{ flexGrow: 1, marginTop: 0 }}>
+              Get Free Consultation
+            </Link>
+          </div>
         </div>
       </div>
     </header>

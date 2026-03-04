@@ -31,6 +31,7 @@ export default function EnfonoFooter() {
                   src="/assets/img/enfono-logo.png"
                   alt="Enfono Technologies"
                   className="ef-logo"
+                  style={{ filter: 'var(--t-logo-filter)' }}
                 />
               </Link>
               <p className="ef-tagline">
@@ -126,6 +127,7 @@ export default function EnfonoFooter() {
                 src="/assets/img/enfono-logo.png"
                 alt="Enfono"
                 className="ef-bottom-logo-img"
+                style={{ filter: 'var(--t-logo-filter)' }}
               />
             </div>
             <p>&copy; {new Date().getFullYear()} Enfono Technologies. All rights reserved.</p>

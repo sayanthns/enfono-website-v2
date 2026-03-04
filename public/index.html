@@ -35,6 +35,11 @@
 
   <link rel="stylesheet" href="assets/css/loader.css">
 
+  <!-- Prevent flash of wrong theme -->
+  <script>
+    (function(){try{var t=localStorage.getItem('enfono-theme');if(t==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}})();
+  </script>
+
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-6NNZSMD3JF"></script>
   <script>

@@ -32,4 +32,36 @@
     --enfono-accent-gradient: linear-gradient(135deg, #10B981 0%, #6EE7B7 100%);
     --enfono-card-gradient: linear-gradient(135deg, #10B981 0%, #34D399 100%);
     --enfono-section-bg: #F8FAF9;
+
+    /* ── Theme-Semantic Variables ── */
+    --t-bg-primary: #111111;
+    --t-bg-secondary: #0D0D0D;
+    --t-bg-surface: #FFFFFF;
+    --t-bg-section: #F8FAF9;
+    --t-text-primary: #FFFFFF;
+    --t-text-secondary: rgba(255,255,255,0.6);
+    --t-text-muted: rgba(255,255,255,0.4);
+    --t-text-on-light: #1A1A1A;
+    --t-border: rgba(255,255,255,0.06);
+    --t-accent: #7BBB9B;
+    --t-accent-dark: #059669;
+    --t-overlay: rgba(13,13,13,0.96);
+    --t-logo-filter: brightness(0) invert(1);
+}
+
+/* ── Light Theme Overrides ── */
+[data-theme="light"] {
+    --t-bg-primary: #FFFFFF;
+    --t-bg-secondary: #F8FAF9;
+    --t-bg-surface: #FFFFFF;
+    --t-bg-section: #F8FAF9;
+    --t-text-primary: #1A1A1A;
+    --t-text-secondary: #64748B;
+    --t-text-muted: #94A3B8;
+    --t-text-on-light: #1A1A1A;
+    --t-border: #E5E7EB;
+    --t-accent: #059669;
+    --t-accent-dark: #047857;
+    --t-overlay: rgba(255,255,255,0.96);
+    --t-logo-filter: none;
 }

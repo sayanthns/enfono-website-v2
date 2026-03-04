@@ -56,13 +56,13 @@ function App() {
           <Suspense fallback={
             <div style={{
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              height: '100vh', background: '#0F1923', flexDirection: 'column', gap: '16px'
+              height: '100vh', background: 'var(--t-bg-primary)', flexDirection: 'column', gap: '16px'
             }}>
               <div style={{
-                width: '48px', height: '48px', border: '3px solid rgba(196,147,63,0.3)',
-                borderTop: '3px solid #C4933F', borderRadius: '50', animation: 'spin 1s linear infinite'
+                width: '48px', height: '48px', border: '3px solid var(--t-border)',
+                borderTop: '3px solid var(--t-accent)', borderRadius: '50%', animation: 'spin 1s linear infinite'
               }}></div>
-              <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: '14px' }}>Loading...</span>
+              <span style={{ color: 'var(--t-text-muted)', fontSize: '14px' }}>Loading...</span>
             </div>
           }>
             <Routes>

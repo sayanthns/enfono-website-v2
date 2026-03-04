@@ -4,7 +4,7 @@
    ── Color System — Obsidian & Emerald ──
    Primary:     #111111  (Near Black — hero, dark sections)
    Dark BG:     #0D0D0D  (Obsidian — deepest dark)
-   Accent:      #10B981  (Emerald — primary accent, CTAs)
+   Accent:      #7BBB9B  (Emerald — primary accent, CTAs)
    Secondary:   #34D399  (Light Emerald — highlights, hover)
    Light BG:    #F8FAF9  (Mint White sections)
    Card BG:     #FFFFFF
@@ -208,7 +208,7 @@
   display: inline-flex;
   align-items: center;
   padding: 10px 22px;
-  background: #10B981;
+  background: #7BBB9B;
   color: #fff !important;
   font-family: "Inter", sans-serif;
   font-size: 13.5px;
@@ -344,7 +344,7 @@
   justify-content: center;
   margin-top: 16px;
   padding: 14px;
-  background: #10B981;
+  background: #7BBB9B;
   color: #fff;
   font-family: "Inter", sans-serif;
   font-size: 15px;
@@ -495,7 +495,7 @@
   align-items: center;
   gap: 8px;
   padding: 15px 32px;
-  background: #10B981;
+  background: #7BBB9B;
   color: #fff;
   font-family: "Inter", sans-serif;
   font-size: 15px;
@@ -694,7 +694,7 @@
 .edm-bar {
   flex: 1;
   border-radius: 4px 4px 0 0;
-  background: linear-gradient(180deg, #10B981 0%, #34D399 100%);
+  background: linear-gradient(180deg, #7BBB9B 0%, #34D399 100%);
   opacity: 0.7;
   animation: barGrow 1.2s ease-out forwards;
   transform-origin: bottom;
@@ -962,7 +962,7 @@
   transition: all 0.3s;
 }
 .e-logo-item:hover {
-  border-color: #10B981;
+  border-color: #7BBB9B;
   box-shadow: 0 4px 16px rgba(16, 185, 129, 0.08);
 }
 
@@ -1010,7 +1010,7 @@
 }
 .e-industry-card i {
   font-size: 22px;
-  color: #10B981;
+  color: #7BBB9B;
   width: 28px;
   text-align: center;
   flex-shrink: 0;
@@ -1022,7 +1022,7 @@
   color: #343A40;
 }
 .e-industry-card:hover {
-  border-color: #10B981;
+  border-color: #7BBB9B;
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(16, 185, 129, 0.08);
 }
@@ -1196,7 +1196,7 @@
   font-weight: 700;
   letter-spacing: 2.5px;
   text-transform: uppercase;
-  color: #10B981;
+  color: #7BBB9B;
   margin-bottom: 14px;
 }
 
@@ -1300,7 +1300,7 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, #10B981, #34D399);
+  background: linear-gradient(90deg, #7BBB9B, #34D399);
   transform: scaleX(0);
   transition: transform 0.35s ease;
 }
@@ -1313,7 +1313,7 @@
   transform: scaleX(1);
 }
 .e-service-card:hover .esc-icon {
-  background: #10B981;
+  background: #7BBB9B;
 }
 .e-service-card:hover .esc-icon i {
   color: #fff;
@@ -1354,7 +1354,7 @@
 }
 .esc-icon i {
   font-size: 20px;
-  color: #10B981;
+  color: #7BBB9B;
   transition: color 0.3s;
 }
 
@@ -1411,7 +1411,7 @@
   content: "";
   width: 6px;
   height: 6px;
-  background: #10B981;
+  background: #7BBB9B;
   border-radius: 50%;
   flex-shrink: 0;
 }
@@ -1437,7 +1437,7 @@
   transition: transform 0.2s;
 }
 .esc-link:hover {
-  color: #10B981;
+  color: #7BBB9B;
 }
 .esc-link:hover i {
   transform: translateX(4px);
@@ -1581,7 +1581,7 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #10B981, #34D399);
+  background: linear-gradient(135deg, #7BBB9B, #34D399);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1639,7 +1639,7 @@
   flex-shrink: 0;
 }
 .eai-insight .eai-dot.blue {
-  background: #10B981;
+  background: #7BBB9B;
   box-shadow: 0 0 8px rgba(16, 185, 129, 0.7);
 }
 .eai-insight .eai-dot.amber {
@@ -1714,7 +1714,7 @@
 }
 .e-why-feat .ewf-icon i {
   font-size: 18px;
-  color: #10B981;
+  color: #7BBB9B;
 }
 .e-why-feat .ewf-title {
   font-family: "Poppins", sans-serif;
@@ -1769,7 +1769,7 @@
 }
 .e-cert-item i {
   font-size: 24px;
-  color: #10B981;
+  color: #7BBB9B;
 }
 .e-cert-item .eci-label {
   font-family: "Inter", sans-serif;
@@ -1787,7 +1787,7 @@
 
 .e-gcc-strip {
   padding: 20px;
-  background: linear-gradient(135deg, #10B981 0%, #34D399 100%);
+  background: linear-gradient(135deg, #7BBB9B 0%, #34D399 100%);
   border-radius: 14px;
   text-align: center;
 }
@@ -1998,7 +1998,7 @@
 }
 .e-perk i {
   font-size: 18px;
-  color: #10B981;
+  color: #7BBB9B;
   flex-shrink: 0;
   margin-top: 2px;
 }
@@ -2040,7 +2040,7 @@
   transform: translateX(4px);
 }
 .e-role-card:hover .erc-arrow {
-  background: #10B981;
+  background: #7BBB9B;
   color: #fff;
 }
 .e-role-card .erc-role {
@@ -2062,7 +2062,7 @@
   border-radius: 100px;
   font-size: 11px;
   font-weight: 600;
-  color: #10B981;
+  color: #7BBB9B;
 }
 .e-role-card .erc-arrow {
   width: 36px;
@@ -2149,7 +2149,7 @@
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #10B981, #34D399);
+  background: linear-gradient(135deg, #7BBB9B, #34D399);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2180,7 +2180,7 @@
    ================================================================ */
 .e-cta-section {
   padding: 80px 0;
-  background: linear-gradient(135deg, #0D0D0D 0%, #10B981 50%, #34D399 100%);
+  background: linear-gradient(135deg, #0D0D0D 0%, #7BBB9B 50%, #34D399 100%);
   position: relative;
   overflow: hidden;
 }
@@ -2243,7 +2243,7 @@
   gap: 8px;
   padding: 15px 32px;
   background: #fff;
-  color: #10B981;
+  color: #7BBB9B;
   font-family: "Inter", sans-serif;
   font-size: 15px;
   font-weight: 700;
@@ -2287,7 +2287,7 @@
 }
 
 .enfono-footer-cta-band {
-  background: linear-gradient(135deg, #0D0D0D 0%, #10B981 100%);
+  background: linear-gradient(135deg, #0D0D0D 0%, #7BBB9B 100%);
   padding: 56px 0;
 }
 
@@ -2335,7 +2335,7 @@
   align-items: center;
   padding: 13px 28px;
   background: #fff;
-  color: #10B981;
+  color: #7BBB9B;
   font-family: "Inter", sans-serif;
   font-size: 14px;
   font-weight: 700;
@@ -2637,7 +2637,7 @@
   align-items: center;
   gap: 8px;
   padding: 14px 30px;
-  background: #10B981;
+  background: #7BBB9B;
   color: #fff;
   font-family: "Inter", sans-serif;
   font-size: 14px;
@@ -2661,18 +2661,18 @@
   gap: 8px;
   padding: 14px 28px;
   background: transparent;
-  color: #10B981;
+  color: #7BBB9B;
   font-family: "Inter", sans-serif;
   font-size: 14px;
   font-weight: 600;
   border-radius: 11px;
   text-decoration: none;
-  border: 1.5px solid #10B981;
+  border: 1.5px solid #7BBB9B;
   transition: all 0.3s;
   cursor: pointer;
 }
 .e-btn-outline:hover {
-  background: #10B981;
+  background: #7BBB9B;
   color: #fff;
   transform: translateY(-2px);
 }
@@ -2704,7 +2704,7 @@
 }
 .e-tool-card .etool-icon i {
   font-size: 20px;
-  color: #10B981;
+  color: #7BBB9B;
 }
 .e-tool-card .etool-badge {
   display: inline-flex;
@@ -2740,7 +2740,7 @@
   font-family: "Inter", sans-serif;
   font-size: 13.5px;
   font-weight: 600;
-  color: #10B981;
+  color: #7BBB9B;
   text-decoration: none;
   transition: all 0.2s;
   margin-top: auto;
@@ -2776,8 +2776,8 @@
   transition: all 0.2s;
 }
 .e-filter-pill:hover, .e-filter-pill.active {
-  background: #10B981;
-  border-color: #10B981;
+  background: #7BBB9B;
+  border-color: #7BBB9B;
   color: #fff;
 }
 
@@ -2886,7 +2886,7 @@
 
 /* CTA band */
 .enfono-cta {
-  background: linear-gradient(135deg, #0D0D0D 0%, #10B981 50%, #34D399 100%);
+  background: linear-gradient(135deg, #0D0D0D 0%, #7BBB9B 50%, #34D399 100%);
   padding: 80px 0;
   position: relative;
   overflow: hidden;
@@ -2909,7 +2909,7 @@
   align-items: center;
   gap: 8px;
   padding: 14px 30px;
-  background: #10B981;
+  background: #7BBB9B;
   color: #fff;
   font-family: "Inter", sans-serif;
   font-size: 14px;
@@ -2935,7 +2935,7 @@
   right: 32px;
   width: 44px;
   height: 44px;
-  background: #10B981;
+  background: #7BBB9B;
   color: #fff;
   border: none;
   border-radius: 12px;
@@ -2951,4 +2951,426 @@
   background: #0D0D0D;
   transform: translateY(-3px);
   box-shadow: 0 8px 24px rgba(1, 14, 208, 0.4);
+}
+
+/* ================================================================
+   THEME TOGGLE BUTTON
+   ================================================================ */
+.enfono-theme-toggle {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.25s;
+  flex-shrink: 0;
+}
+.enfono-theme-toggle:hover {
+  background: rgba(16, 185, 129, 0.2);
+  border-color: rgba(16, 185, 129, 0.4);
+  color: #34D399;
+  transform: scale(1.05);
+}
+
+/* ================================================================
+   LIGHT THEME OVERRIDES
+   ================================================================ */
+[data-theme=light] body {
+  background: #FFFFFF;
+}
+[data-theme=light] {
+  /* ── THEME TOGGLE (light state) ── */
+}
+[data-theme=light] .enfono-theme-toggle {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.1);
+  color: #475569;
+}
+[data-theme=light] .enfono-theme-toggle:hover {
+  background: rgba(16, 185, 129, 0.08);
+  border-color: #7BBB9B;
+  color: #059669;
+}
+[data-theme=light] {
+  /* ── HEADER ── */
+}
+[data-theme=light] .enfono-header-new.scrolled::before {
+  background: rgba(255, 255, 255, 0.96) !important;
+  box-shadow: 0 2px 40px rgba(0, 0, 0, 0.08) !important;
+  border-bottom-color: #E5E7EB !important;
+}
+[data-theme=light] .enfono-header-new.mobile-open::before {
+  background: rgba(255, 255, 255, 0.98) !important;
+}
+[data-theme=light] .enfono-logo-img {
+  filter: none !important;
+}
+[data-theme=light] .enfono-logo-text {
+  color: #1A1A1A !important;
+}
+[data-theme=light] .enfono-nav-link {
+  color: rgba(0, 0, 0, 0.65) !important;
+}
+[data-theme=light] .enfono-nav-link:hover, [data-theme=light] .enfono-nav-link.active {
+  color: #1A1A1A !important;
+}
+[data-theme=light] .enfono-nav-link::after {
+  background: #059669 !important;
+}
+[data-theme=light] .enfono-dropdown {
+  background: rgba(255, 255, 255, 0.98) !important;
+  border-color: #E5E7EB !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1), 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+}
+[data-theme=light] .enfono-dropdown::before {
+  background: rgba(255, 255, 255, 0.98) !important;
+  border-color: #E5E7EB !important;
+}
+[data-theme=light] .enfono-dropdown-item {
+  color: #475569 !important;
+}
+[data-theme=light] .enfono-dropdown-item:hover {
+  background: rgba(16, 185, 129, 0.08) !important;
+  color: #1A1A1A !important;
+}
+[data-theme=light] .enfono-hamburger {
+  background: rgba(0, 0, 0, 0.04) !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+[data-theme=light] .enfono-hamburger span {
+  background: #1A1A1A !important;
+}
+[data-theme=light] .enfono-mobile-menu {
+  background: rgba(255, 255, 255, 0.99) !important;
+}
+[data-theme=light] .enfono-mobile-link {
+  color: #374151 !important;
+}
+[data-theme=light] .enfono-mobile-link:hover {
+  background: rgba(16, 185, 129, 0.08) !important;
+  color: #1A1A1A !important;
+}
+[data-theme=light] .enfono-mobile-sub-link {
+  color: #64748B !important;
+}
+[data-theme=light] .enfono-mobile-sub-link:hover {
+  background: rgba(16, 185, 129, 0.06) !important;
+  color: #1A1A1A !important;
+}
+[data-theme=light] {
+  /* ── HERO ── */
+}
+[data-theme=light] .enfono-hero-new {
+  background: #FFFFFF !important;
+}
+[data-theme=light] .enfono-hero-new::before {
+  background: radial-gradient(ellipse 80% 60% at 60% 40%, rgba(16, 185, 129, 0.1) 0%, transparent 60%), radial-gradient(ellipse 50% 50% at 10% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 50%), radial-gradient(ellipse 40% 40% at 90% 20%, rgba(16, 185, 129, 0.06) 0%, transparent 50%) !important;
+}
+[data-theme=light] .enfono-hero-eyebrow {
+  color: #059669 !important;
+}
+[data-theme=light] .eh-flag-pill {
+  background: rgba(0, 0, 0, 0.04) !important;
+  border-color: rgba(0, 0, 0, 0.1) !important;
+  color: #475569 !important;
+}
+[data-theme=light] .enfono-hero-title {
+  color: #1A1A1A !important;
+}
+[data-theme=light] .enfono-hero-subtitle {
+  color: #64748B !important;
+}
+[data-theme=light] .ehero-btn-ghost {
+  color: #374151 !important;
+  border-color: #D1D5DB !important;
+}
+[data-theme=light] .ehero-btn-ghost:hover {
+  background: rgba(0, 0, 0, 0.04) !important;
+  border-color: #9CA3AF !important;
+  color: #1A1A1A !important;
+}
+[data-theme=light] .enfono-hero-trust {
+  background: rgba(0, 0, 0, 0.02) !important;
+  border-color: rgba(0, 0, 0, 0.06) !important;
+}
+[data-theme=light] .ehtrust-num {
+  color: #1A1A1A !important;
+}
+[data-theme=light] .ehtrust-label {
+  color: #94A3B8 !important;
+}
+[data-theme=light] .ehtrust-divider {
+  background: rgba(0, 0, 0, 0.1) !important;
+}
+[data-theme=light] {
+  /* Dashboard Mockup */
+}
+[data-theme=light] .edm-card {
+  background: #F8FAF9 !important;
+  border-color: #E5E7EB !important;
+}
+[data-theme=light] .edm-title {
+  color: #1A1A1A !important;
+}
+[data-theme=light] .edm-stat-val {
+  color: #1A1A1A !important;
+}
+[data-theme=light] .edm-stat-label {
+  color: #94A3B8 !important;
+}
+[data-theme=light] .edm-chart-label {
+  color: #94A3B8 !important;
+}
+[data-theme=light] .edm-module {
+  color: #475569 !important;
+  background: rgba(0, 0, 0, 0.03) !important;
+  border-color: #E5E7EB !important;
+}
+[data-theme=light] .edm-float-1, [data-theme=light] .edm-float-2 {
+  background: #fff !important;
+  border-color: #E5E7EB !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06) !important;
+}
+[data-theme=light] .ef1-label, [data-theme=light] .ef2-label {
+  color: #94A3B8 !important;
+}
+[data-theme=light] {
+  /* ── STATS ── */
+}
+[data-theme=light] .enfono-stats-section {
+  background: #F8FAF9 !important;
+}
+[data-theme=light] .enfono-stats-inner {
+  background: #FFFFFF !important;
+  border-color: #E5E7EB !important;
+}
+[data-theme=light] .enfono-stat-cell {
+  border-color: #E5E7EB !important;
+}
+[data-theme=light] .enfono-stat-cell .estat-num {
+  color: #1A1A1A !important;
+}
+[data-theme=light] .enfono-stat-cell .estat-label {
+  color: #64748B !important;
+}
+[data-theme=light] .enfono-stat-cell .estat-icon {
+  background: rgba(16, 185, 129, 0.08) !important;
+}
+[data-theme=light] {
+  /* ── CLIENT LOGOS ── */
+}
+[data-theme=light] .e-logos-section {
+  background: #FFFFFF !important;
+}
+[data-theme=light] .e-logos-label {
+  color: #94A3B8 !important;
+}
+[data-theme=light] {
+  /* ── SERVICES ── */
+}
+[data-theme=light] .e-services-section {
+  background: #F8FAF9 !important;
+}
+[data-theme=light] {
+  /* ── AI SECTION (keep dark in both) ── */
+  /* intentionally no overrides for .e-ai-section */
+  /* ── INDUSTRIES ── */
+}
+[data-theme=light] .e-industries-section {
+  background: #FFFFFF !important;
+}
+[data-theme=light] .e-industry-item {
+  background: #F8FAF9 !important;
+  border-color: #E5E7EB !important;
+}
+[data-theme=light] .e-industry-item:hover {
+  border-color: #7BBB9B !important;
+}
+[data-theme=light] {
+  /* ── CASE STUDIES ── */
+}
+[data-theme=light] .e-case-studies-section {
+  background: #F8FAF9 !important;
+}
+[data-theme=light] {
+  /* ── PRODUCTS ── */
+}
+[data-theme=light] .e-products-section {
+  background: #FFFFFF !important;
+}
+[data-theme=light] {
+  /* ── PARTNERS ── */
+}
+[data-theme=light] .e-partners-section {
+  background: #F8FAF9 !important;
+}
+[data-theme=light] {
+  /* ── TESTIMONIALS ── */
+}
+[data-theme=light] .e-testimonials-section {
+  background: #FFFFFF !important;
+}
+[data-theme=light] .e-testimonials-section::before {
+  background: none !important;
+}
+[data-theme=light] .e-test-card {
+  background: #F8FAF9 !important;
+  border-color: #E5E7EB !important;
+}
+[data-theme=light] .e-test-card .et-quote {
+  color: #374151 !important;
+}
+[data-theme=light] .e-test-card .et-name {
+  color: #1A1A1A !important;
+}
+[data-theme=light] .e-test-card .et-role {
+  color: #94A3B8 !important;
+}
+[data-theme=light] {
+  /* ── PAGE HERO (inner pages) ── */
+}
+[data-theme=light] .e-page-hero,
+[data-theme=light] .enfono-page-hero {
+  background: linear-gradient(135deg, #F8FAF9 0%, #FFFFFF 60%, #F5F5F5 100%) !important;
+}
+[data-theme=light] .e-page-hero::after,
+[data-theme=light] .enfono-page-hero::after {
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.08) 0%, transparent 60%) !important;
+}
+[data-theme=light] .page-hero-title,
+[data-theme=light] .e-section-title-light {
+  color: #1A1A1A !important;
+}
+[data-theme=light] .page-hero-desc,
+[data-theme=light] .e-section-sub-light {
+  color: #64748B !important;
+}
+[data-theme=light] .e-breadcrumb {
+  color: #94A3B8 !important;
+}
+[data-theme=light] .e-breadcrumb a {
+  color: #94A3B8 !important;
+}
+[data-theme=light] .e-breadcrumb a:hover {
+  color: #059669 !important;
+}
+[data-theme=light] .e-breadcrumb span {
+  color: #059669 !important;
+}
+[data-theme=light] {
+  /* ── GENERAL SECTIONS ── */
+}
+[data-theme=light] .e-dark-section {
+  background: #F5F5F5 !important;
+}
+[data-theme=light] .e-dark-section .e-section-title-light {
+  color: #1A1A1A !important;
+}
+[data-theme=light] .e-dark-section .e-section-sub-light {
+  color: #64748B !important;
+}
+[data-theme=light] {
+  /* ── BUTTONS ── */
+}
+[data-theme=light] .e-btn-outline {
+  color: #059669 !important;
+  border-color: #059669 !important;
+}
+[data-theme=light] .e-btn-outline:hover {
+  background: #059669 !important;
+  color: #fff !important;
+}
+[data-theme=light] {
+  /* ── FOOTER ── */
+}
+[data-theme=light] .enfono-footer-new {
+  background: #F5F5F5 !important;
+}
+[data-theme=light] {
+  /* Footer CTA band stays dark */
+}
+[data-theme=light] .enfono-footer-main {
+  border-bottom-color: #E5E7EB !important;
+}
+[data-theme=light] .ef-logo {
+  filter: none !important;
+}
+[data-theme=light] .ef-tagline {
+  color: #64748B !important;
+}
+[data-theme=light] .ef-col-title {
+  color: #94A3B8 !important;
+}
+[data-theme=light] .ef-links a {
+  color: #64748B !important;
+}
+[data-theme=light] .ef-links a:hover {
+  color: #1A1A1A !important;
+}
+[data-theme=light] .ef-social a {
+  background: rgba(0, 0, 0, 0.04) !important;
+  border-color: #E5E7EB !important;
+  color: #64748B !important;
+}
+[data-theme=light] .ef-social a:hover {
+  background: rgba(16, 185, 129, 0.1) !important;
+  border-color: #7BBB9B !important;
+  color: #059669 !important;
+}
+[data-theme=light] .ef-office .ef-office-badge {
+  color: #374151 !important;
+}
+[data-theme=light] .ef-office p {
+  color: #94A3B8 !important;
+}
+[data-theme=light] .ef-contact-links a {
+  color: #64748B !important;
+}
+[data-theme=light] .ef-contact-links a:hover {
+  color: #1A1A1A !important;
+}
+[data-theme=light] .ef-bottom-inner p {
+  color: #94A3B8 !important;
+}
+[data-theme=light] .ef-bottom-links a {
+  color: #94A3B8 !important;
+}
+[data-theme=light] .ef-bottom-links a:hover {
+  color: #374151 !important;
+}
+[data-theme=light] .ef-bottom-logo-img {
+  filter: none !important;
+  opacity: 0.5;
+}
+[data-theme=light] {
+  /* ── SCROLL TO TOP ── */
+}
+[data-theme=light] .enfono-scroll-top {
+  background: #7BBB9B !important;
+}
+[data-theme=light] .enfono-scroll-top:hover {
+  background: #1A1A1A !important;
+}
+[data-theme=light] {
+  /* ── CTA BAND (stays dark in both themes) ── */
+  /* .enfono-cta — intentionally no overrides */
+  /* ── INNER PAGE SECTIONS (already light bg, minimal changes) ── */
+}
+[data-theme=light] .enfono-section-label {
+  color: #059669 !important;
+}
+[data-theme=light] .enfono-section-title {
+  color: #1A1A1A !important;
+}
+[data-theme=light] {
+  /* ── TOOLS/CARDS ── */
+}
+[data-theme=light] .e-tool-card:hover {
+  border-color: rgba(16, 185, 129, 0.3) !important;
 }
