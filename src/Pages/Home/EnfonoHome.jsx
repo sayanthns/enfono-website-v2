@@ -739,7 +739,7 @@ export default function EnfonoHome() {
               {/* Event 1 */}
               <m.div className="e-event-card" variants={fadeUp}>
                 <div className="eev-image-wrapper">
-                  <img src="/img/Frappeverse-1.jpg" alt="Frappeverse 2025" className="eev-image fadeIn" />
+                  <img src="/assets/img/Frappeverse-1.jpg" alt="Frappeverse 2025" className="eev-image fadeIn" />
                   <div className="eev-date-badge">
                     <span className="day">12</span>
                     <span className="month">SEP</span>
@@ -762,7 +762,7 @@ export default function EnfonoHome() {
               {/* Event 2 */}
               <m.div className="e-event-card" variants={fadeUp}>
                 <div className="eev-image-wrapper">
-                  <img src="/img/futuresummit-1.jpeg" alt="Media One Future Summit" className="eev-image fadeIn" />
+                  <img src="/assets/img/futuresummit-1.jpeg" alt="Media One Future Summit" className="eev-image fadeIn" />
                   <div className="eev-date-badge">
                     <span className="day">24</span>
                     <span className="month">FEB</span>
@@ -784,7 +784,7 @@ export default function EnfonoHome() {
               {/* Event 3 */}
               <m.div className="e-event-card" variants={fadeUp}>
                 <div className="eev-image-wrapper">
-                  <img src="/img/kera-1.png" alt="Launching of KERA" className="eev-image fadeIn" />
+                  <img src="/assets/img/kera-1.png" alt="Launching of KERA" className="eev-image fadeIn" />
                   <div className="eev-date-badge">
                     <span className="day">02</span>
                     <span className="month">MAR</span>
