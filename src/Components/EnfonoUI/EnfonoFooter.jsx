@@ -22,19 +22,27 @@ export default function EnfonoFooter() {
 
       {/* Floating Contact Widget */}
       <div className="enfono-floating-widget">
-        <button className="efw-item efw-arrow" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+        <button
+          className="efw-item efw-arrow"
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          aria-label="Scroll to top"
+        >
           <i className="fas fa-arrow-right" />
         </button>
-        <a href="https://wa.me/966573528619" target="_blank" rel="noreferrer" className="efw-item efw-wa">
+        <a href="https://wa.me/966573528619" target="_blank" rel="noreferrer" className="efw-item efw-wa" aria-label="Chat on WhatsApp">
           <i className="fab fa-whatsapp" />
         </a>
-        <a href="tel:+966573528619" className="efw-item efw-phone">
+        <a href="tel:+966573528619" className="efw-item efw-phone" aria-label="Call Us">
           <i className="fas fa-phone-alt" />
         </a>
       </div>
 
       {/* Dedicated Chatbot Trigger */}
-      <button className="enfono-chatbot-trigger" onClick={() => alert('Chatbot coming soon!')}>
+      <button
+        className="enfono-chatbot-trigger"
+        onClick={() => alert('Chatbot coming soon!')}
+        aria-label="Open Enfono Assistant"
+      >
         <i className="fas fa-comment-dots" />
         <span className="ecb-status-dot"></span>
       </button>
@@ -51,6 +59,8 @@ export default function EnfonoFooter() {
                   src="/assets/img/enfono-logo.png"
                   alt="Enfono Technologies"
                   className="ef-logo"
+                  width="140"
+                  height="36"
                   style={{ filter: 'var(--t-logo-filter)' }}
                 />
               </Link>
@@ -147,6 +157,8 @@ export default function EnfonoFooter() {
                 src="/assets/img/enfono-logo.png"
                 alt="Enfono"
                 className="ef-bottom-logo-img"
+                width="100"
+                height="28"
                 style={{ filter: 'var(--t-logo-filter)' }}
               />
             </div>

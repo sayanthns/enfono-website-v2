@@ -90,6 +90,8 @@ export default function EnfonoHeader() {
             src="/assets/img/enfono-logo.png"
             alt="Enfono Technologies"
             className="enfono-logo-img"
+            width="150"
+            height="40"
           />
           <span className="enfono-logo-text" style={{ display: 'none' }}>
             enfo<span>no</span>
@@ -142,6 +144,7 @@ export default function EnfonoHeader() {
             className={`enfono-hamburger ${mobileOpen ? 'open' : ''}`}
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
+            aria-expanded={mobileOpen}
           >
             <span /><span /><span />
           </button>
@@ -158,6 +161,8 @@ export default function EnfonoHeader() {
                   <button
                     className="enfono-mobile-link enfono-mobile-toggle"
                     onClick={() => setMobileExpanded(mobileExpanded === link.label ? null : link.label)}
+                    aria-expanded={mobileExpanded === link.label}
+                    aria-label={`Toggle ${link.label} submenu`}
                   >
                     {link.label}
                     <i className={`fas fa-chevron-down ${mobileExpanded === link.label ? 'rotated' : ''}`} />

@@ -113,7 +113,7 @@ const clientLogos = [
 const brands = [
   { logo: 'https://www.enfono.com/_next/static/image/public/images/our-brands/rentpe.f4d52afe93d6cd1051e5eaec9d364224.png', name: 'Rentpe', desc: 'Property management platform for maintenance, finances & rental performance' },
   { logo: 'https://www.enfono.com/_next/static/image/public/images/our-brands/Arca.676ced51f42b4cdae6865d289e2993ac.png', name: 'Arca', desc: 'Architecture management for project planning & document control' },
-  { logo: 'https://www.enfono.com/_next/static/image/public/images/our-brands/chms.bba80108da4df146400de9c956100225.png', name: 'CHMS', desc: 'Hospital management system for streamlined clinical workflows' },
+  { logo: 'https://www.enfono.com/_next/static/image/public/images/our-brands/chms.bba80108da4df146400de9c956100225.png', name: 'CHMS', desc: 'Hospital management system for streamlined clinical workflows', featured: true },
   { logo: 'https://www.enfono.com/_next/static/image/public/images/our-brands/Drivezy.b1e29703989e2f1afa65cdf8b505eb17.png', name: 'Drivezy', desc: 'Driving school management — scheduling, progress & certifications' },
 ]
 
@@ -155,8 +155,8 @@ export default function EnfonoHome() {
                   </m.div>
 
                   <m.h1 className="enfono-hero-title" variants={fadeUp} custom={0.1}>
-                    AI-Powered ERP Built to<br />
-                    Scale Your Business
+                    AI-Powered ERP<br />
+                    Built to Scale Your Business
                   </m.h1>
 
                   <m.p className="enfono-hero-subtitle" variants={fadeUp} custom={0.15}>
@@ -582,47 +582,6 @@ export default function EnfonoHome() {
           </div>
         </section>
 
-        {/* ── OUR PRODUCTS ── */}
-        <section className="e-brands-section">
-          <div className="enfono-container">
-            <m.div
-              style={{ textAlign: 'center' }}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-              variants={fadeUp}
-            >
-              <div className="e-section-label-amber">Our Products</div>
-              <h2 className="e-section-title-light">Beyond Consulting —<br />We Build Products</h2>
-              <p className="e-section-sub-light" style={{ margin: '0 auto', maxWidth: '540px' }}>
-                Proprietary SaaS products built for GCC businesses — extending ERPNext capabilities.
-              </p>
-            </m.div>
-            <m.div
-              className="e-brands-grid"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.1 }}
-              variants={stagger}
-            >
-              {brands.map(b => (
-                <m.div key={b.name} variants={fadeUp}>
-                  <Link to="/brands" className="e-brand-card">
-                    <div className="ebc-icon">
-                      {b.logo ? (
-                        <img src={b.logo} alt={b.name} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
-                      ) : (
-                        <i className={b.icon} />
-                      )}
-                    </div>
-                    <div className="ebc-name">{b.name}</div>
-                    <div className="ebc-desc">{b.desc}</div>
-                  </Link>
-                </m.div>
-              ))}
-            </m.div>
-          </div>
-        </section>
 
         {/* ── TESTIMONIALS ── */}
         <section className="e-testimonials-section">
@@ -693,6 +652,55 @@ export default function EnfonoHome() {
           </div>
         </section>
 
+        {/* ── OUR PRODUCTS ── */}
+        <section className="e-brands-section">
+          <div className="enfono-container">
+            <m.div
+              style={{ textAlign: 'center' }}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={fadeUp}
+            >
+              <div className="e-section-label-amber">Our Products</div>
+              <h2 className="e-section-title">Beyond Consulting —<br />We Build Products</h2>
+              <p className="e-section-sub" style={{ margin: '0 auto', maxWidth: '540px' }}>
+                Proprietary SaaS products built for GCC businesses — extending ERPNext capabilities.
+              </p>
+            </m.div>
+            <m.div
+              className="e-brands-grid"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.1 }}
+              variants={stagger}
+            >
+              {brands.map(b => (
+                <m.div key={b.name} variants={fadeUp}>
+                  <Link to="/brands" className={`e-brand-card ${b.featured ? 'featured' : ''}`}>
+                    <div className="ebc-icon">
+                      {b.logo ? (
+                        <img src={b.logo} alt={b.name} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                      ) : (
+                        <i className={b.icon} />
+                      )}
+                    </div>
+                    <div className="ebc-content">
+                      <div className="ebc-name">{b.name}</div>
+                      <div className="ebc-desc">{b.desc}</div>
+                      <div className="ebc-learn-more">
+                        <span>Learn More</span>
+                        <i className="fas fa-arrow-right" />
+                      </div>
+                    </div>
+                  </Link>
+                </m.div>
+              ))}
+            </m.div>
+          </div>
+        </section>
+
+
         {/* ── EVENTS & INSIGHTS ── */}
         <section className="e-events-section">
           <div className="enfono-container">
@@ -719,7 +727,7 @@ export default function EnfonoHome() {
               {/* Event 1 */}
               <m.div className="e-event-card" variants={fadeUp}>
                 <div className="eev-image-wrapper">
-                  <img src="/assets/img/Frappeverse-1.jpg" alt="Frappeverse 2025" className="eev-image fadeIn" />
+                  <img src="/assets/img/Frappeverse-1.jpg" alt="Frappeverse 2025" className="eev-image fadeIn" width="600" height="400" loading="lazy" />
                   <div className="eev-date-badge">
                     <span className="day">12</span>
                     <span className="month">SEP</span>
@@ -742,7 +750,7 @@ export default function EnfonoHome() {
               {/* Event 2 */}
               <m.div className="e-event-card" variants={fadeUp}>
                 <div className="eev-image-wrapper">
-                  <img src="/assets/img/futuresummit-1.jpeg" alt="Media One Future Summit" className="eev-image fadeIn" />
+                  <img src="/assets/img/futuresummit-1.jpeg" alt="Media One Future Summit" className="eev-image fadeIn" width="600" height="400" loading="lazy" />
                   <div className="eev-date-badge">
                     <span className="day">24</span>
                     <span className="month">FEB</span>
@@ -766,7 +774,7 @@ export default function EnfonoHome() {
               {/* Event 3 */}
               <m.div className="e-event-card" variants={fadeUp}>
                 <div className="eev-image-wrapper">
-                  <img src="/assets/img/kera-1.png" alt="Launching of KERA" className="eev-image fadeIn" />
+                  <img src="/assets/img/kera-1.png" alt="Launching of KERA" className="eev-image fadeIn" width="600" height="400" loading="lazy" />
                   <div className="eev-date-badge">
                     <span className="day">02</span>
                     <span className="month">MAR</span>
