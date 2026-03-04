@@ -813,25 +813,7 @@ export default function EnfonoHome() {
           </div>
         </section>
 
-        {/* ── CTA ── */}
-        <section className="e-cta-section">
-          <div className="enfono-container">
-            <div className="e-cta-inner">
-              <div className="e-cta-text">
-                <h2>Ready to Transform<br />Your Business with ERP?</h2>
-                <p>Book a free 60-minute strategy session with our GCC ERP experts. No commitment required.</p>
-              </div>
-              <div className="e-cta-actions">
-                <Link to="/contact" className="ecta-btn-white">
-                  <i className="fas fa-calendar-check" /> Get Free Consultation
-                </Link>
-                <a href="tel:+966573528619" className="ecta-btn-outline">
-                  <i className="fas fa-phone" /> +966 57 352 8619
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
+
 
         <EnfonoFooter />
       </div>
