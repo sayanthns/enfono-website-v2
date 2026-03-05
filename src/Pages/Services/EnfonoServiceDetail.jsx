@@ -60,6 +60,76 @@ const EnfonoServiceDetail = () => {
                     </div>
                 </section>
 
+                {/* Comprehensive Modules (Rendered only if service has modules) */}
+                {service.modules && (
+                    <section className="service-modules-section" style={{ padding: '100px 0', background: '#0D0D0D' }}>
+                        <div className="enf-container">
+                            <div className="section-header text-center" style={{ marginBottom: '60px' }}>
+                                <span className="enf-badge" style={{ color: '#10B981', fontWeight: 600, letterSpacing: '1px', marginBottom: '16px', display: 'inline-block' }}>COMPREHENSIVE SUITE</span>
+                                <h2 style={{ fontSize: '2.5rem', color: '#fff' }}>Modules & Capabilities</h2>
+                                <p style={{ color: 'rgba(255,255,255,0.6)', maxWidth: '700px', margin: '16px auto 0' }}>Everything you need to run your entire enterprise, connected seamlessly in one centralized database.</p>
+                            </div>
+                            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '32px' }}>
+                                {service.modules.map((mod, idx) => (
+                                    <div key={idx} style={{ background: '#111', borderRadius: '16px', overflow: 'hidden', border: '1px solid #222' }}>
+                                        {mod.image && (
+                                            <div style={{ height: '220px', background: '#1a1a1a', position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                                <img
+                                                    src={mod.image}
+                                                    alt={mod.title}
+                                                    style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.5 }}
+                                                    onError={(e) => {
+                                                        e.target.style.display = 'none';
+                                                        e.target.nextSibling.style.display = 'flex';
+                                                    }}
+                                                />
+                                                <div style={{ position: 'absolute', inset: 0, display: 'none', alignItems: 'center', justifyContent: 'center', background: '#1a1a1a', color: 'rgba(255,255,255,0.2)' }}>
+                                                    <i className={mod.icon} style={{ fontSize: '48px' }}></i>
+                                                </div>
+                                            </div>
+                                        )}
+                                        <div style={{ padding: '32px' }}>
+                                            <div style={{ width: '40px', height: '40px', background: 'rgba(16, 185, 129, 0.1)', color: '#10B981', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '20px' }}>
+                                                <i className={mod.icon} style={{ fontSize: '18px' }}></i>
+                                            </div>
+                                            <h3 style={{ color: '#fff', fontSize: '1.25rem', marginBottom: '12px' }}>{mod.title}</h3>
+                                            <p style={{ color: 'rgba(255,255,255,0.6)', lineHeight: 1.6, margin: 0 }}>{mod.desc}</p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+                )}
+
+                {/* Industries We Serve (Rendered only if service has industries) */}
+                {service.industries && (
+                    <section className="service-industries-section" style={{ padding: '80px 0', background: '#0a0a0a', borderTop: '1px solid rgba(255,255,255,0.05)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                        <div className="enf-container">
+                            <div className="text-center" style={{ marginBottom: '60px' }}>
+                                <h2 style={{ fontSize: '2rem', color: '#fff' }}>Industries We Empower</h2>
+                            </div>
+                            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '24px' }}>
+                                {service.industries.map((ind, idx) => (
+                                    <div key={idx} style={{ padding: '24px 32px', background: '#111', borderRadius: '16px', border: '1px solid #222', display: 'flex', alignItems: 'center', gap: '16px', minWidth: '250px', transition: 'all 0.3s ease' }}
+                                        onMouseEnter={(e) => {
+                                            e.currentTarget.style.borderColor = 'rgba(16, 185, 129, 0.4)';
+                                            e.currentTarget.style.transform = 'translateY(-5px)';
+                                        }}
+                                        onMouseLeave={(e) => {
+                                            e.currentTarget.style.borderColor = '#222';
+                                            e.currentTarget.style.transform = 'translateY(0)';
+                                        }}
+                                    >
+                                        <i className={ind.icon} style={{ color: '#10B981', fontSize: '1.5rem' }}></i>
+                                        <span style={{ color: '#fff', fontWeight: 600, fontSize: '1.1rem' }}>{ind.title}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+                )}
+
                 {/* Key Benefits Grid (Redesigned) */}
                 <section className="service-benefits-section" style={{ padding: '80px 0', background: '#050505' }}>
                     <div className="enf-container">

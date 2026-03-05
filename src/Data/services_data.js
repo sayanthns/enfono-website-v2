@@ -41,6 +41,64 @@ export const servicesData = [
             "Multi-Company & Multi-Currency Support out-of-the-box",
             "Highly Rapid API Integrations & Mobile Readiness"
         ],
+        modules: [
+            {
+                title: "Financial Accounting",
+                desc: "Get a real-time view of your cash flow. Full-fledged accounting module covering basic bookkeeping to complex analytics with ZATCA Phase 2 compliance.",
+                icon: "fas fa-file-invoice-dollar",
+                image: "/assets/img/erpnext-finance-mockup.png"
+            },
+            {
+                title: "HR & Payroll",
+                desc: "Manage employee lifecycles, attendance, leave, expense claims, Iqama tracking, EOSB tracking, and automated GCC payroll processing.",
+                icon: "fas fa-users",
+                image: "/assets/img/erpnext-hr-mockup.png"
+            },
+            {
+                title: "Manufacturing",
+                desc: "Maintain multi-level Bill of Materials (BOM), track production planning, job cards, and equipment maintenance.",
+                icon: "fas fa-industry",
+                image: "/assets/img/erpnext-mfg-mockup.png"
+            },
+            {
+                title: "CRM & Sales",
+                desc: "Track leads, opportunities, manage pipelines, and send auto-generated quotes directly from the system.",
+                icon: "fas fa-chart-line",
+                image: "/assets/img/erpnext-crm-mockup.png"
+            },
+            {
+                title: "Inventory & Order Management",
+                desc: "Multi-warehouse inventory, serial/batch tracking, barcodes/RFID integration, and automated stock alerts.",
+                icon: "fas fa-boxes",
+                image: "/assets/img/erpnext-inventory-mockup.png"
+            },
+            {
+                title: "Helpdesk & Support",
+                desc: "Provide excellent customer service with an integrated ticketing system, SLAs, and customer portals.",
+                icon: "fas fa-headset",
+                image: "/assets/img/erpnext-helpdesk-mockup.png"
+            },
+            {
+                title: "Project Management",
+                desc: "Create tasks, allocate resources, track time, and monitor project profitability in real-time.",
+                icon: "fas fa-tasks",
+                image: "/assets/img/erpnext-projects-mockup.png"
+            },
+            {
+                title: "Asset Management",
+                desc: "Track the complete lifecycle of your assets, from purchasing to depreciation and eventual disposal.",
+                icon: "fas fa-laptop-house",
+                image: "/assets/img/erpnext-assets-mockup.png"
+            }
+        ],
+        industries: [
+            { title: "Manufacturing", icon: "fas fa-industry" },
+            { title: "Retail & Distribution", icon: "fas fa-store" },
+            { title: "Services & Consulting", icon: "fas fa-briefcase" },
+            { title: "Healthcare", icon: "fas fa-hospital" },
+            { title: "Education", icon: "fas fa-graduation-cap" },
+            { title: "Logistics", icon: "fas fa-truck" }
+        ],
         process: [
             { step: "Discovery & Gap Analysis", desc: "Evaluating your business requirements against standard ERPNext modules." },
             { step: "System Architecture", desc: "Configuring the Chart of Accounts, Item Masters, and Security protocols." },
