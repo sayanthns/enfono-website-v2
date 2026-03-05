@@ -2246,18 +2246,20 @@
   }
 
   .ecc-result {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 7px 14px;
-    background: rgba(16, 185, 129, 0.2);
-    border: 1px solid rgba(43, 61, 232, 0.4);
-    border-radius: 100px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding-top: 16px;
+    margin-top: auto;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
     font-family: 'Inter', sans-serif;
-    font-size: 12px;
-    font-weight: 600;
+    font-size: 13px;
+    line-height: 1.6;
     color: #34D399;
-    width: fit-content;
+
+    i {
+      margin-top: 3px;
+    }
   }
 }
 
