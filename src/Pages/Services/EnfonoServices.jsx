@@ -143,57 +143,87 @@ const EnfonoServices = () => {
                             <m.span variants={fadeIn} className="enfono-section-label-amber" style={{ color: '#10B981' }}>The Methodology</m.span>
                             <m.h2 variants={fadeIn} className="enfono-hero-title" style={{ fontSize: '3rem', margin: '16px 0' }}>How We Deliver Excellence</m.h2>
                         </m.div>
-                        <Row className="justify-content-center">
-                            <Col lg={10}>
-                                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '40px' }}>
-                                    {[
-                                        { step: '01', title: 'Discovery & Audit', desc: 'Analyzing current systems and defining technical roadmaps.' },
-                                        { step: '02', title: 'Architecture Mapping', desc: 'Designing the database schemas and UI/UX prototypes.' },
-                                        { step: '03', title: 'Agile Development', desc: 'Iterative sprints for module and API development.' },
-                                        { step: '04', title: 'UAT & Training', desc: 'Rigorous testing followed by comprehensive team training.' }
-                                    ].map((p, i) => (
-                                        <m.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} style={{ position: 'relative' }}>
-                                            <div style={{
-                                                width: '64px', height: '64px',
-                                                background: '#111',
-                                                borderRadius: '50%',
-                                                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                                marginBottom: '24px',
-                                                border: '2px solid #10B981',
-                                                color: '#10B981',
-                                                fontWeight: 700,
-                                                fontSize: '1.25rem'
-                                            }}>
-                                                {p.step}
-                                            </div>
-                                            <h4 style={{ fontSize: '1.25rem', fontWeight: 700, color: '#fff', marginBottom: '12px' }}>{p.title}</h4>
-                                            <p style={{ fontSize: '0.95rem', lineHeight: 1.6, color: 'rgba(255,255,255,0.6)', margin: 0 }}>{p.desc}</p>
-                                        </m.div>
-                                    ))}
-                                </div>
-                            </Col>
+                        <Row className="justify-content-center g-4">
+                            {[
+                                { step: '01', title: 'Discovery & Audit', desc: 'Analyzing current systems and defining technical roadmaps.' },
+                                { step: '02', title: 'Architecture Mapping', desc: 'Designing the database schemas and UI/UX prototypes.' },
+                                { step: '03', title: 'Agile Development', desc: 'Iterative sprints for module and API development.' },
+                                { step: '04', title: 'UAT & Training', desc: 'Rigorous testing followed by comprehensive team training.' }
+                            ].map((p, i) => (
+                                <Col md={6} lg={3} key={i}>
+                                    <m.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} style={{ position: 'relative', height: '100%', padding: '24px 0' }}>
+                                        {/* Optional connecting line for desktop (hidden via CSS usually, but simple border works) */}
+                                        <div style={{
+                                            width: '64px', height: '64px',
+                                            background: '#111',
+                                            borderRadius: '50%',
+                                            display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                            marginBottom: '24px',
+                                            border: '2px solid #10B981',
+                                            color: '#10B981',
+                                            fontWeight: 700,
+                                            fontSize: '1.25rem',
+                                            position: 'relative',
+                                            zIndex: 2
+                                        }}>
+                                            {p.step}
+                                        </div>
+                                        <h4 style={{ fontSize: '1.25rem', fontWeight: 700, color: '#fff', marginBottom: '12px' }}>{p.title}</h4>
+                                        <p style={{ fontSize: '0.95rem', lineHeight: 1.6, color: 'rgba(255,255,255,0.6)', margin: 0 }}>{p.desc}</p>
+                                    </m.div>
+                                </Col>
+                            ))}
                         </Row>
                     </LazyMotion>
                 </Container>
             </section>
 
             {/* Enterprise Tech Stack */}
-            <section style={{ padding: '100px 0', background: '#0a0a0a' }}>
+            <section style={{ padding: '100px 0', background: '#0a0a0a', borderTop: '1px solid rgba(255,255,255,0.02)' }}>
                 <Container className="text-center">
-                    <h2 style={{ fontSize: '2rem', fontWeight: 700, marginBottom: '60px' }}>Technologies We Master</h2>
-                    <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '32px', opacity: 0.7 }}>
+                    <h2 style={{ fontSize: '2rem', fontWeight: 700, marginBottom: '16px', color: '#fff' }}>Technologies We Master</h2>
+                    <p style={{ color: 'rgba(255,255,255,0.5)', maxWidth: '600px', margin: '0 auto 60px' }}>Built on modern, scalable, and secure enterprise architectures.</p>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '24px' }}>
                         {[
                             { icon: 'fab fa-python', name: 'Python' },
                             { icon: 'fas fa-cube', name: 'ERPNext' },
-                            { icon: 'fab fa-react', name: 'React' },
+                            { icon: 'fas fa-layer-group', name: 'Frappe' },
+                            { icon: 'fab fa-react', name: 'React/Next.js' },
                             { icon: 'fab fa-node-js', name: 'Node.js' },
+                            { icon: 'fas fa-bolt', name: 'FastAPI' },
+                            { icon: 'fas fa-database', name: 'PostgreSQL' },
+                            { icon: 'fas fa-server', name: 'Redis' },
                             { icon: 'fab fa-aws', name: 'AWS' },
                             { icon: 'fas fa-mobile-alt', name: 'Flutter' },
-                            { icon: 'fab fa-docker', name: 'Docker' }
+                            { icon: 'fab fa-docker', name: 'Docker' },
+                            { icon: 'fas fa-network-wired', name: 'IoT / Edge' },
                         ].map((tech, idx) => (
-                            <div key={idx} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px' }}>
-                                <i className={tech.icon} style={{ fontSize: '48px', color: '#fff' }}></i>
-                                <span style={{ fontSize: '14px', fontWeight: 600 }}>{tech.name}</span>
+                            <div key={idx} style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                gap: '16px',
+                                background: '#111',
+                                padding: '32px 16px',
+                                borderRadius: '16px',
+                                border: '1px solid rgba(255,255,255,0.05)',
+                                transition: 'all 0.3s ease'
+                            }}
+                                onMouseEnter={(e) => {
+                                    e.currentTarget.style.borderColor = 'rgba(16, 185, 129, 0.3)';
+                                    e.currentTarget.style.background = '#141414';
+                                }}
+                                onMouseLeave={(e) => {
+                                    e.currentTarget.style.borderColor = 'rgba(255,255,255,0.05)';
+                                    e.currentTarget.style.background = '#111';
+                                }}
+                            >
+                                <i className={tech.icon} style={{ fontSize: '36px', color: 'rgba(255,255,255,0.4)', transition: 'color 0.3s ease' }}
+                                    onMouseEnter={(e) => e.target.style.color = '#10B981'}
+                                    onMouseLeave={(e) => e.target.style.color = 'rgba(255,255,255,0.4)'}
+                                ></i>
+                                <span style={{ fontSize: '0.9rem', fontWeight: 600, color: 'rgba(255,255,255,0.7)' }}>{tech.name}</span>
                             </div>
                         ))}
                     </div>
