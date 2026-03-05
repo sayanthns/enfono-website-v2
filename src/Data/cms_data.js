@@ -46,6 +46,7 @@ export const initialCmsData = {
             title: 'KABCO ERP',
             subtitle: 'ERP for Kerala Agro Business Company',
             outcome: "Comprehensive ERP implementation for Kerala's state-run agri-logistics company, managing 6 government-connected agri markets with streamlined project planning, payroll, and attendance tracking.",
+            metric: '6 govt markets managed',
             bullets: ['Project Planning & HR', 'Payroll & Attendance', 'Agri-Market Coordination'],
             modules: ['ERP', 'HR', 'Agro'],
             image: '', logo: '', url: ''
@@ -58,6 +59,7 @@ export const initialCmsData = {
             title: 'KABCO Website',
             subtitle: 'Corporate Website for Kerala Agro Business Company',
             outcome: "Developed the official corporate website for KABCO, Kerala's state-run agri-logistics firm, providing a digital presence for their government-connected market operations.",
+            metric: 'Unified digital operations',
             bullets: ['Corporate Website Development', 'Government-connected Agri Market Portal', 'Digital Presence for State Enterprise'],
             modules: ['Website'],
             image: '', logo: '', url: 'https://kabco.co.in/'
@@ -70,6 +72,7 @@ export const initialCmsData = {
             title: 'KERA Website',
             subtitle: 'Kerala Government & World Bank Initiative',
             outcome: 'Developed and launched the official web presence for the KERA project — a flagship initiative by the Government of Kerala and World Bank focused on climate-resilient agriculture.',
+            metric: 'State flagship initiative',
             bullets: ['Government Portal Development', 'World Bank Initiative Showcase', 'Climate Resilient Agriculture Focus'],
             modules: ['Website', 'Govt'],
             image: '', logo: '', url: 'https://kera.kerala.gov.in/'
@@ -82,6 +85,7 @@ export const initialCmsData = {
             title: 'KERA Productive Alliance Platform',
             subtitle: 'Digital Alliance for Agri-Business Ecosystem',
             outcome: 'Built the KERA Product Alliance platform to connect agri-businesses, farmers, and stakeholders under the Kerala Government & World Bank-backed KERA initiative.',
+            metric: 'Multi-portal architecture',
             bullets: ['Role-Based Access with MIS', 'Grant Workflows with Approvals', 'Field Verification & Audit Tracking'],
             modules: ['Custom Platform', 'Grants', 'MIS'],
             image: '', logo: '', url: ''
@@ -94,6 +98,7 @@ export const initialCmsData = {
             title: 'KERA Climate Resilient Grant Platform',
             subtitle: 'Grant Management System under KERA Initiative',
             outcome: 'Developed the Climate Resilient Agriculture grant management platform for the Kerala Government and World Bank, enabling efficient grant disbursement, HR management, and monitoring.',
+            metric: 'Grant management platform',
             bullets: ['Climate Resilient Grant Management', 'HR Management & Access Control', 'Multi-Portal Architecture'],
             duration: '12 months', users: '500+',
             modules: ['Grants', 'Finance', 'MIS'],
@@ -107,6 +112,7 @@ export const initialCmsData = {
             title: 'NAWODHAN',
             subtitle: 'New Agriculture Wealth Opportunities — Driving Horticulture Agribusiness Networking',
             outcome: 'NAWODHAN is a Kerala government initiative to revitalize idle land for high-tech, commercial horticulture. A digital platform connecting landowners with farmers and investors — with over 4,700 acres registered to date.',
+            metric: '4,700 acres registered',
             bullets: ['RFP-Based Matchmaking', 'Land Inventory Structuring', 'Public-Private Allocation System'],
             modules: ['Custom Platform', 'Agri', 'Govt'],
             image: '', logo: '', url: ''
@@ -120,6 +126,7 @@ export const initialCmsData = {
             title: 'Steel Force',
             subtitle: 'A leading steel production and retail trading company with 25 branches and over 500 employees across 7 countries.',
             outcome: 'Implemented an ERP to streamline steel production, retail trading, HR, payroll, and multi-warehouse inventory, providing operational insights and boosting efficiency.',
+            metric: '25 branches connected',
             bullets: ['Steel Production Management', 'Retail Trading & B2B Wholesale', 'HR, Payroll & Multi-Warehouse Management'],
             image: '', logo: '', url: ''
         },
@@ -131,6 +138,7 @@ export const initialCmsData = {
             title: 'Power Creation Co',
             subtitle: "One of Saudi Arabia's top manufacturers of custom-engineered electrical panels.",
             outcome: 'Implemented a complete ERP for managing manufacturing operations from BOM and production planning to inventory, HR, and payroll. Vehicle tracking and finance modules enabled full operational visibility.',
+            metric: 'Operations maximized',
             bullets: ['Manufacturing Management', 'Stock & Production Planning', 'HR, Finance & Vehicle Management'],
             image: '', logo: '', url: ''
         },
@@ -142,6 +150,7 @@ export const initialCmsData = {
             title: 'Plascom Arabco',
             subtitle: 'A leading Saudi producer of high-performance cable compounds and polymer solutions.',
             outcome: "Delivered a dedicated finance system aligned with the company's specialized polymer manufacturing workflows — ensuring accurate cost tracking, vendor management, and streamlined financial operations.",
+            metric: 'Polymer workflows automated',
             bullets: ['Finance Management', 'Cost Control & Vendor Tracking', 'Manufacturing/Finance Alignment'],
             image: '', logo: '', url: ''
         },
@@ -153,6 +162,7 @@ export const initialCmsData = {
             title: 'Ikon Group',
             subtitle: 'Camp & Catering management with ZATCA compliance for Saudi Arabia.',
             outcome: "Built a scalable ERP solution to manage worker camps, catering operations, logistics, trading, and payroll. Integrated with Saudi Arabia's ZATCA e-Invoicing System and enabled modular access for multiple departments.",
+            metric: 'ZATCA compliant operations',
             bullets: ['Camp & Catering Management', 'HR, Payroll & ZATCA Compliance', 'Trading ERP'],
             image: '', logo: '', url: ''
         },
@@ -165,6 +175,7 @@ export const initialCmsData = {
             title: 'NMCE Logistics',
             subtitle: "One of Saudi Arabia's foremost logistics firms, trusted for fleet and driver operations at scale.",
             outcome: 'Implemented a unified system for managing fleet operations, trip logs, and payroll — integrating HR and finance for real-time logistics visibility.',
+            metric: 'Fleet operations unified',
             bullets: ['Vehicle & Driver Management', 'Trip & Fuel Logs', 'Payroll Integration'],
             image: '', logo: '', url: ''
         },
@@ -176,6 +187,7 @@ export const initialCmsData = {
             title: 'Zayat Logistics',
             subtitle: 'A regional logistics leader known for precision fleet control and real-time job tracking.',
             outcome: 'Deployed a logistics platform for job tracking, fleet oversight, and driver performance — improving transparency and operational control.',
+            metric: 'Job tracking centralized',
             bullets: ['Logistics & Job Tracking System', 'Driver Management', 'Fleet Oversight & Operations Visibility'],
             image: '', logo: '', url: ''
         },
@@ -187,6 +199,7 @@ export const initialCmsData = {
             title: 'Harbour Shipping & Marine',
             subtitle: "Qatar's most trusted name in marine freight and consignment logistics across multinational operations.",
             outcome: 'Delivered a complete freight and consignment tracking system with job-wise tracking and finance integration for multi-national operations.',
+            metric: 'Global freight tracked',
             bullets: ['Freight & Job Management System', 'Consignment Tracking & Cargo Finance', 'Multi-Company ERP', 'Finance & HR Integration'],
             image: '', logo: '', url: ''
         },
@@ -198,6 +211,7 @@ export const initialCmsData = {
             title: 'Fasty Logistics',
             subtitle: 'Land Transportation and Driver Management.',
             outcome: 'Implemented an ERP to streamline HR, driver association with vehicles, and automate all related payments for improved operational efficiency.',
+            metric: 'Payments fully automated',
             bullets: ['Land Transportation Management', 'Detailed HR & Driver Management', 'Payment Automation'],
             image: '', logo: '', url: ''
         },
@@ -209,6 +223,7 @@ export const initialCmsData = {
             title: 'Projecta Logistics',
             subtitle: 'End-to-end logistics ERP with bilingual interface.',
             outcome: 'Deployed a comprehensive logistics ERP covering job tracking, service workflow, equipment movement, and invoicing — with a bilingual (Arabic-English) interface.',
+            metric: 'Bilingual logistics ERP',
             bullets: ['Job Tracking & Logistics ERP', 'Service Workflow & Invoicing', 'Equipment Movement Tracking', 'Bilingual Interface'],
             image: '', logo: '', url: ''
         },
@@ -220,6 +235,7 @@ export const initialCmsData = {
             title: 'Elco Group',
             subtitle: 'Multi-regional transportation operations across KSA and UAE.',
             outcome: 'Delivered a complete multi-regional transportation ERP covering land, sea, and air logistics, driver management, and full finance integration across KSA and UAE operations.',
+            metric: 'Multi-regional logistics',
             bullets: ['Land, Sea & Air Transportation', 'Driver Management System', 'Multi-Regional Operations (KSA & UAE)', 'Complete Transportation & Logistics Solutions'],
             image: '', logo: '', url: ''
         },
@@ -231,6 +247,7 @@ export const initialCmsData = {
             title: 'Amaala Global',
             subtitle: 'Transportation company covering land, sea, and air operations.',
             outcome: 'Implemented an ERP covering logistics operations across land, sea, and air transport — with vehicle maintenance and complete finance management.',
+            metric: 'Land, sea & air tracked',
             bullets: ['Land, Sea & Air Transportation', 'Vehicle Maintenance', 'Complete Finance Management'],
             image: '', logo: '', url: ''
         },
@@ -243,6 +260,7 @@ export const initialCmsData = {
             title: 'SRT Trading & Co',
             subtitle: 'ZATCA & VAT Compliant Trading Operations',
             outcome: 'Delivered a comprehensive ERP system including ZATCA e-invoicing, financial dashboards, and role-based access.',
+            metric: 'Trading workflows digitized',
             bullets: ['Sales, Procurement & Inventory', 'Trading Operations ERP', 'ZATCA & VAT Compliance Integration'],
             image: '', logo: '', url: ''
         },
@@ -254,6 +272,7 @@ export const initialCmsData = {
             title: 'Aqrar Corner Trading',
             subtitle: 'A retail business with 5 branches offering comprehensive trading and finance solutions.',
             outcome: 'Implemented an ERP to manage trading workflows, inventory, and financial operations across all branches.',
+            metric: 'Multi-branch finance synced',
             bullets: ['Complete Trading Modules', 'Finance & Inventory Management'],
             image: '', logo: '', url: ''
         },
@@ -265,6 +284,7 @@ export const initialCmsData = {
             title: 'Katch Trading Company',
             subtitle: 'Parent company of premium consumer brands: Flevar, Di Vie, Chelsea, Camila and more.',
             outcome: 'Implemented an ERP to manage sales, inventory, and financial operations across multiple retail brands and branches, with centralized multi-branch finance control.',
+            metric: 'Retail sales unified',
             bullets: ['Sales & Inventory', 'Multi-Branch Finance Control', 'Retail Operations'],
             image: '', logo: '', url: ''
         },
@@ -276,6 +296,7 @@ export const initialCmsData = {
             title: 'SIA Industries',
             subtitle: 'A diversified Omani group spanning logistics, trading, and food operations.',
             outcome: 'Deployed a modular ERP solution enabling SIA to independently manage trading and logistics verticals while maintaining group-level control and reporting.',
+            metric: 'Group-level controls set',
             bullets: ['Transport & Warehouse', 'HR & Finance', 'Multi-Vertical ERP'],
             image: '', logo: '', url: ''
         },
@@ -287,6 +308,7 @@ export const initialCmsData = {
             title: 'Nisnas Group',
             subtitle: 'Retail and distribution ERP across multiple branches.',
             outcome: 'Implemented a Retail & Distribution ERP with POS, registration management, and centralized multi-branch sales and finance reporting.',
+            metric: 'Retail POS fully integrated',
             bullets: ['Retail & Distribution ERP', 'POS & Registration', 'Multi-Branch Sales & Finance'],
             image: '', logo: '', url: ''
         },
@@ -298,6 +320,7 @@ export const initialCmsData = {
             title: 'Hatco Trading',
             subtitle: 'Building materials trading with B2B operations.',
             outcome: 'Implemented a trading ERP for building materials with customized POS, B2B trading workflows, and daily collection reporting.',
+            metric: 'B2B trading modernized',
             bullets: ['B2B Trading — Building Materials', 'Daily Collection Report', 'Customised Point of Sale Interface'],
             image: '', logo: '', url: ''
         },
@@ -309,6 +332,7 @@ export const initialCmsData = {
             title: 'Ruqn Al Mashreq',
             subtitle: 'Wholesale B2B trading company managing multiple companies and entities.',
             outcome: 'Implemented a multi-company ERP to manage wholesale B2B trading operations, multiple entities, HR, and payroll under a unified platform.',
+            metric: 'Wholesale ops streamlined',
             bullets: ['Wholesale B2B Trading', 'Multi-Company Management', 'HR & Payroll'],
             image: '', logo: '', url: ''
         },
@@ -320,6 +344,7 @@ export const initialCmsData = {
             title: 'Universal Electric House',
             subtitle: 'Retail trading with centralized POS and finance management.',
             outcome: 'Implemented a retail trading ERP with multi-user POS interface and integrated finance management module for seamless operations.',
+            metric: 'Retail finance simplified',
             bullets: ['Retail Trading', 'POS Interface with Multi-User', 'Finance Management Module'],
             image: '', logo: '', url: ''
         },
@@ -331,6 +356,7 @@ export const initialCmsData = {
             title: 'Rmax Group',
             subtitle: 'Retail trading operations across 30 branches spanning 6 companies.',
             outcome: 'Implemented a multi-company ERP to streamline retail trading, inventory, and financial control across 30 branches and 6 companies.',
+            metric: '30 branches connected',
             bullets: ['Retail Trading', 'Multi-Company & Branch Management', '30 Branches across 6 Companies'],
             image: '', logo: '', url: ''
         },
@@ -343,6 +369,7 @@ export const initialCmsData = {
             title: 'Badriya Sweets',
             subtitle: 'A leading sweets manufacturer specializing in retail and wholesale operations.',
             outcome: 'Implemented an ERP system to streamline operations across sales, HR, payroll, and production processes.',
+            metric: 'Production processes synced',
             bullets: ['Retail Billing & POS', 'VAN Sales', 'HR & Payroll Management', 'Production Management'],
             image: '', logo: '', url: ''
         },
@@ -354,6 +381,7 @@ export const initialCmsData = {
             title: 'Al Tabia Bakery',
             subtitle: 'A retail-focused bakery managing in-house production and B2B trade operations.',
             outcome: 'Implemented an ERP to manage POS sales, manufacturing, expiry tracking, HR, payroll, and B2B trading operations efficiently.',
+            metric: 'Expiry tracking automated',
             bullets: ['Retail POS', 'Manufacturing & Expiry Management', 'HR & Payroll', 'B2B Trading'],
             image: '', logo: '', url: ''
         },
@@ -366,6 +394,7 @@ export const initialCmsData = {
             title: 'MEF — Middle East Furniture',
             subtitle: "One of Oman's top furniture retailers with 6+ connected branches.",
             outcome: 'Delivered a centralized order and inventory system to manage multi-branch operations with unified tracking and fulfillment across all locations.',
+            metric: 'Multi-branch fulfillment',
             bullets: ['Internal Order Management', 'Inventory & Finance', 'Branch-Wise Operations'],
             image: '', logo: '', url: ''
         },
@@ -378,6 +407,7 @@ export const initialCmsData = {
             title: 'Sahara Oil and Gas',
             subtitle: 'Multi-currency compliance and trading operations for the energy sector.',
             outcome: 'Implemented a scalable ERP for managing trading workflows, multi-currency transactions, credit control, and sector-specific reporting.',
+            metric: 'Multi-currency managed',
             bullets: ['Oil & Gas Trading ERP', 'Inventory, Finance & Vendor Management', 'Multi-Currency & Compliance Reporting'],
             image: '', logo: '', url: ''
         },
@@ -390,6 +420,7 @@ export const initialCmsData = {
             title: 'Avicen Pharma',
             subtitle: "Oman's second-largest pharma network operating 50+ branches.",
             outcome: "Implemented a dedicated HR system for Avicen Pharma's extensive branch network — with employee role structuring, shift & roster management, multi-shift support, role-based permissions, and centralized payroll control.",
+            metric: 'Multi-shift HR managed',
             bullets: ['Shift & Roster Management', 'Employee Role Structuring', 'Payroll Automation'],
             image: '', logo: '', url: ''
         },
@@ -402,6 +433,7 @@ export const initialCmsData = {
             title: 'Marina Insurance',
             subtitle: "One of Saudi Arabia's leading insurance brokers specializing in custody, policy, and financial management.",
             outcome: 'Implemented a comprehensive insurance management ERP covering core finance, policy ledger, brokerage operations, and regulatory reporting.',
+            metric: 'Policy ledger modernized',
             bullets: ['Core Finance', 'Policy Ledger & Brokerage', 'Regulatory Reporting'],
             image: '', logo: '', url: ''
         },
@@ -414,6 +446,7 @@ export const initialCmsData = {
             title: 'Al Adrak',
             subtitle: 'Real estate and contracting company with headquarters in KSA and operations in multiple regions.',
             outcome: 'Implemented an ERP with ZATCA compliance, invoicing, and financial management to handle real estate and contracting operations across multiple regions.',
+            metric: 'Real estate ops synced',
             bullets: ['Invoicing & ZATCA Compliance', 'Finance Management'],
             image: '', logo: '', url: ''
         },
@@ -426,6 +459,7 @@ export const initialCmsData = {
             title: 'Ocom',
             subtitle: 'Frappe-based learning management platform for commerce coaching and education.',
             outcome: 'Built a Frappe-based platform to manage learning content, student enrollments, courses, admissions, catering, exams, payments, and performance tracking — with a mobile-friendly dashboard and customizable learning modules.',
+            metric: 'Education platform scaled',
             bullets: ['Learning Content & Student Management', 'Admissions & Payment', 'Role-Based Access & Scheduling'],
             image: '', logo: '', url: ''
         },
@@ -438,6 +472,7 @@ export const initialCmsData = {
             title: 'Chalaroste',
             subtitle: 'A leading Qatar-based consulting company.',
             outcome: 'Implemented a comprehensive ERP for project and task management, CRM, sales, and finance workflows — tailored for a professional consulting environment.',
+            metric: 'Consulting workflows digitized',
             bullets: ['Project & Task Management', 'Sales, CRM & Finance Workflow', 'Accounting'],
             image: '', logo: '', url: ''
         },
@@ -450,6 +485,7 @@ export const initialCmsData = {
             title: 'Deepflow',
             subtitle: 'An emerging climate-tech startup innovating in agricultural sustainability.',
             outcome: 'Implemented HR, payroll, project tracking, sales, and accounting modules for this climate-tech startup, enabling streamlined operations as they scale.',
+            metric: 'Startup ops streamlined',
             bullets: ['HR & Payroll', 'Project Tracking', 'Sales & Accounting'],
             image: '', logo: '', url: ''
         }

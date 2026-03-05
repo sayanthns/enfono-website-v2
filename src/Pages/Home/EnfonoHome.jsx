@@ -624,7 +624,7 @@ export default function EnfonoHome() {
                   <div className="ecc-meta"><i className="fas fa-tag" style={{ marginRight: '6px' }} />{cs.category} · {cs.country}</div>
                   <div className="ecc-title">{cs.title}</div>
                   <div className="ecc-desc">{cs.subtitle}</div>
-                  <div className="ecc-result"><i className="fas fa-chart-line" />{cs.outcome}</div>
+                  <div className="ecc-result"><i className="fas fa-chart-line" />{cs.metric || cs.outcome}</div>
                 </m.div>
               ))}
             </m.div>

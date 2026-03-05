@@ -418,6 +418,16 @@ const AdminCMS = () => {
                                     </div>
 
                                     <div style={{ marginBottom: '16px' }}>
+                                        <label style={{ fontSize: '13px', opacity: 0.6 }}>Short Metric (e.g., '25 branches connected' for the pill badge)</label>
+                                        <input
+                                            type="text"
+                                            value={w.metric || ''}
+                                            onChange={(e) => updateItem('our_work', idx, 'metric', e.target.value)}
+                                            style={{ width: '100%', padding: '10px', background: '#0f172afff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
+                                        />
+                                    </div>
+
+                                    <div style={{ marginBottom: '16px' }}>
                                         <label style={{ fontSize: '13px', opacity: 0.6 }}>Outcome / Results Text (Alternative to Key Results metrics)</label>
                                         <textarea
                                             value={w.outcome || ''}
@@ -481,7 +491,7 @@ const AdminCMS = () => {
                                 </div>
                             ))}
                             <button
-                                onClick={() => addItem('our_work', { id: Date.now(), category: 'Manufacturing', country: 'Saudi Arabia', flag: '🇸🇦', title: 'New Project', subtitle: '', outcome: '', bullets: [], image: '', logo: '', url: '' })}
+                                onClick={() => addItem('our_work', { id: Date.now(), category: 'Manufacturing', country: 'Saudi Arabia', flag: '🇸🇦', title: 'New Project', subtitle: '', outcome: '', metric: '', bullets: [], image: '', logo: '', url: '' })}
                                 style={{ background: 'rgba(16, 185, 129, 0.1)', color: '#10B981', border: 'none', padding: '12px', borderRadius: '8px', cursor: 'pointer', fontWeight: 600 }}
                             >
                                 + Add Project
