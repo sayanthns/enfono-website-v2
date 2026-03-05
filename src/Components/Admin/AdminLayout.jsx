@@ -6,7 +6,8 @@ const AdminLayout = () => {
     const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
 
     const handleLogout = () => {
-        // For now, just redirect
+        localStorage.removeItem('enfono_admin_session');
+        localStorage.removeItem('enfono_mfa_verified');
         navigate('/admin/login');
     };
 

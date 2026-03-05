@@ -8,9 +8,10 @@ const AdminLogin = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Simple verification for now
-        if (username === 'admin' && password === 'enfono2026') {
-            navigate('/admin');
+        // Master password check
+        if (username === 'admin' && password === 'enfono2026@Secure!') {
+            // Proceed to MFA step; Do NOT issue session tokens yet.
+            navigate('/admin/mfa');
         } else {
             alert('Invalid credentials');
         }

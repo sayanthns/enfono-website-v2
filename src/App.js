@@ -1,7 +1,7 @@
 import React, { Suspense, useEffect, useState, lazy } from "react";
 
 // Libraries
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 
 // Context
@@ -25,9 +25,19 @@ const EnfonoBlogs = lazy(() => import("./Pages/Blogs/EnfonoBlogs"));
 // ─── Admin Pages ───────────────────────────────────────
 const AdminLayout = lazy(() => import("./Components/Admin/AdminLayout"));
 const AdminLogin = lazy(() => import("./Pages/Admin/AdminLogin"));
+const AdminMFA = lazy(() => import("./Pages/Admin/AdminMFA"));
 const AdminDashboard = lazy(() => import("./Pages/Admin/AdminDashboard"));
 const AdminSettings = lazy(() => import("./Pages/Admin/AdminSettings"));
 const AdminCMS = lazy(() => import("./Pages/Admin/AdminCMS"));
+
+// ─── Protected Route Component ─────────────────────────
+const ProtectedRoute = ({ children }) => {
+  const session = localStorage.getItem('enfono_admin_session');
+  if (session !== 'valid') {
+    return <Navigate to="/admin/login" replace />;
+  }
+  return children;
+};
 
 function App() {
   const [headerHeight, setHeaderHeight] = useState(0);
@@ -91,9 +101,20 @@ function App() {
               <Route path="/brands" element={<EnfonoBrands />} />
               <Route path="/careers" element={<EnfonoCareers />} />
 
+              {/* ── Catch All ── */}
+              <Route path="*" element={<NotFoundPage />} />
+
               {/* ── Admin Portal ── */}
               <Route path="/admin/login" element={<AdminLogin />} />
-              <Route path="/admin" element={<AdminLayout />}>
+              <Route path="/admin/mfa" element={<AdminMFA />} />
+              <Route
+                path="/admin"
+                element={
+                  <ProtectedRoute>
+                    <AdminLayout />
+                  </ProtectedRoute>
+                }
+              >
                 <Route index element={<AdminDashboard />} />
                 <Route path="settings" element={<AdminSettings />} />
                 <Route path="content" element={<AdminCMS />} />
