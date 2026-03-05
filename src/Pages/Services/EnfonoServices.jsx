@@ -143,16 +143,17 @@ const EnfonoServices = () => {
                             <m.span variants={fadeIn} className="enfono-section-label-amber" style={{ color: '#10B981' }}>The Methodology</m.span>
                             <m.h2 variants={fadeIn} className="enfono-hero-title" style={{ fontSize: '3rem', margin: '16px 0' }}>How We Deliver Excellence</m.h2>
                         </m.div>
-                        <Row className="justify-content-center g-4">
+                        <Row className="justify-content-center g-5">
                             {[
-                                { step: '01', title: 'Discovery & Audit', desc: 'Analyzing current systems and defining technical roadmaps.' },
-                                { step: '02', title: 'Architecture Mapping', desc: 'Designing the database schemas and UI/UX prototypes.' },
-                                { step: '03', title: 'Agile Development', desc: 'Iterative sprints for module and API development.' },
-                                { step: '04', title: 'UAT & Training', desc: 'Rigorous testing followed by comprehensive team training.' }
+                                { step: '01', title: 'Discovery & Audit', desc: 'Deeply understanding your processes, pain points, and digital goals.' },
+                                { step: '02', title: 'Strategy & Mapping', desc: 'Designing the technical architecture and solution blueprints.' },
+                                { step: '03', title: 'Agile Development', desc: 'Iterative sprints for module, API, and platform engineering.' },
+                                { step: '04', title: 'Integration & Sync', desc: 'Ensuring seamless data flow across your existing ecosystem.' },
+                                { step: '05', title: 'UAT & Training', desc: 'Rigorous testing followed by comprehensive team empowerment.' },
+                                { step: '06', title: 'Launch & Support', desc: 'Continuous monitoring and evolution of your digital systems.' }
                             ].map((p, i) => (
-                                <Col md={6} lg={3} key={i}>
-                                    <m.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} style={{ position: 'relative', height: '100%', padding: '24px 0' }}>
-                                        {/* Optional connecting line for desktop (hidden via CSS usually, but simple border works) */}
+                                <Col md={6} lg={4} key={i}>
+                                    <m.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} style={{ position: 'relative', height: '100%' }}>
                                         <div style={{
                                             width: '64px', height: '64px',
                                             background: '#111',
@@ -164,7 +165,8 @@ const EnfonoServices = () => {
                                             fontWeight: 700,
                                             fontSize: '1.25rem',
                                             position: 'relative',
-                                            zIndex: 2
+                                            zIndex: 2,
+                                            boxShadow: '0 0 20px rgba(16, 185, 129, 0.1)'
                                         }}>
                                             {p.step}
                                         </div>

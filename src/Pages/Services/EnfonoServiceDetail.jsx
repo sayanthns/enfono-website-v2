@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useParams, Navigate, Link } from 'react-router-dom';
 import { servicesData } from '../../Data/services_data';
+import { Row, Col } from 'react-bootstrap';
 import EnfonoHeader from '../../Components/EnfonoUI/EnfonoHeader';
 import EnfonoFooter from '../../Components/EnfonoUI/EnfonoFooter';
 
@@ -157,23 +158,36 @@ const EnfonoServiceDetail = () => {
                 <section className="service-process-section" style={{ padding: '100px 0', background: '#0a0a0a', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
                     <div className="enf-container">
                         <div className="section-header text-center" style={{ marginBottom: '80px' }}>
-                            <h2 style={{ fontSize: '2.5rem', color: '#fff', marginBottom: '16px' }}>Our Implementation Methodology</h2>
+                            <h2 style={{ fontSize: '2.5rem', color: '#fff', marginBottom: '16px' }}>{service.title === "ERPNext Implementation" ? "Our Proven Framework" : "Our Implementation Methodology"}</h2>
                             <p style={{ color: 'rgba(255,255,255,0.6)', maxWidth: '600px', margin: '0 auto' }}>A structured, sprint-based approach ensuring rapid deployment and zero operational downtime.</p>
                         </div>
-                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '40px' }}>
-                            {service.process.map((step, idx) => (
-                                <div key={idx} style={{ position: 'relative', background: '#111', padding: '40px 32px', borderRadius: '20px', border: '1px solid #222' }}>
-                                    <div style={{ position: 'absolute', top: '-24px', left: '32px', width: '48px', height: '48px', background: '#10B981', color: '#fff', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.25rem', fontWeight: 800, boxShadow: '0 10px 20px rgba(16, 185, 129, 0.3)' }}>
-                                        {idx + 1}
+                        <Row className="justify-content-center g-5">
+                            {service.process.map((p, idx) => (
+                                <Col md={6} lg={4} key={idx}>
+                                    <div style={{ position: 'relative', height: '100%' }}>
+                                        <div style={{
+                                            width: '64px', height: '64px',
+                                            background: '#111',
+                                            borderRadius: '50%',
+                                            display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                            marginBottom: '24px',
+                                            border: '2px solid #10B981',
+                                            color: '#10B981',
+                                            fontWeight: 700,
+                                            fontSize: '1.25rem',
+                                            position: 'relative',
+                                            zIndex: 2,
+                                            boxShadow: '0 0 20px rgba(16, 185, 129, 0.1)'
+                                        }}>
+                                            {idx + 1 < 10 ? `0${idx + 1}` : idx + 1}
+                                        </div>
+                                        <h4 style={{ fontSize: '1.25rem', fontWeight: 700, color: '#fff', marginBottom: '12px' }}>{p.step}</h4>
+                                        <p style={{ fontSize: '0.95rem', lineHeight: 1.6, color: 'rgba(255,255,255,0.6)', margin: 0 }}>{p.desc}</p>
                                     </div>
-                                    <h4 style={{ color: '#fff', fontSize: '1.25rem', marginTop: '16px', marginBottom: '16px', fontWeight: 700 }}>{step.step}</h4>
-                                    <p style={{ color: 'rgba(255,255,255,0.6)', lineHeight: 1.6, margin: 0 }}>{step.desc}</p>
-                                </div>
+                                </Col>
                             ))}
-                        </div>
+                        </Row>
                     </div>
-                </section>
-
                 </section>
 
             </main>
