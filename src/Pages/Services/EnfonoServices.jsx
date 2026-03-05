@@ -213,7 +213,7 @@ const EnfonoServices = () => {
                 </Container>
             </section>
 
-            <EnfonoFooter />
+            <EnfonoFooter hideCta={true} />
         </div>
     )
 }

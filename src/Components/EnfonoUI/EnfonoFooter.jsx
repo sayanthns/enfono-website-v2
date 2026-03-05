@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { initialCmsData } from "../../Data/cms_data";
 
-export default function EnfonoFooter() {
+export default function EnfonoFooter({ hideCta = false }) {
   const [cmsData, setCmsData] = useState(initialCmsData);
 
   useEffect(() => {
@@ -14,20 +14,22 @@ export default function EnfonoFooter() {
   return (
     <footer className="enfono-footer-new">
       {/* Top CTA Band */}
-      <div className="enfono-footer-cta-band">
-        <div className="enfono-container">
-          <div className="efcta-inner">
-            <div className="efcta-text">
-              <h3>Ready to Transform<br />Your Business with ERP?</h3>
-              <p>Book a free 60-minute ERP strategy session with our Industry experts. No commitment required.</p>
-            </div>
-            <div className="efcta-actions">
-              <Link to={cmsData.hero.booking_url} className="efcta-btn-primary"><i className="fas fa-calendar-check" style={{ marginRight: '6px' }} /> Get Free Consultation</Link>
-              <a href={`tel:${cmsData.contact.phone.replace(/\s/g, '')}`} className="efcta-btn-outline"><i className="fas fa-phone" style={{ marginRight: '6px' }} /> {cmsData.contact.phone}</a>
+      {!hideCta && (
+        <div className="enfono-footer-cta-band">
+          <div className="enfono-container">
+            <div className="efcta-inner">
+              <div className="efcta-text">
+                <h3>Ready to Transform<br />Your Business with ERP?</h3>
+                <p>Book a free 60-minute ERP strategy session with our Industry experts. No commitment required.</p>
+              </div>
+              <div className="efcta-actions">
+                <Link to={cmsData.hero.booking_url} className="efcta-btn-primary"><i className="fas fa-calendar-check" style={{ marginRight: '6px' }} /> Get Free Consultation</Link>
+                <a href={`tel:${cmsData.contact.phone.replace(/\s/g, '')}`} className="efcta-btn-outline"><i className="fas fa-phone" style={{ marginRight: '6px' }} /> {cmsData.contact.phone}</a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* Floating Contact Widget */}
       <div className="enfono-floating-widget">

@@ -186,7 +186,7 @@ const EnfonoServiceDetail = () => {
                 </section>
 
             </main>
-            <EnfonoFooter />
+            <EnfonoFooter hideCta={true} />
         </div >
     );
 };
