@@ -1,7 +1,16 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { initialCmsData } from "../../Data/cms_data";
 
 export default function EnfonoFooter() {
+  const [cmsData, setCmsData] = useState(initialCmsData);
+
+  useEffect(() => {
+    const saved = localStorage.getItem('enfono_cms_data');
+    if (saved) {
+      setCmsData(JSON.parse(saved));
+    }
+  }, []);
   return (
     <footer className="enfono-footer-new">
       {/* Top CTA Band */}
@@ -13,8 +22,8 @@ export default function EnfonoFooter() {
               <p>Book a free 60-minute ERP strategy session with our Industry experts. No commitment required.</p>
             </div>
             <div className="efcta-actions">
-              <Link to="/contact" className="efcta-btn-primary"><i className="fas fa-calendar-check" style={{ marginRight: '6px' }} /> Get Free Consultation</Link>
-              <a href="tel:+966573528619" className="efcta-btn-outline"><i className="fas fa-phone" style={{ marginRight: '6px' }} /> +966 57 352 8619</a>
+              <Link to={cmsData.hero.booking_url} className="efcta-btn-primary"><i className="fas fa-calendar-check" style={{ marginRight: '6px' }} /> Get Free Consultation</Link>
+              <a href={`tel:${cmsData.contact.phone.replace(/\s/g, '')}`} className="efcta-btn-outline"><i className="fas fa-phone" style={{ marginRight: '6px' }} /> {cmsData.contact.phone}</a>
             </div>
           </div>
         </div>
@@ -29,10 +38,10 @@ export default function EnfonoFooter() {
         >
           <i className="fas fa-arrow-right" />
         </button>
-        <a href="https://wa.me/966573528619" target="_blank" rel="noreferrer" className="efw-item efw-wa" aria-label="Chat on WhatsApp">
+        <a href={`https://wa.me/${cmsData.contact.whatsapp.replace(/[^0-9]/g, '')}`} target="_blank" rel="noreferrer" className="efw-item efw-wa" aria-label="Chat on WhatsApp">
           <i className="fab fa-whatsapp" />
         </a>
-        <a href="tel:+966573528619" className="efw-item efw-phone" aria-label="Call Us">
+        <a href={`tel:${cmsData.contact.phone.replace(/\s/g, '')}`} className="efw-item efw-phone" aria-label="Call Us">
           <i className="fas fa-phone-alt" />
         </a>
       </div>
@@ -101,7 +110,7 @@ export default function EnfonoFooter() {
               <h4 className="ef-col-title">Company</h4>
               <ul className="ef-links">
                 <li><Link to="/about">About Enfono</Link></li>
-                <li><Link to="/case-studies">Case Studies</Link></li>
+                <li><Link to="/our-work">Our Work</Link></li>
                 <li><Link to="/brands">Our Brands</Link></li>
                 <li><Link to="/careers">Careers</Link></li>
                 <li><Link to="/contact">Contact Us</Link></li>

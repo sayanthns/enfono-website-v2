@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { m, LazyMotion, domAnimation } from 'framer-motion'
 import CountUp from 'react-countup'
 import { useInView } from 'react-intersection-observer'
 import EnfonoHeader from '../../Components/EnfonoUI/EnfonoHeader'
 import EnfonoFooter from '../../Components/EnfonoUI/EnfonoFooter'
+import { initialCmsData } from "../../Data/cms_data";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -131,6 +132,29 @@ const partners = [
 ]
 
 export default function EnfonoHome() {
+  const [cmsData, setCmsData] = useState(initialCmsData);
+
+  useEffect(() => {
+    const loadData = () => {
+      const saved = localStorage.getItem('enfono_cms_data');
+      if (saved) {
+        setCmsData(JSON.parse(saved));
+      }
+    };
+
+    loadData();
+
+    // Listen for changes from other tabs (Admin)
+    const handleStorageChange = (e) => {
+      if (e.key === 'enfono_cms_data') {
+        loadData();
+      }
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, []);
+
   return (
     <LazyMotion features={domAnimation}>
       <div style={{ background: '#fff' }}>
@@ -155,22 +179,21 @@ export default function EnfonoHome() {
                   </m.div>
 
                   <m.h1 className="enfono-hero-title" variants={fadeUp} custom={0.1}>
-                    AI-Powered ERP<br />
-                    Built to Scale Your Business
+                    {cmsData.hero.heading}
                   </m.h1>
 
                   <m.p className="enfono-hero-subtitle" variants={fadeUp} custom={0.15}>
-                    We don't just implement ERPs; we power them with intelligent business orchestration. Chat with your live enterprise data, predict outcomes, and automate decisions across the GCC.
+                    {cmsData.hero.subtext}
                   </m.p>
 
                   <m.div className="enfono-hero-actions" variants={fadeUp} custom={0.2}>
-                    <Link to="/contact" className="ehero-btn-primary">
+                    <Link to={cmsData.hero.booking_url} className="ehero-btn-primary">
                       <i className="fas fa-calendar-check" />
-                      Get Free Consultation
+                      {cmsData.hero.cta_primary}
                     </Link>
                     <Link to="/case-studies" className="ehero-btn-ghost">
                       <i className="fas fa-play-circle" />
-                      View Case Studies
+                      {cmsData.hero.cta_secondary}
                     </Link>
                   </m.div>
 
@@ -272,10 +295,15 @@ export default function EnfonoHome() {
         <section className="enfono-stats-section">
           <div className="enfono-container">
             <div className="enfono-stats-inner">
-              <StatCell end={120} suffix="+" label="Projects Delivered" icon="fas fa-project-diagram" />
-              <StatCell end={60} suffix="+" label="Customers Worldwide" icon="fas fa-handshake" />
-              <StatCell end={6} suffix="+" label="Countries Served" icon="fas fa-globe-americas" />
-              <StatCell end={15000} suffix="+" label="Active Users" icon="fas fa-user-check" />
+              {cmsData.stats.map((stat, idx) => (
+                <StatCell
+                  key={idx}
+                  end={parseInt(stat.value)}
+                  suffix={stat.suffix}
+                  label={stat.label}
+                  icon={idx === 0 ? "fas fa-project-diagram" : idx === 1 ? "fas fa-handshake" : idx === 2 ? "fas fa-globe-americas" : "fas fa-user-check"}
+                />
+              ))}
             </div>
           </div>
         </section>
@@ -294,7 +322,7 @@ export default function EnfonoHome() {
             </m.div>
             <div className="e-logos-track">
               <div className="e-logos-scroll">
-                {[...clientLogos, ...clientLogos].map((c, i) => (
+                {[...cmsData.client_logos, ...cmsData.client_logos].map((c, i) => (
                   <div key={i} className="e-logo-item">
                     <span className="e-logo-name">{c.name}</span>
                   </div>
@@ -556,11 +584,11 @@ export default function EnfonoHome() {
               variants={fadeUp}
             >
               <div>
-                <div className="e-section-label">Client Success Stories</div>
+                <div className="e-section-label">Our Work</div>
                 <h2 className="e-section-title" style={{ margin: 0 }}>Real Results for<br />Real Businesses</h2>
               </div>
-              <Link to="/case-studies" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontFamily: 'Inter,sans-serif', fontSize: '14px', fontWeight: 600, color: '#10B981', textDecoration: 'none' }}>
-                View All Case Studies <i className="fas fa-arrow-right" style={{ fontSize: '12px' }} />
+              <Link to="/our-work" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontFamily: 'Inter,sans-serif', fontSize: '14px', fontWeight: 600, color: '#10B981', textDecoration: 'none' }}>
+                View All Work <i className="fas fa-arrow-right" style={{ fontSize: '12px' }} />
               </Link>
             </m.div>
             <m.div
@@ -570,7 +598,7 @@ export default function EnfonoHome() {
               viewport={{ once: true, amount: 0.1 }}
               variants={stagger}
             >
-              {caseStudies.map(cs => (
+              {cmsData.success_stories.map(cs => (
                 <m.div key={cs.title} className="e-cs-card" variants={fadeUp}>
                   <div className="ecc-meta"><i className={cs.icon} style={{ marginRight: '6px' }} />{cs.meta}</div>
                   <div className="ecc-title">{cs.title}</div>
@@ -603,7 +631,7 @@ export default function EnfonoHome() {
               viewport={{ once: true, amount: 0.1 }}
               variants={stagger}
             >
-              {testimonials.map(t => (
+              {cmsData.testimonials.map(t => (
                 <m.div key={t.name} className="e-testimonial-card" variants={fadeUp}>
                   <div className="etc-stars">{[...Array(5)].map((_, i) => <i key={i} className="fas fa-star" />)}</div>
                   <p className="etc-quote">"{t.quote}"</p>
@@ -724,75 +752,48 @@ export default function EnfonoHome() {
               viewport={{ once: true, amount: 0.1 }}
               variants={stagger}
             >
-              {/* Event 1 */}
-              <m.div className="e-event-card" variants={fadeUp}>
-                <div className="eev-image-wrapper">
-                  <img src="/assets/img/Frappeverse-1.jpg" alt="Frappeverse 2025" className="eev-image fadeIn" width="600" height="400" loading="lazy" />
-                  <div className="eev-date-badge">
-                    <span className="day">12</span>
-                    <span className="month">SEP</span>
+              {cmsData.media_events.map((ev, idx) => (
+                <m.div key={idx} className="e-event-card" variants={fadeUp}>
+                  <div className="eev-image-wrapper">
+                    <img src={ev.image} alt={ev.title} className="eev-image fadeIn" width="600" height="400" loading="lazy" />
+                    <div className="eev-date-badge">
+                      <span className="day">{ev.date.split(' ')[0]}</span>
+                      <span className="month">{ev.date.split(' ')[1]}</span>
+                    </div>
                   </div>
-                </div>
-                <div className="eev-content">
-                  <div className="eev-meta">
-                    <span><i className="fas fa-map-marker-alt" /> Global Tech Expo</span>
-                    <span><i className="fas fa-tag" /> Frappeverse</span>
+                  <div className="eev-content">
+                    <div className="eev-meta">
+                      {ev.tags && ev.tags.map((tag, tIdx) => (
+                        <span key={tIdx}><i className={tag.icon} /> {tag.text}</span>
+                      ))}
+                    </div>
+                    <h3 className="eev-title">{ev.title}</h3>
+                    <p className="eev-desc">{ev.desc}</p>
+                    <div className="eev-actions">
+                      {ev.buttons && ev.buttons.map((btn, bIdx) =>
+                        btn.type === 'disabled' ? (
+                          <span key={bIdx} className="eev-link disabled">
+                            <i className="far fa-images" />
+                            {btn.label}
+                          </span>
+                        ) : (
+                          <a
+                            key={bIdx}
+                            href={btn.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={`eev-link ${btn.type || ''}`}
+                          >
+                            {btn.type === 'youtube' && <i className="fab fa-youtube" />}
+                            {btn.type === 'instagram' && <i className="fab fa-instagram" />}
+                            {btn.label}
+                          </a>
+                        )
+                      )}
+                    </div>
                   </div>
-                  <h3 className="eev-title">We Presented at Frappeverse 2025</h3>
-                  <p className="eev-desc">Our team showcased the power of AI-driven ERPNext implementations and business process optimization to a global audience of developers and business leaders.</p>
-                  <div className="eev-actions">
-                    <a href="https://youtu.be/eMNhqHINfsI" target="_blank" rel="noopener noreferrer" className="eev-link youtube"><i className="fab fa-youtube" /> Watch Stream</a>
-                    <a href="https://www.instagram.com/p/DTAk-qLCIKe/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer" className="eev-link ig"><i className="fab fa-instagram" /> View Gallery</a>
-                  </div>
-                </div>
-              </m.div>
-
-              {/* Event 2 */}
-              <m.div className="e-event-card" variants={fadeUp}>
-                <div className="eev-image-wrapper">
-                  <img src="/assets/img/futuresummit-1.jpeg" alt="Media One Future Summit" className="eev-image fadeIn" width="600" height="400" loading="lazy" />
-                  <div className="eev-date-badge">
-                    <span className="day">24</span>
-                    <span className="month">FEB</span>
-                  </div>
-                </div>
-                <div className="eev-content">
-                  <div className="eev-meta">
-                    <span><i className="fas fa-map-marker-alt" /> Jeddah, KSA</span>
-                    <span><i className="fas fa-tag" /> Summit</span>
-                  </div>
-                  <h3 className="eev-title">Media One Future Summit — Jeddah</h3>
-                  <p className="eev-desc">Discussing the future of enterprise technology, AI-driven digital transformation, and scalable ERP strategies for Saudi Arabia's Vision 2030.</p>
-                  <div className="eev-actions">
-                    <a href="https://www.instagram.com/stories/highlights/18550941703042890/" target="_blank" rel="noopener noreferrer" className="eev-link ig">
-                      <i className="fab fa-instagram" /> View Stories
-                    </a>
-                  </div>
-                </div>
-              </m.div>
-
-              {/* Event 3 */}
-              <m.div className="e-event-card" variants={fadeUp}>
-                <div className="eev-image-wrapper">
-                  <img src="/assets/img/kera-1.png" alt="Launching of KERA" className="eev-image fadeIn" width="600" height="400" loading="lazy" />
-                  <div className="eev-date-badge">
-                    <span className="day">02</span>
-                    <span className="month">MAR</span>
-                  </div>
-                </div>
-                <div className="eev-content">
-                  <div className="eev-meta">
-                    <span><i className="fas fa-map-marker-alt" /> Kerala, India</span>
-                    <span><i className="fas fa-tag" /> Govt. Launch</span>
-                  </div>
-                  <h3 className="eev-title">Launching of KERA</h3>
-                  <p className="eev-desc">A Government of Kerala & World Bank initiative. Official launch ceremony highlighting climate-resilient agriculture programs.</p>
-                  <div className="eev-actions">
-                    <span className="eev-link upcoming"><i className="far fa-images" /> Gallery Available Soon</span>
-                  </div>
-                </div>
-              </m.div>
-
+                </m.div>
+              ))}
             </m.div>
           </div>
         </section>
@@ -800,7 +801,7 @@ export default function EnfonoHome() {
 
 
         <EnfonoFooter />
-      </div>
-    </LazyMotion>
+      </div >
+    </LazyMotion >
   )
 }
