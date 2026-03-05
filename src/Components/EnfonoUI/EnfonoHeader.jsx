@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useTheme } from '../../Context/ThemeContext'
+import { initialCmsData } from "../../Data/cms_data";
 
 const navLinks = [
   { label: 'Home', path: '/' },
@@ -17,7 +18,9 @@ const navLinks = [
     ]
   },
   { label: 'AI & Analytics', path: '/ai-erp' },
-  { label: 'Case Studies', path: '/case-studies' },
+  { label: 'Our Work', path: '/our-work' },
+  { label: 'Media & Events', path: '/events' },
+  { label: 'Blogs', path: '/blogs' },
   { label: 'Our Brands', path: '/brands' },
   { label: 'Careers', path: '/careers' },
   { label: 'About', path: '/about' },
@@ -34,6 +37,14 @@ export default function EnfonoHeader() {
   const dropdownTimer = useRef(null)
   const lastScrollY = useRef(0)
   const { isDark, toggleTheme } = useTheme()
+  const [cmsData, setCmsData] = useState(initialCmsData);
+
+  useEffect(() => {
+    const saved = localStorage.getItem('enfono_cms_data');
+    if (saved) {
+      setCmsData(JSON.parse(saved));
+    }
+  }, []);
 
   useEffect(() => {
     const onScroll = () => {
@@ -137,8 +148,8 @@ export default function EnfonoHeader() {
           >
             {isDark ? <i className="fas fa-sun" /> : <i className="fas fa-moon" />}
           </button>
-          <Link to="/contact" className="enfono-header-cta">
-            Get Free Consultation
+          <Link to={cmsData.hero.booking_url} className="enfono-header-cta">
+            {cmsData.hero.cta_primary}
           </Link>
           <button
             className={`enfono-hamburger ${mobileOpen ? 'open' : ''}`}
@@ -194,8 +205,8 @@ export default function EnfonoHeader() {
             >
               {isDark ? <i className="fas fa-sun" /> : <i className="fas fa-moon" />}
             </button>
-            <Link to="/contact" className="enfono-mobile-cta" style={{ flexGrow: 1, marginTop: 0 }}>
-              Get Free Consultation
+            <Link to={cmsData.hero.booking_url} className="enfono-mobile-cta" style={{ flexGrow: 1, marginTop: 0 }}>
+              {cmsData.hero.cta_primary}
             </Link>
           </div>
         </div>

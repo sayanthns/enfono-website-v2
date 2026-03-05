@@ -13,12 +13,21 @@ import NotFoundPage from "./Pages/404";
 
 const EnfonoAbout = lazy(() => import("./Pages/About/EnfonoAbout"));
 const EnfonoServices = lazy(() => import("./Pages/Services/EnfonoServices"));
+const EnfonoServiceDetail = lazy(() => import("./Pages/Services/EnfonoServiceDetail"));
 const EnfonoCaseStudies = lazy(() => import("./Pages/CaseStudies/EnfonoCaseStudies"));
-// Tools page removed
 const EnfonoContact = lazy(() => import("./Pages/Contact/EnfonoContact"));
 const EnfonoAI = lazy(() => import("./Pages/AI/EnfonoAI"));
 const EnfonoBrands = lazy(() => import("./Pages/Brands/EnfonoBrands"));
 const EnfonoCareers = lazy(() => import("./Pages/Careers/EnfonoCareers"));
+const EnfonoEvents = lazy(() => import("./Pages/Events/EnfonoEvents"));
+const EnfonoBlogs = lazy(() => import("./Pages/Blogs/EnfonoBlogs"));
+
+// ─── Admin Pages ───────────────────────────────────────
+const AdminLayout = lazy(() => import("./Components/Admin/AdminLayout"));
+const AdminLogin = lazy(() => import("./Pages/Admin/AdminLogin"));
+const AdminDashboard = lazy(() => import("./Pages/Admin/AdminDashboard"));
+const AdminSettings = lazy(() => import("./Pages/Admin/AdminSettings"));
+const AdminCMS = lazy(() => import("./Pages/Admin/AdminCMS"));
 
 function App() {
   const [headerHeight, setHeaderHeight] = useState(0);
@@ -70,14 +79,25 @@ function App() {
               <Route path="/" element={<EnfonoHome />} />
               <Route path="/about" element={<EnfonoAbout />} />
               <Route path="/services" element={<EnfonoServices />} />
-              <Route path="/services/:slug" element={<EnfonoServices />} />
+              <Route path="/services/:slug" element={<EnfonoServiceDetail />} />
               <Route path="/case-studies" element={<EnfonoCaseStudies />} />
               <Route path="/case-studies/:slug" element={<EnfonoCaseStudies />} />
-              {/* Tools page removed */}
+              <Route path="/our-work" element={<EnfonoCaseStudies />} />
+              <Route path="/our-work/:slug" element={<EnfonoCaseStudies />} />
+              <Route path="/events" element={<EnfonoEvents />} />
+              <Route path="/blogs" element={<EnfonoBlogs />} />
               <Route path="/contact" element={<EnfonoContact />} />
               <Route path="/ai-erp" element={<EnfonoAI />} />
               <Route path="/brands" element={<EnfonoBrands />} />
               <Route path="/careers" element={<EnfonoCareers />} />
+
+              {/* ── Admin Portal ── */}
+              <Route path="/admin/login" element={<AdminLogin />} />
+              <Route path="/admin" element={<AdminLayout />}>
+                <Route index element={<AdminDashboard />} />
+                <Route path="settings" element={<AdminSettings />} />
+                <Route path="content" element={<AdminCMS />} />
+              </Route>
 
               {/* ── Catch All ── */}
               <Route path="*" element={<NotFoundPage />} />

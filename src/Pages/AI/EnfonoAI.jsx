@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { m, LazyMotion, domAnimation } from 'framer-motion'
+import { initialCmsData } from '../../Data/cms_data'
 import EnfonoHeader from '../../Components/EnfonoUI/EnfonoHeader'
 import EnfonoFooter from '../../Components/EnfonoUI/EnfonoFooter'
 
-const fadeUp = { hidden: { opacity: 0, y: 40 }, visible: (d = 0) => ({ opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22,1,0.36,1], delay: d } }) }
-const fadeRight = { hidden: { opacity: 0, x: 40 }, visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: [0.22,1,0.36,1] } } }
+const fadeUp = { hidden: { opacity: 0, y: 40 }, visible: (d = 0) => ({ opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: d } }) }
+const fadeRight = { hidden: { opacity: 0, x: 40 }, visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } } }
 const stagger = { hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }
 
 const features = [
@@ -24,6 +25,15 @@ const useCases = [
 ]
 
 export default function EnfonoAI() {
+  const [cmsData, setCmsData] = useState(initialCmsData);
+
+  useEffect(() => {
+    const saved = localStorage.getItem('enfono_cms_data');
+    if (saved) {
+      setCmsData(JSON.parse(saved));
+    }
+  }, []);
+
   return (
     <LazyMotion features={domAnimation}>
       <div>
@@ -174,18 +184,18 @@ export default function EnfonoAI() {
           <div className="enfono-container">
             <div className="e-cta-inner">
               <div className="e-cta-text">
-                <h2>See AI ERP in Action</h2>
-                <p>Book a live demo and see how Enfono's AI layer transforms your ERPNext system.</p>
+                <h2>{cmsData.ai_cta?.heading || 'See AI ERP in Action'}</h2>
+                <p>{cmsData.ai_cta?.subtext || "Book a live demo and see how Enfono's AI layer transforms your ERPNext system."}</p>
               </div>
               <div className="e-cta-actions">
-                <Link to="/contact" className="ecta-btn-white"><i className="fas fa-calendar-check" /> Book AI Demo</Link>
-                <Link to="/services" className="ecta-btn-outline">All Services</Link>
+                <Link to={cmsData.ai_cta?.btn_primary_url || '/contact'} className="ecta-btn-white"><i className="fas fa-calendar-check" /> {cmsData.ai_cta?.btn_primary_txt || 'Book AI Demo'}</Link>
+                <Link to={cmsData.ai_cta?.btn_secondary_url || '/services'} className="ecta-btn-outline">{cmsData.ai_cta?.btn_secondary_txt || 'All Services'}</Link>
               </div>
             </div>
           </div>
         </section>
 
-        <EnfonoFooter />
+        <EnfonoFooter hideCta={true} />
       </div>
     </LazyMotion>
   )
