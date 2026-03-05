@@ -55,7 +55,7 @@ const AdminCMS = () => {
                 <p>Manage the homepage sections and dynamic content</p>
 
                 <div className="admin-tabs" style={{ display: 'flex', gap: '8px', marginTop: '24px', borderBottom: '1px solid #e2e8f0', overflowX: 'auto' }}>
-                    {['hero', 'stats', 'clients', 'testimonials', 'work', 'media'].map(tab => (
+                    {['hero', 'services_hero', 'stats', 'clients', 'testimonials', 'work', 'media'].map(tab => (
                         <button
                             key={tab}
                             onClick={() => setActiveTab(tab)}
@@ -101,6 +101,50 @@ const AdminCMS = () => {
                             />
                         </div>
                         <button onClick={handleSave} className="admin-btn-primary" style={{ marginTop: '16px' }}>Save Hero</button>
+                    </div>
+                )}
+
+                {activeTab === 'services_hero' && (
+                    <div className="admin-content-card">
+                        <h3>Services Page Hero</h3>
+                        <div className="admin-form-group" style={{ marginBottom: '20px' }}>
+                            <label>Services Heading</label>
+                            <input
+                                type="text"
+                                style={{ width: '100%', padding: '12px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
+                                value={cmsData.services_hero?.heading || ''}
+                                onChange={(e) => updateField('services_hero', 'heading', e.target.value)}
+                            />
+                        </div>
+                        <div className="admin-form-group" style={{ marginBottom: '20px' }}>
+                            <label>Services Subtext</label>
+                            <textarea
+                                style={{ width: '100%', padding: '12px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a', minHeight: '100px' }}
+                                value={cmsData.services_hero?.subtext || ''}
+                                onChange={(e) => updateField('services_hero', 'subtext', e.target.value)}
+                            />
+                        </div>
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                            <div className="admin-form-group">
+                                <label>Button Text</label>
+                                <input
+                                    type="text"
+                                    style={{ width: '100%', padding: '12px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
+                                    value={cmsData.services_hero?.cta_primary || ''}
+                                    onChange={(e) => updateField('services_hero', 'cta_primary', e.target.value)}
+                                />
+                            </div>
+                            <div className="admin-form-group">
+                                <label>Button URL</label>
+                                <input
+                                    type="text"
+                                    style={{ width: '100%', padding: '12px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
+                                    value={cmsData.services_hero?.cta_url || ''}
+                                    onChange={(e) => updateField('services_hero', 'cta_url', e.target.value)}
+                                />
+                            </div>
+                        </div>
+                        <button onClick={handleSave} className="admin-btn-primary" style={{ marginTop: '16px' }}>Save Services Hero</button>
                     </div>
                 )}
 

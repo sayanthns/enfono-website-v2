@@ -6,6 +6,12 @@ export const initialCmsData = {
         cta_secondary: "View Our Work",
         booking_url: "/contact"
     },
+    services_hero: {
+        heading: "AI-Powered ERP & Software Solutions for Scalable Businesses",
+        subtext: "We automate operations, integrate fragmented systems, and deliver custom-built technical infrastructure that drives real-time intelligence and hyper-growth.",
+        cta_primary: "Book Free Consultation",
+        cta_url: "https://calendly.com/"
+    },
     stats: [
         { label: "Projects Delivered", value: "120", suffix: "+" },
         { label: "Customers Worldwide", value: "60", suffix: "+" },

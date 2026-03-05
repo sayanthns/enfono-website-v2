@@ -13,11 +13,14 @@ import NotFoundPage from "./Pages/404";
 
 const EnfonoAbout = lazy(() => import("./Pages/About/EnfonoAbout"));
 const EnfonoServices = lazy(() => import("./Pages/Services/EnfonoServices"));
+const EnfonoServiceDetail = lazy(() => import("./Pages/Services/EnfonoServiceDetail"));
 const EnfonoCaseStudies = lazy(() => import("./Pages/CaseStudies/EnfonoCaseStudies"));
 const EnfonoContact = lazy(() => import("./Pages/Contact/EnfonoContact"));
 const EnfonoAI = lazy(() => import("./Pages/AI/EnfonoAI"));
 const EnfonoBrands = lazy(() => import("./Pages/Brands/EnfonoBrands"));
 const EnfonoCareers = lazy(() => import("./Pages/Careers/EnfonoCareers"));
+const EnfonoEvents = lazy(() => import("./Pages/Events/EnfonoEvents"));
+const EnfonoBlogs = lazy(() => import("./Pages/Blogs/EnfonoBlogs"));
 
 // ─── Admin Pages ───────────────────────────────────────
 const AdminLayout = lazy(() => import("./Components/Admin/AdminLayout"));
@@ -76,9 +79,13 @@ function App() {
               <Route path="/" element={<EnfonoHome />} />
               <Route path="/about" element={<EnfonoAbout />} />
               <Route path="/services" element={<EnfonoServices />} />
-              <Route path="/services/:slug" element={<EnfonoServices />} />
+              <Route path="/services/:slug" element={<EnfonoServiceDetail />} />
               <Route path="/case-studies" element={<EnfonoCaseStudies />} />
               <Route path="/case-studies/:slug" element={<EnfonoCaseStudies />} />
+              <Route path="/our-work" element={<EnfonoCaseStudies />} />
+              <Route path="/our-work/:slug" element={<EnfonoCaseStudies />} />
+              <Route path="/events" element={<EnfonoEvents />} />
+              <Route path="/blogs" element={<EnfonoBlogs />} />
               <Route path="/contact" element={<EnfonoContact />} />
               <Route path="/ai-erp" element={<EnfonoAI />} />
               <Route path="/brands" element={<EnfonoBrands />} />
