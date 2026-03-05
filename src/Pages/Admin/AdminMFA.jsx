@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import * as OTPAuth from 'otpauth';
 import QRCode from 'qrcode';
 
 const AdminMFA = () => {
     const navigate = useNavigate();
+    const location = useLocation();
     const [mfaCode, setMfaCode] = useState('');
     const [error, setError] = useState('');
     const [qrCodeUrl, setQrCodeUrl] = useState('');
@@ -12,6 +13,12 @@ const AdminMFA = () => {
     const [tempSecret, setTempSecret] = useState(null);
 
     useEffect(() => {
+        // Enforce password check step before allowing MFA access
+        if (!location.state?.passwordVerified) {
+            navigate('/admin/login', { replace: true });
+            return;
+        }
+
         // Check if MFA is already set up in this browser
         const savedSecret = localStorage.getItem('enfono_mfa_secret');
 
@@ -74,8 +81,8 @@ const AdminMFA = () => {
             localStorage.setItem('enfono_admin_session', 'valid');
             localStorage.setItem('enfono_mfa_verified', 'true');
 
-            // Redirect to dashboard
-            navigate('/admin');
+            // Redirect to dashboard explicitly replacing history so "back" doesn't return
+            navigate('/admin', { replace: true });
         } else {
             setError('Invalid code. Please try again.');
         }
@@ -151,7 +158,7 @@ const AdminMFA = () => {
                     <button
                         type="button"
                         className="btn btn-link w-100 mt-3 text-muted"
-                        onClick={() => navigate('/admin/login')}
+                        onClick={() => navigate('/admin/login', { replace: true })}
                     >
                         Return to Login
                     </button>

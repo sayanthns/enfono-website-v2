@@ -39,6 +39,17 @@ const ProtectedRoute = ({ children }) => {
   return children;
 };
 
+// ─── Auth Route Component ──────────────────────────────
+// Redirects already authenticated users away from login pages
+const AuthRoute = ({ children }) => {
+  const session = localStorage.getItem('enfono_admin_session');
+  const mfaVerified = localStorage.getItem('enfono_mfa_verified');
+  if (session === 'valid' && mfaVerified === 'true') {
+    return <Navigate to="/admin" replace />;
+  }
+  return children;
+};
+
 function App() {
   const [headerHeight, setHeaderHeight] = useState(0);
   const [footerHeight, setFooterHeight] = useState(0);
@@ -105,8 +116,22 @@ function App() {
               <Route path="*" element={<NotFoundPage />} />
 
               {/* ── Admin Portal ── */}
-              <Route path="/admin/login" element={<AdminLogin />} />
-              <Route path="/admin/mfa" element={<AdminMFA />} />
+              <Route
+                path="/admin/login"
+                element={
+                  <AuthRoute>
+                    <AdminLogin />
+                  </AuthRoute>
+                }
+              />
+              <Route
+                path="/admin/mfa"
+                element={
+                  <AuthRoute>
+                    <AdminMFA />
+                  </AuthRoute>
+                }
+              />
               <Route
                 path="/admin"
                 element={

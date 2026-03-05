@@ -11,7 +11,7 @@ const AdminLogin = () => {
         // Master password check
         if (username === 'admin' && password === 'enfono2026@Secure!') {
             // Proceed to MFA step; Do NOT issue session tokens yet.
-            navigate('/admin/mfa');
+            navigate('/admin/mfa', { replace: true, state: { passwordVerified: true } });
         } else {
             alert('Invalid credentials');
         }
