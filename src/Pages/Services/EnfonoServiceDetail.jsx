@@ -174,19 +174,10 @@ const EnfonoServiceDetail = () => {
                     </div>
                 </section>
 
-                {/* Final CTA */}
-                <section className="service-final-cta" style={{ padding: '100px 0', background: '#10B981', textAlign: 'center' }}>
-                    <div className="enf-container">
-                        <h2 style={{ fontSize: '3rem', color: '#fff', fontWeight: 700, marginBottom: '24px' }}>Ready to Transform Your Business Systems?</h2>
-                        <p style={{ color: 'rgba(255,255,255,0.9)', fontSize: '1.25rem', maxWidth: '600px', margin: '0 auto 40px auto' }}>Let's discuss how {service.title} can drive growth and efficiency for your operations.</p>
-                        <a href="https://calendly.com/" target="_blank" rel="noopener noreferrer" className="enf-btn dark-outline" style={{ background: '#0D0D0D', color: '#fff', padding: '16px 36px', borderRadius: '30px', fontWeight: 600, textDecoration: 'none', display: 'inline-block', border: '2px solid transparent', transition: 'all 0.3s ease' }}>
-                            Schedule a Free Strategy Call <i className="fas fa-arrow-right" style={{ marginLeft: '8px' }}></i>
-                        </a>
-                    </div>
                 </section>
 
             </main>
-            <EnfonoFooter hideCta={true} />
+            <EnfonoFooter />
         </div >
     );
 };

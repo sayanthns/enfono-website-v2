@@ -230,20 +230,7 @@ const EnfonoServices = () => {
                 </Container>
             </section>
 
-            {/* CTA */}
-            <section className="enfono-footer-cta-band" style={{ padding: '100px 0', background: '#10B981' }}>
-                <Container>
-                    <div className="text-center">
-                        <h2 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', fontWeight: 800, color: '#fff', marginBottom: '24px' }}>Ready to Scale Your Operations?</h2>
-                        <p style={{ fontSize: '1.25rem', color: 'rgba(255,255,255,0.9)', maxWidth: '600px', margin: '0 auto 40px' }}>Book a free strategy session with our technical architects and find the perfect path for your digital transformation.</p>
-                        <a href="https://calendly.com/" target="_blank" rel="noopener noreferrer" className="enf-btn dark-outline" style={{ background: '#0D0D0D', color: '#fff', padding: '18px 48px', borderRadius: '30px', fontWeight: 600, textDecoration: 'none', display: 'inline-block' }}>
-                            Book Strategy Session <i className="fas fa-arrow-right ms-2"></i>
-                        </a>
-                    </div>
-                </Container>
-            </section>
-
-            <EnfonoFooter hideCta={true} />
+            <EnfonoFooter />
         </div>
     )
 }
