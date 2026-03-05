@@ -138,7 +138,28 @@ export default function EnfonoHome() {
     const loadData = () => {
       const saved = localStorage.getItem('enfono_cms_data');
       if (saved) {
-        setCmsData(JSON.parse(saved));
+        let parsed = JSON.parse(saved);
+        let merged = { ...initialCmsData, ...parsed };
+        let migrated = false;
+
+        if ((!merged.our_work || merged.our_work.length === 0) && merged.success_stories) {
+          merged.our_work = merged.success_stories.map(s => ({
+            id: s.id || Math.random(),
+            category: s.meta || 'Manufacturing',
+            country: 'Saudi Arabia',
+            title: s.title,
+            subtitle: s.desc,
+            outcome: s.result,
+            bullets: [],
+            results: []
+          }));
+          migrated = true;
+        }
+
+        if (migrated) {
+          localStorage.setItem('enfono_cms_data', JSON.stringify(merged));
+        }
+        setCmsData(merged);
       }
     };
 
@@ -295,7 +316,7 @@ export default function EnfonoHome() {
         <section className="enfono-stats-section">
           <div className="enfono-container">
             <div className="enfono-stats-inner">
-              {cmsData.stats.map((stat, idx) => (
+              {(cmsData.stats || []).map((stat, idx) => (
                 <StatCell
                   key={idx}
                   end={parseInt(stat.value)}
@@ -322,7 +343,7 @@ export default function EnfonoHome() {
             </m.div>
             <div className="e-logos-track">
               <div className="e-logos-scroll">
-                {[...cmsData.client_logos, ...cmsData.client_logos].map((c, i) => (
+                {[...(cmsData.client_logos || []), ...(cmsData.client_logos || [])].map((c, i) => (
                   <div key={i} className="e-logo-item">
                     <span className="e-logo-name">{c.name}</span>
                   </div>
@@ -598,12 +619,12 @@ export default function EnfonoHome() {
               viewport={{ once: true, amount: 0.1 }}
               variants={stagger}
             >
-              {cmsData.success_stories.map(cs => (
-                <m.div key={cs.title} className="e-cs-card" variants={fadeUp}>
-                  <div className="ecc-meta"><i className={cs.icon} style={{ marginRight: '6px' }} />{cs.meta}</div>
+              {(cmsData.our_work || []).slice(0, 3).map((cs, i) => (
+                <m.div key={cs.id || i} className="e-cs-card" variants={fadeUp}>
+                  <div className="ecc-meta"><i className="fas fa-tag" style={{ marginRight: '6px' }} />{cs.category} · {cs.country}</div>
                   <div className="ecc-title">{cs.title}</div>
-                  <div className="ecc-desc">{cs.desc}</div>
-                  <div className="ecc-result"><i className="fas fa-chart-line" />{cs.result}</div>
+                  <div className="ecc-desc">{cs.subtitle}</div>
+                  <div className="ecc-result"><i className="fas fa-chart-line" />{cs.outcome}</div>
                 </m.div>
               ))}
             </m.div>
@@ -631,7 +652,7 @@ export default function EnfonoHome() {
               viewport={{ once: true, amount: 0.1 }}
               variants={stagger}
             >
-              {cmsData.testimonials.map(t => (
+              {(cmsData.testimonials || []).map(t => (
                 <m.div key={t.name} className="e-testimonial-card" variants={fadeUp}>
                   <div className="etc-stars">{[...Array(5)].map((_, i) => <i key={i} className="fas fa-star" />)}</div>
                   <p className="etc-quote">"{t.quote}"</p>
@@ -752,7 +773,7 @@ export default function EnfonoHome() {
               viewport={{ once: true, amount: 0.1 }}
               variants={stagger}
             >
-              {cmsData.media_events.map((ev, idx) => (
+              {(cmsData.media_events || []).map((ev, idx) => (
                 <m.div key={idx} className="e-event-card" variants={fadeUp}>
                   <div className="eev-image-wrapper">
                     <img src={ev.image} alt={ev.title} className="eev-image fadeIn" width="600" height="400" loading="lazy" />

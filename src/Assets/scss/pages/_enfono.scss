@@ -4498,3 +4498,252 @@
     border-radius: 50%;
   }
 }
+
+/* ================================================================
+   SERVICES & SERVICE DETAIL — RESPONSIVE OVERRIDES
+   ================================================================ */
+
+/* 1. Global Responsive Typography & Spacing */
+.enfono-hero-title,
+.page-hero-title {
+  font-size: clamp(2rem, 8vw, 4rem) !important;
+  line-height: 1.1 !important;
+  margin-bottom: 20px !important;
+}
+
+.enfono-hero-subtitle,
+.page-hero-desc {
+  font-size: clamp(0.95rem, 2.5vw, 1.125rem) !important;
+  line-height: 1.6 !important;
+  max-width: 650px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+section {
+  @media (max-width: 767px) {
+    padding: 60px 0 !important;
+  }
+}
+
+.enfono-hero-new,
+.service-detail-hero {
+  @media (max-width: 767px) {
+    padding-top: 120px !important;
+    padding-bottom: 60px !important;
+    min-height: auto !important;
+  }
+}
+
+/* 2. Grid & Layout Custom Overrides */
+.enfono-services-premium {
+  .e-services-grid {
+    @media (max-width: 767px) {
+      grid-template-columns: 1fr !important;
+      gap: 20px !important;
+    }
+  }
+
+  .e-industries-grid {
+    @media (max-width: 767px) {
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 12px !important;
+    }
+
+    @media (max-width: 480px) {
+      grid-template-columns: 1fr !important;
+    }
+  }
+}
+
+/* 3. Service Detail Component Overrides */
+.service-detail-hero {
+  @media (max-width: 767px) {
+    .hero-actions {
+      flex-direction: column !important;
+      align-items: stretch !important;
+
+      .enf-btn {
+        width: 100% !important;
+        text-align: center !important;
+        padding: 14px 24px !important;
+        margin: 0 !important;
+      }
+
+      a+a,
+      a+div,
+      div+a {
+        margin-top: 12px !important;
+      }
+    }
+  }
+}
+
+.features-grid,
+.service-modules-grid,
+.service-benefits-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+  gap: 24px !important;
+
+  @media (max-width: 767px) {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+}
+
+.service-industries-flex {
+  @media (max-width: 767px) {
+    flex-direction: column !important;
+    align-items: stretch !important;
+
+    >div {
+      min-width: 100% !important;
+    }
+  }
+}
+
+/* 4. Methodology (6-Step Framework) Responsiveness */
+.service-process-section {
+  .row {
+    @media (max-width: 991px) {
+      --bs-gutter-x: 2rem !important;
+    }
+
+    @media (max-width: 767px) {
+      flex-direction: column !important;
+      align-items: center !important;
+
+      .col-md-6 {
+        width: 100% !important;
+        max-width: 450px !important;
+      }
+    }
+  }
+}
+
+/* 5. Technologies we Master Grid */
+.tech-master-grid {
+  @media (max-width: 767px) {
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)) !important;
+    gap: 16px !important;
+
+    >div {
+      padding: 24px 12px !important;
+
+      i {
+        font-size: 28px !important;
+      }
+
+      span {
+        font-size: 0.8rem !important;
+      }
+    }
+  }
+
+  @media (max-width: 400px) {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* 6. Footer CTA Band Responsiveness */
+.enfono-footer-cta-band {
+  @media (max-width: 767px) {
+    padding: 60px 0 !important;
+
+    .efcta-inner {
+      flex-direction: column !important;
+      text-align: center !important;
+
+      .efcta-text {
+        h3 {
+          font-size: 22px !important;
+        }
+
+        p {
+          font-size: 14px !important;
+        }
+      }
+
+      .efcta-actions {
+        width: 100% !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        margin-top: 24px !important;
+
+        .efcta-btn-primary,
+        .efcta-btn-outline {
+          width: 100% !important;
+          justify-content: center !important;
+          margin-bottom: 12px !important;
+        }
+      }
+    }
+  }
+}
+
+/* ================================================================
+   ERPNEXT DEEP DIVE LAYOUT
+   ================================================================ */
+.erp-deepdive-section {
+  .erp-sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-right: 20px;
+
+    @media (max-width: 991px) {
+      position: static !important;
+      padding-right: 0;
+      flex-direction: row;
+      overflow-x: auto;
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+
+      &::-webkit-scrollbar {
+        height: 6px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: rgba(16, 185, 129, 0.5);
+        border-radius: 10px;
+      }
+    }
+  }
+
+  .erp-nav-btn {
+    white-space: nowrap;
+
+    @media (max-width: 991px) {
+      width: auto !important;
+      flex-shrink: 0;
+      margin-bottom: 0 !important;
+      padding: 12px 20px !important;
+    }
+
+    &:hover {
+      background: rgba(16, 185, 129, 0.05) !important;
+    }
+
+    &.active:hover {
+      background: rgba(16, 185, 129, 0.1) !important;
+    }
+  }
+
+  .erp-module-content {
+    @media (max-width: 991px) {
+      padding: 0 !important;
+    }
+  }
+
+  .erp-features-grid {
+    @media (max-width: 767px) {
+      grid-template-columns: 1fr !important;
+    }
+  }
+}

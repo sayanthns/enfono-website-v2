@@ -14,19 +14,29 @@ export const servicesData = [
                 icon: "fas fa-file-invoice-dollar"
             },
             {
-                title: "GCC-Localized HRMS",
+                title: "GCC-Localized HRMS & Payroll",
                 desc: "Manage Iqama expirations, EOSB (End of Service Benefits), multi-currency payroll, attendance, and employee lifecycles specifically tailored for the Middle East.",
                 icon: "fas fa-users"
             },
             {
-                title: "Manufacturing & Inventory",
-                desc: "Maintain multi-warehouse inventory, track stock movements with barcodes/RFID, and manage complex Bill of Materials (BOM) and job cards.",
+                title: "Manufacturing",
+                desc: "Maintain multi-level Bill of Materials (BOM), track production planning, job cards, and equipment maintenance schedules.",
                 icon: "fas fa-industry"
             },
             {
-                title: "Sales, Procurement & CRM",
-                desc: "Track leads, auto-generate quotes, manage vendor portals, and streamline your entire P2P and O2C cycles seamlessly.",
-                icon: "fas fa-handshake"
+                title: "Procurement & Inventory",
+                desc: "Multi-warehouse inventory, serial/batch tracking, barcodes/RFID, automated purchase orders, and supplier portals.",
+                icon: "fas fa-boxes"
+            },
+            {
+                title: "Sales & CRM",
+                desc: "Track leads, opportunities, manage pipelines, and send auto-generated quotes directly from the system.",
+                icon: "fas fa-chart-line"
+            },
+            {
+                title: "Logistics",
+                desc: "Manage vehicle fleets, track shipments, optimize delivery routes, and monitor logistics expenses seamlessly.",
+                icon: "fas fa-truck"
             }
         ],
         tech_stack: [
@@ -43,52 +53,124 @@ export const servicesData = [
         ],
         modules: [
             {
+                id: "financial-accounting",
                 title: "Financial Accounting",
                 desc: "Get a real-time view of your cash flow. Full-fledged accounting module covering basic bookkeeping to complex analytics with ZATCA Phase 2 compliance.",
                 icon: "fas fa-file-invoice-dollar",
-                image: "/assets/img/erpnext-finance-mockup.png"
+                image: "/assets/img/erpnext-finance-mockup.png",
+                featuresList: [
+                    "Multi-Currency Accounting & Billing",
+                    "ZATCA Phase 2 E-Invoicing",
+                    "Automated Bank Reconciliation",
+                    "Cost Centers & Profitability Analysis",
+                    "Accounts Receivable / Payable Alerts",
+                    "Customizable Tax Templates"
+                ]
             },
             {
+                id: "hr-payroll",
                 title: "HR & Payroll",
                 desc: "Manage employee lifecycles, attendance, leave, expense claims, Iqama tracking, EOSB tracking, and automated GCC payroll processing.",
                 icon: "fas fa-users",
-                image: "/assets/img/erpnext-hr-mockup.png"
+                image: "/assets/img/erpnext-hr-mockup.png",
+                featuresList: [
+                    "Automated Payroll & Salary Slips",
+                    "Leave & Attendance Tracking",
+                    "Expense Claims & Approvals",
+                    "EOSB (End of Service) Calculation",
+                    "Iqama & Document Expiration Alerts",
+                    "Employee Lifecycle & Onboarding"
+                ]
             },
             {
+                id: "manufacturing",
                 title: "Manufacturing",
                 desc: "Maintain multi-level Bill of Materials (BOM), track production planning, job cards, and equipment maintenance.",
                 icon: "fas fa-industry",
-                image: "/assets/img/erpnext-mfg-mockup.png"
+                image: "/assets/img/erpnext-mfg-mockup.png",
+                featuresList: [
+                    "Multi-level Bill of Materials (BOM)",
+                    "Work Orders & Job Cards",
+                    "Production Analytics & Tracking",
+                    "Capacity Planning & Routing",
+                    "Equipment Maintenance Schedules",
+                    "Quality Inspection Management"
+                ]
             },
             {
+                id: "crm-sales",
                 title: "CRM & Sales",
                 desc: "Track leads, opportunities, manage pipelines, and send auto-generated quotes directly from the system.",
                 icon: "fas fa-chart-line",
-                image: "/assets/img/erpnext-crm-mockup.png"
+                image: "/assets/img/erpnext-crm-mockup.png",
+                featuresList: [
+                    "Lead & Opportunity Pipeline",
+                    "Automated Quotation Generation",
+                    "Sales Order Management",
+                    "Email Marketing & Campaigns",
+                    "Salesperson Commission Tracking",
+                    "Customer Portal & Support"
+                ]
             },
             {
-                title: "Inventory & Order Management",
+                id: "inventory",
+                title: "Inventory",
                 desc: "Multi-warehouse inventory, serial/batch tracking, barcodes/RFID integration, and automated stock alerts.",
                 icon: "fas fa-boxes",
-                image: "/assets/img/erpnext-inventory-mockup.png"
+                image: "/assets/img/erpnext-inventory-mockup.png",
+                featuresList: [
+                    "Multi-Warehouse Management",
+                    "Serial Number & Batch Tracking",
+                    "Barcode / RFID Scanning Support",
+                    "Automated Reorder Levels",
+                    "Stock Reconciliation",
+                    "Item Variants & Attributes"
+                ]
             },
             {
-                title: "Helpdesk & Support",
-                desc: "Provide excellent customer service with an integrated ticketing system, SLAs, and customer portals.",
-                icon: "fas fa-headset",
-                image: "/assets/img/erpnext-helpdesk-mockup.png"
+                id: "procurement",
+                title: "Procurement",
+                desc: "Streamline purchasing with automated supplier portals, purchase orders, and multi-currency buying.",
+                icon: "fas fa-shopping-cart",
+                image: "/assets/img/erpnext-procurement-mockup.png",
+                featuresList: [
+                    "Purchase Order Automation",
+                    "Supplier Portals & RFQs",
+                    "Automated Purchase Receipts",
+                    "Supplier Scorecards & Ratings",
+                    "Multi-Currency Procurement",
+                    "Material Request Workflows"
+                ]
             },
             {
+                id: "projects",
                 title: "Project Management",
                 desc: "Create tasks, allocate resources, track time, and monitor project profitability in real-time.",
                 icon: "fas fa-tasks",
-                image: "/assets/img/erpnext-projects-mockup.png"
+                image: "/assets/img/erpnext-projects-mockup.png",
+                featuresList: [
+                    "Task Management & Timesheets",
+                    "Project Profitability Tracking",
+                    "Gantt Charts & Resource Allocation",
+                    "Milestone Billing",
+                    "Kanban Task Boards",
+                    "Expense & Budget Tracking"
+                ]
             },
             {
+                id: "assets",
                 title: "Asset Management",
                 desc: "Track the complete lifecycle of your assets, from purchasing to depreciation and eventual disposal.",
                 icon: "fas fa-laptop-house",
-                image: "/assets/img/erpnext-assets-mockup.png"
+                image: "/assets/img/erpnext-assets-mockup.png",
+                featuresList: [
+                    "Automated Asset Depreciation",
+                    "Asset Movement & Tracking",
+                    "Maintenance & Calibration Logs",
+                    "Asset Purchasing & Sales",
+                    "Equipment Value Scrap Tracking",
+                    "Location-Based Asset Tagging"
+                ]
             }
         ],
         industries: [
@@ -152,24 +234,79 @@ export const servicesData = [
         ],
         modules: [
             {
+                id: "bespoke-core-engine",
                 title: "Bespoke Core Engine",
                 desc: "Custom-built business logic strictly following your established manual workflows.",
-                icon: "fas fa-cogs"
+                icon: "fas fa-cogs",
+                image: "/assets/img/custom-core-mockup.png",
+                featuresList: [
+                    "Workflow-Specific Algorithms",
+                    "Custom Role-Based Access Control",
+                    "Proprietary Business Rules Engine",
+                    "Microservices Architecture",
+                    "Real-time Data Processing",
+                    "Flexible Module Expansion"
+                ]
             },
             {
+                id: "legacy-data-bridges",
                 title: "Legacy Data Bridges",
                 desc: "Proprietary ETL tools to sync data from your old systems during the transition.",
-                icon: "fas fa-bridge"
+                icon: "fas fa-bridge",
+                image: "/assets/img/legacy-sync-mockup.png",
+                featuresList: [
+                    "Automated ETL Pipelines",
+                    "Historical Data Sanitization",
+                    "Live Sync During Transition",
+                    "Format Conversion Scripts",
+                    "Database Integrity Checks",
+                    "Zero Downtime Migration"
+                ]
             },
             {
+                id: "internal-admin-portals",
                 title: "Internal Admin Portals",
                 desc: "High-security back-office tools for staff management and deep audit logs.",
-                icon: "fas fa-user-shield"
+                icon: "fas fa-user-shield",
+                image: "/assets/img/admin-portal-mockup.png",
+                featuresList: [
+                    "Comprehensive Audit Trails",
+                    "Granular Permission Matrices",
+                    "Employee Performance Dashboards",
+                    "Secure Document Vaults",
+                    "Multi-factor Authentication (MFA)",
+                    "IP Whitelisting & Geofencing"
+                ]
             },
             {
+                id: "custom-reporting-engine",
                 title: "Custom Reporting Engine",
                 desc: "Pixel-perfect automated PDF and Excel reports tailored to your board requirements.",
-                icon: "fas fa-file-invoice-dollar"
+                icon: "fas fa-file-invoice-dollar",
+                image: "/assets/img/custom-reports-mockup.png",
+                featuresList: [
+                    "Automated Scheduled Reports",
+                    "Dynamic Dashboard Builder",
+                    "Excel & PDF Export Support",
+                    "Complex Formulas & KPI Tracking",
+                    "Multi-Currency Consolidation",
+                    "White-Labeled Report Outputs"
+                ]
+            },
+            {
+                id: "external-api-gateways",
+                title: "External API Gateways",
+                desc: "Securely expose data or consume third-party services like payment gateways and logistics.",
+                icon: "fas fa-network-wired",
+                image: "/assets/img/api-gateway-mockup.png",
+                featuresList: [
+                    "RESTful & GraphQL API Design",
+                    "Payment Gateway Integrations",
+                    "Rate Limiting & Security",
+                    "Webhook Subscriptions",
+                    "Third-Party CRM/ERP Sync",
+                    "API Analytics & Monitoring"
+                ]
             }
         ],
         industries: [

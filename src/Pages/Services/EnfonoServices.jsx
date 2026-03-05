@@ -85,9 +85,10 @@ const EnfonoServices = () => {
                     </div>
 
                     <LazyMotion features={domAnimation}>
-                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '32px' }}>
+                        <div className="e-services-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '32px' }}>
                             {servicesData.map((svc, i) => (
                                 <m.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeIn}
+                                    className="e-service-card"
                                     style={{
                                         background: '#111',
                                         borderRadius: '24px',
@@ -136,7 +137,7 @@ const EnfonoServices = () => {
             </section>
 
             {/* Our Process - Timelined */}
-            <section style={{ background: '#050505', padding: '120px 0', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+            <section className="service-process-section" style={{ background: '#050505', padding: '120px 0', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
                 <Container>
                     <LazyMotion features={domAnimation}>
                         <m.div className="text-center" style={{ marginBottom: '80px' }} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}>
@@ -181,11 +182,11 @@ const EnfonoServices = () => {
             </section>
 
             {/* Enterprise Tech Stack */}
-            <section style={{ padding: '100px 0', background: '#0a0a0a', borderTop: '1px solid rgba(255,255,255,0.02)' }}>
+            <section className="tech-master-section" style={{ padding: '100px 0', background: '#0a0a0a', borderTop: '1px solid rgba(255,255,255,0.02)' }}>
                 <Container className="text-center">
                     <h2 style={{ fontSize: '2rem', fontWeight: 700, marginBottom: '16px', color: '#fff' }}>Technologies We Master</h2>
                     <p style={{ color: 'rgba(255,255,255,0.5)', maxWidth: '600px', margin: '0 auto 60px' }}>Built on modern, scalable, and secure enterprise architectures.</p>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '24px' }}>
+                    <div className="tech-master-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '24px' }}>
                         {[
                             { icon: 'fab fa-python', name: 'Python' },
                             { icon: 'fas fa-cube', name: 'ERPNext' },
