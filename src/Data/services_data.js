@@ -150,6 +150,33 @@ export const servicesData = [
             "High Performance & Modern Security Standards",
             "Future-proof Technology Stack"
         ],
+        modules: [
+            {
+                title: "Bespoke Core Engine",
+                desc: "Custom-built business logic strictly following your established manual workflows.",
+                icon: "fas fa-cogs"
+            },
+            {
+                title: "Legacy Data Bridges",
+                desc: "Proprietary ETL tools to sync data from your old systems during the transition.",
+                icon: "fas fa-bridge"
+            },
+            {
+                title: "Internal Admin Portals",
+                desc: "High-security back-office tools for staff management and deep audit logs.",
+                icon: "fas fa-user-shield"
+            },
+            {
+                title: "Custom Reporting Engine",
+                desc: "Pixel-perfect automated PDF and Excel reports tailored to your board requirements.",
+                icon: "fas fa-file-invoice-dollar"
+            }
+        ],
+        industries: [
+            { title: "Financial Services", icon: "fas fa-university" },
+            { title: "Specialized Trade", icon: "fas fa-tools" },
+            { title: "Government Agencies", icon: "fas fa-landmark" }
+        ],
         process: [
             { step: "Requirements Gathering", desc: "Deep dive into your custom requirements." },
             { step: "UI/UX Prototyping", desc: "Visualizing the system before writing code." },
@@ -199,6 +226,33 @@ export const servicesData = [
             "Predictable IT Spending",
             "Access to an entire team of experts",
             "Alignment of IT with Business Goals"
+        ],
+        modules: [
+            {
+                title: "Strategic IT Planning",
+                desc: "3-5 year technology roadmaps aligned with your corporate growth targets.",
+                icon: "fas fa-map-marked-alt"
+            },
+            {
+                title: "Infrastructure Audit",
+                desc: "Deep-dive analysis of servers, networks, and hardware lifecycle management.",
+                icon: "fas fa-clipboard-check"
+            },
+            {
+                title: "SLA-Driven Support",
+                desc: "Tiered support levels with guaranteed response and resolution times.",
+                icon: "fas fa-clock"
+            },
+            {
+                title: "IT Policy Development",
+                desc: "Creation of professional IT usage, disaster recovery, and internal data policies.",
+                icon: "fas fa-file-shield"
+            }
+        ],
+        industries: [
+            { title: "Corporate Offices", icon: "fas fa-building" },
+            { title: "Educational Inst.", icon: "fas fa-graduation-cap" },
+            { title: "Legal Firms", icon: "fas fa-balance-scale" }
         ],
         process: [
             { step: "Initial Assessment", desc: "Evaluating current IT landscape." },
@@ -251,6 +305,33 @@ export const servicesData = [
             "Elastic Scalability for Traffic Spikes",
             "Automated Compliance Adherence"
         ],
+        modules: [
+            {
+                title: "Cloud Migration Suite",
+                desc: "Zero-downtime migration protocols for moving on-premise servers to AWS or Azure.",
+                icon: "fas fa-cloud-upload-alt"
+            },
+            {
+                title: "Threat Detection (SOC)",
+                desc: "24/7 endpoint monitoring and automated incident response using AI-driven alerts.",
+                icon: "fas fa-user-shield"
+            },
+            {
+                title: "Compliance Automator",
+                desc: "Automated scanning for GDPR, ISO 27001, and SAMA compliance with ready reports.",
+                icon: "fas fa-file-contract"
+            },
+            {
+                title: "Disaster Recovery",
+                desc: "Geo-redundant backup systems ensuring your data is safe even during regional outages.",
+                icon: "fas fa-shield-virus"
+            }
+        ],
+        industries: [
+            { title: "E-Commerce", icon: "fas fa-shopping-cart" },
+            { title: "Healthcare Providers", icon: "fas fa-hospital" },
+            { title: "FinTech Startups", icon: "fas fa-mobile-alt" }
+        ],
         process: [
             { step: "Security Audit", desc: "Identifying current vulnerabilities." },
             { step: "Cloud Architecture", desc: "Designing secure, scalable server networks." },
@@ -302,6 +383,33 @@ export const servicesData = [
             "Seamless Offline Capabilities",
             "Direct Marketing Channel via Push Notifications"
         ],
+        modules: [
+            {
+                title: "User Experience (UX)",
+                desc: "Focus on micro-interactions and smooth navigation that keeps users coming back.",
+                icon: "fas fa-fingerprint"
+            },
+            {
+                title: "Real-time Sync",
+                desc: "Offline-first architectures that sync data instantly when a connection is restored.",
+                icon: "fas fa-sync"
+            },
+            {
+                title: "Payment Integration",
+                desc: "Secure mobile wallets and GCC-localized payment gateways (Mada, StcPay).",
+                icon: "fas fa-wallet"
+            },
+            {
+                title: "Analytics Dashboard",
+                desc: "Deep-dive metrics into user behavior, heatmaps, and funnel conversion tracking.",
+                icon: "fas fa-chart-line"
+            }
+        ],
+        industries: [
+            { title: "Retail & Delivery", icon: "fas fa-box" },
+            { title: "Real Estate", icon: "fas fa-home" },
+            { title: "Entertainment", icon: "fas fa-film" }
+        ],
         process: [
             { step: "Product Strategy", desc: "Defining user personas and feature scope." },
             { step: "Wireframing", desc: "Creating low-fidelity layout plans." },
@@ -352,6 +460,33 @@ export const servicesData = [
             "Real-time visibility into physical assets",
             "Massive reduction in manual data entry",
             "Data-driven operational efficiencies"
+        ],
+        modules: [
+            {
+                title: "Hardware Integration",
+                desc: "Custom firmware development for sensors (Temp, Vibration, Proximity, RFID).",
+                icon: "fas fa-microchip"
+            },
+            {
+                title: "Edge Computing",
+                desc: "Processing data locally at the site level to reduce latency and bandwidth usage.",
+                icon: "fas fa-server"
+            },
+            {
+                title: "Machine Learning (ML)",
+                desc: "Predictive algorithms that forecast equipment failure before it happens.",
+                icon: "fas fa-brain"
+            },
+            {
+                title: "IoT Dashboard",
+                desc: "Centrally monitor all your physical assets on a single digital twin interface.",
+                icon: "fas fa-project-diagram"
+            }
+        ],
+        industries: [
+            { title: "Manufacturing", icon: "fas fa-industry" },
+            { title: "Logistics & Fleet", icon: "fas fa-shipping-fast" },
+            { title: "Cold Storage", icon: "fas fa-snowflake" }
         ],
         process: [
             { step: "Site Inspection", desc: "Evaluating current machinery and environment." },

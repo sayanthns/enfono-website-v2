@@ -191,7 +191,22 @@ const EnfonoServiceDetail = () => {
                 </section>
 
             </main>
-            <EnfonoFooter />
+            <EnfonoFooter
+                ctaTitle={
+                    service.slug.includes('erp') ? `Ready to Transform Your Business with ${service.title.includes('ERPNext') ? 'ERPNext' : 'Custom ERP'}?` :
+                        service.slug.includes('security') ? "Ready to Secure Your Business Cloud?" :
+                            service.slug.includes('consulting') ? "Ready for a Strategic IT Roadmap?" :
+                                service.slug.includes('mobile') ? "Ready to Build Your Mobile Experience?" :
+                                    "Ready to Automate Your Operations?"
+                }
+                ctaSubtitle={
+                    service.slug.includes('erp') ? "Join hundreds of GCC businesses scaling with agile ERP solutions." :
+                        service.slug.includes('security') ? "Protect your assets with enterprise-grade cyber defense and AWS expertise." :
+                            service.slug.includes('consulting') ? "Align your technology with business goals for maximum ROI." :
+                                service.slug.includes('mobile') ? "Connect with your customers on the go with high-performance apps." :
+                                    "Leverage Industry 4.0 and IoT to gain real-time physical control."
+                }
+            />
         </div >
     );
 };

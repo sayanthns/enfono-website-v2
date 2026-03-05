@@ -2,7 +2,11 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { initialCmsData } from "../../Data/cms_data";
 
-export default function EnfonoFooter({ hideCta = false }) {
+export default function EnfonoFooter({
+  hideCta = false,
+  ctaTitle = <>Ready to Transform<br />Your Business with ERP?</>,
+  ctaSubtitle = "Book a free 60-minute ERP strategy session with our Industry experts. No commitment required."
+}) {
   const [cmsData, setCmsData] = useState(initialCmsData);
 
   useEffect(() => {
@@ -19,8 +23,8 @@ export default function EnfonoFooter({ hideCta = false }) {
           <div className="enfono-container">
             <div className="efcta-inner">
               <div className="efcta-text">
-                <h3>Ready to Transform<br />Your Business with ERP?</h3>
-                <p>Book a free 60-minute ERP strategy session with our Industry experts. No commitment required.</p>
+                <h3>{ctaTitle}</h3>
+                <p>{ctaSubtitle}</p>
               </div>
               <div className="efcta-actions">
                 <Link to={cmsData.hero.booking_url} className="efcta-btn-primary"><i className="fas fa-calendar-check" style={{ marginRight: '6px' }} /> Get Free Consultation</Link>
