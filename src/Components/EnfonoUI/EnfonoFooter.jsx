@@ -52,15 +52,6 @@ export default function EnfonoFooter({
         </a>
       </div>
 
-      {/* Dedicated Chatbot Trigger */}
-      <button
-        className="enfono-chatbot-trigger"
-        onClick={() => alert('Chatbot coming soon!')}
-        aria-label="Open Enfono Assistant"
-      >
-        <i className="fas fa-comment-dots" />
-        <span className="ecb-status-dot"></span>
-      </button>
 
 
       {/* Main Footer */}
