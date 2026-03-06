@@ -9,6 +9,8 @@ const EnfonoChatbot = () => {
     ]);
     const [input, setInput] = useState('');
     const [isTyping, setIsTyping] = useState(false);
+    const [leadStep, setLeadStep] = useState(null); // 'name', 'email', 'company', 'message', 'complete'
+    const [leadData, setLeadData] = useState({});
     const messagesEndRef = useRef(null);
 
     const scrollToBottom = () => {
@@ -19,17 +21,108 @@ const EnfonoChatbot = () => {
         scrollToBottom();
     }, [messages, isTyping]);
 
+    const formatMessage = (text) => {
+        if (!text) return text;
+
+        // Split by lines and handle numbering/bullets
+        return text.split('\n').map((line, i) => {
+            let processedLine = line.trim();
+            if (!processedLine) return <div key={i} style={{ height: '12px' }} />;
+
+            // Handle bolding **text**
+            const boldRegex = /\*\*(.*?)\*\*/g;
+            const parts = processedLine.split(boldRegex);
+
+            const content = parts.map((part, index) => {
+                if (index % 2 === 1) return <strong key={index} style={{ color: '#fff', fontWeight: 700 }}>{part}</strong>;
+                return part;
+            });
+
+            return (
+                <div key={i} style={{ marginBottom: '8px', lineHeight: '1.5' }}>
+                    {content}
+                </div>
+            );
+        });
+    };
+
+    const handleLeadCapture = (inputVal) => {
+        const currentStep = leadStep;
+        let nextStep = null;
+        let newData = { ...leadData };
+
+        if (!inputVal.trim()) return;
+
+        if (currentStep === 'name') {
+            newData.name = inputVal;
+            nextStep = 'email';
+            setMessages(prev => [...prev, { role: 'user', content: inputVal }, { role: 'assistant', content: 'Got it. What is your business email address?' }]);
+        } else if (currentStep === 'email') {
+            newData.email = inputVal;
+            nextStep = 'company';
+            setMessages(prev => [...prev, { role: 'user', content: inputVal }, { role: 'assistant', content: 'And which company are you representing?' }]);
+        } else if (currentStep === 'company') {
+            newData.company = inputVal;
+            nextStep = 'message';
+            setMessages(prev => [...prev, { role: 'user', content: inputVal }, { role: 'assistant', content: 'Finally, tell me a bit about your requirements or what you\'d like to discuss in the consultation.' }]);
+        } else if (currentStep === 'message') {
+            newData.message = inputVal;
+            nextStep = 'complete';
+
+            // Save to LocalStorage
+            const storedLeads = JSON.parse(localStorage.getItem('enfono_leads') || '[]');
+            const newLead = {
+                id: Date.now(),
+                date: new Date().toLocaleDateString(),
+                name: newData.name,
+                email: newData.email,
+                company: newData.company,
+                service: 'AI Chatbot Consultation',
+                phone: 'N/A',
+                message: inputVal
+            };
+            localStorage.setItem('enfono_leads', JSON.stringify([newLead, ...storedLeads]));
+
+            setMessages(prev => [...prev,
+            { role: 'user', content: inputVal },
+            { role: 'assistant', content: 'Thank you! I\'ve registered your interest for a free consultation. Our team will reach out to you at ' + newData.email + ' very soon.' }
+            ]);
+            setLeadStep(null);
+            setInput('');
+            return;
+        }
+
+        setLeadData(newData);
+        setLeadStep(nextStep);
+        setInput('');
+    };
+
     const handleSend = async (e) => {
         e?.preventDefault();
-        if (!input.trim() || isTyping) return;
+        const userInput = input.trim();
+        if (!userInput || isTyping) return;
 
-        const userMessage = { role: 'user', content: input };
+        if (leadStep) {
+            handleLeadCapture(userInput);
+            return;
+        }
+
+        // Trigger Lead Flow if keywords detected
+        const bookingKeywords = ['book', 'consultation', 'meeting', 'free consultation', 'talk to sales', 'demo'];
+        if (bookingKeywords.some(k => userInput.toLowerCase().includes(k)) && !leadStep) {
+            setLeadStep('name');
+            setMessages(prev => [...prev, { role: 'user', content: userInput }, { role: 'assistant', content: 'I can certainly help you book a free consultation! Let\'s start with your full name.' }]);
+            setInput('');
+            return;
+        }
+
+        const userMessage = { role: 'user', content: userInput };
         setMessages(prev => [...prev, userMessage]);
         setInput('');
         setIsTyping(true);
 
         const apiKey = localStorage.getItem('enfono_chatbot_api_key');
-        const apiProvider = localStorage.getItem('enfono_chatbot_provider') || 'openai'; // openai or claude
+        const apiProvider = localStorage.getItem('enfono_chatbot_provider') || 'openai';
 
         if (!apiKey) {
             setTimeout(() => {
@@ -52,17 +145,15 @@ const EnfonoChatbot = () => {
             Guidelines:
             - Be professional, helpful, and concise.
             - Focus on ERPNext and AI in Business.
-            - If you don't know the answer based on the context, politely suggest contacting Enfono via the contact page.
-            - Maintain a helpful partner tone.`;
+            - Use numbered lists or bullet points (e.g., "1. Item", "2. Item") for long explanations.
+            - If the user wants to book a consultation, demo, or meeting, tell them you can help them right here.
+            - If you don't know the answer, suggest contacting Enfono.`;
 
             let response;
             if (apiProvider === 'openai') {
                 response = await fetch('https://api.openai.com/v1/chat/completions', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${apiKey}`
-                    },
+                    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${apiKey}` },
                     body: JSON.stringify({
                         model: 'gpt-4o-mini',
                         messages: [
@@ -76,42 +167,30 @@ const EnfonoChatbot = () => {
             } else if (apiProvider === 'claude') {
                 response = await fetch('https://api.anthropic.com/v1/messages', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'x-api-key': apiKey,
-                        'anthropic-version': '2023-06-01'
-                    },
+                    headers: { 'Content-Type': 'application/json', 'x-api-key': apiKey, 'anthropic-version': '2023-06-01' },
                     body: JSON.stringify({
                         model: 'claude-3-5-sonnet-20240620',
                         max_tokens: 1024,
                         system: systemPrompt,
-                        messages: [
-                            ...messages.map(m => ({ role: m.role, content: m.content })),
-                            userMessage
-                        ]
+                        messages: [...messages.map(m => ({ role: m.role, content: m.content })), userMessage]
                     })
                 });
             }
 
             const data = await response.json();
-            const aiContent = apiProvider === 'openai'
-                ? data.choices[0].message.content
-                : data.content[0].text;
-
+            const aiContent = apiProvider === 'openai' ? data.choices[0].message.content : data.content[0].text;
             setMessages(prev => [...prev, { role: 'assistant', content: aiContent }]);
         } catch (error) {
             console.error('Chatbot Error:', error);
-            setMessages(prev => [...prev, { role: 'assistant', content: 'Sorry, I encountered an error processing your request. Please check your API configuration or try again later.' }]);
-        } finally {
-            setIsTyping(false);
-        }
+            setMessages(prev => [...prev, { role: 'assistant', content: 'Sorry, I encountered an error. Please check your API configuration.' }]);
+        } finally { setIsTyping(false); }
     };
 
     const suggestions = [
         "Tell me about ERPNext",
-        "How can AI help my business?",
-        "Tell me about Enfono",
-        "What services do you offer?"
+        "Book a Free Consultation",
+        "What services do you offer?",
+        "Tell me about Enfono"
     ];
 
     return (
@@ -133,14 +212,14 @@ const EnfonoChatbot = () => {
                             }}
                         >
                             {/* Header */}
-                            <div className="ecm-header">
+                            <div className="ecm-header" style={{ padding: '12px 20px' }}>
                                 <div className="ecm-header-left">
-                                    <div className="ecm-avatar">
+                                    <div className="ecm-avatar" style={{ width: '36px', height: '36px', fontSize: '16px' }}>
                                         <i className="fas fa-robot"></i>
                                     </div>
                                     <div>
-                                        <div className="ecm-title">Enfono AI Assistant</div>
-                                        <div className="ecm-status">
+                                        <div className="ecm-title" style={{ fontSize: '14px' }}>Enfono AI Assistant</div>
+                                        <div className="ecm-status" style={{ fontSize: '11px' }}>
                                             <span className="dot"></span>
                                             Connected to ERPNext
                                         </div>
@@ -149,7 +228,7 @@ const EnfonoChatbot = () => {
                                 <button
                                     onClick={() => setIsOpen(false)}
                                     className="ecm-menu"
-                                    style={{ background: 'none', border: 'none', fontSize: '18px' }}
+                                    style={{ background: 'none', border: 'none', fontSize: '14px', opacity: 0.5, cursor: 'pointer' }}
                                     aria-label="Close Chat"
                                 >
                                     <i className="fas fa-chevron-down"></i>
@@ -157,7 +236,7 @@ const EnfonoChatbot = () => {
                             </div>
 
                             {/* Body / Messages */}
-                            <div className="ecm-body" style={{ flex: 1 }}>
+                            <div className="ecm-body" style={{ flex: 1, padding: '20px' }}>
                                 {messages.map((m, i) => (
                                     <div key={i} className={`ecm-message ${m.role === 'user' ? 'user' : 'ai'}`}>
                                         {m.role === 'assistant' && (
@@ -165,8 +244,8 @@ const EnfonoChatbot = () => {
                                                 <i className="fas fa-robot"></i>
                                             </div>
                                         )}
-                                        <div className="ecm-bubble">
-                                            {m.content}
+                                        <div className="ecm-bubble" style={{ whiteSpace: 'pre-wrap' }}>
+                                            {m.role === 'assistant' ? formatMessage(m.content) : m.content}
                                         </div>
                                     </div>
                                 ))}
@@ -184,7 +263,7 @@ const EnfonoChatbot = () => {
                                     </div>
                                 )}
 
-                                {messages.length === 1 && (
+                                {messages.length === 1 && !leadStep && (
                                     <div className="ecm-actions" style={{ flexWrap: 'wrap' }}>
                                         {suggestions.map((s, i) => (
                                             <button
@@ -204,12 +283,12 @@ const EnfonoChatbot = () => {
                             {/* Footer / Input */}
                             <div className="ecm-footer">
                                 <form onSubmit={handleSend} className="ecm-input-box">
-                                    <i className="fas fa-chart-line ecm-input-icon" />
+                                    <i className={leadStep ? "fas fa-user-edit ecm-input-icon" : "fas fa-chart-line ecm-input-icon"} />
                                     <input
                                         type="text"
                                         value={input}
                                         onChange={e => setInput(e.target.value)}
-                                        placeholder="Ask Enfono AI about your business..."
+                                        placeholder={leadStep ? "Your answer..." : "Ask Enfono AI about your business..."}
                                         style={{
                                             flex: 1,
                                             background: 'none',
@@ -254,7 +333,7 @@ const EnfonoChatbot = () => {
                         justifyContent: 'center'
                     }}
                 >
-                    <i className={isOpen ? "fas fa-times" : "fas fa-comment-dots"}></i>
+                    <i className={isOpen ? "fas fa-times" : "fas fa-robot"}></i>
                 </m.button>
             </div>
         </LazyMotion>
