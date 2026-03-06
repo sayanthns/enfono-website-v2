@@ -24,12 +24,10 @@ const EnfonoChatbot = () => {
     const formatMessage = (text) => {
         if (!text) return text;
 
-        // Split by lines and handle numbering/bullets
         return text.split('\n').map((line, i) => {
             let processedLine = line.trim();
             if (!processedLine) return <div key={i} style={{ height: '12px' }} />;
 
-            // Handle bolding **text**
             const boldRegex = /\*\*(.*?)\*\*/g;
             const parts = processedLine.split(boldRegex);
 
@@ -69,7 +67,6 @@ const EnfonoChatbot = () => {
             newData.message = inputVal;
             nextStep = 'complete';
 
-            // Save to LocalStorage
             const storedLeads = JSON.parse(localStorage.getItem('enfono_leads') || '[]');
             const newLead = {
                 id: Date.now(),
@@ -107,7 +104,6 @@ const EnfonoChatbot = () => {
             return;
         }
 
-        // Trigger Lead Flow if keywords detected
         const bookingKeywords = ['book', 'consultation', 'meeting', 'free consultation', 'talk to sales', 'demo'];
         if (bookingKeywords.some(k => userInput.toLowerCase().includes(k)) && !leadStep) {
             setLeadStep('name');
@@ -136,6 +132,7 @@ const EnfonoChatbot = () => {
             const systemPrompt = `You are the Enfono AI Assistant. You are an expert in ERP (specifically ERPNext), AI for business optimization, and Enfono's history/services.
             Use the following context to answer questions about Enfono:
             - Who We Are: ${initialCmsData.about.who_we_are.subtext}
+            - Our Team: ${initialCmsData.about.team.map(m => `${m.name} (${m.role})`).join(', ')}
             - Services: ${initialCmsData.services_hero.subtext}
             - Products/Brands: ${initialCmsData.brands.map(b => b.name + ": " + b.desc).join(', ')}
             - Offices: ${initialCmsData.about.offices.map(o => o.country + " (" + o.city + ")").join(', ')}
@@ -208,11 +205,12 @@ const EnfonoChatbot = () => {
                                 height: '580px',
                                 marginBottom: '20px',
                                 maxWidth: 'calc(100vw - 60px)',
-                                maxHeight: 'calc(100vh - 120px)'
+                                maxHeight: 'calc(100vh - 120px)',
+                                position: 'relative'
                             }}
                         >
                             {/* Header */}
-                            <div className="ecm-header" style={{ padding: '12px 20px' }}>
+                            <div className="ecm-header" style={{ padding: '14px 20px', borderRadius: '16px 16px 0 0' }}>
                                 <div className="ecm-header-left">
                                     <div className="ecm-avatar" style={{ width: '36px', height: '36px', fontSize: '16px' }}>
                                         <i className="fas fa-robot"></i>
@@ -227,11 +225,20 @@ const EnfonoChatbot = () => {
                                 </div>
                                 <button
                                     onClick={() => setIsOpen(false)}
-                                    className="ecm-menu"
-                                    style={{ background: 'none', border: 'none', fontSize: '14px', opacity: 0.5, cursor: 'pointer' }}
+                                    style={{
+                                        background: 'none',
+                                        border: 'none',
+                                        fontSize: '18px',
+                                        color: '#fff',
+                                        opacity: 0.5,
+                                        cursor: 'pointer',
+                                        position: 'absolute',
+                                        top: '15px',
+                                        right: '15px'
+                                    }}
                                     aria-label="Close Chat"
                                 >
-                                    <i className="fas fa-chevron-down"></i>
+                                    <i className="fas fa-times"></i>
                                 </button>
                             </div>
 
