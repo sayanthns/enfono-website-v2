@@ -54,7 +54,7 @@ export default function EnfonoBrands() {
               {[
                 { num: brands.length.toString(), suffix: '', label: 'Product Brands' },
                 { num: '120', suffix: '+', label: 'Projects Delivered' },
-                { num: '3', suffix: '', label: 'GCC Countries' },
+                { num: '6', suffix: '', label: 'GCC Countries' },
                 { num: '2019', suffix: '', label: 'Est. Year' },
               ].map(s => (
                 <div key={s.label} className="enfono-stat-cell">
@@ -165,22 +165,6 @@ export default function EnfonoBrands() {
                 </m.div>
               ))}
             </m.div>
-          </div>
-        </section>
-
-        {/* CTA */}
-        <section className="e-cta-section">
-          <div className="enfono-container">
-            <div className="e-cta-inner">
-              <div className="e-cta-text">
-                <h2>Interested in Our Products?</h2>
-                <p>Contact us for a demo or to learn how our products can integrate with your ERP.</p>
-              </div>
-              <div className="e-cta-actions" style={{ flexDirection: 'column', alignItems: 'flex-end', gap: '12px' }}>
-                <Link to="/contact" className="ecta-btn-white"><i className="fas fa-calendar-check" /> Request a Demo</Link>
-                <Link to="/tools" className="ecta-btn-outline">Try Free Tools</Link>
-              </div>
-            </div>
           </div>
         </section>
 
