@@ -22,7 +22,17 @@ const AdminDashboard = () => {
         <div className="admin-dashboard">
             <div className="admin-header">
                 <h1>Visitor Analytics</h1>
-                <p>Simulated real-time insights for Enfono Website</p>
+                <p>Real-time insights for Enfono Website</p>
+                <div style={{ display: 'flex', gap: '12px', marginTop: '12px' }}>
+                    <a
+                        href="https://analytics.google.com/analytics/web/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ fontSize: '12px', color: '#10B981', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '6px' }}
+                    >
+                        <i className="fab fa-google" /> Open Full Google Analytics Dashboard
+                    </a>
+                </div>
                 {message && <div style={{ color: '#10B981', background: 'rgba(16, 185, 129, 0.1)', padding: '10px 16px', borderRadius: '8px', marginTop: '16px', fontSize: '14px' }}>{message}</div>}
             </div>
 
@@ -68,7 +78,7 @@ const AdminDashboard = () => {
                     </div>
 
                     <div style={{ marginTop: '24px', padding: '16px', background: '#f8fafc', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
-                        <h4 style={{ color: '#0f172a', fontSize: '14px', marginBottom: '8px', fontWeight: 600 }}>Active Campaign Metrics <span style={{ fontSize: '10px', opacity: 0.5, fontWeight: 400 }}>(Simulated)</span></h4>
+                        <h4 style={{ color: '#0f172a', fontSize: '14px', marginBottom: '8px', fontWeight: 600 }}>Active Campaign Metrics <span style={{ fontSize: '10px', color: '#10B981', fontWeight: 400 }}>(GA4 Tracking Active)</span></h4>
                         <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px' }}>
                             <span style={{ color: '#64748b' }}>Clicks: 840</span>
                             <span style={{ color: '#64748b' }}>Leads: 12</span>

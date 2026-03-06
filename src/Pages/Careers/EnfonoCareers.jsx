@@ -8,7 +8,7 @@ import { initialCmsData } from "../../Data/cms_data";
 const fadeUp = { hidden: { opacity: 0, y: 40 }, visible: (d = 0) => ({ opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: d } }) }
 const stagger = { hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }
 
-const departments = ['All', 'Engineering', 'Consulting', 'Sales', 'Operations']
+const departments = ['All', 'Engineering', 'Consulting', 'Sales', 'Operations', 'Marketing', 'Customer Success', 'Finance']
 
 const perks = [
   { icon: 'fas fa-globe', title: 'Work Globally', desc: 'Serve enterprise clients across Saudi Arabia, UAE, and Oman from day one.' },
@@ -38,7 +38,10 @@ export default function EnfonoCareers() {
   }, []);
 
   const roles = cmsData.careers || [];
-  const filtered = roles.filter(r => activeFilter === 'All' || r.dept === activeFilter)
+  const filtered = roles.filter(r => {
+    if (activeFilter === 'All') return true;
+    return r.dept?.toLowerCase().trim() === activeFilter.toLowerCase().trim();
+  });
 
   return (
     <LazyMotion features={domAnimation}>
@@ -64,11 +67,11 @@ export default function EnfonoCareers() {
                 </m.p>
                 <m.div variants={fadeUp} custom={0.15} style={{ marginTop: '32px', display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
                   <span style={{ fontFamily: 'Inter,sans-serif', fontSize: '14px', color: 'rgba(255,255,255,0.6)' }}>
-                    <i className="fas fa-map-marker-alt" style={{ color: '#34D399', marginRight: '6px' }} />
+                    <i className="fas fa-map-marker-alt" style={{ color: '#10B981', marginRight: '6px' }} />
                     Riyadh · Dubai · Remote
                   </span>
                   <span style={{ fontFamily: 'Inter,sans-serif', fontSize: '14px', color: 'rgba(255,255,255,0.6)' }}>
-                    <i className="fas fa-briefcase" style={{ color: '#34D399', marginRight: '6px' }} />
+                    <i className="fas fa-briefcase" style={{ color: '#10B981', marginRight: '6px' }} />
                     {roles.length} Open Positions
                   </span>
                 </m.div>
@@ -98,7 +101,7 @@ export default function EnfonoCareers() {
                   variants={fadeUp}
                   style={{ padding: '28px', background: '#F8FAF9', borderRadius: '18px', border: '1px solid #E5E7EB' }}
                 >
-                  <div style={{ width: '48px', height: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(16,185,129,0.07)', borderRadius: '14px', marginBottom: '16px' }}>
+                  <div style={{ width: '48px', height: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(16, 185, 129, 0.1)', borderRadius: '14px', marginBottom: '16px' }}>
                     <i className={v.icon} style={{ fontSize: '18px', color: '#10B981' }} />
                   </div>
                   <div style={{ fontFamily: 'Poppins,sans-serif', fontSize: '16px', fontWeight: 700, color: '#1A1A1A', marginBottom: '8px' }}>{v.title}</div>
@@ -129,7 +132,7 @@ export default function EnfonoCareers() {
                   variants={fadeUp}
                   style={{ display: 'flex', gap: '16px', padding: '24px', background: '#fff', borderRadius: '16px', border: '1.5px solid #E5E7EB' }}
                 >
-                  <div style={{ width: '48px', height: '48px', minWidth: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(16,185,129,0.07)', borderRadius: '12px' }}>
+                  <div style={{ width: '48px', height: '48px', minWidth: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(16, 185, 129, 0.1)', borderRadius: '12px' }}>
                     <i className={p.icon} style={{ fontSize: '18px', color: '#10B981' }} />
                   </div>
                   <div>
@@ -166,8 +169,9 @@ export default function EnfonoCareers() {
             </div>
 
             <m.div
+              key={activeFilter}
               style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}
-              initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={stagger}
+              initial="hidden" animate="visible" variants={stagger}
             >
               {filtered.map(role => (
                 <m.div
@@ -182,21 +186,27 @@ export default function EnfonoCareers() {
                   <div style={{ flex: 1 }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap', marginBottom: '8px' }}>
                       <div style={{ fontFamily: 'Poppins,sans-serif', fontSize: '16px', fontWeight: 700, color: '#1A1A1A' }}>{role.title}</div>
-                      <span style={{ padding: '2px 10px', background: 'rgba(16,185,129,0.07)', borderRadius: '100px', fontSize: '11px', fontWeight: 700, color: '#10B981' }}>{role.dept}</span>
+                      <span style={{ padding: '2px 10px', background: 'rgba(16, 185, 129, 0.1)', borderRadius: '100px', fontSize: '11px', fontWeight: 700, color: '#10B981' }}>{role.dept}</span>
                     </div>
                     <p style={{ fontFamily: 'Inter,sans-serif', fontSize: '13.5px', lineHeight: 1.6, color: '#64748B', margin: '0 0 12px' }}>{role.desc}</p>
                     <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
                       <span style={{ fontFamily: 'Inter,sans-serif', fontSize: '12px', color: '#94A3B8', display: 'flex', alignItems: 'center', gap: '5px' }}>
-                        <i className="fas fa-map-marker-alt" style={{ color: '#34D399' }} />{role.location}
+                        <i className="fas fa-map-marker-alt" style={{ color: '#10B981' }} />{role.location}
                       </span>
                       <span style={{ fontFamily: 'Inter,sans-serif', fontSize: '12px', color: '#94A3B8', display: 'flex', alignItems: 'center', gap: '5px' }}>
-                        <i className="fas fa-clock" style={{ color: '#34D399' }} />{role.type}
+                        <i className="fas fa-clock" style={{ color: '#10B981' }} />{role.type}
                       </span>
                     </div>
                   </div>
-                  <a href={role.apply_url || '/contact'} target="_blank" rel="noopener noreferrer" className="e-btn-primary" style={{ flexShrink: 0, whiteSpace: 'nowrap' }}>
-                    Apply Now <i className="fas fa-arrow-right" />
-                  </a>
+                  {role.apply_url?.startsWith('http') ? (
+                    <a href={role.apply_url} target="_blank" rel="noopener noreferrer" className="e-btn-primary" style={{ flexShrink: 0, whiteSpace: 'nowrap' }}>
+                      Apply Now <i className="fas fa-arrow-right" />
+                    </a>
+                  ) : (
+                    <Link to={role.apply_url || '/contact'} className="e-btn-primary" style={{ flexShrink: 0, whiteSpace: 'nowrap' }}>
+                      Apply Now <i className="fas fa-arrow-right" />
+                    </Link>
+                  )}
                 </m.div>
               ))}
             </m.div>
@@ -225,7 +235,7 @@ export default function EnfonoCareers() {
           </div>
         </section>
 
-        <EnfonoFooter />
+        <EnfonoFooter hideCta={true} />
       </div>
     </LazyMotion>
   )

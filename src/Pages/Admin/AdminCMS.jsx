@@ -193,7 +193,11 @@ const AdminCMS = () => {
                 {activeTab === 'careers' && (
                     <div className="admin-content-card">
                         <h3>Careers & Job Openings</h3>
-                        <p style={{ color: '#64748b', marginBottom: '24px', fontSize: '14px' }}>Post new roles and update 'Apply Now' links.</p>
+                        <p style={{ color: '#64748b', marginBottom: '24px', fontSize: '14px' }}>
+                            Post new roles and update 'Apply Now' links.
+                            <br />
+                            <strong style={{ color: '#10B981' }}>Tip:</strong> Use <code>/contact</code> for the default form, or an external URL (e.g., LinkedIn/Indeed) starting with <code>https://</code>.
+                        </p>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
                             {(cmsData.careers || []).map((job, idx) => (
                                 <div key={idx} style={{ padding: '20px', background: '#f8fafc', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
@@ -219,6 +223,8 @@ const AdminCMS = () => {
                                                 <option value="Sales">Sales</option>
                                                 <option value="Operations">Operations</option>
                                                 <option value="Marketing">Marketing</option>
+                                                <option value="Customer Success">Customer Success</option>
+                                                <option value="Finance">Finance</option>
                                             </select>
                                         </div>
                                     </div>

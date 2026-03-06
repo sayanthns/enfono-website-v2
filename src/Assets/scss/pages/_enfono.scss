@@ -1481,7 +1481,7 @@
   font-weight: 700;
   letter-spacing: 2.5px;
   text-transform: uppercase;
-  color: #7BBB9B;
+  color: #10B981;
   margin-bottom: 14px;
 }
 
@@ -2874,7 +2874,7 @@
    ================================================================ */
 .e-cta-section {
   padding: 80px 0;
-  background: linear-gradient(135deg, #0D0D0D 0%, #7BBB9B 50%, #34D399 100%);
+  background: linear-gradient(135deg, #0D0D0D 0%, #059669 50%, #10B981 100%);
   position: relative;
   overflow: hidden;
 
@@ -3357,7 +3357,7 @@
   align-items: center;
   gap: 8px;
   padding: 14px 30px;
-  background: #7BBB9B;
+  background: #10B981;
   color: #fff;
   font-family: 'Inter', sans-serif;
   font-size: 14px;
@@ -3382,18 +3382,18 @@
   gap: 8px;
   padding: 14px 28px;
   background: transparent;
-  color: #7BBB9B;
+  color: #10B981;
   font-family: 'Inter', sans-serif;
   font-size: 14px;
   font-weight: 600;
   border-radius: 11px;
   text-decoration: none;
-  border: 1.5px solid #7BBB9B;
+  border: 1.5px solid #10B981;
   transition: all 0.3s;
   cursor: pointer;
 
   &:hover {
-    background: #7BBB9B;
+    background: #10B981;
     color: #fff;
     transform: translateY(-2px);
   }
