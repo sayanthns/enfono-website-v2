@@ -47,100 +47,112 @@ const EnfonoContact = () => {
                 </Container>
             </div>
 
-            <section style={{ background: '#F8FAFC', padding: '70px 0' }}>
+            <section style={{ background: '#F8FAFC', padding: '100px 0' }}>
                 <Container>
                     <LazyMotion features={domAnimation}>
-                        <Row className="g-5">
-                            {/* Contact Form */}
-                            <Col lg={7}>
-                                <m.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}>
-                                    <div style={{ background: '#fff', borderRadius: '16px', padding: '48px', border: '1px solid #E5E7EB' }}>
-                                        <h2 style={{ fontSize: '26px', fontWeight: '700', color: '#1B3A5C', fontFamily: 'Poppins, sans-serif', marginBottom: '8px' }}>Book a Free Consultation</h2>
-                                        <p style={{ fontSize: '15px', color: '#6B7280', marginBottom: '36px' }}>Fill out the form and our team will get back to you within 24 hours.</p>
+                        <m.div
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true }}
+                            variants={fadeIn}
+                            style={{
+                                background: '#fff',
+                                borderRadius: '32px',
+                                overflow: 'hidden',
+                                boxShadow: '0 40px 100px -20px rgba(15, 23, 42, 0.08)',
+                                border: '1px solid rgba(226, 232, 240, 0.8)'
+                            }}
+                        >
+                            <Row className="g-0">
+                                {/* Form Column */}
+                                <Col lg={7} className="p-5 p-md-5">
+                                    <div style={{ padding: '20px' }}>
+                                        <h2 style={{ fontSize: '32px', fontWeight: '800', color: '#0F172A', fontFamily: 'Poppins, sans-serif', marginBottom: '12px', letterSpacing: '-0.5px' }}>Book a Free Consultation</h2>
+                                        <p style={{ fontSize: '16px', color: '#64748B', marginBottom: '40px', lineHeight: '1.6' }}>Fill out the form and our team of ERP experts will get back to you within 24 hours.</p>
 
                                         {submitted ? (
-                                            <div style={{ textAlign: 'center', padding: '40px 20px' }}>
-                                                <div style={{ width: '70px', height: '70px', background: '#D1FAE5', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px' }}>
-                                                    <i className="fas fa-check" style={{ fontSize: '28px', color: '#059669' }}></i>
+                                            <m.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} style={{ textAlign: 'center', padding: '60px 20px' }}>
+                                                <div style={{ width: '80px', height: '80px', background: '#ECFDF5', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px' }}>
+                                                    <i className="fas fa-check" style={{ fontSize: '32px', color: '#10B981' }}></i>
                                                 </div>
-                                                <h3 style={{ fontSize: '22px', fontWeight: '700', color: '#1B3A5C', fontFamily: 'Poppins, sans-serif', marginBottom: '12px' }}>Message Received!</h3>
-                                                <p style={{ fontSize: '15px', color: '#6B7280' }}>Thank you for reaching out. Our team will contact you within 24 hours.</p>
-                                            </div>
+                                                <h3 style={{ fontSize: '24px', fontWeight: '800', color: '#0F172A', fontFamily: 'Poppins, sans-serif', marginBottom: '12px' }}>Message Received!</h3>
+                                                <p style={{ fontSize: '16px', color: '#64748B' }}>Thank you for reaching out. Our team will contact you shortly.</p>
+                                            </m.div>
                                         ) : (
                                             <Formik
                                                 initialValues={{ name: '', email: '', phone: '', company: '', service: '', country: 'Saudi Arabia', message: '' }}
                                                 validationSchema={contactSchema}
                                                 onSubmit={(values, { setSubmitting }) => {
-                                                    // Save to leads in localStorage
                                                     const existingLeads = JSON.parse(localStorage.getItem('enfono_leads') || '[]');
-                                                    const newLead = {
-                                                        ...values,
-                                                        id: Date.now(),
-                                                        date: new Date().toLocaleString(),
-                                                        status: 'New'
-                                                    };
+                                                    const newLead = { ...values, id: Date.now(), date: new Date().toLocaleString(), status: 'New' };
                                                     localStorage.setItem('enfono_leads', JSON.stringify([newLead, ...existingLeads]));
 
-                                                    setTimeout(() => {
-                                                        setSubmitting(false);
-                                                        setSubmitted(true)
-                                                    }, 1000)
+                                                    setTimeout(() => { setSubmitting(false); setSubmitted(true) }, 1000)
                                                 }}
                                             >
                                                 {({ isSubmitting, errors, touched }) => (
                                                     <Form>
-                                                        <Row className="g-3">
+                                                        <Row className="g-4">
                                                             {[
-                                                                { name: 'name', label: 'Full Name *', type: 'text', placeholder: 'Your full name', half: true },
-                                                                { name: 'email', label: 'Email Address *', type: 'email', placeholder: 'you@company.com', half: true },
-                                                                { name: 'phone', label: 'Phone / WhatsApp *', type: 'tel', placeholder: '+966 XX XXX XXXX', half: true },
-                                                                { name: 'company', label: 'Company Name *', type: 'text', placeholder: 'Your company name', half: true },
+                                                                { name: 'name', label: 'Full Name', type: 'text', placeholder: 'Sayanth NS', half: true },
+                                                                { name: 'email', label: 'Work Email', type: 'email', placeholder: 'name@company.com', half: true },
+                                                                { name: 'phone', label: 'Phone / WhatsApp', type: 'tel', placeholder: '+966 XX XXX XXXX', half: true },
+                                                                { name: 'company', label: 'Company Name', type: 'text', placeholder: 'Enfono Tech', half: true },
                                                             ].map((field) => (
                                                                 <Col key={field.name} md={field.half ? 6 : 12}>
-                                                                    <label style={{ fontSize: '13px', fontWeight: '600', color: '#374151', marginBottom: '6px', display: 'block' }}>{field.label}</label>
+                                                                    <label style={{ fontSize: '14px', fontWeight: '700', color: '#334155', marginBottom: '8px', display: 'block' }}>{field.label}</label>
                                                                     <Field name={field.name} type={field.type} placeholder={field.placeholder}
-                                                                        style={{ width: '100%', padding: '11px 14px', border: `1px solid ${errors[field.name] && touched[field.name] ? '#EF4444' : '#E5E7EB'}`, borderRadius: '8px', fontSize: '14px', color: '#374151', outline: 'none', transition: 'border-color 0.2s' }}
+                                                                        className="enfono-input"
+                                                                        style={{
+                                                                            width: '100%',
+                                                                            padding: '14px 18px',
+                                                                            border: `2px solid ${errors[field.name] && touched[field.name] ? '#EF4444' : '#F1F5F9'}`,
+                                                                            borderRadius: '12px',
+                                                                            fontSize: '15px',
+                                                                            color: '#0F172A',
+                                                                            background: '#F8FAFC',
+                                                                            outline: 'none',
+                                                                            transition: 'all 0.2s ease'
+                                                                        }}
                                                                     />
-                                                                    <ErrorMessage name={field.name} component="div" style={{ fontSize: '12px', color: '#EF4444', marginTop: '4px' }} />
+                                                                    <ErrorMessage name={field.name} component="div" style={{ fontSize: '12px', color: '#EF4444', marginTop: '6px', fontWeight: '600' }} />
                                                                 </Col>
                                                             ))}
                                                             <Col md={6}>
-                                                                <label style={{ fontSize: '13px', fontWeight: '600', color: '#374151', marginBottom: '6px', display: 'block' }}>Service Interested In *</label>
-                                                                <Field as="select" name="service" style={{ width: '100%', padding: '11px 14px', border: `1px solid ${errors.service && touched.service ? '#EF4444' : '#E5E7EB'}`, borderRadius: '8px', fontSize: '14px', color: '#374151', outline: 'none', background: '#fff' }}>
+                                                                <label style={{ fontSize: '14px', fontWeight: '700', color: '#334155', marginBottom: '8px', display: 'block' }}>Interested In</label>
+                                                                <Field as="select" name="service" className="enfono-input" style={{ width: '100%', padding: '14px 18px', border: `2px solid ${errors.service && touched.service ? '#EF4444' : '#F1F5F9'}`, borderRadius: '12px', fontSize: '15px', color: '#0F172A', background: '#F8FAFC', outline: 'none' }}>
                                                                     <option value="">Select a service</option>
-                                                                    <option value="erpnext">ERPNext Implementation</option>
-                                                                    <option value="custom">Custom ERP Development</option>
-                                                                    <option value="consulting">ERP Consulting</option>
-                                                                    <option value="support">Support & Maintenance</option>
-                                                                    <option value="other">Other</option>
+                                                                    <option value="ERPNext">ERPNext Implementation</option>
+                                                                    <option value="Custom">Custom ERP Development</option>
+                                                                    <option value="Consulting">ERP Consulting</option>
+                                                                    <option value="Support">Support & Maintenance</option>
                                                                 </Field>
-                                                                <ErrorMessage name="service" component="div" style={{ fontSize: '12px', color: '#EF4444', marginTop: '4px' }} />
+                                                                <ErrorMessage name="service" component="div" style={{ fontSize: '12px', color: '#EF4444', marginTop: '6px', fontWeight: '600' }} />
                                                             </Col>
                                                             <Col md={6}>
-                                                                <label style={{ fontSize: '13px', fontWeight: '600', color: '#374151', marginBottom: '6px', display: 'block' }}>Country</label>
-                                                                <Field as="select" name="country" style={{ width: '100%', padding: '11px 14px', border: '1px solid #E5E7EB', borderRadius: '8px', fontSize: '14px', color: '#374151', outline: 'none', background: '#fff' }}>
-                                                                    <option value="Saudi Arabia">🇸🇦 Saudi Arabia</option>
-                                                                    <option value="UAE">🇦🇪 United Arab Emirates</option>
-                                                                    <option value="Oman">🇴🇲 Oman</option>
-                                                                    <option value="Bahrain">🇧🇭 Bahrain</option>
-                                                                    <option value="Kuwait">🇰🇼 Kuwait</option>
-                                                                    <option value="Qatar">🇶🇦 Qatar</option>
-                                                                    <option value="India">🇮🇳 India</option>
-                                                                    <option value="Other">Other</option>
+                                                                <label style={{ fontSize: '14px', fontWeight: '700', color: '#334155', marginBottom: '8px', display: 'block' }}>Region</label>
+                                                                <Field as="select" name="country" className="enfono-input" style={{ width: '100%', padding: '14px 18px', border: '2px solid #F1F5F9', borderRadius: '12px', fontSize: '15px', color: '#0F172A', background: '#F8FAFC', outline: 'none' }}>
+                                                                    <option value="Saudi Arabia">Saudi Arabia</option>
+                                                                    <option value="UAE">United Arab Emirates</option>
+                                                                    <option value="Oman">Oman</option>
+                                                                    <option value="India">India</option>
                                                                 </Field>
                                                             </Col>
                                                             <Col md={12}>
-                                                                <label style={{ fontSize: '13px', fontWeight: '600', color: '#374151', marginBottom: '6px', display: 'block' }}>Tell Us About Your Project *</label>
-                                                                <Field as="textarea" name="message" rows={4} placeholder="Describe your current ERP challenges, business size, timeline, and any specific requirements..."
-                                                                    style={{ width: '100%', padding: '11px 14px', border: `1px solid ${errors.message && touched.message ? '#EF4444' : '#E5E7EB'}`, borderRadius: '8px', fontSize: '14px', color: '#374151', outline: 'none', resize: 'vertical' }}
+                                                                <label style={{ fontSize: '14px', fontWeight: '700', color: '#334155', marginBottom: '8px', display: 'block' }}>Project Details</label>
+                                                                <Field as="textarea" name="message" rows={4} placeholder="Tell us about your current challenges..."
+                                                                    className="enfono-input"
+                                                                    style={{ width: '100%', padding: '14px 18px', border: `2px solid ${errors.message && touched.message ? '#EF4444' : '#F1F5F9'}`, borderRadius: '12px', fontSize: '15px', color: '#0F172A', background: '#F8FAFC', outline: 'none', resize: 'none' }}
                                                                 />
-                                                                <ErrorMessage name="message" component="div" style={{ fontSize: '12px', color: '#EF4444', marginTop: '4px' }} />
+                                                                <ErrorMessage name="message" component="div" style={{ fontSize: '12px', color: '#EF4444', marginTop: '6px', fontWeight: '600' }} />
                                                             </Col>
-                                                            <Col md={12}>
-                                                                <button type="submit" disabled={isSubmitting}
-                                                                    style={{ background: 'var(--enfono-gradient)', color: '#fff', border: 'none', borderRadius: '8px', padding: '14px 36px', fontSize: '15px', fontWeight: '700', cursor: 'pointer', width: '100%', opacity: isSubmitting ? 0.7 : 1, transition: 'opacity 0.2s' }}
+                                                            <Col md={12} className="pt-2">
+                                                                <button type="submit" disabled={isSubmitting} className="w-100"
+                                                                    style={{ background: 'var(--enfono-gradient)', color: '#fff', border: 'none', borderRadius: '14px', padding: '18px', fontSize: '16px', fontWeight: '800', cursor: 'pointer', boxShadow: '0 10px 20px -5px rgba(16, 185, 129, 0.4)', transition: 'all 0.3s ease' }}
+                                                                    onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-2px)'}
+                                                                    onMouseLeave={e => e.currentTarget.style.transform = 'none'}
                                                                 >
-                                                                    {isSubmitting ? 'Sending...' : 'Send Message & Book Consultation'}
+                                                                    {isSubmitting ? 'Processing...' : 'Send Message & Book Consultation'}
                                                                 </button>
                                                             </Col>
                                                         </Row>
@@ -149,71 +161,85 @@ const EnfonoContact = () => {
                                             </Formik>
                                         )}
                                     </div>
-                                </m.div>
-                            </Col>
+                                </Col>
 
-                            {/* Sidebar Info */}
-                            <Col lg={5}>
-                                <m.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInLeft}>
-                                    {/* Why Contact */}
-                                    <div style={{ background: 'var(--enfono-gradient)', borderRadius: '16px', padding: '36px', marginBottom: '24px' }}>
-                                        <h3 style={{ fontSize: '20px', fontWeight: '700', color: '#fff', fontFamily: 'Poppins, sans-serif', marginBottom: '20px' }}>What to Expect</h3>
-                                        {[
-                                            { icon: 'fas fa-clock', text: 'Response within 24 hours' },
-                                            { icon: 'fas fa-video', text: '60-minute free consultation call' },
-                                            { icon: 'fas fa-file-alt', text: 'Custom proposal within 5 days' },
-                                            { icon: 'fas fa-check-circle', text: 'No commitment required' },
-                                        ].map((item, i) => (
-                                            <div key={i} style={{ display: 'flex', gap: '14px', alignItems: 'center', marginBottom: '14px' }}>
-                                                <div style={{ width: '36px', height: '36px', background: 'rgba(255, 255, 255, 0.1)', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                                                    <i className={item.icon} style={{ color: '#fff', fontSize: '14px' }}></i>
-                                                </div>
-                                                <span style={{ fontSize: '14px', color: 'rgba(255,255,255,0.8)' }}>{item.text}</span>
-                                            </div>
-                                        ))}
-                                    </div>
-
-                                    {/* Offices */}
-                                    {(data.about?.offices || []).map((office, i) => (
-                                        <div key={i} style={{ background: '#fff', borderRadius: '12px', padding: '24px', border: '1px solid #E5E7EB', marginBottom: '16px' }}>
-                                            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
-                                                <span style={{ fontSize: '28px' }}>{office.flag}</span>
-                                                <div>
-                                                    <div style={{ fontSize: '16px', fontWeight: '700', color: '#1B3A5C', fontFamily: 'Poppins, sans-serif' }}>{office.country}</div>
-                                                    <div style={{ fontSize: '12px', color: '#9CA3AF', fontWeight: '600' }}>{office.type} · {office.city}</div>
-                                                </div>
-                                            </div>
+                                {/* Sidebar Column */}
+                                <Col lg={5} style={{ background: '#0F172A', padding: '60px 50px' }}>
+                                    <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+                                        <div className="mb-5">
+                                            <h3 style={{ fontSize: '24px', fontWeight: '800', color: '#fff', fontFamily: 'Poppins, sans-serif', marginBottom: '24px' }}>What to Expect</h3>
                                             {[
-                                                { icon: 'fas fa-map-marker-alt', text: office.address },
-                                                { icon: 'fas fa-phone', text: office.phone },
-                                                { icon: 'fas fa-envelope', text: office.email },
-                                            ].map((item, j) => (
-                                                <div key={j} style={{ display: 'flex', gap: '10px', alignItems: 'center', fontSize: '13px', color: '#374151', marginBottom: '8px' }}>
-                                                    <i className={item.icon} style={{ color: '#10B981', width: '14px' }}></i>
-                                                    {item.text}
+                                                { icon: 'fas fa-clock', text: 'Response within 24 hours', color: '#10B981' },
+                                                { icon: 'fas fa-video', text: '60-minute free diagnostic call', color: '#34D399' },
+                                                { icon: 'fas fa-file-invoice-dollar', text: 'Custom roadmap & proposal', color: '#6EE7B7' },
+                                                { icon: 'fas fa-shield-alt', text: 'Zero commitment required', color: '#A7F3D0' },
+                                            ].map((item, i) => (
+                                                <div key={i} style={{ display: 'flex', gap: '18px', alignItems: 'center', marginBottom: '20px' }}>
+                                                    <div style={{ width: '40px', height: '40px', background: 'rgba(16, 185, 129, 0.1)', border: `1px solid rgba(16, 185, 129, 0.2)`, borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                                                        <i className={item.icon} style={{ color: item.color, fontSize: '16px' }}></i>
+                                                    </div>
+                                                    <span style={{ fontSize: '15px', color: 'rgba(255,255,255,0.85)', fontWeight: '500' }}>{item.text}</span>
                                                 </div>
                                             ))}
                                         </div>
-                                    ))}
-                                </m.div>
-                            </Col>
-                        </Row>
 
-                        {/* FAQs */}
-                        <m.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="mt-16">
-                            <h2 style={{ fontSize: '32px', fontWeight: '700', color: '#1B3A5C', fontFamily: 'Poppins, sans-serif', marginBottom: '32px', textAlign: 'center' }}>Frequently Asked Questions</h2>
+                                        <div style={{ marginTop: 'auto' }}>
+                                            <h3 style={{ fontSize: '18px', fontWeight: '800', color: '#fff', fontFamily: 'Poppins, sans-serif', marginBottom: '24px', opacity: 0.6, textTransform: 'uppercase', letterSpacing: '1px' }}>Global Presence</h3>
+                                            {(data.about?.offices || []).map((office, i) => (
+                                                <div key={i} style={{ marginBottom: '32px', paddingBottom: '32px', borderBottom: i === (data.about?.offices || []).length - 1 ? 'none' : '1px solid rgba(255,255,255,0.08)' }}>
+                                                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
+                                                        <span style={{ fontSize: '24px' }}>{office.flag}</span>
+                                                        <div>
+                                                            <div style={{ fontSize: '16px', fontWeight: '700', color: '#fff' }}>{office.country}</div>
+                                                            <div style={{ fontSize: '11px', color: '#10B981', fontWeight: '800', textTransform: 'uppercase' }}>{office.type} · {office.city}</div>
+                                                        </div>
+                                                    </div>
+                                                    <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                                                        <div style={{ display: 'flex', gap: '12px', fontSize: '13px', color: 'rgba(255,255,255,0.6)', lineHeight: '1.4' }}>
+                                                            <i className="fas fa-map-marker-alt" style={{ color: '#10B981', marginTop: '3px' }}></i>
+                                                            {office.address}
+                                                        </div>
+                                                        <div style={{ display: 'flex', gap: '12px', fontSize: '13px', color: 'rgba(255,255,255,0.6)' }}>
+                                                            <i className="fas fa-phone" style={{ color: '#10B981' }}></i>
+                                                            {office.phone}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </Col>
+                            </Row>
+                        </m.div>
+
+                        {/* FAQ Section */}
+                        <m.div
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true }}
+                            variants={fadeIn}
+                            className="mt-20"
+                        >
+                            <div className="text-center mb-5">
+                                <span className="enfono-section-label">Support</span>
+                                <h2 style={{ fontSize: '32px', fontWeight: '800', color: '#0F172A', fontFamily: 'Poppins, sans-serif' }}>Frequently Asked Questions</h2>
+                            </div>
                             <div style={{ maxWidth: '800px', margin: '0 auto' }}>
                                 {faqs.map((faq, i) => (
-                                    <div key={i} style={{ background: '#fff', borderRadius: '10px', border: '1px solid #E5E7EB', marginBottom: '12px', overflow: 'hidden' }}>
+                                    <div key={i} style={{ background: '#fff', borderRadius: '16px', border: '1px solid #E2E8F0', marginBottom: '16px', overflow: 'hidden', transition: 'all 0.3s ease' }}>
                                         <button
                                             onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                                            style={{ width: '100%', background: 'none', border: 'none', padding: '20px 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer', textAlign: 'left' }}
+                                            style={{ width: '100%', background: 'none', border: 'none', padding: '24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer', textAlign: 'left' }}
                                         >
-                                            <span style={{ fontSize: '15px', fontWeight: '600', color: '#1B3A5C' }}>{faq.q}</span>
-                                            <i className={`fas fa-chevron-${openFaq === i ? 'up' : 'down'}`} style={{ color: '#10B981', fontSize: '12px', flexShrink: 0, marginLeft: '16px' }}></i>
+                                            <span style={{ fontSize: '16px', fontWeight: '700', color: '#0F172A' }}>{faq.q}</span>
+                                            <div style={{ width: '32px', height: '32px', background: openFaq === i ? '#ECFDF5' : '#F8FAFC', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s' }}>
+                                                <i className={`fas fa-chevron-${openFaq === i ? 'up' : 'down'}`} style={{ color: openFaq === i ? '#10B981' : '#CBD5E1', fontSize: '12px' }}></i>
+                                            </div>
                                         </button>
                                         {openFaq === i && (
-                                            <div style={{ padding: '0 24px 20px', fontSize: '14px', lineHeight: '1.75', color: '#6B7280' }}>{faq.a}</div>
+                                            <m.div initial={{ height: 0 }} animate={{ height: 'auto' }} style={{ overflow: 'hidden' }}>
+                                                <div style={{ padding: '0 24px 24px', fontSize: '15px', lineHeight: '1.8', color: '#64748B' }}>{faq.a}</div>
+                                            </m.div>
                                         )}
                                     </div>
                                 ))}
