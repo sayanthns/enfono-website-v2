@@ -38,10 +38,10 @@ const StatCounter = ({ end, suffix, label }) => {
     const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.3 })
     return (
         <div ref={ref} className="text-center">
-            <div style={{ fontSize: '52px', fontWeight: '700', color: '#10B981', fontFamily: 'Poppins, sans-serif', lineHeight: 1 }}>
+            <div style={{ fontSize: '52px', fontWeight: '700', color: '#fff', fontFamily: 'Poppins, sans-serif', lineHeight: 1 }}>
                 {inView ? <CountUp end={end} duration={2.5} /> : '0'}{suffix}
             </div>
-            <div style={{ fontSize: '14px', color: 'rgba(255,255,255,0.7)', marginTop: '8px', fontWeight: '500' }}>{label}</div>
+            <div style={{ fontSize: '14px', color: 'rgba(255,255,255,0.85)', marginTop: '8px', fontWeight: '500' }}>{label}</div>
         </div>
     )
 }
