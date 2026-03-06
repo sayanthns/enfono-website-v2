@@ -295,6 +295,116 @@ const AdminCMS = () => {
                             </div>
                         </div>
 
+                        {/* Offices Management */}
+                        <div style={{ padding: '24px', background: '#f8fafc', borderRadius: '16px', border: '1px solid #e2e8f0', marginBottom: '24px' }}>
+                            <h4 style={{ fontSize: '16px', fontWeight: 700, marginBottom: '16px' }}>Our Offices</h4>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                                {(cmsData.about?.offices || []).map((office, idx) => (
+                                    <div key={idx} style={{ padding: '16px', background: '#fff', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
+                                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 120px', gap: '12px', marginBottom: '12px' }}>
+                                            <div>
+                                                <label style={{ fontSize: '11px', fontWeight: 600 }}>Country</label>
+                                                <input
+                                                    type="text"
+                                                    value={office.country}
+                                                    onChange={(e) => {
+                                                        const newOffices = [...cmsData.about.offices];
+                                                        newOffices[idx] = { ...newOffices[idx], country: e.target.value };
+                                                        setCmsData({ ...cmsData, about: { ...cmsData.about, offices: newOffices } });
+                                                    }}
+                                                    style={{ width: '100%', padding: '8px', border: '1px solid #e2e8f0', borderRadius: '6px' }}
+                                                />
+                                            </div>
+                                            <div>
+                                                <label style={{ fontSize: '11px', fontWeight: 600 }}>City</label>
+                                                <input
+                                                    type="text"
+                                                    value={office.city}
+                                                    onChange={(e) => {
+                                                        const newOffices = [...cmsData.about.offices];
+                                                        newOffices[idx] = { ...newOffices[idx], city: e.target.value };
+                                                        setCmsData({ ...cmsData, about: { ...cmsData.about, offices: newOffices } });
+                                                    }}
+                                                    style={{ width: '100%', padding: '8px', border: '1px solid #e2e8f0', borderRadius: '6px' }}
+                                                />
+                                            </div>
+                                            <div>
+                                                <label style={{ fontSize: '11px', fontWeight: 600 }}>Flag (Emoji)</label>
+                                                <input
+                                                    type="text"
+                                                    value={office.flag}
+                                                    onChange={(e) => {
+                                                        const newOffices = [...cmsData.about.offices];
+                                                        newOffices[idx] = { ...newOffices[idx], flag: e.target.value };
+                                                        setCmsData({ ...cmsData, about: { ...cmsData.about, offices: newOffices } });
+                                                    }}
+                                                    style={{ width: '100%', padding: '8px', border: '1px solid #e2e8f0', borderRadius: '6px' }}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div style={{ marginBottom: '12px' }}>
+                                            <label style={{ fontSize: '11px', fontWeight: 600 }}>Address</label>
+                                            <textarea
+                                                value={office.address}
+                                                onChange={(e) => {
+                                                    const newOffices = [...cmsData.about.offices];
+                                                    newOffices[idx] = { ...newOffices[idx], address: e.target.value };
+                                                    setCmsData({ ...cmsData, about: { ...cmsData.about, offices: newOffices } });
+                                                }}
+                                                style={{ width: '100%', padding: '8px', border: '1px solid #e2e8f0', borderRadius: '6px', minHeight: '60px' }}
+                                            />
+                                        </div>
+                                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '12px' }}>
+                                            <div>
+                                                <label style={{ fontSize: '11px', fontWeight: 600 }}>Phone</label>
+                                                <input
+                                                    type="text"
+                                                    value={office.phone}
+                                                    onChange={(e) => {
+                                                        const newOffices = [...cmsData.about.offices];
+                                                        newOffices[idx] = { ...newOffices[idx], phone: e.target.value };
+                                                        setCmsData({ ...cmsData, about: { ...cmsData.about, offices: newOffices } });
+                                                    }}
+                                                    style={{ width: '100%', padding: '8px', border: '1px solid #e2e8f0', borderRadius: '6px' }}
+                                                />
+                                            </div>
+                                            <div>
+                                                <label style={{ fontSize: '11px', fontWeight: 600 }}>Email</label>
+                                                <input
+                                                    type="text"
+                                                    value={office.email}
+                                                    onChange={(e) => {
+                                                        const newOffices = [...cmsData.about.offices];
+                                                        newOffices[idx] = { ...newOffices[idx], email: e.target.value };
+                                                        setCmsData({ ...cmsData, about: { ...cmsData.about, offices: newOffices } });
+                                                    }}
+                                                    style={{ width: '100%', padding: '8px', border: '1px solid #e2e8f0', borderRadius: '6px' }}
+                                                />
+                                            </div>
+                                        </div>
+                                        <button
+                                            onClick={() => {
+                                                const newOffices = cmsData.about.offices.filter((_, i) => i !== idx);
+                                                setCmsData({ ...cmsData, about: { ...cmsData.about, offices: newOffices } });
+                                            }}
+                                            style={{ background: 'none', border: 'none', color: '#ef4444', fontSize: '12px', cursor: 'pointer', padding: 0 }}
+                                        >
+                                            Remove Office
+                                        </button>
+                                    </div>
+                                ))}
+                                <button
+                                    onClick={() => {
+                                        const newOffice = { country: 'Country', city: 'City', flag: '🏳️', address: '', phone: '', email: '', type: 'Main' };
+                                        setCmsData({ ...cmsData, about: { ...cmsData.about, offices: [...(cmsData.about.offices || []), newOffice] } });
+                                    }}
+                                    style={{ padding: '10px', border: '2px dashed #e2e8f0', background: 'none', borderRadius: '8px', color: '#64748b', cursor: 'pointer', fontWeight: 600 }}
+                                >
+                                    + Add Office
+                                </button>
+                            </div>
+                        </div>
+
                         <button onClick={handleSave} className="admin-btn-primary">Save About Content</button>
                     </div>
                 )}

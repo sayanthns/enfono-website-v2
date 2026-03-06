@@ -1058,10 +1058,20 @@ export const initialCmsData = {
                 flag: '🇮🇳',
                 type: 'Development Hub',
                 city: 'Kochi, Kerala',
-                address: '2nd Floor, Suite No.598 Valamkottil Towers, Kakkanad, Kochi',
+                address: '2nd Floor, Suite 598, Valamkottil Towers, Kakkanad, Kochi - 682021',
                 phone: '+91 75939 22039',
                 email: 'contact@enfono.com',
                 color: '#0D9488'
+            },
+            {
+                country: 'India',
+                flag: '🇮🇳',
+                type: 'Support Center',
+                city: 'Calicut, Kerala',
+                address: 'Safar Arcade, Near Calicut International Airport, Kerala - 673638',
+                phone: '+91 75939 22039',
+                email: 'contact@enfono.com',
+                color: '#0f766e'
             }
         ]
     }

@@ -126,37 +126,24 @@ export default function EnfonoFooter({
             {/* Offices */}
             <div className="ef-col">
               <h4 className="ef-col-title">Our Offices</h4>
-              <div className="ef-office">
-                <div className="ef-office-badge">
-                  <i className="fas fa-building" />
-                  Saudi Arabia
+              {(cmsData.about.offices || []).map((office, idx) => (
+                <div className="ef-office" key={idx}>
+                  <div className="ef-office-badge">
+                    <i className="fas fa-building" />
+                    {office.country} {office.city && `— ${office.city}`}
+                  </div>
+                  <p>{office.address}</p>
                 </div>
-                <p>Sharafiyah, Jeddah, KSA</p>
-              </div>
-              <div className="ef-office">
-                <div className="ef-office-badge">
-                  <i className="fas fa-building" />
-                  India — Kochi
-                </div>
-                <p>2nd Floor, Suite 598, Valamkottil Towers, Kakkanad, Kochi - 682021</p>
-              </div>
-              <div className="ef-office">
-                <div className="ef-office-badge">
-                  <i className="fas fa-building" />
-                  India — Calicut
-                </div>
-                <p>Safar Arcade, Near Calicut International Airport, Kerala 673638</p>
-              </div>
+              ))}
               <div className="ef-contact-links">
-                <a href="mailto:contact@enfono.com">
-                  <i className="fas fa-envelope" /> contact@enfono.com
+                <a href={`mailto:${cmsData.about.offices?.[0]?.email || 'contact@enfono.com'}`}>
+                  <i className="fas fa-envelope" /> {cmsData.about.offices?.[0]?.email || 'contact@enfono.com'}
                 </a>
-                <a href="tel:+966573528619">
-                  <i className="fas fa-phone" /> +966 57 352 8619
-                </a>
-                <a href="tel:+917593922039">
-                  <i className="fas fa-phone" /> +91 75939 22039
-                </a>
+                {(cmsData.about.offices || []).slice(0, 2).map((office, idx) => (
+                  <a href={`tel:${office.phone.replace(/\s/g, '')}`} key={idx}>
+                    <i className="fas fa-phone" /> {office.phone}
+                  </a>
+                ))}
               </div>
             </div>
           </div>
