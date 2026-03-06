@@ -318,7 +318,7 @@ const EnfonoAbout = () => {
             </section>
 
             {/* Footer */}
-            <EnfonoFooter />
+            <EnfonoFooter hideCta={true} />
         </div>
     )
 }
