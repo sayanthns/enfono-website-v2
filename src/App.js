@@ -23,6 +23,9 @@ const EnfonoEvents = lazy(() => import("./Pages/Events/EnfonoEvents"));
 const EnfonoBlogs = lazy(() => import("./Pages/Blogs/EnfonoBlogs"));
 const BlogDetail = lazy(() => import("./Pages/Blogs/BlogDetail"));
 
+// ─── Enfono Components ─────────────────────────────────
+const EnfonoChatbot = lazy(() => import("./Components/EnfonoUI/EnfonoChatbot"));
+
 // ─── Admin Pages ───────────────────────────────────────
 const AdminLayout = lazy(() => import("./Components/Admin/AdminLayout"));
 const AdminLogin = lazy(() => import("./Pages/Admin/AdminLogin"));
@@ -150,6 +153,9 @@ function App() {
               {/* ── Catch All ── */}
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
+
+            {/* Global AI Chatbot */}
+            <EnfonoChatbot />
           </Suspense>
         </AnimatePresence>
       </div>

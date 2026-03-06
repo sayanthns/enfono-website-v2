@@ -85,7 +85,7 @@ const AdminCMS = () => {
                 <p>Manage the homepage sections and dynamic content</p>
 
                 <div className="admin-tabs" style={{ display: 'flex', gap: '8px', marginTop: '24px', borderBottom: '1px solid #e2e8f0', overflowX: 'auto' }}>
-                    {['hero', 'services_hero', 'ai_cta', 'stats', 'brands', 'careers', 'clients', 'testimonials', 'work', 'media', 'blogs', 'about', 'leads'].map(tab => (
+                    {['hero', 'services_hero', 'ai_cta', 'stats', 'brands', 'careers', 'clients', 'testimonials', 'work', 'media', 'blogs', 'about', 'leads', 'chatbot'].map(tab => (
                         <button
                             key={tab}
                             onClick={() => setActiveTab(tab)}
@@ -1382,6 +1382,64 @@ const AdminCMS = () => {
                     <button onClick={handleReset} style={{ background: 'none', border: 'none', color: '#ef4444', fontSize: '13px', cursor: 'pointer', opacity: 0.6 }}>Reset to factory settings</button>
                     <a href="/" target="_blank" rel="noopener noreferrer" style={{ color: '#10B981', fontSize: '13px', textDecoration: 'none' }}>Visit Website <i className="fas fa-external-link-alt" /></a>
                 </div>
+                {activeTab === 'chatbot' && (
+                    <div className="admin-content-card">
+                        <h3>AI Chatbot Settings</h3>
+                        <p style={{ color: '#64748b', marginBottom: '24px', fontSize: '14px' }}>
+                            Configure the AI Assistant that appears on your website.
+                            <br />
+                            <strong style={{ color: '#ef4444' }}>Warning:</strong> API keys are stored in your browser's local storage. This is suitable for demonstration purposes, but for a production environment, you should use a secure backend proxy to protect your keys.
+                        </p>
+
+                        <div style={{ padding: '24px', background: '#f8fafc', borderRadius: '16px', border: '1px solid #e2e8f0', marginBottom: '24px' }}>
+                            <div style={{ marginBottom: '20px' }}>
+                                <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, marginBottom: '8px' }}>AI Provider</label>
+                                <select
+                                    value={localStorage.getItem('enfono_chatbot_provider') || 'openai'}
+                                    onChange={(e) => {
+                                        localStorage.setItem('enfono_chatbot_provider', e.target.value);
+                                        setMessage('Provider updated!');
+                                        setTimeout(() => setMessage(''), 2000);
+                                    }}
+                                    style={{ width: '100%', padding: '12px', background: '#fff', border: '1px solid #e2e8f0', borderRadius: '8px' }}
+                                >
+                                    <option value="openai">OpenAI (GPT-4o Mini)</option>
+                                    <option value="claude">Claude (Claude 3.5 Sonnet)</option>
+                                </select>
+                            </div>
+
+                            <div style={{ marginBottom: '20px' }}>
+                                <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, marginBottom: '8px' }}>API Key</label>
+                                <input
+                                    type="password"
+                                    placeholder="sk-..."
+                                    value={localStorage.getItem('enfono_chatbot_api_key') || ''}
+                                    onChange={(e) => {
+                                        localStorage.setItem('enfono_chatbot_api_key', e.target.value);
+                                        // Trigger a re-render if needed, though local storage is immediate
+                                        setMessage('API Key saved!');
+                                        setTimeout(() => setMessage(''), 2000);
+                                    }}
+                                    style={{ width: '100%', padding: '12px', background: '#fff', border: '1px solid #e2e8f0', borderRadius: '8px' }}
+                                />
+                                <p style={{ fontSize: '11px', color: '#94a3b8', marginTop: '6px' }}>Your key is never sent to Enfono servers; it's used only for direct browser-to-AI-API calls.</p>
+                            </div>
+
+                            <div style={{ padding: '16px', background: 'rgba(16, 185, 129, 0.05)', borderRadius: '12px', border: '1px solid rgba(16, 185, 129, 0.1)' }}>
+                                <h4 style={{ fontSize: '14px', fontWeight: 700, color: '#065f46', marginBottom: '8px' }}>Intelligence Context</h4>
+                                <p style={{ fontSize: '13px', color: '#065f46', lineHeight: '1.5' }}>
+                                    The chatbot is automatically trained on your current CMS data, including:
+                                    <ul style={{ marginTop: '8px', paddingLeft: '20px' }}>
+                                        <li>About Enfono & Journey</li>
+                                        <li>Services & Expertise</li>
+                                        <li>Products & Case Studies</li>
+                                        <li>Office Locations</li>
+                                    </ul>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     );
