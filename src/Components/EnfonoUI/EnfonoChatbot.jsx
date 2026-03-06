@@ -120,103 +120,111 @@ const EnfonoChatbot = () => {
                 <AnimatePresence>
                     {isOpen && (
                         <m.div
-                            initial={{ opacity: 0, scale: 0.8, y: 20, transformOrigin: 'bottom right' }}
+                            initial={{ opacity: 0, scale: 0.9, y: 20, transformOrigin: 'bottom right' }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
-                            exit={{ opacity: 0, scale: 0.8, y: 20 }}
+                            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                            className="enfono-chat-mockup"
                             style={{
-                                width: '380px',
-                                height: '520px',
-                                background: '#fff',
-                                borderRadius: '24px',
-                                boxShadow: '0 20px 50px rgba(15, 23, 42, 0.15)',
-                                overflow: 'hidden',
-                                display: 'flex',
-                                flexDirection: 'column',
+                                width: '400px',
+                                height: '580px',
                                 marginBottom: '20px',
-                                border: '1px solid #F1F5F9'
+                                maxWidth: 'calc(100vw - 60px)',
+                                maxHeight: 'calc(100vh - 120px)'
                             }}
                         >
                             {/* Header */}
-                            <div style={{ background: 'var(--enfono-gradient)', padding: '24px', color: '#fff', position: 'relative' }}>
-                                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                                    <div style={{ width: '40px', height: '40px', background: 'rgba(255,255,255,0.2)', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                                        <i className="fas fa-robot" style={{ fontSize: '20px' }}></i>
+                            <div className="ecm-header">
+                                <div className="ecm-header-left">
+                                    <div className="ecm-avatar">
+                                        <i className="fas fa-robot"></i>
                                     </div>
                                     <div>
-                                        <div style={{ fontSize: '16px', fontWeight: '800', fontFamily: 'Poppins, sans-serif' }}>Enfono AI</div>
-                                        <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.8)', fontWeight: '600' }}>GCC ERP & AI Expert</div>
+                                        <div className="ecm-title">Enfono AI Assistant</div>
+                                        <div className="ecm-status">
+                                            <span className="dot"></span>
+                                            Connected to ERPNext
+                                        </div>
                                     </div>
                                 </div>
                                 <button
                                     onClick={() => setIsOpen(false)}
-                                    style={{ position: 'absolute', top: '24px', right: '20px', background: 'none', border: 'none', color: '#fff', cursor: 'pointer', opacity: 0.8 }}
+                                    className="ecm-menu"
+                                    style={{ background: 'none', border: 'none', fontSize: '18px' }}
+                                    aria-label="Close Chat"
                                 >
-                                    <i className="fas fa-times"></i>
+                                    <i className="fas fa-chevron-down"></i>
                                 </button>
                             </div>
 
-                            {/* Messages */}
-                            <div style={{ flex: 1, overflowY: 'auto', padding: '20px', display: 'flex', flexDirection: 'column', gap: '16px', background: '#F8FAFC' }}>
+                            {/* Body / Messages */}
+                            <div className="ecm-body" style={{ flex: 1 }}>
                                 {messages.map((m, i) => (
-                                    <div key={i} style={{
-                                        alignSelf: m.role === 'user' ? 'flex-end' : 'flex-start',
-                                        maxWidth: '85%',
-                                    }}>
-                                        <div style={{
-                                            background: m.role === 'user' ? '#10B981' : '#fff',
-                                            color: m.role === 'user' ? '#fff' : '#334155',
-                                            padding: '12px 16px',
-                                            borderRadius: m.role === 'user' ? '16px 16px 2px 16px' : '16px 16px 16px 2px',
-                                            fontSize: '14px',
-                                            lineHeight: '1.5',
-                                            boxShadow: m.role === 'user' ? '0 4px 12px rgba(16, 185, 129, 0.2)' : '0 2px 8px rgba(15, 23, 42, 0.04)',
-                                            border: m.role === 'user' ? 'none' : '1px solid #F1F5F9'
-                                        }}>
+                                    <div key={i} className={`ecm-message ${m.role === 'user' ? 'user' : 'ai'}`}>
+                                        {m.role === 'assistant' && (
+                                            <div className="ecm-avatar-small">
+                                                <i className="fas fa-robot"></i>
+                                            </div>
+                                        )}
+                                        <div className="ecm-bubble">
                                             {m.content}
                                         </div>
                                     </div>
                                 ))}
+
                                 {isTyping && (
-                                    <div style={{ alignSelf: 'flex-start', background: '#fff', padding: '12px 16px', borderRadius: '16px 16px 16px 2px', border: '1px solid #F1F5F9' }}>
-                                        <div style={{ display: 'flex', gap: '4px' }}>
-                                            <m.div animate={{ opacity: [0.3, 1, 0.3] }} transition={{ repeat: Infinity, duration: 1 }} style={{ width: '6px', height: '6px', background: '#10B981', borderRadius: '50%' }} />
-                                            <m.div animate={{ opacity: [0.3, 1, 0.3] }} transition={{ repeat: Infinity, duration: 1, delay: 0.2 }} style={{ width: '6px', height: '6px', background: '#10B981', borderRadius: '50%' }} />
-                                            <m.div animate={{ opacity: [0.3, 1, 0.3] }} transition={{ repeat: Infinity, duration: 1, delay: 0.4 }} style={{ width: '6px', height: '6px', background: '#10B981', borderRadius: '50%' }} />
+                                    <div className="ecm-message ai thinking">
+                                        <div className="ecm-avatar-small">
+                                            <i className="fas fa-robot"></i>
+                                        </div>
+                                        <div className="ecm-bubble">
+                                            <div className="typing-dot"></div>
+                                            <div className="typing-dot"></div>
+                                            <div className="typing-dot"></div>
                                         </div>
                                     </div>
                                 )}
-                                <div ref={messagesEndRef} />
-                            </div>
 
-                            {/* Footer / Input */}
-                            <div style={{ padding: '20px', background: '#fff', borderTop: '1px solid #F1F5F9' }}>
                                 {messages.length === 1 && (
-                                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '16px' }}>
+                                    <div className="ecm-actions" style={{ flexWrap: 'wrap' }}>
                                         {suggestions.map((s, i) => (
                                             <button
                                                 key={i}
                                                 onClick={() => { setInput(s); setTimeout(() => handleSend(), 100) }}
-                                                style={{ background: '#F1F5F9', border: 'none', padding: '6px 12px', borderRadius: '8px', fontSize: '11px', color: '#64748B', cursor: 'pointer', transition: 'all 0.2s' }}
-                                                onMouseEnter={e => e.currentTarget.style.background = '#E2E8F0'}
-                                                onMouseLeave={e => e.currentTarget.style.background = '#F1F5F9'}
+                                                className="ecm-action-btn"
+                                                style={{ fontSize: '12px', padding: '8px 12px' }}
                                             >
                                                 {s}
                                             </button>
                                         ))}
                                     </div>
                                 )}
-                                <form onSubmit={handleSend} style={{ display: 'flex', gap: '10px' }}>
+                                <div ref={messagesEndRef} />
+                            </div>
+
+                            {/* Footer / Input */}
+                            <div className="ecm-footer">
+                                <form onSubmit={handleSend} className="ecm-input-box">
+                                    <i className="fas fa-chart-line ecm-input-icon" />
                                     <input
                                         type="text"
                                         value={input}
                                         onChange={e => setInput(e.target.value)}
-                                        placeholder="Type your message..."
-                                        style={{ flex: 1, border: '1px solid #F1F5F9', background: '#F8FAFC', borderRadius: '12px', padding: '10px 16px', fontSize: '14px', outline: 'none' }}
+                                        placeholder="Ask Enfono AI about your business..."
+                                        style={{
+                                            flex: 1,
+                                            background: 'none',
+                                            border: 'none',
+                                            color: '#fff',
+                                            outline: 'none',
+                                            fontSize: '14px',
+                                            padding: '0'
+                                        }}
                                     />
                                     <button
                                         type="submit"
                                         disabled={!input.trim() || isTyping}
-                                        style={{ width: '42px', height: '42px', background: 'var(--enfono-gradient)', border: 'none', borderRadius: '12px', color: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: (!input.trim() || isTyping) ? 0.5 : 1 }}
+                                        className="ecm-send-btn"
+                                        style={{ opacity: (!input.trim() || isTyping) ? 0.5 : 1 }}
                                     >
                                         <i className="fas fa-paper-plane"></i>
                                     </button>
@@ -234,7 +242,7 @@ const EnfonoChatbot = () => {
                     style={{
                         width: '64px',
                         height: '64px',
-                        background: 'var(--enfono-gradient)',
+                        background: 'linear-gradient(135deg, #10B981, #059669)',
                         borderRadius: '20px',
                         border: 'none',
                         color: '#fff',
