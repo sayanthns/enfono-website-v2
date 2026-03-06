@@ -198,24 +198,48 @@ const EnfonoAbout = () => {
                             <m.h2 variants={fadeIn} className="enfono-section-title">Our Journey</m.h2>
                         </m.div>
                         <div style={{ position: 'relative' }}>
-                            <div style={{ position: 'absolute', left: '50%', top: 0, bottom: 0, width: '2px', background: '#E5E7EB', transform: 'translateX(-50%)' }} className="d-none d-md-block"></div>
+                            <div style={{ position: 'absolute', left: '50%', top: 0, bottom: 0, width: '2px', background: '#F1F5F9', transform: 'translateX(-50%)' }} className="d-none d-md-block"></div>
                             {data.journey.map((item, i) => (
-                                <m.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} style={{ marginBottom: '40px' }}>
+                                <m.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} style={{ marginBottom: '50px' }}>
                                     <Row className="align-items-center">
                                         <Col md={5} className={i % 2 === 0 ? 'text-md-end' : 'order-md-2'}>
                                             <div style={{
-                                                background: i % 2 === 0 ? 'var(--enfono-gradient)' : '#F8FAFC',
-                                                borderRadius: '12px',
-                                                padding: '28px 32px',
-                                                border: i % 2 !== 0 ? '1px solid #E5E7EB' : 'none'
+                                                background: '#fff',
+                                                borderRadius: '16px',
+                                                padding: '32px',
+                                                border: '1px solid #F1F5F9',
+                                                boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
+                                                position: 'relative'
                                             }}>
-                                                <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '2px', color: i % 2 === 0 ? '#10B981' : '#10B981', marginBottom: '8px' }}>{item.year}</div>
-                                                <h4 style={{ fontSize: '18px', fontWeight: '700', color: i % 2 === 0 ? '#fff' : '#111827', fontFamily: 'Poppins, sans-serif', marginBottom: '8px' }}>{item.title}</h4>
-                                                <p style={{ fontSize: '14px', lineHeight: '1.7', color: i % 2 === 0 ? 'rgba(255,255,255,0.8)' : '#4b5563', margin: 0 }}>{item.desc}</p>
+                                                <div style={{
+                                                    display: 'inline-block',
+                                                    fontSize: '11px',
+                                                    fontWeight: '800',
+                                                    letterSpacing: '1px',
+                                                    color: '#10B981',
+                                                    marginBottom: '12px',
+                                                    background: '#ecfdf5',
+                                                    padding: '4px 12px',
+                                                    borderRadius: '100px'
+                                                }}>{item.year}</div>
+                                                <h4 style={{ fontSize: '19px', fontWeight: '700', color: '#0F172A', fontFamily: 'Poppins, sans-serif', marginBottom: '10px' }}>{item.title}</h4>
+                                                <p style={{ fontSize: '14.5px', lineHeight: '1.75', color: '#64748B', margin: 0 }}>{item.desc}</p>
                                             </div>
                                         </Col>
-                                        <Col md={2} className="d-none d-md-flex justify-content-center">
-                                            <div style={{ width: '16px', height: '16px', background: '#10B981', borderRadius: '50%', border: '4px solid #fff', boxShadow: '0 0 0 4px #10B981' }}></div>
+                                        <Col md={2} className="d-none d-md-flex justify-content-center" style={{ position: 'relative', zIndex: 1 }}>
+                                            <div style={{
+                                                width: '24px',
+                                                height: '24px',
+                                                background: '#fff',
+                                                borderRadius: '50%',
+                                                border: '2px solid #10B981',
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                justifyContent: 'center',
+                                                boxShadow: '0 0 15px rgba(16,185,129,0.2)'
+                                            }}>
+                                                <div style={{ width: '8px', height: '8px', background: '#10B981', borderRadius: '50%' }}></div>
+                                            </div>
                                         </Col>
                                         <Col md={5} className={i % 2 === 0 ? '' : 'order-md-1'}></Col>
                                     </Row>
