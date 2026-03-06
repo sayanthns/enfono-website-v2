@@ -202,7 +202,7 @@ const EnfonoAbout = () => {
                             {/* The Timeline Line */}
                             <div style={{
                                 position: 'absolute',
-                                top: '150px',
+                                top: '120px',
                                 left: '0',
                                 right: '0',
                                 height: '2px',
@@ -214,7 +214,7 @@ const EnfonoAbout = () => {
                             <div style={{
                                 display: 'flex',
                                 overflowX: 'auto',
-                                padding: '40px 0 60px',
+                                padding: '30px 0 50px',
                                 gap: '30px',
                                 scrollbarWidth: 'none',
                                 msOverflowStyle: 'none'
@@ -229,9 +229,9 @@ const EnfonoAbout = () => {
                                         style={{ minWidth: '320px', position: 'relative', zIndex: 1 }}
                                     >
                                         {/* Year Marker */}
-                                        <div style={{ position: 'relative', height: '150px', display: 'flex', alignItems: 'center', justifyContent: 'center' }} className="d-none d-lg-flex">
+                                        <div style={{ position: 'relative', height: '120px', display: 'flex', alignItems: 'center', justifyContent: 'center' }} className="d-none d-lg-flex">
                                             <div style={{
-                                                fontSize: '80px',
+                                                fontSize: '70px',
                                                 fontWeight: '900',
                                                 color: '#F8FAFC',
                                                 position: 'absolute',
@@ -239,8 +239,8 @@ const EnfonoAbout = () => {
                                                 letterSpacing: '-2px'
                                             }}>{item.year}</div>
                                             <div style={{
-                                                width: '20px',
-                                                height: '20px',
+                                                width: '18px',
+                                                height: '18px',
                                                 background: '#fff',
                                                 borderRadius: '50%',
                                                 border: '3px solid #10B981',
@@ -253,10 +253,9 @@ const EnfonoAbout = () => {
                                         <div style={{
                                             background: '#fff',
                                             borderRadius: '20px',
-                                            padding: '30px',
+                                            padding: '24px 28px',
                                             border: '1px solid #F1F5F9',
                                             boxShadow: '0 10px 30px -5px rgba(0,0,0,0.03)',
-                                            height: '100%',
                                             transition: 'all 0.3s ease',
                                             cursor: 'default'
                                         }}
@@ -280,8 +279,8 @@ const EnfonoAbout = () => {
                                                 fontWeight: '800',
                                                 marginBottom: '15px'
                                             }}>{item.year}</div>
-                                            <h4 style={{ fontSize: '18px', fontWeight: '800', color: '#0F172A', fontFamily: 'Poppins, sans-serif', marginBottom: '12px' }}>{item.title}</h4>
-                                            <p style={{ fontSize: '14px', lineHeight: '1.7', color: '#64748B', margin: 0 }}>{item.desc}</p>
+                                            <h4 style={{ fontSize: '18px', fontWeight: '800', color: '#0F172A', fontFamily: 'Poppins, sans-serif', marginBottom: '10px' }}>{item.title}</h4>
+                                            <p style={{ fontSize: '14px', lineHeight: '1.6', color: '#64748B', margin: 0 }}>{item.desc}</p>
                                         </div>
                                     </m.div>
                                 ))}
