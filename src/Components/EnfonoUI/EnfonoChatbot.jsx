@@ -119,6 +119,7 @@ const EnfonoChatbot = () => {
 
         const apiKey = localStorage.getItem('enfono_chatbot_api_key');
         const apiProvider = localStorage.getItem('enfono_chatbot_provider') || 'openai';
+        const customTraining = localStorage.getItem('enfono_chatbot_training') || '';
 
         if (!apiKey) {
             setTimeout(() => {
@@ -138,6 +139,7 @@ const EnfonoChatbot = () => {
             - Offices: ${initialCmsData.about.offices.map(o => o.country + " (" + o.city + ")").join(', ')}
             - Our Journey: ${initialCmsData.about.journey.map(j => j.year + ": " + j.title).join(', ')}
             - Notable Projects: ${initialCmsData.our_work.slice(0, 5).map(w => w.title).join(', ')}
+            ${customTraining ? `\n\nAdditional Knowledge (use this as a priority source):\n${customTraining}` : ''}
             
             Guidelines:
             - Be professional, helpful, and concise.
