@@ -189,65 +189,113 @@ const EnfonoAbout = () => {
                 </Container>
             </section>
 
-            {/* Our Journey Timeline */}
-            <section style={{ background: '#fff', padding: '80px 0' }}>
+            {/* Our Journey Timeline - Horizontal Experience */}
+            <section style={{ background: '#fff', padding: '100px 0', overflow: 'hidden' }}>
                 <Container>
                     <LazyMotion features={domAnimation}>
                         <m.div className="text-center mb-12" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}>
-                            <m.span variants={fadeIn} className="enfono-section-label">Our Growth Story</m.span>
+                            <m.span variants={fadeIn} className="enfono-section-label">The Enfono Story</m.span>
                             <m.h2 variants={fadeIn} className="enfono-section-title">Our Journey</m.h2>
                         </m.div>
-                        <div style={{ position: 'relative' }}>
-                            <div style={{ position: 'absolute', left: '50%', top: 0, bottom: 0, width: '2px', background: '#F1F5F9', transform: 'translateX(-50%)' }} className="d-none d-md-block"></div>
-                            {data.journey.map((item, i) => (
-                                <m.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} style={{ marginBottom: '50px' }}>
-                                    <Row className="align-items-center">
-                                        <Col md={5} className={i % 2 === 0 ? 'text-md-end' : 'order-md-2'}>
+
+                        <div className="enfono-journey-container" style={{ position: 'relative', marginTop: '40px' }}>
+                            {/* The Timeline Line */}
+                            <div style={{
+                                position: 'absolute',
+                                top: '150px',
+                                left: '0',
+                                right: '0',
+                                height: '2px',
+                                background: 'linear-gradient(90deg, transparent 0%, #F1F5F9 15%, #F1F5F9 85%, transparent 100%)',
+                                zIndex: 0
+                            }} className="d-none d-lg-block"></div>
+
+                            {/* Scrollable Area */}
+                            <div style={{
+                                display: 'flex',
+                                overflowX: 'auto',
+                                padding: '40px 0 60px',
+                                gap: '30px',
+                                scrollbarWidth: 'none',
+                                msOverflowStyle: 'none'
+                            }} className="journey-scrollbar-hide">
+                                {data.journey.map((item, i) => (
+                                    <m.div
+                                        key={i}
+                                        initial={{ opacity: 0, x: 50 }}
+                                        whileInView={{ opacity: 1, x: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ duration: 0.6, delay: i * 0.1 }}
+                                        style={{ minWidth: '320px', position: 'relative', zIndex: 1 }}
+                                    >
+                                        {/* Year Marker */}
+                                        <div style={{ position: 'relative', height: '150px', display: 'flex', alignItems: 'center', justifyContent: 'center' }} className="d-none d-lg-flex">
                                             <div style={{
-                                                background: '#fff',
-                                                borderRadius: '16px',
-                                                padding: '32px',
-                                                border: '1px solid #F1F5F9',
-                                                boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03)',
-                                                position: 'relative'
-                                            }}>
-                                                <div style={{
-                                                    display: 'inline-block',
-                                                    fontSize: '11px',
-                                                    fontWeight: '800',
-                                                    letterSpacing: '1px',
-                                                    color: '#10B981',
-                                                    marginBottom: '12px',
-                                                    background: '#ecfdf5',
-                                                    padding: '4px 12px',
-                                                    borderRadius: '100px'
-                                                }}>{item.year}</div>
-                                                <h4 style={{ fontSize: '19px', fontWeight: '700', color: '#0F172A', fontFamily: 'Poppins, sans-serif', marginBottom: '10px' }}>{item.title}</h4>
-                                                <p style={{ fontSize: '14.5px', lineHeight: '1.75', color: '#64748B', margin: 0 }}>{item.desc}</p>
-                                            </div>
-                                        </Col>
-                                        <Col md={2} className="d-none d-md-flex justify-content-center" style={{ position: 'relative', zIndex: 1 }}>
+                                                fontSize: '80px',
+                                                fontWeight: '900',
+                                                color: '#F8FAFC',
+                                                position: 'absolute',
+                                                zIndex: -1,
+                                                letterSpacing: '-2px'
+                                            }}>{item.year}</div>
                                             <div style={{
-                                                width: '24px',
-                                                height: '24px',
+                                                width: '20px',
+                                                height: '20px',
                                                 background: '#fff',
                                                 borderRadius: '50%',
-                                                border: '2px solid #10B981',
-                                                display: 'flex',
-                                                alignItems: 'center',
-                                                justifyContent: 'center',
-                                                boxShadow: '0 0 15px rgba(16,185,129,0.2)'
+                                                border: '3px solid #10B981',
+                                                boxShadow: '0 0 15px rgba(16,185,129,0.3)',
+                                                zIndex: 2
+                                            }}></div>
+                                        </div>
+
+                                        {/* Card */}
+                                        <div style={{
+                                            background: '#fff',
+                                            borderRadius: '20px',
+                                            padding: '30px',
+                                            border: '1px solid #F1F5F9',
+                                            boxShadow: '0 10px 30px -5px rgba(0,0,0,0.03)',
+                                            height: '100%',
+                                            transition: 'all 0.3s ease',
+                                            cursor: 'default'
+                                        }}
+                                            onMouseEnter={e => {
+                                                e.currentTarget.style.transform = 'translateY(-10px)';
+                                                e.currentTarget.style.boxShadow = '0 20px 40px -10px rgba(16,185,129,0.08)';
+                                                e.currentTarget.style.borderColor = '#E2E8F0';
+                                            }}
+                                            onMouseLeave={e => {
+                                                e.currentTarget.style.transform = 'none';
+                                                e.currentTarget.style.boxShadow = '0 10px 30px -5px rgba(0,0,0,0.03)';
+                                                e.currentTarget.style.borderColor = '#F1F5F9';
                                             }}>
-                                                <div style={{ width: '8px', height: '8px', background: '#10B981', borderRadius: '50%' }}></div>
-                                            </div>
-                                        </Col>
-                                        <Col md={5} className={i % 2 === 0 ? '' : 'order-md-1'}></Col>
-                                    </Row>
-                                </m.div>
-                            ))}
+                                            <div className="d-lg-none" style={{
+                                                display: 'inline-block',
+                                                background: '#ecfdf5',
+                                                color: '#10B981',
+                                                padding: '4px 12px',
+                                                borderRadius: '100px',
+                                                fontSize: '12px',
+                                                fontWeight: '800',
+                                                marginBottom: '15px'
+                                            }}>{item.year}</div>
+                                            <h4 style={{ fontSize: '18px', fontWeight: '800', color: '#0F172A', fontFamily: 'Poppins, sans-serif', marginBottom: '12px' }}>{item.title}</h4>
+                                            <p style={{ fontSize: '14px', lineHeight: '1.7', color: '#64748B', margin: 0 }}>{item.desc}</p>
+                                        </div>
+                                    </m.div>
+                                ))}
+                            </div>
                         </div>
                     </LazyMotion>
                 </Container>
+                <style>{`
+                    .journey-scrollbar-hide::-webkit-scrollbar { display: none; }
+                    @media (max-width: 991px) {
+                        .journey-scrollbar-hide { flex-direction: column; padding: 20px; gap: 20px; }
+                        .enfono-journey-container { border-left: 2px solid #F1F5F9; padding-left: 20px; margin-left: 10px; }
+                    }
+                `}</style>
             </section>
 
             {/* Team Section */}
