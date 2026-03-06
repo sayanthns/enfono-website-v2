@@ -53,9 +53,9 @@ export default function EnfonoBrands() {
             <div className="enfono-stats-inner">
               {[
                 { num: brands.length.toString(), suffix: '', label: 'Product Brands' },
-                { num: '500', suffix: '+', label: 'Active Users' },
+                { num: '120', suffix: '+', label: 'Projects Delivered' },
                 { num: '3', suffix: '', label: 'GCC Countries' },
-                { num: '2026', suffix: '', label: 'Est. Year' },
+                { num: '2019', suffix: '', label: 'Est. Year' },
               ].map(s => (
                 <div key={s.label} className="enfono-stat-cell">
                   <div className="estat-num">{s.num}<span>{s.suffix}</span></div>
@@ -176,7 +176,7 @@ export default function EnfonoBrands() {
                 <h2>Interested in Our Products?</h2>
                 <p>Contact us for a demo or to learn how our products can integrate with your ERP.</p>
               </div>
-              <div className="e-cta-actions">
+              <div className="e-cta-actions" style={{ flexDirection: 'column', alignItems: 'flex-end', gap: '12px' }}>
                 <Link to="/contact" className="ecta-btn-white"><i className="fas fa-calendar-check" /> Request a Demo</Link>
                 <Link to="/tools" className="ecta-btn-outline">Try Free Tools</Link>
               </div>

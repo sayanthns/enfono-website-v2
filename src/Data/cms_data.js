@@ -960,7 +960,7 @@ export const initialCmsData = {
             tag: 'ZATCA Compliance',
             headline: 'ZATCA-Compliant e-Invoicing Made Simple',
             desc: 'Generate, validate, and submit ZATCA Phase 2-compliant e-invoices instantly. Built for Saudi businesses of all sizes with seamless ERPNext integration.',
-            features: ['Phase 1 & 2 compliant', 'QR code generation', 'ERPNext integration'],
+            features: ['Phase 1 & 2 compliant', 'Sales & POS', 'Inventory Management', 'Financial Accounting', 'Procurement & Purchasing', 'CRM & Customer Management'],
             color: '#10B981',
             status: 'Available',
             link: '#'
@@ -997,7 +997,7 @@ export const initialCmsData = {
             headline: 'AI-Powered Business Intelligence for ERPNext',
             desc: 'Turn your ERPNext data into actionable insights with predictive dashboards, natural language queries, and automated anomaly detection.',
             features: ['Predictive analytics', 'Natural language reports', 'Custom KPI dashboards'],
-            color: '#3B82F6',
+            color: '#10B981',
             status: 'Available',
             link: '#'
         }
