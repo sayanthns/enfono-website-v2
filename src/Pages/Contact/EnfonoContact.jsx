@@ -7,13 +7,10 @@ import * as Yup from 'yup'
 import EnfonoHeader from '../../Components/EnfonoUI/EnfonoHeader'
 import EnfonoFooter from '../../Components/EnfonoUI/EnfonoFooter'
 
+import { initialCmsData } from '../../Data/cms_data'
+
 const fadeIn = { hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }
 const fadeInLeft = { hidden: { opacity: 0, x: -40 }, visible: { opacity: 1, x: 0, transition: { duration: 0.7 } } }
-
-const offices = [
-    { country: 'Saudi Arabia', flag: '🇸🇦', type: 'HQ', city: 'Riyadh', address: 'King Fahd Road, Riyadh, KSA', phone: '+966 XX XXX XXXX', email: 'ksa@enfono.com', whatsapp: '+966XXXXXXXXX', color: '#1B3A5C' },
-    { country: 'India', flag: '🇮🇳', type: 'Dev Hub', city: 'Kerala', address: 'Technopark, Trivandrum, Kerala', phone: '+91 XXXXX XXXXX', email: 'india@enfono.com', whatsapp: '+91XXXXXXXXXX', color: '#0D9488' },
-]
 
 const faqs = [
     { q: 'How long does an ERPNext implementation take?', a: 'Typical implementations range from 3-8 months depending on scope, number of modules, and organizational complexity. We provide a detailed timeline after the discovery phase.' },
@@ -29,12 +26,13 @@ const contactSchema = Yup.object().shape({
     phone: Yup.string().required('Phone is required'),
     company: Yup.string().required('Company name is required'),
     service: Yup.string().required('Please select a service'),
-    message: Yup.string().min(20, 'Please provide more detail').required('Message is required'),
+    message: Yup.string().min(10, 'Please provide more detail').required('Message is required'),
 })
 
 const EnfonoContact = () => {
     const [submitted, setSubmitted] = useState(false)
     const [openFaq, setOpenFaq] = useState(null)
+    const data = initialCmsData;
 
     return (
         <div style={{ fontFamily: 'Inter, sans-serif' }}>
@@ -73,7 +71,20 @@ const EnfonoContact = () => {
                                                 initialValues={{ name: '', email: '', phone: '', company: '', service: '', country: 'Saudi Arabia', message: '' }}
                                                 validationSchema={contactSchema}
                                                 onSubmit={(values, { setSubmitting }) => {
-                                                    setTimeout(() => { setSubmitting(false); setSubmitted(true) }, 1000)
+                                                    // Save to leads in localStorage
+                                                    const existingLeads = JSON.parse(localStorage.getItem('enfono_leads') || '[]');
+                                                    const newLead = {
+                                                        ...values,
+                                                        id: Date.now(),
+                                                        date: new Date().toLocaleString(),
+                                                        status: 'New'
+                                                    };
+                                                    localStorage.setItem('enfono_leads', JSON.stringify([newLead, ...existingLeads]));
+
+                                                    setTimeout(() => {
+                                                        setSubmitting(false);
+                                                        setSubmitted(true)
+                                                    }, 1000)
                                                 }}
                                             >
                                                 {({ isSubmitting, errors, touched }) => (
@@ -154,8 +165,8 @@ const EnfonoContact = () => {
                                             { icon: 'fas fa-check-circle', text: 'No commitment required' },
                                         ].map((item, i) => (
                                             <div key={i} style={{ display: 'flex', gap: '14px', alignItems: 'center', marginBottom: '14px' }}>
-                                                <div style={{ width: '36px', height: '36px', background: 'rgba(196, 147, 63, 0.2)', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                                                    <i className={item.icon} style={{ color: '#C4933F', fontSize: '14px' }}></i>
+                                                <div style={{ width: '36px', height: '36px', background: 'rgba(255, 255, 255, 0.1)', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                                                    <i className={item.icon} style={{ color: '#fff', fontSize: '14px' }}></i>
                                                 </div>
                                                 <span style={{ fontSize: '14px', color: 'rgba(255,255,255,0.8)' }}>{item.text}</span>
                                             </div>
@@ -163,12 +174,12 @@ const EnfonoContact = () => {
                                     </div>
 
                                     {/* Offices */}
-                                    {offices.map((office, i) => (
+                                    {(data.about?.offices || []).map((office, i) => (
                                         <div key={i} style={{ background: '#fff', borderRadius: '12px', padding: '24px', border: '1px solid #E5E7EB', marginBottom: '16px' }}>
                                             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
                                                 <span style={{ fontSize: '28px' }}>{office.flag}</span>
                                                 <div>
-                                                    <div style={{ fontSize: '16px', fontWeight: '700', color: office.color, fontFamily: 'Poppins, sans-serif' }}>{office.country}</div>
+                                                    <div style={{ fontSize: '16px', fontWeight: '700', color: '#1B3A5C', fontFamily: 'Poppins, sans-serif' }}>{office.country}</div>
                                                     <div style={{ fontSize: '12px', color: '#9CA3AF', fontWeight: '600' }}>{office.type} · {office.city}</div>
                                                 </div>
                                             </div>
@@ -178,7 +189,7 @@ const EnfonoContact = () => {
                                                 { icon: 'fas fa-envelope', text: office.email },
                                             ].map((item, j) => (
                                                 <div key={j} style={{ display: 'flex', gap: '10px', alignItems: 'center', fontSize: '13px', color: '#374151', marginBottom: '8px' }}>
-                                                    <i className={item.icon} style={{ color: '#C4933F', width: '14px' }}></i>
+                                                    <i className={item.icon} style={{ color: '#10B981', width: '14px' }}></i>
                                                     {item.text}
                                                 </div>
                                             ))}
@@ -199,7 +210,7 @@ const EnfonoContact = () => {
                                             style={{ width: '100%', background: 'none', border: 'none', padding: '20px 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer', textAlign: 'left' }}
                                         >
                                             <span style={{ fontSize: '15px', fontWeight: '600', color: '#1B3A5C' }}>{faq.q}</span>
-                                            <i className={`fas fa-chevron-${openFaq === i ? 'up' : 'down'}`} style={{ color: '#C4933F', fontSize: '12px', flexShrink: 0, marginLeft: '16px' }}></i>
+                                            <i className={`fas fa-chevron-${openFaq === i ? 'up' : 'down'}`} style={{ color: '#10B981', fontSize: '12px', flexShrink: 0, marginLeft: '16px' }}></i>
                                         </button>
                                         {openFaq === i && (
                                             <div style={{ padding: '0 24px 20px', fontSize: '14px', lineHeight: '1.75', color: '#6B7280' }}>{faq.a}</div>

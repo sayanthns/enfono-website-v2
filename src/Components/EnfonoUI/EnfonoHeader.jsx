@@ -24,6 +24,7 @@ const navLinks = [
   { label: 'Our Brands', path: '/brands' },
   { label: 'Careers', path: '/careers' },
   { label: 'About', path: '/about' },
+  { label: 'Contact', path: '/contact' },
 ]
 
 export default function EnfonoHeader() {

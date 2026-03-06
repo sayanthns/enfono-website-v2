@@ -5,6 +5,12 @@ const AdminCMS = () => {
     const [cmsData, setCmsData] = useState(initialCmsData);
     const [activeTab, setActiveTab] = useState('hero');
     const [message, setMessage] = useState('');
+    const [leads, setLeads] = useState([]);
+
+    useEffect(() => {
+        const storedLeads = localStorage.getItem('enfono_leads');
+        if (storedLeads) setLeads(JSON.parse(storedLeads));
+    }, [activeTab]);
 
     useEffect(() => {
         const saved = localStorage.getItem('enfono_cms_data');
@@ -79,7 +85,7 @@ const AdminCMS = () => {
                 <p>Manage the homepage sections and dynamic content</p>
 
                 <div className="admin-tabs" style={{ display: 'flex', gap: '8px', marginTop: '24px', borderBottom: '1px solid #e2e8f0', overflowX: 'auto' }}>
-                    {['hero', 'services_hero', 'ai_cta', 'stats', 'brands', 'careers', 'clients', 'testimonials', 'work', 'media', 'blogs', 'about'].map(tab => (
+                    {['hero', 'services_hero', 'ai_cta', 'stats', 'brands', 'careers', 'clients', 'testimonials', 'work', 'media', 'blogs', 'about', 'leads'].map(tab => (
                         <button
                             key={tab}
                             onClick={() => setActiveTab(tab)}
@@ -1300,6 +1306,72 @@ const AdminCMS = () => {
                             </button>
 
                             <button onClick={handleSave} className="admin-btn-primary">Save All Blogs</button>
+                        </div>
+                    )}
+
+                    {activeTab === 'leads' && (
+                        <div className="admin-content-card">
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
+                                <div>
+                                    <h3>Contact Form Leads</h3>
+                                    <p style={{ color: '#64748b', fontSize: '14px', margin: 0 }}>View and manage business consultations and inquiries.</p>
+                                </div>
+                                <button
+                                    onClick={() => {
+                                        if (window.confirm('Are you sure you want to clear all leads?')) {
+                                            localStorage.removeItem('enfono_leads');
+                                            setLeads([]);
+                                        }
+                                    }}
+                                    style={{ background: 'rgba(239,68,68,0.1)', color: '#ef4444', border: 'none', padding: '8px 16px', borderRadius: '6px', cursor: 'pointer', fontSize: '13px', fontWeight: 600 }}
+                                >
+                                    Clear All Leads
+                                </button>
+                            </div>
+
+                            <div style={{ overflowX: 'auto', background: '#fff', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
+                                <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '13px' }}>
+                                    <thead style={{ background: '#f8fafc', borderBottom: '1px solid #e2e8f0' }}>
+                                        <tr>
+                                            <th style={{ padding: '16px', textAlign: 'left', color: '#64748b', fontWeight: 600 }}>Date</th>
+                                            <th style={{ padding: '16px', textAlign: 'left', color: '#64748b', fontWeight: 600 }}>Name / Company</th>
+                                            <th style={{ padding: '16px', textAlign: 'left', color: '#64748b', fontWeight: 600 }}>Service</th>
+                                            <th style={{ padding: '16px', textAlign: 'left', color: '#64748b', fontWeight: 600 }}>Contact Info</th>
+                                            <th style={{ padding: '16px', textAlign: 'left', color: '#64748b', fontWeight: 600 }}>Message</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {leads.length > 0 ? leads.map((lead, i) => (
+                                            <tr key={lead.id || i} style={{ borderBottom: i === leads.length - 1 ? 'none' : '1px solid #e2e8f0' }}>
+                                                <td style={{ padding: '16px', whiteSpace: 'nowrap', color: '#64748b' }}>{lead.date}</td>
+                                                <td style={{ padding: '16px' }}>
+                                                    <div style={{ fontWeight: 700, color: '#0f172a' }}>{lead.name}</div>
+                                                    <div style={{ fontSize: '12px', color: '#64748b' }}>{lead.company}</div>
+                                                </td>
+                                                <td style={{ padding: '16px' }}>
+                                                    <span style={{ padding: '4px 10px', background: '#ecfdf5', color: '#10b981', borderRadius: '100px', fontSize: '11px', fontWeight: 700, textTransform: 'uppercase' }}>
+                                                        {lead.service}
+                                                    </span>
+                                                </td>
+                                                <td style={{ padding: '16px' }}>
+                                                    <div style={{ fontWeight: 500, color: '#0f172a' }}>{lead.email}</div>
+                                                    <div style={{ color: '#64748b', fontSize: '11px' }}>{lead.phone}</div>
+                                                </td>
+                                                <td style={{ padding: '16px', maxWidth: '300px' }}>
+                                                    <div style={{ fontSize: '13px', color: '#475569', lineHeight: '1.5' }}>{lead.message}</div>
+                                                </td>
+                                            </tr>
+                                        )) : (
+                                            <tr>
+                                                <td colSpan="5" style={{ padding: '60px', textAlign: 'center', color: '#94a3b8' }}>
+                                                    <div style={{ fontSize: '24px', marginBottom: '12px' }}><i className="fas fa-inbox" /></div>
+                                                    <div>No inquiry leads collected yet.</div>
+                                                </td>
+                                            </tr>
+                                        )}
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     )}
                 </div>
