@@ -79,7 +79,7 @@ const AdminCMS = () => {
                 <p>Manage the homepage sections and dynamic content</p>
 
                 <div className="admin-tabs" style={{ display: 'flex', gap: '8px', marginTop: '24px', borderBottom: '1px solid #e2e8f0', overflowX: 'auto' }}>
-                    {['hero', 'services_hero', 'ai_cta', 'stats', 'brands', 'careers', 'clients', 'testimonials', 'work', 'media', 'blogs'].map(tab => (
+                    {['hero', 'services_hero', 'ai_cta', 'stats', 'brands', 'careers', 'clients', 'testimonials', 'work', 'media', 'blogs', 'about'].map(tab => (
                         <button
                             key={tab}
                             onClick={() => setActiveTab(tab)}
@@ -104,7 +104,202 @@ const AdminCMS = () => {
             </div>
 
             <div className="admin-main-content" style={{ marginTop: '24px' }}>
-                {activeTab === 'brands' && (
+                {activeTab === 'about' && (
+                    <div className="admin-content-card">
+                        <h3>About Page Content</h3>
+                        <p style={{ color: '#64748b', marginBottom: '24px', fontSize: '14px' }}>Manage the team members, journey timeline, and office details.</p>
+
+                        {/* Who We Are */}
+                        <div style={{ padding: '24px', background: '#f8fafc', borderRadius: '16px', border: '1px solid #e2e8f0', marginBottom: '24px' }}>
+                            <h4 style={{ fontSize: '16px', fontWeight: 700, marginBottom: '16px' }}>Section: Who We Are</h4>
+                            <div style={{ marginBottom: '16px' }}>
+                                <label style={{ fontSize: '12px', fontWeight: 600 }}>Heading</label>
+                                <input
+                                    type="text"
+                                    value={cmsData.about?.who_we_are?.heading || ''}
+                                    onChange={(e) => setCmsData({
+                                        ...cmsData,
+                                        about: {
+                                            ...cmsData.about,
+                                            who_we_are: { ...cmsData.about.who_we_are, heading: e.target.value }
+                                        }
+                                    })}
+                                    style={{ width: '100%', padding: '10px', background: '#fff', border: '1px solid #e2e8f0', borderRadius: '8px' }}
+                                />
+                            </div>
+                            <div>
+                                <label style={{ fontSize: '12px', fontWeight: 600 }}>Subtext</label>
+                                <textarea
+                                    value={cmsData.about?.who_we_are?.subtext || ''}
+                                    onChange={(e) => setCmsData({
+                                        ...cmsData,
+                                        about: {
+                                            ...cmsData.about,
+                                            who_we_are: { ...cmsData.about.who_we_are, subtext: e.target.value }
+                                        }
+                                    })}
+                                    style={{ width: '100%', padding: '10px', background: '#fff', border: '1px solid #e2e8f0', borderRadius: '8px', minHeight: '80px' }}
+                                />
+                            </div>
+                        </div>
+
+                        {/* Team Management */}
+                        <div style={{ padding: '24px', background: '#f8fafc', borderRadius: '16px', border: '1px solid #e2e8f0', marginBottom: '24px' }}>
+                            <h4 style={{ fontSize: '16px', fontWeight: 700, marginBottom: '16px' }}>Leadership Team</h4>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                                {(cmsData.about?.team || []).map((member, idx) => (
+                                    <div key={idx} style={{ padding: '16px', background: '#fff', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
+                                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 80px', gap: '12px', marginBottom: '12px' }}>
+                                            <div>
+                                                <label style={{ fontSize: '11px', fontWeight: 600 }}>Name</label>
+                                                <input
+                                                    type="text"
+                                                    value={member.name}
+                                                    onChange={(e) => {
+                                                        const newTeam = [...cmsData.about.team];
+                                                        newTeam[idx] = { ...newTeam[idx], name: e.target.value };
+                                                        setCmsData({ ...cmsData, about: { ...cmsData.about, team: newTeam } });
+                                                    }}
+                                                    style={{ width: '100%', padding: '8px', border: '1px solid #e2e8f0', borderRadius: '6px' }}
+                                                />
+                                            </div>
+                                            <div>
+                                                <label style={{ fontSize: '11px', fontWeight: 600 }}>Role</label>
+                                                <input
+                                                    type="text"
+                                                    value={member.role}
+                                                    onChange={(e) => {
+                                                        const newTeam = [...cmsData.about.team];
+                                                        newTeam[idx] = { ...newTeam[idx], role: e.target.value };
+                                                        setCmsData({ ...cmsData, about: { ...cmsData.about, team: newTeam } });
+                                                    }}
+                                                    style={{ width: '100%', padding: '8px', border: '1px solid #e2e8f0', borderRadius: '6px' }}
+                                                />
+                                            </div>
+                                            <div>
+                                                <label style={{ fontSize: '11px', fontWeight: 600 }}>Initials</label>
+                                                <input
+                                                    type="text"
+                                                    value={member.initials}
+                                                    onChange={(e) => {
+                                                        const newTeam = [...cmsData.about.team];
+                                                        newTeam[idx] = { ...newTeam[idx], initials: e.target.value };
+                                                        setCmsData({ ...cmsData, about: { ...cmsData.about, team: newTeam } });
+                                                    }}
+                                                    style={{ width: '100%', padding: '8px', border: '1px solid #e2e8f0', borderRadius: '6px' }}
+                                                />
+                                            </div>
+                                            <div>
+                                                <label style={{ fontSize: '11px', fontWeight: 600 }}>Order</label>
+                                                <input
+                                                    type="number"
+                                                    value={member.order}
+                                                    onChange={(e) => {
+                                                        const newTeam = [...cmsData.about.team];
+                                                        newTeam[idx] = { ...newTeam[idx], order: parseInt(e.target.value) || 0 };
+                                                        setCmsData({ ...cmsData, about: { ...cmsData.about, team: newTeam } });
+                                                    }}
+                                                    style={{ width: '100%', padding: '8px', border: '1px solid #e2e8f0', borderRadius: '6px' }}
+                                                />
+                                            </div>
+                                        </div>
+                                        <button
+                                            onClick={() => {
+                                                const newTeam = cmsData.about.team.filter((_, i) => i !== idx);
+                                                setCmsData({ ...cmsData, about: { ...cmsData.about, team: newTeam } });
+                                            }}
+                                            style={{ background: 'none', border: 'none', color: '#ef4444', fontSize: '12px', cursor: 'pointer', padding: 0 }}
+                                        >
+                                            Remove Member
+                                        </button>
+                                    </div>
+                                ))}
+                                <button
+                                    onClick={() => {
+                                        const newMember = { id: Date.now(), name: 'New Member', role: 'Position', order: (cmsData.about.team?.length || 0) + 1, initials: 'NM' };
+                                        setCmsData({ ...cmsData, about: { ...cmsData.about, team: [...(cmsData.about.team || []), newMember] } });
+                                    }}
+                                    style={{ padding: '10px', border: '2px dashed #e2e8f0', background: 'none', borderRadius: '8px', color: '#64748b', cursor: 'pointer', fontWeight: 600 }}
+                                >
+                                    + Add Team Member
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* Journey Management */}
+                        <div style={{ padding: '24px', background: '#f8fafc', borderRadius: '16px', border: '1px solid #e2e8f0', marginBottom: '24px' }}>
+                            <h4 style={{ fontSize: '16px', fontWeight: 700, marginBottom: '16px' }}>Our Journey Timeline</h4>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                                {(cmsData.about?.journey || []).map((item, idx) => (
+                                    <div key={idx} style={{ padding: '16px', background: '#fff', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
+                                        <div style={{ display: 'grid', gridTemplateColumns: '80px 1fr', gap: '12px', marginBottom: '12px' }}>
+                                            <div>
+                                                <label style={{ fontSize: '11px', fontWeight: 600 }}>Year</label>
+                                                <input
+                                                    type="text"
+                                                    value={item.year}
+                                                    onChange={(e) => {
+                                                        const newJouney = [...cmsData.about.journey];
+                                                        newJouney[idx] = { ...newJouney[idx], year: e.target.value };
+                                                        setCmsData({ ...cmsData, about: { ...cmsData.about, journey: newJouney } });
+                                                    }}
+                                                    style={{ width: '100%', padding: '8px', border: '1px solid #e2e8f0', borderRadius: '6px' }}
+                                                />
+                                            </div>
+                                            <div>
+                                                <label style={{ fontSize: '11px', fontWeight: 600 }}>Title</label>
+                                                <input
+                                                    type="text"
+                                                    value={item.title}
+                                                    onChange={(e) => {
+                                                        const newJouney = [...cmsData.about.journey];
+                                                        newJouney[idx] = { ...newJouney[idx], title: e.target.value };
+                                                        setCmsData({ ...cmsData, about: { ...cmsData.about, journey: newJouney } });
+                                                    }}
+                                                    style={{ width: '100%', padding: '8px', border: '1px solid #e2e8f0', borderRadius: '6px' }}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div style={{ marginBottom: '12px' }}>
+                                            <label style={{ fontSize: '11px', fontWeight: 600 }}>Description</label>
+                                            <textarea
+                                                value={item.desc}
+                                                onChange={(e) => {
+                                                    const newJouney = [...cmsData.about.journey];
+                                                    newJouney[idx] = { ...newJouney[idx], desc: e.target.value };
+                                                    setCmsData({ ...cmsData, about: { ...cmsData.about, journey: newJouney } });
+                                                }}
+                                                style={{ width: '100%', padding: '8px', border: '1px solid #e2e8f0', borderRadius: '6px', minHeight: '60px' }}
+                                            />
+                                        </div>
+                                        <button
+                                            onClick={() => {
+                                                const newJouney = cmsData.about.journey.filter((_, i) => i !== idx);
+                                                setCmsData({ ...cmsData, about: { ...cmsData.about, journey: newJouney } });
+                                            }}
+                                            style={{ background: 'none', border: 'none', color: '#ef4444', fontSize: '12px', cursor: 'pointer', padding: 0 }}
+                                        >
+                                            Remove Item
+                                        </button>
+                                    </div>
+                                ))}
+                                <button
+                                    onClick={() => {
+                                        const newItem = { year: '20XX', title: 'Title', desc: '' };
+                                        setCmsData({ ...cmsData, about: { ...cmsData.about, journey: [...(cmsData.about.journey || []), newItem] } });
+                                    }}
+                                    style={{ padding: '10px', border: '2px dashed #e2e8f0', background: 'none', borderRadius: '8px', color: '#64748b', cursor: 'pointer', fontWeight: 600 }}
+                                >
+                                    + Add Timeline Item
+                                </button>
+                            </div>
+                        </div>
+
+                        <button onClick={handleSave} className="admin-btn-primary">Save About Content</button>
+                    </div>
+                )}
+
+                {activeTab === 'hero' && (
                     <div className="admin-content-card">
                         <h3>Our Brands & Products</h3>
                         <p style={{ color: '#64748b', marginBottom: '24px', fontSize: '14px' }}>Manage proprietary SaaS products. Rename 'CHMS' to 'Fateh ERP' here if not already done.</p>

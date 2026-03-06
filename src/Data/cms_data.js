@@ -1011,5 +1011,58 @@ export const initialCmsData = {
         { id: 4, title: 'ERP Project Manager', dept: 'Consulting', location: 'Dubai, UAE', type: 'Hybrid', desc: 'Manage ERP implementation projects across UAE clients — coordinate teams, track milestones, ensure on-time delivery.', apply_url: '/contact' },
         { id: 5, title: 'Business Development Manager', dept: 'Sales', location: 'Riyadh, KSA', type: 'On-site', desc: 'Drive new client acquisition across Saudi Arabia. ERPNext or ERP industry experience highly valued.', apply_url: '/contact' },
         { id: 6, title: 'DevOps Engineer', dept: 'Engineering', location: 'Remote', type: 'Full-time', desc: 'Manage cloud infrastructure for Enfono\'s SaaS products and client deployments. AWS/GCP experience required.', apply_url: '/contact' }
-    ]
+    ],
+
+    // ─── ABOUT PAGE ───────────────────────────────────
+    about: {
+        who_we_are: {
+            heading: "5 Years of ERP Excellence Across the GCC",
+            subtext: "Enfono was founded with a singular mission: to make world-class ERP technology accessible and effective for businesses in the GCC. Journeying from a hardware vision to an enterprise software leader.",
+            stats: [
+                { end: 120, suffix: '+', label: 'Projects Delivered' },
+                { end: 5, suffix: '+', label: 'Years Experience' },
+                { end: 6, suffix: '', label: 'Countries Served' }
+            ]
+        },
+        journey: [
+            { year: '2018', title: 'The Vision', desc: 'Started as a hardware startup with a vision to change the electronics landscape.' },
+            { year: '2019', title: 'Market Launch & Resilience', desc: 'First product launched. Faced business-wide disruption due to floods, choosing to pivot entire inventory to support victims.' },
+            { year: '2020', title: 'The Pivot', desc: 'Relaunched with a focus on software, developing RentPe — a rental property management system.' },
+            { year: '2021', title: 'Adoption', desc: 'Gained early tracking and secured critical early adopters.' },
+            { year: '2022', title: 'The Legal Battle', desc: 'Navigated the PhonePe vs RentPe trademark case, a defining moment for our brand identity.' },
+            { year: '2023', title: 'Evolution to ERP', desc: 'Closed RentPe and rebuilt a comprehensive rental property ERP, expanding our vision.' },
+            { year: '2024', title: 'Global Scale', desc: 'Secured government and international projects, scaling operations to Saudi Arabia, UAE, and Oman.' },
+            { year: '2025', title: 'Saudi Expansion', desc: 'Officially established our regional headquarters in Riyadh, Saudi Arabia.' }
+        ],
+        team: [
+            { id: 1, name: 'Sayanth NS', role: 'Co-Founder and CEO', order: 1, initials: 'SN' },
+            { id: 2, name: 'Muhsin MT', role: 'Co-Founder and CMO', order: 2, initials: 'MM' },
+            { id: 3, name: 'Salman V', role: 'Operations Manager India', order: 3, initials: 'SV' },
+            { id: 4, name: 'Siva Jyothish', role: 'Project Manager', order: 4, initials: 'SJ' },
+            { id: 5, name: 'Nidheesh P', role: 'Project Manager', order: 5, initials: 'NP' },
+            { id: 6, name: 'Hashir T', role: 'Finance Manager India', order: 6, initials: 'HT' }
+        ],
+        offices: [
+            {
+                country: 'Saudi Arabia',
+                flag: '🇸🇦',
+                type: 'Regional Headquarters',
+                city: 'Riyadh',
+                address: 'Riyadh, KSA',
+                phone: '+966 57 352 8619',
+                email: 'contact@enfono.com',
+                color: '#10B981'
+            },
+            {
+                country: 'India',
+                flag: '🇮🇳',
+                type: 'Development Hub',
+                city: 'Kochi, Kerala',
+                address: '2nd Floor, Suite No.598 Valamkottil Towers, Kakkanad, Kochi',
+                phone: '+91 75939 22039',
+                email: 'contact@enfono.com',
+                color: '#0D9488'
+            }
+        ]
+    }
 };

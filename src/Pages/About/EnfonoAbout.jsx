@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { Container, Row, Col } from 'react-bootstrap'
 import { m, LazyMotion, domAnimation } from 'framer-motion'
@@ -6,6 +6,7 @@ import CountUp from 'react-countup'
 import { useInView } from 'react-intersection-observer'
 import EnfonoHeader from '../../Components/EnfonoUI/EnfonoHeader'
 import EnfonoFooter from '../../Components/EnfonoUI/EnfonoFooter'
+import { initialCmsData } from '../../Data/cms_data'
 
 const fadeIn = {
     hidden: { opacity: 0, y: 30 },
@@ -33,58 +34,26 @@ const values = [
     { icon: 'fas fa-globe-asia', title: 'GCC Cultural Fit', desc: 'Born in the GCC ecosystem, we understand the local business culture, regulatory environment, and the pace of digital transformation in the region.' },
 ]
 
-const timeline = [
-    { year: '2019', title: 'Founded in India', desc: 'Enfono was established with a vision to bring world-class ERP solutions to emerging markets, starting with ERPNext implementations in India.' },
-    { year: '2020', title: 'First GCC Client', desc: 'Secured our first client in Saudi Arabia — a manufacturing company in Riyadh — marking the beginning of our GCC journey.' },
-    { year: '2021', title: 'KSA Office Opened', desc: 'Opened our Saudi Arabia office in Riyadh to better serve our growing GCC client base and provide on-ground support.' },
-    { year: '2022', title: 'Expanded to UAE & Oman', desc: 'Extended our footprint across the UAE and Oman, delivering implementations across retail, construction, and healthcare sectors.' },
-    { year: '2023', title: 'ZATCA Compliance Pioneer', desc: 'Became one of the first ERPNext partners to deliver Phase 2 ZATCA e-invoicing compliance for our Saudi clients.' },
-    { year: '2024', title: '100+ Implementations', desc: 'Crossed the milestone of 100 successful ERP implementations across GCC and India, with a 98% client satisfaction rate.' },
-]
-
-const team = [
-    { name: 'Sayanthan Suresh', role: 'Founder & CEO', desc: 'ERPNext architect and GCC ERP strategist with 10+ years in enterprise software and digital transformation.', initials: 'SS' },
-    { name: 'Mohammed Al-Ghamdi', role: 'KSA Country Manager', desc: 'Saudi business development leader with deep connections across the Kingdom\'s enterprise landscape.', initials: 'MG' },
-    { name: 'Arjun Krishnan', role: 'Head of Implementations', desc: 'Certified ERPNext consultant leading our technical delivery team with expertise across 8+ industries.', initials: 'AK' },
-    { name: 'Fatima Al-Rashidi', role: 'Client Success Manager', desc: 'Dedicated to ensuring every client gets the maximum value from their ERP investment, post-go-live.', initials: 'FR' },
-]
-
-const offices = [
-    {
-        country: 'Saudi Arabia',
-        flag: '🇸🇦',
-        type: 'Headquarters',
-        city: 'Riyadh',
-        address: 'King Fahd Road, Riyadh, KSA',
-        phone: '+966 XX XXX XXXX',
-        email: 'ksa@enfono.com',
-        color: '#1B3A5C',
-    },
-    {
-        country: 'India',
-        flag: '🇮🇳',
-        type: 'Development Hub',
-        city: 'Kerala',
-        address: 'Technopark, Trivandrum, Kerala, India',
-        phone: '+91 XXXXX XXXXX',
-        email: 'india@enfono.com',
-        color: '#0D9488',
-    },
-]
-
 const StatCounter = ({ end, suffix, label }) => {
     const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.3 })
     return (
         <div ref={ref} className="text-center">
-            <div style={{ fontSize: '52px', fontWeight: '700', color: '#C4933F', fontFamily: 'Poppins, sans-serif', lineHeight: 1 }}>
+            <div style={{ fontSize: '52px', fontWeight: '700', color: '#10B981', fontFamily: 'Poppins, sans-serif', lineHeight: 1 }}>
                 {inView ? <CountUp end={end} duration={2.5} /> : '0'}{suffix}
             </div>
-            <div style={{ fontSize: '14px', color: 'rgba(255,255,255,0.6)', marginTop: '8px', fontWeight: '500' }}>{label}</div>
+            <div style={{ fontSize: '14px', color: 'rgba(255,255,255,0.7)', marginTop: '8px', fontWeight: '500' }}>{label}</div>
         </div>
     )
 }
 
 const EnfonoAbout = () => {
+    const data = initialCmsData.about;
+
+    // Sorting team by order number
+    const sortedTeam = useMemo(() => {
+        return [...data.team].sort((a, b) => (a.order || 99) - (b.order || 99));
+    }, [data.team]);
+
     return (
         <div style={{ fontFamily: 'Inter, sans-serif' }}>
             <EnfonoHeader />
@@ -119,27 +88,18 @@ const EnfonoAbout = () => {
                                 <m.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInLeft}>
                                     <span className="enfono-section-label">Who We Are</span>
                                     <h2 className="enfono-section-title mb-5">
-                                        5 Years of ERP Excellence<br />Across the GCC
+                                        {data.who_we_are.heading}
                                     </h2>
-                                    <p style={{ fontSize: '16px', lineHeight: '1.85', color: '#6B7280', marginBottom: '24px' }}>
-                                        Enfono was founded in 2019 with a singular mission: to make world-class ERP technology accessible and effective for businesses in the GCC. What started as a team of passionate ERPNext consultants has grown into a full-service ERP firm with offices in Saudi Arabia and India.
-                                    </p>
-                                    <p style={{ fontSize: '16px', lineHeight: '1.85', color: '#6B7280', marginBottom: '36px' }}>
-                                        Today, we serve 100+ clients across manufacturing, retail, construction, healthcare, and more — bringing the same dedication to every project, whether it's a 5-user startup or a 500-user enterprise rollout.
+                                    <p style={{ fontSize: '16px', lineHeight: '1.85', color: '#4b5563', marginBottom: '36px' }}>
+                                        {data.who_we_are.subtext}
                                     </p>
                                     <div style={{ display: 'flex', gap: '40px', flexWrap: 'wrap' }}>
-                                        <div>
-                                            <div style={{ fontSize: '42px', fontWeight: '700', color: '#1B3A5C', fontFamily: 'Poppins, sans-serif', lineHeight: 1 }}>100+</div>
-                                            <div style={{ fontSize: '14px', color: '#9CA3AF', marginTop: '6px' }}>Implementations</div>
-                                        </div>
-                                        <div>
-                                            <div style={{ fontSize: '42px', fontWeight: '700', color: '#1B3A5C', fontFamily: 'Poppins, sans-serif', lineHeight: 1 }}>5+</div>
-                                            <div style={{ fontSize: '14px', color: '#9CA3AF', marginTop: '6px' }}>Years Experience</div>
-                                        </div>
-                                        <div>
-                                            <div style={{ fontSize: '42px', fontWeight: '700', color: '#1B3A5C', fontFamily: 'Poppins, sans-serif', lineHeight: 1 }}>3</div>
-                                            <div style={{ fontSize: '14px', color: '#9CA3AF', marginTop: '6px' }}>GCC Countries</div>
-                                        </div>
+                                        {data.who_we_are.stats.map((stat, i) => (
+                                            <div key={i}>
+                                                <div style={{ fontSize: '42px', fontWeight: '700', color: '#111827', fontFamily: 'Poppins, sans-serif', lineHeight: 1 }}>{stat.end}{stat.suffix}</div>
+                                                <div style={{ fontSize: '14px', color: '#6b7280', marginTop: '6px' }}>{stat.label}</div>
+                                            </div>
+                                        ))}
                                     </div>
                                 </m.div>
                             </LazyMotion>
@@ -155,11 +115,11 @@ const EnfonoAbout = () => {
                                             <Col md={12} key={i}>
                                                 <div style={{ background: '#F8FAFC', borderRadius: '12px', padding: '32px', border: '1px solid #E5E7EB' }}>
                                                     <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
-                                                        <div style={{ width: '50px', height: '50px', background: 'var(--enfono-gradient)', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                                                            <i className={item.icon} style={{ color: '#C4933F', fontSize: '20px' }}></i>
+                                                        <div style={{ width: '50px', height: '50px', background: '#ecfdf5', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                                                            <i className={item.icon} style={{ color: '#10B981', fontSize: '20px' }}></i>
                                                         </div>
                                                         <div>
-                                                            <div style={{ fontSize: '11px', fontWeight: '700', letterSpacing: '2px', textTransform: 'uppercase', color: '#C4933F', marginBottom: '8px' }}>{item.label}</div>
+                                                            <div style={{ fontSize: '11px', fontWeight: '700', letterSpacing: '2px', textTransform: 'uppercase', color: '#10B981', marginBottom: '8px' }}>{item.label}</div>
                                                             <p style={{ fontSize: '15px', lineHeight: '1.75', color: '#374151', margin: 0 }}>{item.text}</p>
                                                         </div>
                                                     </div>
@@ -182,9 +142,9 @@ const EnfonoAbout = () => {
                             <Row className="g-4 justify-content-center text-center">
                                 {[
                                     { end: 5, suffix: '+', label: 'Years of Excellence' },
-                                    { end: 100, suffix: '+', label: 'Successful Implementations' },
+                                    { end: 120, suffix: '+', label: 'Successful Implementations' },
                                     { end: 30, suffix: '+', label: 'Team Members' },
-                                    { end: 3, suffix: '', label: 'Countries Served' },
+                                    { end: 6, suffix: '', label: 'Countries Served' },
                                     { end: 98, suffix: '%', label: 'Client Satisfaction' },
                                 ].map((s, i) => (
                                     <Col key={i} lg={2} md={4} sm={6}>
@@ -212,13 +172,13 @@ const EnfonoAbout = () => {
                                 <Col key={i} lg={4} md={6}>
                                     <m.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}>
                                         <div style={{ background: '#fff', borderRadius: '12px', padding: '36px', border: '1px solid #E5E7EB', height: '100%', transition: 'all 0.3s ease' }}
-                                            onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 20px 50px rgba(27,58,92,0.1)' }}
+                                            onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 20px 50px rgba(16,185,129,0.1)' }}
                                             onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = 'none' }}
                                         >
-                                            <div style={{ width: '56px', height: '56px', background: 'rgba(27,58,92,0.08)', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '20px' }}>
-                                                <i className={v.icon} style={{ fontSize: '22px', color: '#1B3A5C' }}></i>
+                                            <div style={{ width: '56px', height: '56px', background: '#ecfdf5', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '20px' }}>
+                                                <i className={v.icon} style={{ fontSize: '22px', color: '#10B981' }}></i>
                                             </div>
-                                            <h4 style={{ fontSize: '18px', fontWeight: '700', color: '#1B3A5C', fontFamily: 'Poppins, sans-serif', marginBottom: '12px' }}>{v.title}</h4>
+                                            <h4 style={{ fontSize: '18px', fontWeight: '700', color: '#111827', fontFamily: 'Poppins, sans-serif', marginBottom: '12px' }}>{v.title}</h4>
                                             <p style={{ fontSize: '14px', lineHeight: '1.75', color: '#6B7280', margin: 0 }}>{v.desc}</p>
                                         </div>
                                     </m.div>
@@ -239,7 +199,7 @@ const EnfonoAbout = () => {
                         </m.div>
                         <div style={{ position: 'relative' }}>
                             <div style={{ position: 'absolute', left: '50%', top: 0, bottom: 0, width: '2px', background: '#E5E7EB', transform: 'translateX(-50%)' }} className="d-none d-md-block"></div>
-                            {timeline.map((item, i) => (
+                            {data.journey.map((item, i) => (
                                 <m.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} style={{ marginBottom: '40px' }}>
                                     <Row className="align-items-center">
                                         <Col md={5} className={i % 2 === 0 ? 'text-md-end' : 'order-md-2'}>
@@ -249,13 +209,13 @@ const EnfonoAbout = () => {
                                                 padding: '28px 32px',
                                                 border: i % 2 !== 0 ? '1px solid #E5E7EB' : 'none'
                                             }}>
-                                                <div style={{ fontSize: '13px', fontWeight: '700', letterSpacing: '2px', color: i % 2 === 0 ? '#C4933F' : '#C4933F', marginBottom: '8px' }}>{item.year}</div>
-                                                <h4 style={{ fontSize: '18px', fontWeight: '700', color: i % 2 === 0 ? '#fff' : '#1B3A5C', fontFamily: 'Poppins, sans-serif', marginBottom: '8px' }}>{item.title}</h4>
-                                                <p style={{ fontSize: '14px', lineHeight: '1.7', color: i % 2 === 0 ? 'rgba(255,255,255,0.7)' : '#6B7280', margin: 0 }}>{item.desc}</p>
+                                                <div style={{ fontSize: '13px', fontWeight: '800', letterSpacing: '2px', color: i % 2 === 0 ? '#10B981' : '#10B981', marginBottom: '8px' }}>{item.year}</div>
+                                                <h4 style={{ fontSize: '18px', fontWeight: '700', color: i % 2 === 0 ? '#fff' : '#111827', fontFamily: 'Poppins, sans-serif', marginBottom: '8px' }}>{item.title}</h4>
+                                                <p style={{ fontSize: '14px', lineHeight: '1.7', color: i % 2 === 0 ? 'rgba(255,255,255,0.8)' : '#4b5563', margin: 0 }}>{item.desc}</p>
                                             </div>
                                         </Col>
                                         <Col md={2} className="d-none d-md-flex justify-content-center">
-                                            <div style={{ width: '16px', height: '16px', background: '#C4933F', borderRadius: '50%', border: '3px solid #fff', boxShadow: '0 0 0 3px #C4933F' }}></div>
+                                            <div style={{ width: '16px', height: '16px', background: '#10B981', borderRadius: '50%', border: '4px solid #fff', boxShadow: '0 0 0 4px #10B981' }}></div>
                                         </Col>
                                         <Col md={5} className={i % 2 === 0 ? '' : 'order-md-1'}></Col>
                                     </Row>
@@ -275,18 +235,18 @@ const EnfonoAbout = () => {
                             <m.h2 variants={fadeIn} className="enfono-section-title">Meet Our Leadership</m.h2>
                         </m.div>
                         <Row className="g-4 justify-content-center">
-                            {team.map((member, i) => (
+                            {sortedTeam.map((member, i) => (
                                 <Col key={i} lg={3} md={6}>
                                     <m.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}>
                                         <div style={{ background: '#fff', borderRadius: '12px', padding: '36px 28px', border: '1px solid #E5E7EB', textAlign: 'center', transition: 'all 0.3s ease' }}
-                                            onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-5px)'; e.currentTarget.style.boxShadow = '0 20px 50px rgba(27,58,92,0.12)' }}
+                                            onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-5px)'; e.currentTarget.style.boxShadow = '0 20px 50px rgba(16,185,129,0.1)' }}
                                             onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = 'none' }}
                                         >
-                                            <div style={{ width: '80px', height: '80px', background: 'var(--enfono-gradient)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px', fontSize: '26px', fontWeight: '700', color: '#C4933F', fontFamily: 'Poppins, sans-serif' }}>
+                                            <div style={{ width: '80px', height: '80px', background: 'var(--enfono-gradient-soft)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px', fontSize: '26px', fontWeight: '700', color: '#10B981', fontFamily: 'Poppins, sans-serif' }}>
                                                 {member.initials}
                                             </div>
-                                            <h4 style={{ fontSize: '18px', fontWeight: '700', color: '#1B3A5C', fontFamily: 'Poppins, sans-serif', marginBottom: '6px' }}>{member.name}</h4>
-                                            <div style={{ fontSize: '13px', color: '#C4933F', fontWeight: '600', marginBottom: '14px', letterSpacing: '0.5px' }}>{member.role}</div>
+                                            <h4 style={{ fontSize: '18px', fontWeight: '700', color: '#111827', fontFamily: 'Poppins, sans-serif', marginBottom: '6px' }}>{member.name}</h4>
+                                            <div style={{ fontSize: '13px', color: '#10B981', fontWeight: '600', marginBottom: '14px', letterSpacing: '0.5px' }}>{member.role}</div>
                                             <p style={{ fontSize: '13px', lineHeight: '1.7', color: '#6B7280', margin: 0 }}>{member.desc}</p>
                                         </div>
                                     </m.div>
@@ -306,7 +266,7 @@ const EnfonoAbout = () => {
                             <m.h2 variants={fadeIn} className="enfono-section-title">Our Offices</m.h2>
                         </m.div>
                         <Row className="g-4 justify-content-center">
-                            {offices.map((office, i) => (
+                            {data.offices.map((office, i) => (
                                 <Col key={i} lg={5} md={6}>
                                     <m.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}>
                                         <div style={{ borderRadius: '16px', overflow: 'hidden', border: '1px solid #E5E7EB' }}>
@@ -324,8 +284,8 @@ const EnfonoAbout = () => {
                                                     { icon: 'fas fa-phone', text: office.phone },
                                                     { icon: 'fas fa-envelope', text: office.email },
                                                 ].map((item, j) => (
-                                                    <div key={j} style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px', color: '#374151', fontSize: '14px' }}>
-                                                        <i className={item.icon} style={{ color: '#C4933F', width: '16px', flexShrink: 0 }}></i>
+                                                    <div key={j} style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '12px', color: '#111827', fontSize: '14px' }}>
+                                                        <i className={item.icon} style={{ color: '#10B981', width: '16px', flexShrink: 0 }}></i>
                                                         {item.text}
                                                     </div>
                                                 ))}
@@ -350,7 +310,7 @@ const EnfonoAbout = () => {
                         <p style={{ fontSize: '17px', color: 'rgba(255,255,255,0.8)', maxWidth: '500px', margin: '0 auto 32px' }}>
                             Let's talk about your business goals and how Enfono can help you achieve them.
                         </p>
-                        <Link to="/contact" style={{ background: '#fff', color: '#C4933F', padding: '14px 36px', borderRadius: '4px', fontWeight: '700', fontSize: '15px', textDecoration: 'none', display: 'inline-block' }}>
+                        <Link to="/contact" style={{ background: '#fff', color: '#10B981', padding: '14px 36px', borderRadius: '4px', fontWeight: '700', fontSize: '15px', textDecoration: 'none', display: 'inline-block' }}>
                             Contact Us Today
                         </Link>
                     </div>
