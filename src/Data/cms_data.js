@@ -40,29 +40,45 @@ export const initialCmsData = {
         // ─── GOVT / INDIA ───────────────────────────────
         {
             id: 1,
-            category: 'Govt',
-            country: 'India',
-            flag: '🇮🇳',
-            title: 'KABCO ERP',
-            subtitle: 'ERP for Kerala Agro Business Company',
-            outcome: "Comprehensive ERP implementation for Kerala's state-run agri-logistics company, managing 6 government-connected agri markets with streamlined project planning, payroll, and attendance tracking.",
-            metric: '6 govt markets managed',
-            bullets: ['Project Planning & HR', 'Payroll & Attendance', 'Agri-Market Coordination'],
-            modules: ['ERP', 'HR', 'Agro'],
-            image: '', logo: '', url: ''
+            category: 'GOVT. & WORLD BANK',
+            country: 'KERALA',
+            flag: '',
+            title: 'KERA Grant Portal',
+            subtitle: 'Climate resilient grant portal for Govt of Kerala and World Bank. Includes the KERA Product Alliance portal and NAWODHA portal for the agriculture department.',
+            outcome: 'Multi-portal architecture',
+            metric: 'Multi-portal architecture',
+            bullets: [],
+            modules: ['MIS', 'Grants', 'Govt'],
+            image: '', logo: '', url: '',
+            icon: 'fas fa-leaf'
         },
         {
             id: 2,
-            category: 'Govt',
-            country: 'India',
-            flag: '🇮🇳',
-            title: 'KABCO Website',
-            subtitle: 'Corporate Website for Kerala Agro Business Company',
-            outcome: "Developed the official corporate website for KABCO, Kerala's state-run agri-logistics firm, providing a digital presence for their government-connected market operations.",
+            category: 'AGRO BUSINESS',
+            country: 'KERALA',
+            flag: '',
+            title: 'KABCO ERP & Website',
+            subtitle: 'Kerala Agro Business Company — comprehensive ERP implementation and corporate website development to streamline agro businesses.',
+            outcome: 'Unified digital operations',
             metric: 'Unified digital operations',
-            bullets: ['Corporate Website Development', 'Government-connected Agri Market Portal', 'Digital Presence for State Enterprise'],
-            modules: ['Website'],
-            image: '', logo: '', url: 'https://kabco.co.in/'
+            bullets: [],
+            modules: ['ERP', 'Website', 'Agro'],
+            image: '', logo: '', url: 'https://kabco.co.in/',
+            icon: 'fas fa-tractor'
+        },
+        {
+            id: 122, // Using a high ID to avoid conflict or just updating existing
+            category: 'STEEL & MANUFACTURING',
+            country: 'KSA',
+            flag: '',
+            title: 'Steel Force — 25 Branches Unified',
+            subtitle: 'Deployed ERP across 25 branches and 500+ employees to manage steel production and retail trading operations seamlessly.',
+            outcome: '25 branches connected',
+            metric: '25 branches connected',
+            bullets: [],
+            modules: ['ERP', 'Manufacturing', 'Logistics'],
+            image: '', logo: '', url: '',
+            icon: 'fas fa-industry'
         },
         {
             id: 3,
@@ -531,5 +547,469 @@ export const initialCmsData = {
                 { label: 'Gallery Available Soon', url: '#', type: 'disabled' }
             ]
         }
+    ],
+    blogs: [
+        {
+            id: 1,
+            slug: 'how-ai-is-transforming-erp-gcc',
+            title: 'How AI is Transforming ERP in the GCC',
+            category: 'AI & ERP',
+            tags: ['Artificial Intelligence', 'ERPNext', 'GCC', 'Digital Transformation'],
+            read_time: '6 min read',
+            date: 'March 4, 2026',
+            featured: true,
+            excerpt: 'Across the Gulf Cooperation Council, a quiet revolution is unfolding in boardrooms and warehouses alike. AI is no longer a futuristic concept — it is actively reshaping how businesses run their ERPs.',
+            cover_image: '/assets/img/ai in saudi.png',
+            content: `<h2>The AI Shift in Enterprise Operations</h2>
+<p>For decades, ERP systems have served as the operational backbone of enterprises across manufacturing, logistics, trading, and services. But the traditional ERP — rule-based, static, reactive — is giving way to something fundamentally smarter. Across the Gulf Cooperation Council, a quiet revolution is unfolding in boardrooms and warehouses alike.</p>
+
+<p>AI is no longer a futuristic concept reserved for Silicon Valley startups. It is actively reshaping how businesses in Saudi Arabia, UAE, Kuwait, and Oman run their ERPs, predict demand, and manage their workforce.</p>
+
+<h2>What Does "AI in ERP" Actually Mean?</h2>
+<p>When we say AI-integrated ERP, we mean three core capabilities:</p>
+<ul>
+<li><strong>Predictive Analytics:</strong> Instead of reporting what happened, the system forecasts what will happen — inventory stockouts, cash flow crunches, customer churn.</li>
+<li><strong>Intelligent Automation:</strong> Routine processes like purchase order generation, invoice matching, and payroll calculations run autonomously, without human triggers.</li>
+<li><strong>Natural Language Interfaces:</strong> Business users can query their ERP data conversationally. "Show me top-selling SKUs in Q1" becomes a real-time dashboard answer.</li>
+</ul>
+
+<h2>Why GCC Businesses are Accelerating</h2>
+<p>The GCC's Vision 2030 agendas — particularly Saudi Arabia's — have created a policy environment actively pushing digital transformation. ZATCA mandates, e-invoicing phases, and smart government initiatives mean businesses must digitize or risk compliance penalties.</p>
+
+<p>ERP platforms like ERPNext, when augmented with AI layers, provide an ideal foundation. They are open-source, highly customizable, and can ingest data from multiple operational silos — HR, finance, procurement, logistics — into a unified intelligence layer.</p>
+
+<h2>Real-World Impact</h2>
+<p>A logistics company we work with in Riyadh reduced their inventory reconciliation time from 4 hours daily to under 20 minutes after deploying an AI-assisted matching module on ERPNext. A manufacturing firm cut material waste by 18% in a single quarter using demand-driven production scheduling.</p>
+
+<p>These are not edge cases. They are the new baseline for what modern ERP should deliver.</p>
+
+<h2>The Road Ahead</h2>
+<p>The next phase of AI in GCC ERPs will involve large language model interfaces, autonomous financial close processes, and proactive compliance engines that flag ZATCA discrepancies before they become violations. Enfono is building at this frontier — integrating AI layers directly into ERPNext workflows for our GCC clients.</p>
+
+<p>If you are evaluating your ERP strategy for 2026 and beyond, the question is no longer whether to adopt AI. It is how quickly you can make it work for your business.</p>`
+        },
+        {
+            id: 2,
+            slug: 'erpnext-vs-odoo-gcc-business-guide',
+            title: 'ERPNext vs Odoo: The GCC Business Decision Guide',
+            category: 'ERP',
+            tags: ['ERPNext', 'Odoo', 'ERP Comparison', 'GCC'],
+            read_time: '7 min read',
+            date: 'March 6, 2026',
+            featured: false,
+            excerpt: 'Choosing between ERPNext and Odoo is a critical decision for GCC businesses. This comparison breaks down their strengths, costs, and regional compliance factors to help you choose the right fit.',
+            cover_image: '/assets/img/odoovserpnext.png',
+            content: `<h2>Navigating the ERP Choice: ERPNext vs. Odoo</h2>
+<p>For mid-market businesses in the GCC, the ERP selection process often boils down to two heavyweights: <strong>ERPNext</strong> and <strong>Odoo</strong>. Both offer powerful, modern, and flexible frameworks, but their philosophies on cost, customization, and modularity differ significantly.</p>
+
+<p>This guide provides a head-to-head comparison based on real-world implementations in Saudi Arabia, UAE, and the wider region.</p>
+
+<h2>Odoo: The Modular Powerhouse</h2>
+<p>Odoo is renowned for its "app-store" model. It offers thousands of narrow, highly-polished modules that can be added as your business grows. Its strength lies in its user interface and the sheer breadth of its ecosystem.</p>
+
+<h3>The Pros of Odoo:</h3>
+<ul>
+<li><strong>Extensive Feature Set:</strong> From e-commerce and POS to advanced manufacturing and CRM, Odoo has an app for almost everything.</li>
+<li><strong>Superior UI:</strong> Often considered more intuitive and "modern-looking" out of the box.</li>
+<li><strong>Highly Modular:</strong> Start small with just CRM or Accounting and add more as you scale.</li>
+</ul>
+
+<h3>The Challenges:</h3>
+<ul>
+<li><strong>Escalating Costs:</strong> While the Community edition is free, most businesses require the Enterprise edition. Costs can escalate quickly with per-user, per-app, and hosting fees.</li>
+<li><strong>Implementation Complexity:</strong> Because it is so modular, ensuring all apps work together for a complex workflow often requires significant investment in expert consultants.</li>
+</ul>
+
+<h2>ERPNext: The Unified Open Source Alternative</h2>
+<p>ERPNext takes a "batteries-included" approach. Unlike Odoo, it doesn't charge you for individual apps; all core modules (Manufacturing, HR, Finance, Projects) are integrated from the start.</p>
+
+<h3>The Pros of ERPNext:</h3>
+<ul>
+<li><strong>Unbeatable Cost-Efficiency:</strong> Being true open source with no "per-user" licensing means massive savings on total cost of ownership (TCO).</li>
+<li><strong>ZATCA & GCC Ready:</strong> Built-in support for ZATCA Phase 1 & 2 e-invoicing is often more robust in ERPNext due to its strong Indian and Middle Eastern developer base.</li>
+<li><strong>Deep Vertical Integration:</strong> Because it is a unified platform, the data flow between HR, Production, and Finance is seamless without needing to "connect" separate apps.</li>
+</ul>
+
+<h3>The Challenges:</h3>
+<ul>
+<li><strong>Functional UI:</strong> The interface is clean and functional but lacks some of the "sizzle" and dragging micro-interactions found in Odoo.</li>
+<li><strong>Lean Documentation:</strong> While the community is strong, some specific technical documentations can be less polished than Odoo's commercial portal.</li>
+</ul>
+
+<h2>Comparison at a Glance</h2>
+<table style="width: 100%; border-collapse: collapse; margin-bottom: 24px;">
+<tr style="background: #f8fafc; text-align: left;">
+<th style="padding: 12px; border: 1px solid #e2e8f0;">Feature</th>
+<th style="padding: 12px; border: 1px solid #e2e8f0;">Odoo</th>
+<th style="padding: 12px; border: 1px solid #e2e8f0;">ERPNext</th>
+</tr>
+<tr>
+<td style="padding: 12px; border: 1px solid #e2e8f0;">Customization</td>
+<td style="padding: 12px; border: 1px solid #e2e8f0;">High (App-based)</td>
+<td style="padding: 12px; border: 1px solid #e2e8f0;">Moderate to High (Unified Framework)</td>
+</tr>
+<tr>
+<td style="padding: 12px; border: 1px solid #e2e8f0;">Integration</td>
+<td style="padding: 12px; border: 1px solid #e2e8f0;">Extensive (API/Store)</td>
+<td style="padding: 12px; border: 1px solid #e2e8f0;">Strong but focused</td>
+</tr>
+<tr>
+<td style="padding: 12px; border: 1px solid #e2e8f0;">User Interface</td>
+<td style="padding: 12px; border: 1px solid #e2e8f0;">Highly Polished</td>
+<td style="padding: 12px; border: 1px solid #e2e8f0;">Clean & Functional</td>
+</tr>
+<tr>
+<td style="padding: 12px; border: 1px solid #e2e8f0;">Licensing</td>
+<td style="padding: 12px; border: 1px solid #e2e8f0;">Per User/App (Enterprise)</td>
+<td style="padding: 12px; border: 1px solid #e2e8f0;">Open Source (Free)</td>
+</tr>
+</table>
+
+<h2>Why GCC Businesses Prefer ERPNext with Enfono</h2>
+<p>In our experience implementing ERPs across Riyadh, Dubai, and Muscat, ERPNext usually wins for businesses that prioritize <strong>data ownership and long-term cost control</strong>. The ability to customize the core without being gated by licensing fees allows us to build extremely specific workflows — like job-wise profit tracking for logistics — that would be prohibitively expensive to "app-ify" in Odoo.</p>
+
+<p>However, if your primary need is a simple, highly-visual CRM or a basic retail POS with immediate "off-the-shelf" apps, Odoo remains a very strong contender.</p>
+
+<h2>Conclusion</h2>
+<p>Choosing between Odoo and ERPNext isn't about which is "better"—it's about which aligns with your team's technical capacity and budget. Large teams with specific GCC compliance needs often find ERPNext to be the superior choice for scaling without the tax of recurring licenses.</p>`
+        },
+        {
+            id: 3,
+            slug: 'zatca-e-invoicing-compliance-guide',
+            title: 'ZATCA e-Invoicing: A Complete Compliance Guide for Saudi Businesses',
+            category: 'Compliance',
+            tags: ['ZATCA', 'e-Invoicing', 'Saudi Arabia', 'Tax Compliance', 'Phase 2'],
+            read_time: '7 min read',
+            date: 'February 10, 2026',
+            featured: false,
+            excerpt: 'ZATCA\'s e-invoicing mandate is reshaping how Saudi businesses issue and store invoices. This guide covers everything from Phase 1 basics to Phase 2 integration requirements and penalties.',
+            cover_image: '/assets/img/zakat.png',
+            content: `<h2>Understanding ZATCA e-Invoicing</h2>
+<p>In December 2021, ZATCA (Zakat, Tax and Customs Authority) launched Saudi Arabia's e-invoicing mandate — a sweeping requirement that all VAT-registered businesses must generate and store invoices in a structured electronic format. Two years later, the system's second phase has fundamentally changed how ERP systems must operate in the Kingdom.</p>
+
+<h2>Phase 1: Generation (Fatoorah)</h2>
+<p>Phase 1, effective December 4, 2021, required businesses to generate invoices electronically. Key requirements included:</p>
+<ul>
+<li>XML-structured invoice format compliant with UBL 2.1</li>
+<li>QR code embedding in simplified invoices (B2C)</li>
+<li>Anti-tampering mechanism to prevent retroactive invoice modification</li>
+<li>Archiving for a minimum of 6 years</li>
+</ul>
+
+<h2>Phase 2: Integration (E-Integration)</h2>
+<p>Phase 2 introduces real-time integration between business ERP systems and ZATCA's Fatoorah platform (PEPPOL-based). This means:</p>
+<ul>
+<li>Every B2B tax invoice is reported to ZATCA at the moment of generation</li>
+<li>ZATCA returns a clearance number before the invoice can be legally shared with the buyer</li>
+<li>All credit notes and debit notes require corresponding clearance</li>
+<li>API connectivity between your ERP and ZATCA's portal is mandatory</li>
+</ul>
+
+<h2>What Your ERP Must Do</h2>
+<p>A ZATCA Phase 2-compliant ERP must:</p>
+<ul>
+<li>Generate UBL 2.1 XML for every invoice</li>
+<li>Cryptographically sign each invoice using a CSID (Cryptographic Stamp Identifier)</li>
+<li>Submit to ZATCA's clearance API in real-time (under 5 seconds for B2B)</li>
+<li>Handle ZATCA API rejection responses and retry logic</li>
+<li>Store cleared invoices with ZATCA-assigned UUID and clearance timestamp</li>
+</ul>
+
+<h2>Common Compliance Pitfalls</h2>
+<p>We have helped numerous Saudi businesses remediate compliance failures. The most common issues are:</p>
+<ul>
+<li>Using old ERP versions that only support Phase 1</li>
+<li>Missing the CSID renewal schedule (CSIDs expire and must be renewed)</li>
+<li>Incorrect VAT calculation on mixed-rated invoices</li>
+<li>Failure to report credit notes linked to original cleared invoices</li>
+</ul>
+
+<h2>Getting Compliant</h2>
+<p>Enfono has implemented ZATCA Phase 2 compliance for over 20 Saudi businesses across trading, logistics, and manufacturing sectors. Our ERPNext implementation includes a purpose-built ZATCA module with real-time clearance, CSID management, and automated XML generation. Contact us for a compliance audit of your current ERP.</p>`
+        },
+        {
+            id: 4,
+            slug: 'ai-inventory-forecasting-reduce-stock-waste',
+            title: 'How AI-Driven Inventory Forecasting Cuts Stock Waste by 40%',
+            category: 'AI & Analytics',
+            tags: ['Inventory', 'AI', 'Forecasting', 'Supply Chain', 'Analytics'],
+            read_time: '5 min read',
+            date: 'January 28, 2026',
+            featured: false,
+            excerpt: 'Overstocking and stockouts are the twin enemies of working capital efficiency. AI-driven demand forecasting, integrated directly into ERPNext, is helping GCC businesses break this pattern permanently.',
+            cover_image: '/assets/img/inventory.webp',
+            content: `<h2>The Inventory Problem No ERP Alone Can Solve</h2>
+<p>Every operations manager knows the feeling. You are sitting on three months of stock for a product nobody wants, while customers are calling for a line item that you ran out of two weeks ago. Inventory management is not a software problem alone — it is a prediction problem.</p>
+
+<p>Traditional ERP reorder rules — "order when stock falls below X units" — are static. They do not account for seasonal demand, supplier lead time variability, promotional events, or macroeconomic signals. AI forecasting does.</p>
+
+<h2>How Machine Learning Changes the Equation</h2>
+<p>Modern AI forecasting models analyze multiple data streams simultaneously:</p>
+<ul>
+<li><strong>Historical sales velocity</strong> per SKU, per location, per customer segment</li>
+<li><strong>Seasonal and cyclical patterns</strong> specific to your industry and geography</li>
+<li><strong>Supplier lead time history</strong> to calculate safety stock dynamically</li>
+<li><strong>External signals</strong> including regional economic indicators and commodity prices</li>
+</ul>
+
+<p>The model outputs a probabilistic demand forecast — not just "you will sell 200 units" but "there is a 90% chance you will sell between 180 and 240 units in the next 30 days." This allows procurement teams to optimize reorder quantities with confidence intervals rather than gut instinct.</p>
+
+<h2>Integration with ERPNext</h2>
+<p>Enfono integrates AI forecasting modules directly into the ERPNext procurement workflow. The system automatically:</p>
+<ul>
+<li>Generates draft purchase orders based on AI-recommended quantities</li>
+<li>Flags SKUs with deteriorating forecast accuracy for human review</li>
+<li>Adjusts safety stock levels monthly based on demand volatility</li>
+<li>Routes slow-moving stock alerts to the sales team for discount campaigns</li>
+</ul>
+
+<h2>Measured Results</h2>
+<p>Across our GCC client base deploying AI inventory modules, we have measured consistent outcomes:</p>
+<ul>
+<li>Average reduction in excess stock: 38–45%</li>
+<li>Reduction in emergency procurement events: 60%</li>
+<li>Improvement in order fill rate: 12–18 percentage points</li>
+<li>Working capital freed from inventory: 20–30%</li>
+</ul>
+
+<p>These gains compound over time as the model learns your specific business patterns.</p>`
+        },
+        {
+            id: 5,
+            slug: 'automating-finance-accounts-erpnext',
+            title: 'Automating Finance: The Future of Accounts in ERPNext',
+            category: 'Automation',
+            tags: ['Finance', 'Automation', 'ERPNext', 'Accounts Payable', 'Month-End Close'],
+            read_time: '6 min read',
+            date: 'January 15, 2026',
+            featured: false,
+            excerpt: 'Month-end close used to take 10 days. Automated finance workflows in ERPNext are helping GCC companies compress this to 2 days — with fewer errors and complete audit trails.',
+            cover_image: '/assets/img/erpnext_accounting.png',
+            content: `<h2>The Finance Team's Biggest Time Sinks</h2>
+<p>Ask any CFO or Finance Manager in a GCC business about their biggest operational pain points, and the answer is remarkably consistent: month-end close, bank reconciliation, and accounts payable processing. These three processes — critical, repetitive, error-prone — consume hundreds of finance hours every month.</p>
+
+<p>ERPNext, properly configured with automation rules, can eliminate the manual labor from all three.</p>
+
+<h2>Automated Accounts Payable</h2>
+<p>The traditional AP process involves receiving a vendor invoice, manually matching it to a purchase order, checking delivery confirmation, coding to the right cost center, getting approval, and finally processing payment. Each step involves human touch points and potential errors.</p>
+
+<p>In an automated ERPNext setup:</p>
+<ul>
+<li>Vendor invoices received via email are parsed by OCR and auto-matched to open POs</li>
+<li>Three-way matching (PO, receipt, invoice) is validated automatically</li>
+<li>Discrepancy exceptions are routed to the right approver via workflow</li>
+<li>Payment runs are scheduled based on payment terms, auto-generating bank transfer files</li>
+</ul>
+
+<h2>Bank Reconciliation Without the Spreadsheet</h2>
+<p>Manual bank reconciliation — comparing your ERP's ledger entries against your bank statement line by line — is a notorious time sink. ERPNext's bank statement import and auto-reconciliation module handles this automatically:</p>
+<ul>
+<li>Bank statements are imported daily via API or file upload</li>
+<li>ERPNext matches transactions by amount, date, and reference using fuzzy matching</li>
+<li>Unmatched transactions are flagged for human review — usually less than 5% of volume</li>
+</ul>
+
+<h2>Closing the Books Faster</h2>
+<p>A properly automated financial close in ERPNext involves scheduled journal entries, automatic depreciation calculations, inter-company eliminations, and automated financial statement generation. Month-end close that used to take 8–10 working days can be compressed to 2–3 days — giving leadership faster insight into business performance.</p>
+
+<h2>Compliance and Audit Readiness</h2>
+<p>Every automated transaction in ERPNext carries a complete audit trail — who triggered it, when, what the system-verified data was. For GCC businesses facing ZATCA audits or shareholder reporting, this immutable record is not just convenient; it is increasingly a regulatory expectation.</p>`
+        },
+        {
+            id: 6,
+            slug: 'nmce-logistics-job-profit-tracking-erp',
+            title: 'Customer Story: How NMCE Logistics Achieved Real-Time Job-Wise Profit Tracking with ERPNext',
+            category: 'Case Study',
+            tags: ['Customer Story', 'Logistics', 'ERPNext', 'Profit Tracking', 'NMCE'],
+            read_time: '7 min read',
+            date: 'February 25, 2026',
+            featured: false,
+            excerpt: 'NMCE Logistics was growing fast — but had no visibility into which jobs were profitable and which were silently draining margins. Enfono implemented a custom job-costing module in ERPNext that changed everything.',
+            cover_image: '/assets/img/nmce-blog.jpg',
+            content: `<h2>The Challenge: Growth Without Visibility</h2>
+<p>NMCE Logistics is a fast-growing freight and clearing company operating across GCC ports and land corridors. With a growing fleet, an expanding customs clearance team, and increasing shipment volumes, the business was scaling — but profitability was becoming opaque.</p>
+
+<p>The core problem: each job (a shipment, clearance operation, or trucking assignment) involved multiple cost elements — driver wages, fuel, port fees, documentation costs, customs duties, third-party subcontracting. These costs were scattered across spreadsheets, WhatsApp messages, and paper receipts. By the time finance processed everything at month-end, it was impossible to determine which jobs had actually made money.</p>
+
+<h2>The Business Impact of the Blind Spot</h2>
+<p>Without job-level profitability data, NMCE's management faced several compounding problems:</p>
+<ul>
+<li>Quoting new jobs required gut-feel pricing, leading to under-priced contracts</li>
+<li>Unprofitable routes and job types were subsidized by profitable ones invisibly</li>
+<li>Driver performance and subcontractor cost efficiency could not be benchmarked</li>
+<li>Finance could not identify which customers were genuinely high-margin relationships</li>
+</ul>
+
+<h2>The Enfono Solution</h2>
+<p>Enfono implemented a custom ERPNext module tailored specifically for logistics job costing. The build included:</p>
+
+<h3>Job Card Master</h3>
+<p>Each shipment or clearance job is created as a "Job Card" in ERPNext — a parent document linking every associated cost and revenue element. The job card carries a unique reference number, customer details, job type, origin/destination, and responsible agent.</p>
+
+<h3>Real-Time Cost Capture</h3>
+<p>All costs are booked directly against the job card as they occur:</p>
+<ul>
+<li>Driver wages are linked via the HR timesheet module to specific job cards</li>
+<li>Fuel consumption is logged via the fleet management module per trip</li>
+<li>Port and customs fees are entered by the clearance team in the field via mobile</li>
+<li>Subcontractor invoices are matched to the receiving job card on the AP side</li>
+</ul>
+
+<h3>Revenue Recognition</h3>
+<p>Customer invoices are generated from the job card, ensuring exact linkage between revenue and cost. Partial payments and advances are also tracked against the job.</p>
+
+<h3>Live Profitability Dashboard</h3>
+<p>Management now has a real-time dashboard showing:</p>
+<ul>
+<li>Gross profit per job, per route, per customer, per job type</li>
+<li>Month-to-date profitability versus budget</li>
+<li>Top 10 and bottom 10 jobs by margin percentage</li>
+<li>Aging unbilled jobs and outstanding cost approvals</li>
+</ul>
+
+<h2>The Results</h2>
+<p>Within 90 days of go-live, NMCE's management team reported significant operational changes:</p>
+<ul>
+<li>Identified 3 chronic low-margin route types and renegotiated pricing with customers</li>
+<li>Eliminated one underperforming subcontractor relationship that was quietly costing 8% margin</li>
+<li>Reduced month-end close time from 14 days to 4 days due to real-time cost capture</li>
+<li>Improved customer quotation accuracy by 35%, reducing post-contract surprises</li>
+</ul>
+
+<p>"Before this system, we thought we were profitable on every job until we weren't. Now I can see exactly what each shipment made or lost before the truck even returns." — <em>Operations Director, NMCE Logistics</em></p>`
+        },
+        {
+            id: 7,
+            slug: 'power-creations-manufacturing-erp-transformers',
+            title: 'Customer Story: Power Creations — Manufacturing Intelligence for Heavy Electrical Equipment',
+            category: 'Case Study',
+            tags: ['Customer Story', 'Manufacturing', 'ERPNext', 'Transformers', 'Heavy Electrical'],
+            read_time: '8 min read',
+            date: 'February 18, 2026',
+            featured: false,
+            excerpt: 'Power Creations manufactures transformers and heavy electrical equipment — complex, high-value products with intricate BOMs and quality gates. Enfono built an ERPNext manufacturing suite that brought full traceability and scheduling intelligence to their shop floor.',
+            cover_image: '/assets/img/pcc-blog.webp',
+            content: `<h2>About Power Creations</h2>
+<p>Power Creations is a manufacturer of transformers, switchgear, and heavy electrical equipment — products that sit at the heart of industrial power infrastructure across the GCC and South Asia. Their product range includes distribution transformers, metering transformers, voltage regulators, and custom-engineered electrical panels for industrial clients.</p>
+
+<p>Manufacturing heavy electrical equipment is fundamentally different from discrete or process manufacturing. Each product is highly engineered, involving complex multi-level Bills of Materials (BOMs), long production cycles, stringent quality testing requirements, and precise traceability from raw copper and silicon steel through to finished transformer dispatch.</p>
+
+<h2>The Challenge</h2>
+<p>When Enfono engaged Power Creations, their manufacturing operations were running on a combination of Excel worksheets, WhatsApp coordination between departments, and a legacy accounting system that had no awareness of the shop floor.</p>
+
+<p>The pain points were significant:</p>
+<ul>
+<li><strong>BOM Complexity:</strong> A single distribution transformer can have 200+ component line items across sub-assemblies. Managing version control and engineering changes manually was error-prone and slow.</li>
+<li><strong>Production Scheduling:</strong> No visibility into which work orders were competing for the same winding machine or core-cutting equipment. Bottlenecks were discovered only when production stalled.</li>
+<li><strong>Quality Traceability:</strong> Customer requirements (particularly government and utility buyers) demanded full material traceability — certificate of origin for copper, silicon steel test reports, insulation manufacturer datasheets. These were stored in physical folders.</li>
+<li><strong>Cost Visibility:</strong> Material costs varied significantly with copper price fluctuations. There was no mechanism to calculate actual production cost versus standard cost per unit.</li>
+</ul>
+
+<h2>The Enfono ERPNext Implementation</h2>
+
+<h3>Multi-Level BOM Management</h3>
+<p>Enfono implemented ERPNext's manufacturing module with multi-level BOM support, allowing Power Creations to define complete product structures from raw materials through sub-assemblies to finished goods. Engineering change management workflows allow design updates to propagate correctly across active production orders.</p>
+
+<h3>Work Order and Capacity Scheduling</h3>
+<p>Production orders are created directly from customer sales orders, automatically generating material requisitions and work orders for each production stage. A capacity planning view allows the production manager to see machine and workstation loading across the next 30 days, identifying bottlenecks before they impact delivery dates.</p>
+
+<h3>Quality Control Integration</h3>
+<p>Each production stage includes mandatory quality gates. For transformer manufacturing, these include:</p>
+<ul>
+<li>Core lamination inspection and resistance measurement</li>
+<li>Winding resistance and turns ratio testing</li>
+<li>Insulation resistance (IR) and High Voltage (HV) testing</li>
+<li>Final factory acceptance test (FAT) documentation</li>
+</ul>
+<p>Quality test results are captured directly in ERPNext, linked to the specific production batch and serial number. Customer test certificates are generated automatically from the captured data.</p>
+
+<h3>Material Traceability</h3>
+<p>Every material receipt is tagged with supplier batch number and certificate references at the point of goods receipt. When a transformer is dispatched, ERPNext generates a full material traceability report — showing exactly which copper batch from which supplier went into which coil of which transformer.</p>
+
+<h3>Landed Cost and Variance Analysis</h3>
+<p>Given the volatility of copper and transformer core material prices, Enfono implemented a landed cost tracking module. Actual material costs (including freight and customs duties on imported materials) are captured and compared against the standard BOM cost at each production completion. Variances trigger exception reports for the finance team.</p>
+
+<h2>The Outcomes</h2>
+<p>Six months post-implementation, Power Creations reported measurable operational improvements:</p>
+<ul>
+<li>Production scheduling conflicts reduced by 70% through capacity visibility</li>
+<li>Quality rejection rate reduced by 40% due to earlier defect detection at mandatory inspection gates</li>
+<li>Customer delivery performance improved from 68% on-time to 89% on-time</li>
+<li>Material traceability documentation — previously taking 3 days to compile manually — is now generated in under 2 minutes</li>
+<li>Cost variance analysis revealed one raw material category consistently running 12% over standard cost, enabling a supplier renegotiation</li>
+</ul>
+
+<p>"What impressed us most was that the system was configured specifically for how transformer manufacturing works — not a generic factory module. Enfono understood our shop floor before they wrote a single line of configuration." — <em>Managing Director, Power Creations</em></p>`
+        }
+    ],
+    ai_cta: {
+        heading: "Ready to Supercharge Your ERP with AI?",
+        subtext: "Enfono bridges the gap between traditional operations and the future of intelligence. Let's build your AI roadmap together.",
+        btn_primary_txt: "Get Started",
+        btn_primary_url: "/contact",
+        btn_secondary_txt: "Learn More",
+        btn_secondary_url: "/ai-solutions"
+    },
+
+    // ─── BRANDS ───────────────────────────────────────
+    brands: [
+        {
+            id: 1,
+            name: 'Fateh ERP',
+            icon: 'fas fa-file-invoice-dollar',
+            tag: 'ZATCA Compliance',
+            headline: 'ZATCA-Compliant e-Invoicing Made Simple',
+            desc: 'Generate, validate, and submit ZATCA Phase 2-compliant e-invoices instantly. Built for Saudi businesses of all sizes with seamless ERPNext integration.',
+            features: ['Phase 1 & 2 compliant', 'QR code generation', 'ERPNext integration'],
+            color: '#10B981',
+            status: 'Available',
+            link: '#'
+        },
+        {
+            id: 2,
+            name: 'FieldOps',
+            icon: 'fas fa-mobile-alt',
+            tag: 'Mobile ERP',
+            headline: 'Mobile-First Field Operations Platform',
+            desc: 'Empower your field teams with a mobile app that syncs with ERPNext in real-time — sales orders, delivery tracking, service requests, and more.',
+            features: ['Offline-first mobile app', 'GPS tracking', 'Real-time ERPNext sync', 'Digital signatures', 'Route optimization', 'Service ticketing'],
+            color: '#059669',
+            status: 'Beta',
+            link: '#'
+        },
+        {
+            id: 3,
+            name: 'StockIQ',
+            icon: 'fas fa-warehouse',
+            tag: 'Inventory AI',
+            headline: 'Intelligent Inventory Management',
+            desc: 'AI-driven inventory optimization that predicts demand, suggests reorder points, and eliminates stockouts — fully integrated with ERPNext.',
+            features: ['Demand forecasting', 'Auto reorder rules', 'Multi-warehouse', 'Barcode & RFID', 'Expiry management', 'Supplier scoring'],
+            color: '#34D399',
+            status: 'Coming Soon',
+            link: '#'
+        },
+        {
+            id: 4,
+            name: 'ERPInsights',
+            icon: 'fas fa-chart-pie',
+            tag: 'AI Analytics',
+            headline: 'AI-Powered Business Intelligence for ERPNext',
+            desc: 'Turn your ERPNext data into actionable insights with predictive dashboards, natural language queries, and automated anomaly detection.',
+            features: ['Predictive analytics', 'Natural language reports', 'Custom KPI dashboards'],
+            color: '#3B82F6',
+            status: 'Available',
+            link: '#'
+        }
+    ],
+
+    // ─── CAREERS ──────────────────────────────────────
+    careers: [
+        { id: 1, title: 'Senior ERPNext Developer', dept: 'Engineering', location: 'Remote', type: 'Full-time', desc: 'Build and customize ERPNext modules for GCC enterprise clients. Deep Python/Frappe framework experience required.', apply_url: '/contact' },
+        { id: 2, title: 'ERP Consultant — GCC', dept: 'Consulting', location: 'Riyadh, KSA', type: 'On-site', desc: 'Lead end-to-end ERPNext implementations for clients in Saudi Arabia. Arabic language skills preferred.', apply_url: '/contact' },
+        { id: 3, title: 'AI/ML Engineer', dept: 'Engineering', location: 'Remote', type: 'Full-time', desc: 'Build AI features for our ERPInsights platform — predictive models, NLP queries, anomaly detection.', apply_url: '/contact' },
+        { id: 4, title: 'ERP Project Manager', dept: 'Consulting', location: 'Dubai, UAE', type: 'Hybrid', desc: 'Manage ERP implementation projects across UAE clients — coordinate teams, track milestones, ensure on-time delivery.', apply_url: '/contact' },
+        { id: 5, title: 'Business Development Manager', dept: 'Sales', location: 'Riyadh, KSA', type: 'On-site', desc: 'Drive new client acquisition across Saudi Arabia. ERPNext or ERP industry experience highly valued.', apply_url: '/contact' },
+        { id: 6, title: 'DevOps Engineer', dept: 'Engineering', location: 'Remote', type: 'Full-time', desc: 'Manage cloud infrastructure for Enfono\'s SaaS products and client deployments. AWS/GCP experience required.', apply_url: '/contact' }
     ]
 };

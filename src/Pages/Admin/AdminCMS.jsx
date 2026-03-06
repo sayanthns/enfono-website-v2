@@ -79,7 +79,7 @@ const AdminCMS = () => {
                 <p>Manage the homepage sections and dynamic content</p>
 
                 <div className="admin-tabs" style={{ display: 'flex', gap: '8px', marginTop: '24px', borderBottom: '1px solid #e2e8f0', overflowX: 'auto' }}>
-                    {['hero', 'services_hero', 'ai_cta', 'stats', 'clients', 'testimonials', 'work', 'media'].map(tab => (
+                    {['hero', 'services_hero', 'ai_cta', 'stats', 'brands', 'careers', 'clients', 'testimonials', 'work', 'media', 'blogs'].map(tab => (
                         <button
                             key={tab}
                             onClick={() => setActiveTab(tab)}
@@ -104,590 +104,894 @@ const AdminCMS = () => {
             </div>
 
             <div className="admin-main-content" style={{ marginTop: '24px' }}>
-                {activeTab === 'hero' && (
+                {activeTab === 'brands' && (
                     <div className="admin-content-card">
-                        <h3>Hero Section</h3>
-                        <div className="admin-form-group" style={{ marginBottom: '20px' }}>
-                            <label>Hero Heading</label>
-                            <input
-                                type="text"
-                                style={{ width: '100%', padding: '12px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
-                                value={cmsData.hero.heading}
-                                onChange={(e) => updateField('hero', 'heading', e.target.value)}
-                            />
-                        </div>
-                        <div className="admin-form-group">
-                            <label>Hero Subtext</label>
-                            <textarea
-                                style={{ width: '100%', padding: '12px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a', minHeight: '100px' }}
-                                value={cmsData.hero.subtext}
-                                onChange={(e) => updateField('hero', 'subtext', e.target.value)}
-                            />
-                        </div>
-                        <button onClick={handleSave} className="admin-btn-primary" style={{ marginTop: '16px' }}>Save Hero</button>
-                    </div>
-                )}
-
-                {activeTab === 'services_hero' && (
-                    <div className="admin-content-card">
-                        <h3>Services Page Hero</h3>
-                        <div className="admin-form-group" style={{ marginBottom: '20px' }}>
-                            <label>Services Heading</label>
-                            <input
-                                type="text"
-                                style={{ width: '100%', padding: '12px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
-                                value={cmsData.services_hero?.heading || ''}
-                                onChange={(e) => updateField('services_hero', 'heading', e.target.value)}
-                            />
-                        </div>
-                        <div className="admin-form-group" style={{ marginBottom: '20px' }}>
-                            <label>Services Subtext</label>
-                            <textarea
-                                style={{ width: '100%', padding: '12px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a', minHeight: '100px' }}
-                                value={cmsData.services_hero?.subtext || ''}
-                                onChange={(e) => updateField('services_hero', 'subtext', e.target.value)}
-                            />
-                        </div>
-                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-                            <div className="admin-form-group">
-                                <label>Button Text</label>
-                                <input
-                                    type="text"
-                                    style={{ width: '100%', padding: '12px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
-                                    value={cmsData.services_hero?.cta_primary || ''}
-                                    onChange={(e) => updateField('services_hero', 'cta_primary', e.target.value)}
-                                />
-                            </div>
-                            <div className="admin-form-group">
-                                <label>Button URL</label>
-                                <input
-                                    type="text"
-                                    style={{ width: '100%', padding: '12px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
-                                    value={cmsData.services_hero?.cta_url || ''}
-                                    onChange={(e) => updateField('services_hero', 'cta_url', e.target.value)}
-                                />
-                            </div>
-                        </div>
-                        <button onClick={handleSave} className="admin-btn-primary" style={{ marginTop: '16px' }}>Save Services Hero</button>
-                    </div>
-                )}
-
-                {activeTab === 'ai_cta' && (
-                    <div className="admin-content-card">
-                        <h3>AI Page CTA Section</h3>
-                        <div className="admin-form-group" style={{ marginBottom: '20px' }}>
-                            <label>CTA Heading</label>
-                            <input
-                                type="text"
-                                style={{ width: '100%', padding: '12px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
-                                value={cmsData.ai_cta?.heading || ''}
-                                onChange={(e) => updateField('ai_cta', 'heading', e.target.value)}
-                            />
-                        </div>
-                        <div className="admin-form-group" style={{ marginBottom: '20px' }}>
-                            <label>CTA Subtext</label>
-                            <textarea
-                                style={{ width: '100%', padding: '12px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a', minHeight: '100px' }}
-                                value={cmsData.ai_cta?.subtext || ''}
-                                onChange={(e) => updateField('ai_cta', 'subtext', e.target.value)}
-                            />
-                        </div>
-                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
-                            <div className="admin-form-group">
-                                <label>Primary Button Text</label>
-                                <input
-                                    type="text"
-                                    style={{ width: '100%', padding: '12px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
-                                    value={cmsData.ai_cta?.btn_primary_txt || ''}
-                                    onChange={(e) => updateField('ai_cta', 'btn_primary_txt', e.target.value)}
-                                />
-                            </div>
-                            <div className="admin-form-group">
-                                <label>Primary Button URL</label>
-                                <input
-                                    type="text"
-                                    style={{ width: '100%', padding: '12px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
-                                    value={cmsData.ai_cta?.btn_primary_url || ''}
-                                    onChange={(e) => updateField('ai_cta', 'btn_primary_url', e.target.value)}
-                                />
-                            </div>
-                        </div>
-                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-                            <div className="admin-form-group">
-                                <label>Secondary Button Text</label>
-                                <input
-                                    type="text"
-                                    style={{ width: '100%', padding: '12px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
-                                    value={cmsData.ai_cta?.btn_secondary_txt || ''}
-                                    onChange={(e) => updateField('ai_cta', 'btn_secondary_txt', e.target.value)}
-                                />
-                            </div>
-                            <div className="admin-form-group">
-                                <label>Secondary Button URL</label>
-                                <input
-                                    type="text"
-                                    style={{ width: '100%', padding: '12px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
-                                    value={cmsData.ai_cta?.btn_secondary_url || ''}
-                                    onChange={(e) => updateField('ai_cta', 'btn_secondary_url', e.target.value)}
-                                />
-                            </div>
-                        </div>
-                        <button onClick={handleSave} className="admin-btn-primary" style={{ marginTop: '24px' }}>Save AI CTA</button>
-                    </div>
-                )}
-
-                {activeTab === 'stats' && (
-                    <div className="admin-content-card">
-                        <h3>Company Stats</h3>
-                        <div className="admin-form-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px' }}>
-                            {(cmsData.stats || []).map((stat, idx) => (
-                                <div key={idx} style={{ padding: '16px', background: '#f8fafc', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
-                                    <div style={{ marginBottom: '10px' }}>
-                                        <label style={{ fontSize: '12px', opacity: 0.6 }}>Label (e.g. Projects Delivered)</label>
-                                        <input
-                                            type="text"
-                                            style={{ width: '100%', padding: '8px', background: '#0f172afff', border: '1px solid #e2e8f0', borderRadius: '6px', color: '#0f172a' }}
-                                            value={stat.label}
-                                            onChange={(e) => updateItem('stats', idx, 'label', e.target.value)}
-                                        />
-                                    </div>
-                                    <div>
-                                        <label style={{ fontSize: '12px', opacity: 0.6 }}>Value (e.g. 120)</label>
-                                        <input
-                                            type="text"
-                                            style={{ width: '100%', padding: '8px', background: '#0f172afff', border: '1px solid #e2e8f0', borderRadius: '6px', color: '#0f172a' }}
-                                            value={stat.value}
-                                            onChange={(e) => updateItem('stats', idx, 'value', e.target.value)}
-                                        />
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                        <button onClick={handleSave} className="admin-btn-primary" style={{ marginTop: '16px' }}>Save Stats</button>
-                    </div>
-                )}
-
-                {activeTab === 'clients' && (
-                    <div className="admin-content-card">
-                        <h3>Client Scrolling Section</h3>
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                            {(cmsData.client_logos || []).map((client, idx) => (
-                                <div key={idx} style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-                                    <input
-                                        type="text"
-                                        value={client.name}
-                                        onChange={(e) => updateItem('client_logos', idx, 'name', e.target.value)}
-                                        style={{ flex: 1, padding: '10px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
-                                    />
-                                    <button
-                                        onClick={() => {
-                                            const newList = cmsData.client_logos.filter((_, i) => i !== idx);
-                                            setCmsData({ ...cmsData, client_logos: newList });
-                                        }}
-                                        style={{ background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', border: 'none', padding: '10px', borderRadius: '8px', cursor: 'pointer' }}
-                                    >
-                                        <i className="fas fa-trash" />
-                                    </button>
-                                </div>
-                            ))}
-                            <button
-                                onClick={() => addItem('client_logos', { name: 'New Client' })}
-                                style={{ background: 'rgba(16, 185, 129, 0.1)', color: '#10B981', border: 'none', padding: '12px', borderRadius: '8px', cursor: 'pointer', fontWeight: 600 }}
-                            >
-                                + Add New Client
-                            </button>
-                        </div>
-                        <button onClick={handleSave} className="admin-btn-primary" style={{ marginTop: '24px' }}>Save All Clients</button>
-                    </div>
-                )}
-
-                {activeTab === 'testimonials' && (
-                    <div className="admin-content-card">
-                        <h3>Testimonials</h3>
+                        <h3>Our Brands & Products</h3>
+                        <p style={{ color: '#64748b', marginBottom: '24px', fontSize: '14px' }}>Manage proprietary SaaS products. Rename 'CHMS' to 'Fateh ERP' here if not already done.</p>
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-                            {(cmsData.testimonials || []).map((t, idx) => (
-                                <div key={idx} style={{ padding: '24px', background: '#f8fafc', borderRadius: '16px', border: '1px solid #e2e8f0' }}>
-                                    <div style={{ marginBottom: '16px' }}>
-                                        <label style={{ fontSize: '13px', opacity: 0.6 }}>Quote</label>
-                                        <textarea
-                                            value={t.quote}
-                                            onChange={(e) => updateItem('testimonials', idx, 'quote', e.target.value)}
-                                            style={{ width: '100%', minHeight: '80px', padding: '12px', background: '#0f172afff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
-                                        />
-                                    </div>
-                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-                                        <div>
-                                            <label style={{ fontSize: '13px', opacity: 0.6 }}>Author Name</label>
-                                            <input
-                                                type="text"
-                                                value={t.name}
-                                                onChange={(e) => updateItem('testimonials', idx, 'name', e.target.value)}
-                                                style={{ width: '100%', padding: '10px', background: '#0f172afff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
-                                            />
-                                        </div>
-                                        <div>
-                                            <label style={{ fontSize: '13px', opacity: 0.6 }}>Role / Position</label>
-                                            <input
-                                                type="text"
-                                                value={t.role}
-                                                onChange={(e) => updateItem('testimonials', idx, 'role', e.target.value)}
-                                                style={{ width: '100%', padding: '10px', background: '#0f172afff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
-                                            />
-                                        </div>
-                                    </div>
-                                    <button
-                                        onClick={() => {
-                                            const newList = cmsData.testimonials.filter((_, i) => i !== idx);
-                                            setCmsData({ ...cmsData, testimonials: newList });
-                                        }}
-                                        style={{ background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', border: 'none', padding: '8px 16px', borderRadius: '8px', cursor: 'pointer', marginTop: '16px', fontSize: '13px' }}
-                                    >
-                                        Remove Testimonial
-                                    </button>
-                                </div>
-                            ))}
-                            <button
-                                onClick={() => addItem('testimonials', { quote: '', name: '', role: '', initials: 'NEW' })}
-                                style={{ background: 'rgba(16, 185, 129, 0.1)', color: '#10B981', border: 'none', padding: '12px', borderRadius: '8px', cursor: 'pointer', fontWeight: 600 }}
-                            >
-                                + Add Testimonial
-                            </button>
-                        </div>
-                        <button onClick={handleSave} className="admin-btn-primary" style={{ marginTop: '24px' }}>Save All Testimonials</button>
-                    </div>
-                )}
-
-                {activeTab === 'work' && (
-                    <div className="admin-content-card">
-                        <h3>Portfolio (Our Work)</h3>
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-                            {(cmsData.our_work || []).map((w, idx) => (
+                            {(cmsData.brands || []).map((brand, idx) => (
                                 <div key={idx} style={{ padding: '24px', background: '#f8fafc', borderRadius: '16px', border: '1px solid #e2e8f0' }}>
                                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
                                         <div>
-                                            <label style={{ fontSize: '13px', opacity: 0.6 }}>Project Title</label>
+                                            <label style={{ fontSize: '12px', fontWeight: 600 }}>Brand Name</label>
                                             <input
                                                 type="text"
-                                                value={w.title}
-                                                onChange={(e) => updateItem('our_work', idx, 'title', e.target.value)}
-                                                style={{ width: '100%', padding: '10px', background: '#0f172afff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
+                                                value={brand.name}
+                                                onChange={(e) => updateItem('brands', idx, 'name', e.target.value)}
+                                                style={{ width: '100%', padding: '10px', background: '#fff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
                                             />
                                         </div>
                                         <div>
-                                            <label style={{ fontSize: '13px', opacity: 0.6 }}>Category</label>
+                                            <label style={{ fontSize: '12px', fontWeight: 600 }}>Icon Class (FontAwesome)</label>
+                                            <input
+                                                type="text"
+                                                value={brand.icon}
+                                                onChange={(e) => updateItem('brands', idx, 'icon', e.target.value)}
+                                                style={{ width: '100%', padding: '10px', background: '#fff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
+                                        <div>
+                                            <label style={{ fontSize: '12px', fontWeight: 600 }}>Tag Line</label>
+                                            <input
+                                                type="text"
+                                                value={brand.tag}
+                                                onChange={(e) => updateItem('brands', idx, 'tag', e.target.value)}
+                                                style={{ width: '100%', padding: '10px', background: '#fff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
+                                            />
+                                        </div>
+                                        <div>
+                                            <label style={{ fontSize: '12px', fontWeight: 600 }}>Brand Color (HEX)</label>
+                                            <input
+                                                type="text"
+                                                value={brand.color}
+                                                onChange={(e) => updateItem('brands', idx, 'color', e.target.value)}
+                                                style={{ width: '100%', padding: '10px', background: '#fff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div style={{ marginBottom: '16px' }}>
+                                        <label style={{ fontSize: '12px', fontWeight: 600 }}>Headline</label>
+                                        <input
+                                            type="text"
+                                            value={brand.headline}
+                                            onChange={(e) => updateItem('brands', idx, 'headline', e.target.value)}
+                                            style={{ width: '100%', padding: '10px', background: '#fff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
+                                        />
+                                    </div>
+                                    <div style={{ marginBottom: '16px' }}>
+                                        <label style={{ fontSize: '12px', fontWeight: 600 }}>Description</label>
+                                        <textarea
+                                            value={brand.desc}
+                                            onChange={(e) => updateItem('brands', idx, 'desc', e.target.value)}
+                                            style={{ width: '100%', padding: '10px', background: '#fff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a', minHeight: '80px' }}
+                                        />
+                                    </div>
+                                    <button
+                                        onClick={() => {
+                                            const newList = cmsData.brands.filter((_, i) => i !== idx);
+                                            setCmsData({ ...cmsData, brands: newList });
+                                        }}
+                                        style={{ background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', border: 'none', padding: '8px 16px', borderRadius: '8px', cursor: 'pointer', fontSize: '13px' }}
+                                    >
+                                        Remove Brand
+                                    </button>
+                                </div>
+                            ))}
+                            <button
+                                onClick={() => addItem('brands', { name: 'New Brand', icon: 'fas fa-cube', tag: 'Product Tag', headline: 'Brand Headline', desc: 'Short description', color: '#10B981', features: [], status: 'Available', link: '#' })}
+                                style={{ background: 'rgba(16, 185, 129, 0.1)', color: '#10B981', border: 'none', padding: '12px', borderRadius: '8px', cursor: 'pointer', fontWeight: 600 }}
+                            >
+                                + Add New Brand
+                            </button>
+                        </div>
+                        <button onClick={handleSave} className="admin-btn-primary" style={{ marginTop: '24px' }}>Save All Brands</button>
+                    </div>
+                )}
+
+                {activeTab === 'careers' && (
+                    <div className="admin-content-card">
+                        <h3>Careers & Job Openings</h3>
+                        <p style={{ color: '#64748b', marginBottom: '24px', fontSize: '14px' }}>Post new roles and update 'Apply Now' links.</p>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                            {(cmsData.careers || []).map((job, idx) => (
+                                <div key={idx} style={{ padding: '20px', background: '#f8fafc', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
+                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '12px' }}>
+                                        <div>
+                                            <label style={{ fontSize: '12px', fontWeight: 600 }}>Job Title</label>
+                                            <input
+                                                type="text"
+                                                value={job.title}
+                                                onChange={(e) => updateItem('careers', idx, 'title', e.target.value)}
+                                                style={{ width: '100%', padding: '10px', background: '#fff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
+                                            />
+                                        </div>
+                                        <div>
+                                            <label style={{ fontSize: '12px', fontWeight: 600 }}>Department</label>
                                             <select
-                                                value={w.category}
-                                                onChange={(e) => updateItem('our_work', idx, 'category', e.target.value)}
-                                                style={{ width: '100%', padding: '10px', background: '#0f172afff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a', appearance: 'none' }}
+                                                value={job.dept}
+                                                onChange={(e) => updateItem('careers', idx, 'dept', e.target.value)}
+                                                style={{ width: '100%', padding: '10px', background: '#fff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
                                             >
-                                                {(cmsData.our_work_categories || []).map(cat => (
-                                                    <option key={cat} value={cat}>{cat}</option>
+                                                <option value="Engineering">Engineering</option>
+                                                <option value="Consulting">Consulting</option>
+                                                <option value="Sales">Sales</option>
+                                                <option value="Operations">Operations</option>
+                                                <option value="Marketing">Marketing</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '12px' }}>
+                                        <div>
+                                            <label style={{ fontSize: '12px', fontWeight: 600 }}>Location</label>
+                                            <input
+                                                type="text"
+                                                value={job.location}
+                                                onChange={(e) => updateItem('careers', idx, 'location', e.target.value)}
+                                                style={{ width: '100%', padding: '10px', background: '#fff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
+                                            />
+                                        </div>
+                                        <div>
+                                            <label style={{ fontSize: '12px', fontWeight: 600 }}>Employment Type</label>
+                                            <input
+                                                type="text"
+                                                value={job.type}
+                                                onChange={(e) => updateItem('careers', idx, 'type', e.target.value)}
+                                                style={{ width: '100%', padding: '10px', background: '#fff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div style={{ marginBottom: '12px' }}>
+                                        <label style={{ fontSize: '12px', fontWeight: 600 }}>Apply Now URL</label>
+                                        <input
+                                            type="text"
+                                            value={job.apply_url}
+                                            onChange={(e) => updateItem('careers', idx, 'apply_url', e.target.value)}
+                                            style={{ width: '100%', padding: '10px', background: '#fff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
+                                            placeholder="/contact or external URL"
+                                        />
+                                    </div>
+                                    <div style={{ marginBottom: '16px' }}>
+                                        <label style={{ fontSize: '12px', fontWeight: 600 }}>Description</label>
+                                        <textarea
+                                            value={job.desc}
+                                            onChange={(e) => updateItem('careers', idx, 'desc', e.target.value)}
+                                            style={{ width: '100%', padding: '10px', background: '#fff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a', minHeight: '60px' }}
+                                        />
+                                    </div>
+                                    <button
+                                        onClick={() => {
+                                            const newList = cmsData.careers.filter((_, i) => i !== idx);
+                                            setCmsData({ ...cmsData, careers: newList });
+                                        }}
+                                        style={{ background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', border: 'none', padding: '8px 16px', borderRadius: '8px', cursor: 'pointer', fontSize: '13px' }}
+                                    >
+                                        Delete Opening
+                                    </button>
+                                </div>
+                            ))}
+                            <button
+                                onClick={() => addItem('careers', { id: Date.now(), title: 'New Role', dept: 'Engineering', location: 'Remote', type: 'Full-time', desc: '', apply_url: '/contact' })}
+                                style={{ background: 'rgba(16, 185, 129, 0.1)', color: '#10B981', border: 'none', padding: '12px', borderRadius: '8px', cursor: 'pointer', fontWeight: 600 }}
+                            >
+                                + Add New Job Opening
+                            </button>
+                        </div>
+                        <button onClick={handleSave} className="admin-btn-primary" style={{ marginTop: '24px' }}>Save All Careers</button>
+                    </div>
+                )}
+
+                <div className="admin-main-content" style={{ marginTop: '24px' }}>
+                    {activeTab === 'hero' && (
+                        <div className="admin-content-card">
+                            <h3>Hero Section</h3>
+                            <div className="admin-form-group" style={{ marginBottom: '20px' }}>
+                                <label>Hero Heading</label>
+                                <input
+                                    type="text"
+                                    style={{ width: '100%', padding: '12px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
+                                    value={cmsData.hero.heading}
+                                    onChange={(e) => updateField('hero', 'heading', e.target.value)}
+                                />
+                            </div>
+                            <div className="admin-form-group">
+                                <label>Hero Subtext</label>
+                                <textarea
+                                    style={{ width: '100%', padding: '12px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a', minHeight: '100px' }}
+                                    value={cmsData.hero.subtext}
+                                    onChange={(e) => updateField('hero', 'subtext', e.target.value)}
+                                />
+                            </div>
+                            <button onClick={handleSave} className="admin-btn-primary" style={{ marginTop: '16px' }}>Save Hero</button>
+                        </div>
+                    )}
+
+                    {activeTab === 'services_hero' && (
+                        <div className="admin-content-card">
+                            <h3>Services Page Hero</h3>
+                            <div className="admin-form-group" style={{ marginBottom: '20px' }}>
+                                <label>Services Heading</label>
+                                <input
+                                    type="text"
+                                    style={{ width: '100%', padding: '12px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
+                                    value={cmsData.services_hero?.heading || ''}
+                                    onChange={(e) => updateField('services_hero', 'heading', e.target.value)}
+                                />
+                            </div>
+                            <div className="admin-form-group" style={{ marginBottom: '20px' }}>
+                                <label>Services Subtext</label>
+                                <textarea
+                                    style={{ width: '100%', padding: '12px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a', minHeight: '100px' }}
+                                    value={cmsData.services_hero?.subtext || ''}
+                                    onChange={(e) => updateField('services_hero', 'subtext', e.target.value)}
+                                />
+                            </div>
+                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                                <div className="admin-form-group">
+                                    <label>Button Text</label>
+                                    <input
+                                        type="text"
+                                        style={{ width: '100%', padding: '12px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
+                                        value={cmsData.services_hero?.cta_primary || ''}
+                                        onChange={(e) => updateField('services_hero', 'cta_primary', e.target.value)}
+                                    />
+                                </div>
+                                <div className="admin-form-group">
+                                    <label>Button URL</label>
+                                    <input
+                                        type="text"
+                                        style={{ width: '100%', padding: '12px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
+                                        value={cmsData.services_hero?.cta_url || ''}
+                                        onChange={(e) => updateField('services_hero', 'cta_url', e.target.value)}
+                                    />
+                                </div>
+                            </div>
+                            <button onClick={handleSave} className="admin-btn-primary" style={{ marginTop: '16px' }}>Save Services Hero</button>
+                        </div>
+                    )}
+
+                    {activeTab === 'ai_cta' && (
+                        <div className="admin-content-card">
+                            <h3>AI Page CTA Section</h3>
+                            <div className="admin-form-group" style={{ marginBottom: '20px' }}>
+                                <label>CTA Heading</label>
+                                <input
+                                    type="text"
+                                    style={{ width: '100%', padding: '12px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
+                                    value={cmsData.ai_cta?.heading || ''}
+                                    onChange={(e) => updateField('ai_cta', 'heading', e.target.value)}
+                                />
+                            </div>
+                            <div className="admin-form-group" style={{ marginBottom: '20px' }}>
+                                <label>CTA Subtext</label>
+                                <textarea
+                                    style={{ width: '100%', padding: '12px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a', minHeight: '100px' }}
+                                    value={cmsData.ai_cta?.subtext || ''}
+                                    onChange={(e) => updateField('ai_cta', 'subtext', e.target.value)}
+                                />
+                            </div>
+                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
+                                <div className="admin-form-group">
+                                    <label>Primary Button Text</label>
+                                    <input
+                                        type="text"
+                                        style={{ width: '100%', padding: '12px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
+                                        value={cmsData.ai_cta?.btn_primary_txt || ''}
+                                        onChange={(e) => updateField('ai_cta', 'btn_primary_txt', e.target.value)}
+                                    />
+                                </div>
+                                <div className="admin-form-group">
+                                    <label>Primary Button URL</label>
+                                    <input
+                                        type="text"
+                                        style={{ width: '100%', padding: '12px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
+                                        value={cmsData.ai_cta?.btn_primary_url || ''}
+                                        onChange={(e) => updateField('ai_cta', 'btn_primary_url', e.target.value)}
+                                    />
+                                </div>
+                            </div>
+                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                                <div className="admin-form-group">
+                                    <label>Secondary Button Text</label>
+                                    <input
+                                        type="text"
+                                        style={{ width: '100%', padding: '12px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
+                                        value={cmsData.ai_cta?.btn_secondary_txt || ''}
+                                        onChange={(e) => updateField('ai_cta', 'btn_secondary_txt', e.target.value)}
+                                    />
+                                </div>
+                                <div className="admin-form-group">
+                                    <label>Secondary Button URL</label>
+                                    <input
+                                        type="text"
+                                        style={{ width: '100%', padding: '12px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
+                                        value={cmsData.ai_cta?.btn_secondary_url || ''}
+                                        onChange={(e) => updateField('ai_cta', 'btn_secondary_url', e.target.value)}
+                                    />
+                                </div>
+                            </div>
+                            <button onClick={handleSave} className="admin-btn-primary" style={{ marginTop: '24px' }}>Save AI CTA</button>
+                        </div>
+                    )}
+
+                    {activeTab === 'stats' && (
+                        <div className="admin-content-card">
+                            <h3>Company Stats</h3>
+                            <div className="admin-form-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px' }}>
+                                {(cmsData.stats || []).map((stat, idx) => (
+                                    <div key={idx} style={{ padding: '16px', background: '#f8fafc', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
+                                        <div style={{ marginBottom: '10px' }}>
+                                            <label style={{ fontSize: '12px', opacity: 0.6 }}>Label (e.g. Projects Delivered)</label>
+                                            <input
+                                                type="text"
+                                                style={{ width: '100%', padding: '8px', background: '#0f172afff', border: '1px solid #e2e8f0', borderRadius: '6px', color: '#0f172a' }}
+                                                value={stat.label}
+                                                onChange={(e) => updateItem('stats', idx, 'label', e.target.value)}
+                                            />
+                                        </div>
+                                        <div>
+                                            <label style={{ fontSize: '12px', opacity: 0.6 }}>Value (e.g. 120)</label>
+                                            <input
+                                                type="text"
+                                                style={{ width: '100%', padding: '8px', background: '#0f172afff', border: '1px solid #e2e8f0', borderRadius: '6px', color: '#0f172a' }}
+                                                value={stat.value}
+                                                onChange={(e) => updateItem('stats', idx, 'value', e.target.value)}
+                                            />
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                            <button onClick={handleSave} className="admin-btn-primary" style={{ marginTop: '16px' }}>Save Stats</button>
+                        </div>
+                    )}
+
+                    {activeTab === 'clients' && (
+                        <div className="admin-content-card">
+                            <h3>Client Scrolling Section</h3>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                                {(cmsData.client_logos || []).map((client, idx) => (
+                                    <div key={idx} style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                                        <input
+                                            type="text"
+                                            value={client.name}
+                                            onChange={(e) => updateItem('client_logos', idx, 'name', e.target.value)}
+                                            style={{ flex: 1, padding: '10px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
+                                        />
+                                        <button
+                                            onClick={() => {
+                                                const newList = cmsData.client_logos.filter((_, i) => i !== idx);
+                                                setCmsData({ ...cmsData, client_logos: newList });
+                                            }}
+                                            style={{ background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', border: 'none', padding: '10px', borderRadius: '8px', cursor: 'pointer' }}
+                                        >
+                                            <i className="fas fa-trash" />
+                                        </button>
+                                    </div>
+                                ))}
+                                <button
+                                    onClick={() => addItem('client_logos', { name: 'New Client' })}
+                                    style={{ background: 'rgba(16, 185, 129, 0.1)', color: '#10B981', border: 'none', padding: '12px', borderRadius: '8px', cursor: 'pointer', fontWeight: 600 }}
+                                >
+                                    + Add New Client
+                                </button>
+                            </div>
+                            <button onClick={handleSave} className="admin-btn-primary" style={{ marginTop: '24px' }}>Save All Clients</button>
+                        </div>
+                    )}
+
+                    {activeTab === 'testimonials' && (
+                        <div className="admin-content-card">
+                            <h3>Testimonials</h3>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+                                {(cmsData.testimonials || []).map((t, idx) => (
+                                    <div key={idx} style={{ padding: '24px', background: '#f8fafc', borderRadius: '16px', border: '1px solid #e2e8f0' }}>
+                                        <div style={{ marginBottom: '16px' }}>
+                                            <label style={{ fontSize: '13px', opacity: 0.6 }}>Quote</label>
+                                            <textarea
+                                                value={t.quote}
+                                                onChange={(e) => updateItem('testimonials', idx, 'quote', e.target.value)}
+                                                style={{ width: '100%', minHeight: '80px', padding: '12px', background: '#0f172afff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
+                                            />
+                                        </div>
+                                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                                            <div>
+                                                <label style={{ fontSize: '13px', opacity: 0.6 }}>Author Name</label>
+                                                <input
+                                                    type="text"
+                                                    value={t.name}
+                                                    onChange={(e) => updateItem('testimonials', idx, 'name', e.target.value)}
+                                                    style={{ width: '100%', padding: '10px', background: '#0f172afff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
+                                                />
+                                            </div>
+                                            <div>
+                                                <label style={{ fontSize: '13px', opacity: 0.6 }}>Role / Position</label>
+                                                <input
+                                                    type="text"
+                                                    value={t.role}
+                                                    onChange={(e) => updateItem('testimonials', idx, 'role', e.target.value)}
+                                                    style={{ width: '100%', padding: '10px', background: '#0f172afff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
+                                                />
+                                            </div>
+                                        </div>
+                                        <button
+                                            onClick={() => {
+                                                const newList = cmsData.testimonials.filter((_, i) => i !== idx);
+                                                setCmsData({ ...cmsData, testimonials: newList });
+                                            }}
+                                            style={{ background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', border: 'none', padding: '8px 16px', borderRadius: '8px', cursor: 'pointer', marginTop: '16px', fontSize: '13px' }}
+                                        >
+                                            Remove Testimonial
+                                        </button>
+                                    </div>
+                                ))}
+                                <button
+                                    onClick={() => addItem('testimonials', { quote: '', name: '', role: '', initials: 'NEW' })}
+                                    style={{ background: 'rgba(16, 185, 129, 0.1)', color: '#10B981', border: 'none', padding: '12px', borderRadius: '8px', cursor: 'pointer', fontWeight: 600 }}
+                                >
+                                    + Add Testimonial
+                                </button>
+                            </div>
+                            <button onClick={handleSave} className="admin-btn-primary" style={{ marginTop: '24px' }}>Save All Testimonials</button>
+                        </div>
+                    )}
+
+                    {activeTab === 'work' && (
+                        <div className="admin-content-card">
+                            <h3>Portfolio (Our Work)</h3>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+                                {(cmsData.our_work || []).map((w, idx) => (
+                                    <div key={idx} style={{ padding: '24px', background: '#f8fafc', borderRadius: '16px', border: '1px solid #e2e8f0' }}>
+                                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
+                                            <div>
+                                                <label style={{ fontSize: '13px', opacity: 0.6 }}>Project Title</label>
+                                                <input
+                                                    type="text"
+                                                    value={w.title}
+                                                    onChange={(e) => updateItem('our_work', idx, 'title', e.target.value)}
+                                                    style={{ width: '100%', padding: '10px', background: '#0f172afff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
+                                                />
+                                            </div>
+                                            <div>
+                                                <label style={{ fontSize: '13px', opacity: 0.6 }}>Category</label>
+                                                <select
+                                                    value={w.category}
+                                                    onChange={(e) => updateItem('our_work', idx, 'category', e.target.value)}
+                                                    style={{ width: '100%', padding: '10px', background: '#0f172afff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a', appearance: 'none' }}
+                                                >
+                                                    {(cmsData.our_work_categories || []).map(cat => (
+                                                        <option key={cat} value={cat}>{cat}</option>
+                                                    ))}
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
+                                            <div>
+                                                <label style={{ fontSize: '13px', opacity: 0.6 }}>Country Name</label>
+                                                <input
+                                                    type="text"
+                                                    value={w.country || ''}
+                                                    onChange={(e) => updateItem('our_work', idx, 'country', e.target.value)}
+                                                    style={{ width: '100%', padding: '10px', background: '#0f172afff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
+                                                />
+                                            </div>
+                                            <div>
+                                                <label style={{ fontSize: '13px', opacity: 0.6 }}>Country Flag (Emoji)</label>
+                                                <input
+                                                    type="text"
+                                                    value={w.flag || ''}
+                                                    onChange={(e) => updateItem('our_work', idx, 'flag', e.target.value)}
+                                                    style={{ width: '100%', padding: '10px', background: '#0f172afff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div style={{ marginBottom: '16px' }}>
+                                            <label style={{ fontSize: '13px', opacity: 0.6 }}>Subtitle / Short Description</label>
+                                            <textarea
+                                                value={w.subtitle || ''}
+                                                onChange={(e) => updateItem('our_work', idx, 'subtitle', e.target.value)}
+                                                style={{ width: '100%', minHeight: '60px', padding: '12px', background: '#0f172afff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
+                                            />
+                                        </div>
+
+                                        <div style={{ marginBottom: '16px' }}>
+                                            <label style={{ fontSize: '13px', opacity: 0.6 }}>Short Metric (e.g., '25 branches connected' for the pill badge)</label>
+                                            <input
+                                                type="text"
+                                                value={w.metric || ''}
+                                                onChange={(e) => updateItem('our_work', idx, 'metric', e.target.value)}
+                                                style={{ width: '100%', padding: '10px', background: '#0f172afff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
+                                            />
+                                        </div>
+
+                                        <div style={{ marginBottom: '16px' }}>
+                                            <label style={{ fontSize: '13px', opacity: 0.6 }}>Outcome / Results Text (Alternative to Key Results metrics)</label>
+                                            <textarea
+                                                value={w.outcome || ''}
+                                                onChange={(e) => updateItem('our_work', idx, 'outcome', e.target.value)}
+                                                style={{ width: '100%', minHeight: '60px', padding: '12px', background: '#0f172afff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
+                                            />
+                                        </div>
+
+                                        <div style={{ marginBottom: '16px' }}>
+                                            <label style={{ fontSize: '13px', opacity: 0.6 }}>Bullet Points (One per line)</label>
+                                            <textarea
+                                                value={w.bullets ? w.bullets.join('\n') : ''}
+                                                onChange={(e) => updateItem('our_work', idx, 'bullets', e.target.value.split('\n').filter(Boolean))}
+                                                style={{ width: '100%', minHeight: '80px', padding: '12px', background: '#0f172afff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
+                                                placeholder="Point 1&#10;Point 2&#10;Point 3"
+                                            />
+                                        </div>
+
+                                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '16px' }}>
+                                            <div>
+                                                <label style={{ fontSize: '13px', opacity: 0.6 }}>Cover Image URL / Path</label>
+                                                <input
+                                                    type="text"
+                                                    value={w.image || ''}
+                                                    onChange={(e) => updateItem('our_work', idx, 'image', e.target.value)}
+                                                    style={{ width: '100%', padding: '10px', background: '#0f172afff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
+                                                    placeholder="/assets/img/work1.jpg"
+                                                />
+                                            </div>
+                                            <div>
+                                                <label style={{ fontSize: '13px', opacity: 0.6 }}>Client Logo URL</label>
+                                                <input
+                                                    type="text"
+                                                    value={w.logo || ''}
+                                                    onChange={(e) => updateItem('our_work', idx, 'logo', e.target.value)}
+                                                    style={{ width: '100%', padding: '10px', background: '#0f172afff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
+                                                    placeholder="/assets/img/logo.png"
+                                                />
+                                            </div>
+                                            <div>
+                                                <label style={{ fontSize: '13px', opacity: 0.6 }}>External Link URL</label>
+                                                <input
+                                                    type="text"
+                                                    value={w.url || ''}
+                                                    onChange={(e) => updateItem('our_work', idx, 'url', e.target.value)}
+                                                    style={{ width: '100%', padding: '10px', background: '#0f172afff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
+                                                    placeholder="https://..."
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <button
+                                            onClick={() => {
+                                                const newList = cmsData.our_work.filter((_, i) => i !== idx);
+                                                setCmsData({ ...cmsData, our_work: newList });
+                                            }}
+                                            style={{ background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', border: 'none', padding: '8px 16px', borderRadius: '8px', cursor: 'pointer', marginTop: '16px', fontSize: '13px' }}
+                                        >
+                                            Remove Project
+                                        </button>
+                                    </div>
+                                ))}
+                                <button
+                                    onClick={() => addItem('our_work', { id: Date.now(), category: 'Manufacturing', country: 'Saudi Arabia', flag: '🇸🇦', title: 'New Project', subtitle: '', outcome: '', metric: '', bullets: [], image: '', logo: '', url: '' })}
+                                    style={{ background: 'rgba(16, 185, 129, 0.1)', color: '#10B981', border: 'none', padding: '12px', borderRadius: '8px', cursor: 'pointer', fontWeight: 600 }}
+                                >
+                                    + Add Project
+                                </button>
+                            </div>
+                            <button onClick={handleSave} className="admin-btn-primary" style={{ marginTop: '24px' }}>Save All Work</button>
+                        </div>
+                    )}
+
+                    {activeTab === 'media' && (
+                        <div className="admin-content-card">
+                            <h3>Media & Events</h3>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+                                {(cmsData.media_events || []).map((ev, idx) => (
+                                    <div key={idx} style={{ padding: '24px', background: '#f8fafc', borderRadius: '16px', border: '1px solid #e2e8f0' }}>
+                                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
+                                            <div>
+                                                <label style={{ fontSize: '13px', opacity: 0.6 }}>Event Title</label>
+                                                <input
+                                                    type="text"
+                                                    value={ev.title}
+                                                    onChange={(e) => updateItem('media_events', idx, 'title', e.target.value)}
+                                                    style={{ width: '100%', padding: '10px', background: '#0f172afff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
+                                                />
+                                            </div>
+                                            <div>
+                                                <label style={{ fontSize: '13px', opacity: 0.6 }}>Date (e.g. 15 SEP)</label>
+                                                <input
+                                                    type="text"
+                                                    value={ev.date}
+                                                    onChange={(e) => updateItem('media_events', idx, 'date', e.target.value)}
+                                                    style={{ width: '100%', padding: '10px', background: '#0f172afff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div style={{ marginBottom: '16px' }}>
+                                            <label style={{ fontSize: '13px', opacity: 0.6 }}>Image URL</label>
+                                            <input
+                                                type="text"
+                                                value={ev.image}
+                                                onChange={(e) => updateItem('media_events', idx, 'image', e.target.value)}
+                                                style={{ width: '100%', padding: '10px', background: '#0f172afff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
+                                                placeholder="/assets/img/..."
+                                            />
+                                        </div>
+
+                                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
+                                            <div>
+                                                <label style={{ fontSize: '13px', opacity: 0.6 }}>Tag 1 (e.g. Jeddah, KSA)</label>
+                                                <input
+                                                    type="text"
+                                                    value={ev.tags?.[0]?.text || ''}
+                                                    onChange={(e) => {
+                                                        const newTags = [...(ev.tags || [])];
+                                                        newTags[0] = { text: e.target.value, icon: 'fas fa-map-marker-alt' };
+                                                        updateItem('media_events', idx, 'tags', newTags);
+                                                    }}
+                                                    style={{ width: '100%', padding: '10px', background: '#0f172afff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
+                                                />
+                                            </div>
+                                            <div>
+                                                <label style={{ fontSize: '13px', opacity: 0.6 }}>Tag 2 (e.g. Summit)</label>
+                                                <input
+                                                    type="text"
+                                                    value={ev.tags?.[1]?.text || ''}
+                                                    onChange={(e) => {
+                                                        const newTags = [...(ev.tags || [])];
+                                                        if (!newTags[0]) newTags[0] = { text: '', icon: 'fas fa-map-marker-alt' };
+                                                        newTags[1] = { text: e.target.value, icon: 'fas fa-tag' };
+                                                        updateItem('media_events', idx, 'tags', newTags);
+                                                    }}
+                                                    style={{ width: '100%', padding: '10px', background: '#0f172afff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div style={{ marginBottom: '16px' }}>
+                                            <label style={{ fontSize: '13px', opacity: 0.6 }}>Short Description</label>
+                                            <textarea
+                                                value={ev.desc}
+                                                onChange={(e) => updateItem('media_events', idx, 'desc', e.target.value)}
+                                                style={{ width: '100%', minHeight: '60px', padding: '12px', background: '#0f172afff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
+                                            />
+                                        </div>
+
+                                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
+                                            <div style={{ padding: '12px', background: '#0f172afff', borderRadius: '8px' }}>
+                                                <label style={{ fontSize: '12px', opacity: 0.5 }}>Button 1</label>
+                                                <input
+                                                    type="text"
+                                                    placeholder="Label"
+                                                    value={ev.buttons?.[0]?.label || ''}
+                                                    onChange={(e) => {
+                                                        const newBtns = [...(ev.buttons || [])];
+                                                        newBtns[0] = { ...newBtns[0], label: e.target.value };
+                                                        updateItem('media_events', idx, 'buttons', newBtns);
+                                                    }}
+                                                    style={{ width: '100%', padding: '8px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '4px', color: '#0f172a', marginBottom: '8px' }}
+                                                />
+                                                <input
+                                                    type="text"
+                                                    placeholder="URL"
+                                                    value={ev.buttons?.[0]?.url || ''}
+                                                    onChange={(e) => {
+                                                        const newBtns = [...(ev.buttons || [])];
+                                                        newBtns[0] = { ...newBtns[0], url: e.target.value };
+                                                        updateItem('media_events', idx, 'buttons', newBtns);
+                                                    }}
+                                                    style={{ width: '100%', padding: '8px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '4px', color: '#0f172a' }}
+                                                />
+                                                <select
+                                                    value={ev.buttons?.[0]?.type || 'youtube'}
+                                                    onChange={(e) => {
+                                                        const newBtns = [...(ev.buttons || [])];
+                                                        newBtns[0] = { ...newBtns[0], type: e.target.value };
+                                                        updateItem('media_events', idx, 'buttons', newBtns);
+                                                    }}
+                                                    style={{ width: '100%', padding: '8px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '4px', color: '#0f172a', marginTop: '8px' }}
+                                                >
+                                                    <option value="youtube">YouTube</option>
+                                                    <option value="instagram">Instagram</option>
+                                                    <option value="disabled">Disabled/Gallery</option>
+                                                </select>
+                                            </div>
+                                            <div style={{ padding: '12px', background: '#0f172afff', borderRadius: '8px' }}>
+                                                <label style={{ fontSize: '12px', opacity: 0.5 }}>Button 2</label>
+                                                <input
+                                                    type="text"
+                                                    placeholder="Label"
+                                                    value={ev.buttons?.[1]?.label || ''}
+                                                    onChange={(e) => {
+                                                        const newBtns = [...(ev.buttons || [])];
+                                                        if (!newBtns[0]) newBtns[0] = { label: '', url: '', type: 'youtube' };
+                                                        newBtns[1] = { ...newBtns[1], label: e.target.value };
+                                                        updateItem('media_events', idx, 'buttons', newBtns);
+                                                    }}
+                                                    style={{ width: '100%', padding: '8px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '4px', color: '#0f172a', marginBottom: '8px' }}
+                                                />
+                                                <input
+                                                    type="text"
+                                                    placeholder="URL"
+                                                    value={ev.buttons?.[1]?.url || ''}
+                                                    onChange={(e) => {
+                                                        const newBtns = [...(ev.buttons || [])];
+                                                        if (!newBtns[0]) newBtns[0] = { label: '', url: '', type: 'youtube' };
+                                                        newBtns[1] = { ...newBtns[1], url: e.target.value };
+                                                        updateItem('media_events', idx, 'buttons', newBtns);
+                                                    }}
+                                                    style={{ width: '100%', padding: '8px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '4px', color: '#0f172a' }}
+                                                />
+                                                <select
+                                                    value={ev.buttons?.[1]?.type || 'instagram'}
+                                                    onChange={(e) => {
+                                                        const newBtns = [...(ev.buttons || [])];
+                                                        if (!newBtns[0]) newBtns[0] = { label: '', url: '', type: 'youtube' };
+                                                        newBtns[1] = { ...newBtns[1], type: e.target.value };
+                                                        updateItem('media_events', idx, 'buttons', newBtns);
+                                                    }}
+                                                    style={{ width: '100%', padding: '8px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '4px', color: '#0f172a', marginTop: '8px' }}
+                                                >
+                                                    <option value="youtube">YouTube</option>
+                                                    <option value="instagram">Instagram</option>
+                                                    <option value="disabled">Disabled/Gallery</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <button
+                                            onClick={() => {
+                                                const newList = cmsData.media_events.filter((_, i) => i !== idx);
+                                                setCmsData({ ...cmsData, media_events: newList });
+                                            }}
+                                            style={{ background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', border: 'none', padding: '8px 16px', borderRadius: '8px', cursor: 'pointer', marginTop: '16px', fontSize: '13px' }}
+                                        >
+                                            Remove Event
+                                        </button>
+                                    </div>
+                                ))}
+                                <button
+                                    onClick={() => addItem('media_events', {
+                                        title: 'New Event',
+                                        date: '01 JAN',
+                                        desc: '',
+                                        image: '/assets/img/blog-img7.jpg',
+                                        tags: [{ text: 'Tag 1', icon: 'fas fa-map-marker-alt' }],
+                                        buttons: [{ label: 'Read More', url: '#', type: 'youtube' }]
+                                    })}
+                                    style={{ background: 'rgba(16, 185, 129, 0.1)', color: '#10B981', border: 'none', padding: '12px', borderRadius: '8px', cursor: 'pointer', fontWeight: 600 }}
+                                >
+                                    + Add New Event
+                                </button>
+                            </div>
+                            <button onClick={handleSave} className="admin-btn-primary" style={{ marginTop: '24px' }}>Save All Media</button>
+                        </div>
+                    )}
+
+                    {activeTab === 'blogs' && (
+                        <div className="admin-content-card">
+                            <h3>Blog Posts</h3>
+                            <p style={{ color: '#64748b', marginBottom: '24px', fontSize: '14px' }}>Manage blog articles. Changes are saved when you click "Save All Blogs".</p>
+
+                            {(cmsData.blogs || []).map((blog, idx) => (
+                                <div key={idx} style={{ border: '1px solid #e2e8f0', borderRadius: '12px', padding: '24px', marginBottom: '20px', background: '#f8fafc' }}>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '16px' }}>
+                                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                            <span style={{ background: '#10B981', color: '#fff', fontSize: '10px', fontWeight: 700, padding: '2px 8px', borderRadius: '100px' }}>#{idx + 1}</span>
+                                            <span style={{ fontSize: '13px', fontWeight: 600, color: '#0f172a' }}>{blog.title || 'Untitled'}</span>
+                                        </div>
+                                        <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                                            <label style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12px', cursor: 'pointer', color: '#64748b' }}>
+                                                <input
+                                                    type="checkbox"
+                                                    checked={blog.published !== false}
+                                                    onChange={(e) => updateItem('blogs', idx, 'published', e.target.checked)}
+                                                />
+                                                Published
+                                            </label>
+                                            <button
+                                                onClick={() => {
+                                                    const newList = cmsData.blogs.filter((_, i) => i !== idx);
+                                                    setCmsData({ ...cmsData, blogs: newList });
+                                                }}
+                                                style={{ background: 'rgba(239,68,68,0.1)', color: '#ef4444', border: 'none', padding: '4px 12px', borderRadius: '6px', cursor: 'pointer', fontSize: '12px' }}
+                                            >
+                                                Delete
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '12px' }}>
+                                        <div>
+                                            <label style={{ fontSize: '12px', fontWeight: 600, color: '#64748b' }}>Title</label>
+                                            <input
+                                                type="text"
+                                                value={blog.title || ''}
+                                                onChange={(e) => updateItem('blogs', idx, 'title', e.target.value)}
+                                                style={{ width: '100%', padding: '8px', background: '#fff', border: '1px solid #e2e8f0', borderRadius: '6px', marginTop: '4px', fontSize: '13px', color: '#0f172a' }}
+                                            />
+                                        </div>
+                                        <div>
+                                            <label style={{ fontSize: '12px', fontWeight: 600, color: '#64748b' }}>Category</label>
+                                            <select
+                                                value={blog.category || 'ERP'}
+                                                onChange={(e) => updateItem('blogs', idx, 'category', e.target.value)}
+                                                style={{ width: '100%', padding: '8px', background: '#fff', border: '1px solid #e2e8f0', borderRadius: '6px', marginTop: '4px', fontSize: '13px', color: '#0f172a' }}
+                                            >
+                                                {['AI & ERP', 'ERP', 'AI & Analytics', 'Compliance', 'Automation', 'Case Study'].map(c => (
+                                                    <option key={c} value={c}>{c}</option>
                                                 ))}
                                             </select>
                                         </div>
                                     </div>
 
-                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
+                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '12px' }}>
                                         <div>
-                                            <label style={{ fontSize: '13px', opacity: 0.6 }}>Country Name</label>
+                                            <label style={{ fontSize: '12px', fontWeight: 600, color: '#64748b' }}>Slug (URL)</label>
                                             <input
                                                 type="text"
-                                                value={w.country || ''}
-                                                onChange={(e) => updateItem('our_work', idx, 'country', e.target.value)}
-                                                style={{ width: '100%', padding: '10px', background: '#0f172afff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
+                                                value={blog.slug || ''}
+                                                onChange={(e) => updateItem('blogs', idx, 'slug', e.target.value)}
+                                                style={{ width: '100%', padding: '8px', background: '#fff', border: '1px solid #e2e8f0', borderRadius: '6px', marginTop: '4px', fontSize: '13px', color: '#0f172a' }}
                                             />
                                         </div>
                                         <div>
-                                            <label style={{ fontSize: '13px', opacity: 0.6 }}>Country Flag (Emoji)</label>
+                                            <label style={{ fontSize: '12px', fontWeight: 600, color: '#64748b' }}>Date</label>
                                             <input
                                                 type="text"
-                                                value={w.flag || ''}
-                                                onChange={(e) => updateItem('our_work', idx, 'flag', e.target.value)}
-                                                style={{ width: '100%', padding: '10px', background: '#0f172afff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
+                                                value={blog.date || ''}
+                                                onChange={(e) => updateItem('blogs', idx, 'date', e.target.value)}
+                                                style={{ width: '100%', padding: '8px', background: '#fff', border: '1px solid #e2e8f0', borderRadius: '6px', marginTop: '4px', fontSize: '13px', color: '#0f172a' }}
                                             />
                                         </div>
                                     </div>
 
-                                    <div style={{ marginBottom: '16px' }}>
-                                        <label style={{ fontSize: '13px', opacity: 0.6 }}>Subtitle / Short Description</label>
+                                    <div style={{ marginBottom: '12px' }}>
+                                        <label style={{ fontSize: '12px', fontWeight: 600, color: '#64748b' }}>Excerpt (shown in blog listing)</label>
                                         <textarea
-                                            value={w.subtitle || ''}
-                                            onChange={(e) => updateItem('our_work', idx, 'subtitle', e.target.value)}
-                                            style={{ width: '100%', minHeight: '60px', padding: '12px', background: '#0f172afff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
+                                            value={blog.excerpt || ''}
+                                            onChange={(e) => updateItem('blogs', idx, 'excerpt', e.target.value)}
+                                            rows={3}
+                                            style={{ width: '100%', padding: '8px', background: '#fff', border: '1px solid #e2e8f0', borderRadius: '6px', marginTop: '4px', fontSize: '13px', color: '#0f172a', resize: 'vertical' }}
                                         />
                                     </div>
 
-                                    <div style={{ marginBottom: '16px' }}>
-                                        <label style={{ fontSize: '13px', opacity: 0.6 }}>Short Metric (e.g., '25 branches connected' for the pill badge)</label>
-                                        <input
-                                            type="text"
-                                            value={w.metric || ''}
-                                            onChange={(e) => updateItem('our_work', idx, 'metric', e.target.value)}
-                                            style={{ width: '100%', padding: '10px', background: '#0f172afff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
-                                        />
-                                    </div>
-
-                                    <div style={{ marginBottom: '16px' }}>
-                                        <label style={{ fontSize: '13px', opacity: 0.6 }}>Outcome / Results Text (Alternative to Key Results metrics)</label>
+                                    <div>
+                                        <label style={{ fontSize: '12px', fontWeight: 600, color: '#64748b' }}>Content (HTML)</label>
                                         <textarea
-                                            value={w.outcome || ''}
-                                            onChange={(e) => updateItem('our_work', idx, 'outcome', e.target.value)}
-                                            style={{ width: '100%', minHeight: '60px', padding: '12px', background: '#0f172afff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
+                                            value={blog.content || ''}
+                                            onChange={(e) => updateItem('blogs', idx, 'content', e.target.value)}
+                                            rows={8}
+                                            style={{ width: '100%', padding: '8px', background: '#fff', border: '1px solid #e2e8f0', borderRadius: '6px', marginTop: '4px', fontSize: '12px', fontFamily: 'monospace', color: '#0f172a', resize: 'vertical' }}
                                         />
                                     </div>
-
-                                    <div style={{ marginBottom: '16px' }}>
-                                        <label style={{ fontSize: '13px', opacity: 0.6 }}>Bullet Points (One per line)</label>
-                                        <textarea
-                                            value={w.bullets ? w.bullets.join('\n') : ''}
-                                            onChange={(e) => updateItem('our_work', idx, 'bullets', e.target.value.split('\n').filter(Boolean))}
-                                            style={{ width: '100%', minHeight: '80px', padding: '12px', background: '#0f172afff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
-                                            placeholder="Point 1&#10;Point 2&#10;Point 3"
-                                        />
-                                    </div>
-
-                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '16px' }}>
-                                        <div>
-                                            <label style={{ fontSize: '13px', opacity: 0.6 }}>Cover Image URL / Path</label>
-                                            <input
-                                                type="text"
-                                                value={w.image || ''}
-                                                onChange={(e) => updateItem('our_work', idx, 'image', e.target.value)}
-                                                style={{ width: '100%', padding: '10px', background: '#0f172afff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
-                                                placeholder="/assets/img/work1.jpg"
-                                            />
-                                        </div>
-                                        <div>
-                                            <label style={{ fontSize: '13px', opacity: 0.6 }}>Client Logo URL</label>
-                                            <input
-                                                type="text"
-                                                value={w.logo || ''}
-                                                onChange={(e) => updateItem('our_work', idx, 'logo', e.target.value)}
-                                                style={{ width: '100%', padding: '10px', background: '#0f172afff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
-                                                placeholder="/assets/img/logo.png"
-                                            />
-                                        </div>
-                                        <div>
-                                            <label style={{ fontSize: '13px', opacity: 0.6 }}>External Link URL</label>
-                                            <input
-                                                type="text"
-                                                value={w.url || ''}
-                                                onChange={(e) => updateItem('our_work', idx, 'url', e.target.value)}
-                                                style={{ width: '100%', padding: '10px', background: '#0f172afff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
-                                                placeholder="https://..."
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <button
-                                        onClick={() => {
-                                            const newList = cmsData.our_work.filter((_, i) => i !== idx);
-                                            setCmsData({ ...cmsData, our_work: newList });
-                                        }}
-                                        style={{ background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', border: 'none', padding: '8px 16px', borderRadius: '8px', cursor: 'pointer', marginTop: '16px', fontSize: '13px' }}
-                                    >
-                                        Remove Project
-                                    </button>
                                 </div>
                             ))}
+
                             <button
-                                onClick={() => addItem('our_work', { id: Date.now(), category: 'Manufacturing', country: 'Saudi Arabia', flag: '🇸🇦', title: 'New Project', subtitle: '', outcome: '', metric: '', bullets: [], image: '', logo: '', url: '' })}
-                                style={{ background: 'rgba(16, 185, 129, 0.1)', color: '#10B981', border: 'none', padding: '12px', borderRadius: '8px', cursor: 'pointer', fontWeight: 600 }}
-                            >
-                                + Add Project
-                            </button>
-                        </div>
-                        <button onClick={handleSave} className="admin-btn-primary" style={{ marginTop: '24px' }}>Save All Work</button>
-                    </div>
-                )}
-
-                {activeTab === 'media' && (
-                    <div className="admin-content-card">
-                        <h3>Media & Events</h3>
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-                            {(cmsData.media_events || []).map((ev, idx) => (
-                                <div key={idx} style={{ padding: '24px', background: '#f8fafc', borderRadius: '16px', border: '1px solid #e2e8f0' }}>
-                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
-                                        <div>
-                                            <label style={{ fontSize: '13px', opacity: 0.6 }}>Event Title</label>
-                                            <input
-                                                type="text"
-                                                value={ev.title}
-                                                onChange={(e) => updateItem('media_events', idx, 'title', e.target.value)}
-                                                style={{ width: '100%', padding: '10px', background: '#0f172afff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
-                                            />
-                                        </div>
-                                        <div>
-                                            <label style={{ fontSize: '13px', opacity: 0.6 }}>Date (e.g. 15 SEP)</label>
-                                            <input
-                                                type="text"
-                                                value={ev.date}
-                                                onChange={(e) => updateItem('media_events', idx, 'date', e.target.value)}
-                                                style={{ width: '100%', padding: '10px', background: '#0f172afff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div style={{ marginBottom: '16px' }}>
-                                        <label style={{ fontSize: '13px', opacity: 0.6 }}>Image URL</label>
-                                        <input
-                                            type="text"
-                                            value={ev.image}
-                                            onChange={(e) => updateItem('media_events', idx, 'image', e.target.value)}
-                                            style={{ width: '100%', padding: '10px', background: '#0f172afff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
-                                            placeholder="/assets/img/..."
-                                        />
-                                    </div>
-
-                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
-                                        <div>
-                                            <label style={{ fontSize: '13px', opacity: 0.6 }}>Tag 1 (e.g. Jeddah, KSA)</label>
-                                            <input
-                                                type="text"
-                                                value={ev.tags?.[0]?.text || ''}
-                                                onChange={(e) => {
-                                                    const newTags = [...(ev.tags || [])];
-                                                    newTags[0] = { text: e.target.value, icon: 'fas fa-map-marker-alt' };
-                                                    updateItem('media_events', idx, 'tags', newTags);
-                                                }}
-                                                style={{ width: '100%', padding: '10px', background: '#0f172afff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
-                                            />
-                                        </div>
-                                        <div>
-                                            <label style={{ fontSize: '13px', opacity: 0.6 }}>Tag 2 (e.g. Summit)</label>
-                                            <input
-                                                type="text"
-                                                value={ev.tags?.[1]?.text || ''}
-                                                onChange={(e) => {
-                                                    const newTags = [...(ev.tags || [])];
-                                                    if (!newTags[0]) newTags[0] = { text: '', icon: 'fas fa-map-marker-alt' };
-                                                    newTags[1] = { text: e.target.value, icon: 'fas fa-tag' };
-                                                    updateItem('media_events', idx, 'tags', newTags);
-                                                }}
-                                                style={{ width: '100%', padding: '10px', background: '#0f172afff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div style={{ marginBottom: '16px' }}>
-                                        <label style={{ fontSize: '13px', opacity: 0.6 }}>Short Description</label>
-                                        <textarea
-                                            value={ev.desc}
-                                            onChange={(e) => updateItem('media_events', idx, 'desc', e.target.value)}
-                                            style={{ width: '100%', minHeight: '60px', padding: '12px', background: '#0f172afff', border: '1px solid #e2e8f0', borderRadius: '8px', color: '#0f172a' }}
-                                        />
-                                    </div>
-
-                                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
-                                        <div style={{ padding: '12px', background: '#0f172afff', borderRadius: '8px' }}>
-                                            <label style={{ fontSize: '12px', opacity: 0.5 }}>Button 1</label>
-                                            <input
-                                                type="text"
-                                                placeholder="Label"
-                                                value={ev.buttons?.[0]?.label || ''}
-                                                onChange={(e) => {
-                                                    const newBtns = [...(ev.buttons || [])];
-                                                    newBtns[0] = { ...newBtns[0], label: e.target.value };
-                                                    updateItem('media_events', idx, 'buttons', newBtns);
-                                                }}
-                                                style={{ width: '100%', padding: '8px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '4px', color: '#0f172a', marginBottom: '8px' }}
-                                            />
-                                            <input
-                                                type="text"
-                                                placeholder="URL"
-                                                value={ev.buttons?.[0]?.url || ''}
-                                                onChange={(e) => {
-                                                    const newBtns = [...(ev.buttons || [])];
-                                                    newBtns[0] = { ...newBtns[0], url: e.target.value };
-                                                    updateItem('media_events', idx, 'buttons', newBtns);
-                                                }}
-                                                style={{ width: '100%', padding: '8px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '4px', color: '#0f172a' }}
-                                            />
-                                            <select
-                                                value={ev.buttons?.[0]?.type || 'youtube'}
-                                                onChange={(e) => {
-                                                    const newBtns = [...(ev.buttons || [])];
-                                                    newBtns[0] = { ...newBtns[0], type: e.target.value };
-                                                    updateItem('media_events', idx, 'buttons', newBtns);
-                                                }}
-                                                style={{ width: '100%', padding: '8px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '4px', color: '#0f172a', marginTop: '8px' }}
-                                            >
-                                                <option value="youtube">YouTube</option>
-                                                <option value="instagram">Instagram</option>
-                                                <option value="disabled">Disabled/Gallery</option>
-                                            </select>
-                                        </div>
-                                        <div style={{ padding: '12px', background: '#0f172afff', borderRadius: '8px' }}>
-                                            <label style={{ fontSize: '12px', opacity: 0.5 }}>Button 2</label>
-                                            <input
-                                                type="text"
-                                                placeholder="Label"
-                                                value={ev.buttons?.[1]?.label || ''}
-                                                onChange={(e) => {
-                                                    const newBtns = [...(ev.buttons || [])];
-                                                    if (!newBtns[0]) newBtns[0] = { label: '', url: '', type: 'youtube' };
-                                                    newBtns[1] = { ...newBtns[1], label: e.target.value };
-                                                    updateItem('media_events', idx, 'buttons', newBtns);
-                                                }}
-                                                style={{ width: '100%', padding: '8px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '4px', color: '#0f172a', marginBottom: '8px' }}
-                                            />
-                                            <input
-                                                type="text"
-                                                placeholder="URL"
-                                                value={ev.buttons?.[1]?.url || ''}
-                                                onChange={(e) => {
-                                                    const newBtns = [...(ev.buttons || [])];
-                                                    if (!newBtns[0]) newBtns[0] = { label: '', url: '', type: 'youtube' };
-                                                    newBtns[1] = { ...newBtns[1], url: e.target.value };
-                                                    updateItem('media_events', idx, 'buttons', newBtns);
-                                                }}
-                                                style={{ width: '100%', padding: '8px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '4px', color: '#0f172a' }}
-                                            />
-                                            <select
-                                                value={ev.buttons?.[1]?.type || 'instagram'}
-                                                onChange={(e) => {
-                                                    const newBtns = [...(ev.buttons || [])];
-                                                    if (!newBtns[0]) newBtns[0] = { label: '', url: '', type: 'youtube' };
-                                                    newBtns[1] = { ...newBtns[1], type: e.target.value };
-                                                    updateItem('media_events', idx, 'buttons', newBtns);
-                                                }}
-                                                style={{ width: '100%', padding: '8px', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '4px', color: '#0f172a', marginTop: '8px' }}
-                                            >
-                                                <option value="youtube">YouTube</option>
-                                                <option value="instagram">Instagram</option>
-                                                <option value="disabled">Disabled/Gallery</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <button
-                                        onClick={() => {
-                                            const newList = cmsData.media_events.filter((_, i) => i !== idx);
-                                            setCmsData({ ...cmsData, media_events: newList });
-                                        }}
-                                        style={{ background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', border: 'none', padding: '8px 16px', borderRadius: '8px', cursor: 'pointer', marginTop: '16px', fontSize: '13px' }}
-                                    >
-                                        Remove Event
-                                    </button>
-                                </div>
-                            ))}
-                            <button
-                                onClick={() => addItem('media_events', {
-                                    title: 'New Event',
-                                    date: '01 JAN',
-                                    desc: '',
-                                    image: '/assets/img/blog-img7.jpg',
-                                    tags: [{ text: 'Tag 1', icon: 'fas fa-map-marker-alt' }],
-                                    buttons: [{ label: 'Read More', url: '#', type: 'youtube' }]
+                                onClick={() => addItem('blogs', {
+                                    id: Date.now(),
+                                    slug: 'new-blog-post-' + Date.now(),
+                                    title: 'New Blog Post',
+                                    category: 'ERP',
+                                    tags: [],
+                                    read_time: '5 min read',
+                                    date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
+                                    featured: false,
+                                    published: true,
+                                    excerpt: '',
+                                    cover_image: '/assets/img/Frappeverse-1.jpg',
+                                    content: '<p>Start writing your blog post here...</p>'
                                 })}
-                                style={{ background: 'rgba(16, 185, 129, 0.1)', color: '#10B981', border: 'none', padding: '12px', borderRadius: '8px', cursor: 'pointer', fontWeight: 600 }}
+                                style={{ background: 'rgba(16, 185, 129, 0.1)', color: '#10B981', border: 'none', padding: '12px 20px', borderRadius: '8px', cursor: 'pointer', fontWeight: 600, width: '100%', marginBottom: '16px' }}
                             >
-                                + Add New Event
+                                + Add New Blog Post
                             </button>
+
+                            <button onClick={handleSave} className="admin-btn-primary">Save All Blogs</button>
                         </div>
-                        <button onClick={handleSave} className="admin-btn-primary" style={{ marginTop: '24px' }}>Save All Media</button>
-                    </div>
-                )}
+                    )}
+                </div>
             </div>
             <div className="admin-footer" style={{ marginTop: '40px', paddingTop: '24px', borderTop: '1px solid #e2e8f0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <span style={{ fontSize: '12px', opacity: 0.4 }}>Enfono Website CMS v2.0</span>

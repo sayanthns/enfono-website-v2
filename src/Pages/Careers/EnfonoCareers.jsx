@@ -1,22 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { m, LazyMotion, domAnimation } from 'framer-motion'
 import EnfonoHeader from '../../Components/EnfonoUI/EnfonoHeader'
 import EnfonoFooter from '../../Components/EnfonoUI/EnfonoFooter'
+import { initialCmsData } from "../../Data/cms_data";
 
-const fadeUp = { hidden: { opacity: 0, y: 40 }, visible: (d = 0) => ({ opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22,1,0.36,1], delay: d } }) }
+const fadeUp = { hidden: { opacity: 0, y: 40 }, visible: (d = 0) => ({ opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: d } }) }
 const stagger = { hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }
 
 const departments = ['All', 'Engineering', 'Consulting', 'Sales', 'Operations']
-
-const roles = [
-  { title: 'Senior ERPNext Developer', dept: 'Engineering', location: 'Remote', type: 'Full-time', desc: 'Build and customize ERPNext modules for GCC enterprise clients. Deep Python/Frappe framework experience required.' },
-  { title: 'ERP Consultant — GCC', dept: 'Consulting', location: 'Riyadh, KSA', type: 'On-site', desc: 'Lead end-to-end ERPNext implementations for clients in Saudi Arabia. Arabic language skills preferred.' },
-  { title: 'AI/ML Engineer', dept: 'Engineering', location: 'Remote', type: 'Full-time', desc: 'Build AI features for our ERPInsights platform — predictive models, NLP queries, anomaly detection.' },
-  { title: 'ERP Project Manager', dept: 'Consulting', location: 'Dubai, UAE', type: 'Hybrid', desc: 'Manage ERP implementation projects across UAE clients — coordinate teams, track milestones, ensure on-time delivery.' },
-  { title: 'Business Development Manager', dept: 'Sales', location: 'Riyadh, KSA', type: 'On-site', desc: 'Drive new client acquisition across Saudi Arabia. ERPNext or ERP industry experience highly valued.' },
-  { title: 'DevOps Engineer', dept: 'Engineering', location: 'Remote', type: 'Full-time', desc: 'Manage cloud infrastructure for Enfono\'s SaaS products and client deployments. AWS/GCP experience required.' },
-]
 
 const perks = [
   { icon: 'fas fa-globe', title: 'Work Globally', desc: 'Serve enterprise clients across Saudi Arabia, UAE, and Oman from day one.' },
@@ -36,6 +28,16 @@ const values = [
 
 export default function EnfonoCareers() {
   const [activeFilter, setActiveFilter] = useState('All')
+  const [cmsData, setCmsData] = useState(initialCmsData);
+
+  useEffect(() => {
+    const saved = localStorage.getItem('enfono_cms_data');
+    if (saved) {
+      setCmsData({ ...initialCmsData, ...JSON.parse(saved) });
+    }
+  }, []);
+
+  const roles = cmsData.careers || [];
   const filtered = roles.filter(r => activeFilter === 'All' || r.dept === activeFilter)
 
   return (
@@ -192,9 +194,9 @@ export default function EnfonoCareers() {
                       </span>
                     </div>
                   </div>
-                  <Link to="/contact" className="e-btn-primary" style={{ flexShrink: 0, whiteSpace: 'nowrap' }}>
+                  <a href={role.apply_url || '/contact'} target="_blank" rel="noopener noreferrer" className="e-btn-primary" style={{ flexShrink: 0, whiteSpace: 'nowrap' }}>
                     Apply Now <i className="fas fa-arrow-right" />
-                  </Link>
+                  </a>
                 </m.div>
               ))}
             </m.div>

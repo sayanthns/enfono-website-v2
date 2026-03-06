@@ -1,56 +1,25 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { m, LazyMotion, domAnimation } from 'framer-motion'
 import EnfonoHeader from '../../Components/EnfonoUI/EnfonoHeader'
 import EnfonoFooter from '../../Components/EnfonoUI/EnfonoFooter'
+import { initialCmsData } from "../../Data/cms_data";
 
-const fadeUp = { hidden: { opacity: 0, y: 40 }, visible: (d = 0) => ({ opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22,1,0.36,1], delay: d } }) }
+const fadeUp = { hidden: { opacity: 0, y: 40 }, visible: (d = 0) => ({ opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: d } }) }
 const stagger = { hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }
 
-const brands = [
-  {
-    name: 'InvoiceEase', icon: 'fas fa-file-invoice-dollar',
-    tag: 'ZATCA Compliance',
-    headline: 'ZATCA-Compliant e-Invoicing Made Simple',
-    desc: 'Generate, validate, and submit ZATCA Phase 2-compliant e-invoices instantly. Built for Saudi businesses of all sizes with seamless ERPNext integration.',
-    features: ['Phase 1 & 2 compliant', 'QR code generation', 'ERPNext integration', 'Arabic PDF output', 'Auto-submission to ZATCA', 'Batch invoicing'],
-    color: '#10B981',
-    status: 'Available',
-    link: '#',
-  },
-  {
-    name: 'ERPInsights', icon: 'fas fa-chart-mixed',
-    tag: 'AI Analytics',
-    headline: 'AI-Powered Business Intelligence for ERPNext',
-    desc: 'Turn your ERPNext data into actionable insights with predictive dashboards, natural language queries, and automated anomaly detection.',
-    features: ['Predictive analytics', 'Natural language reports', 'Anomaly detection', 'Custom KPI dashboards', 'Multi-company consolidation', 'Mobile app'],
-    color: '#34D399',
-    status: 'Available',
-    link: '#',
-  },
-  {
-    name: 'FieldOps', icon: 'fas fa-mobile-screen-button',
-    tag: 'Mobile ERP',
-    headline: 'Mobile-First Field Operations Platform',
-    desc: 'Empower your field teams with a mobile app that syncs with ERPNext in real-time — sales orders, delivery tracking, service requests, and more.',
-    features: ['Offline-first mobile app', 'GPS tracking', 'Real-time ERPNext sync', 'Digital signatures', 'Route optimization', 'Service ticketing'],
-    color: '#10B981',
-    status: 'Beta',
-    link: '#',
-  },
-  {
-    name: 'StockIQ', icon: 'fas fa-warehouse',
-    tag: 'Inventory AI',
-    headline: 'Intelligent Inventory Management',
-    desc: 'AI-driven inventory optimization that predicts demand, suggests reorder points, and eliminates stockouts — fully integrated with ERPNext.',
-    features: ['Demand forecasting', 'Auto reorder rules', 'Multi-warehouse', 'Barcode & RFID', 'Expiry management', 'Supplier scoring'],
-    color: '#34D399',
-    status: 'Coming Soon',
-    link: '#',
-  },
-]
-
 export default function EnfonoBrands() {
+  const [cmsData, setCmsData] = useState(initialCmsData);
+
+  useEffect(() => {
+    const saved = localStorage.getItem('enfono_cms_data');
+    if (saved) {
+      setCmsData({ ...initialCmsData, ...JSON.parse(saved) });
+    }
+  }, []);
+
+  const brands = cmsData.brands || [];
+
   return (
     <LazyMotion features={domAnimation}>
       <div>
@@ -83,7 +52,7 @@ export default function EnfonoBrands() {
           <div className="enfono-container">
             <div className="enfono-stats-inner">
               {[
-                { num: '4', suffix: '', label: 'Product Brands' },
+                { num: brands.length.toString(), suffix: '', label: 'Product Brands' },
                 { num: '500', suffix: '+', label: 'Active Users' },
                 { num: '3', suffix: '', label: 'GCC Countries' },
                 { num: '2026', suffix: '', label: 'Est. Year' },
@@ -119,14 +88,13 @@ export default function EnfonoBrands() {
                   variants={fadeUp}
                   style={{
                     display: 'grid',
-                    gridTemplateColumns: '1fr 1fr',
+                    gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr)',
                     gap: '48px',
                     alignItems: 'center',
                     padding: '40px',
                     background: '#fff',
                     border: '1.5px solid #E5E7EB',
                     borderRadius: '24px',
-                    direction: i % 2 === 0 ? 'ltr' : 'ltr',
                   }}
                 >
                   <div style={{ order: i % 2 === 1 ? 2 : 1 }}>
@@ -134,10 +102,10 @@ export default function EnfonoBrands() {
                       <div style={{
                         width: '52px', height: '52px',
                         display: 'flex', alignItems: 'center', justifyContent: 'center',
-                        background: brand.color === '#10B981' ? 'rgba(16,185,129,0.08)' : 'rgba(52,211,153,0.1)',
+                        background: brand.color ? `${brand.color}15` : 'rgba(16,185,129,0.08)',
                         borderRadius: '14px',
                       }}>
-                        <i className={brand.icon} style={{ fontSize: '22px', color: brand.color }} />
+                        <i className={brand.icon} style={{ fontSize: '22px', color: brand.color || '#10B981' }} />
                       </div>
                       <div>
                         <div style={{ fontFamily: 'Poppins,sans-serif', fontSize: '22px', fontWeight: 800, color: '#1A1A1A', lineHeight: 1 }}>{brand.name}</div>
@@ -145,20 +113,20 @@ export default function EnfonoBrands() {
                       <span style={{
                         marginLeft: 'auto',
                         padding: '4px 12px',
-                        background: brand.status === 'Available' ? 'rgba(34,197,94,0.1)' : brand.status === 'Beta' ? 'rgba(16,185,129,0.08)' : 'rgba(52,211,153,0.1)',
-                        border: `1px solid ${brand.status === 'Available' ? 'rgba(34,197,94,0.3)' : brand.status === 'Beta' ? 'rgba(16,185,129,0.2)' : 'rgba(52,211,153,0.3)'}`,
+                        background: brand.status === 'Available' ? 'rgba(34,197,94,0.1)' : 'rgba(52,211,153,0.1)',
+                        border: `1px solid ${brand.status === 'Available' ? 'rgba(34,197,94,0.3)' : 'rgba(52,211,153,0.3)'}`,
                         borderRadius: '100px',
                         fontSize: '11px', fontWeight: 700,
-                        color: brand.status === 'Available' ? '#16a34a' : brand.status === 'Beta' ? '#10B981' : '#D97706',
+                        color: brand.status === 'Available' ? '#16a34a' : '#D97706',
                       }}>
                         {brand.status}
                       </span>
                     </div>
                     <div style={{
                       display: 'inline-block', padding: '3px 12px',
-                      background: brand.color === '#10B981' ? 'rgba(16,185,129,0.08)' : 'rgba(52,211,153,0.1)',
+                      background: brand.color ? `${brand.color}15` : 'rgba(16,185,129,0.08)',
                       borderRadius: '100px', fontSize: '11px', fontWeight: 700,
-                      color: brand.color, marginBottom: '16px', textTransform: 'uppercase', letterSpacing: '1px',
+                      color: brand.color || '#10B981', marginBottom: '16px', textTransform: 'uppercase', letterSpacing: '1px',
                     }}>
                       {brand.tag}
                     </div>
@@ -179,15 +147,15 @@ export default function EnfonoBrands() {
                   </div>
                   <div style={{ order: i % 2 === 1 ? 1 : 2 }}>
                     <div style={{
-                      background: brand.color === '#10B981' ? 'linear-gradient(135deg,#ECFDF5 0%,#F8FAF9 100%)' : 'linear-gradient(135deg,#ECFDF5 0%,#FFF 100%)',
+                      background: brand.color ? `${brand.color}08` : 'linear-gradient(135deg,#ECFDF5 0%,#F8FAF9 100%)',
                       borderRadius: '20px',
                       padding: '32px',
                     }}>
                       <div style={{ fontFamily: 'Poppins,sans-serif', fontSize: '14px', fontWeight: 700, color: '#1A1A1A', marginBottom: '16px' }}>Key Features</div>
-                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
-                        {brand.features.map(f => (
+                      <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr)', gap: '10px' }}>
+                        {(brand.features || []).map(f => (
                           <div key={f} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontFamily: 'Inter,sans-serif', fontSize: '13px', color: '#475569' }}>
-                            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: brand.color, flexShrink: 0 }} />
+                            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: brand.color || '#10B981', flexShrink: 0 }} />
                             {f}
                           </div>
                         ))}

@@ -595,36 +595,74 @@ export default function EnfonoHome() {
         </section>
 
         {/* ── CASE STUDIES ── */}
-        <section className="e-cs-section">
+        <section className="e-cs-section" style={{ padding: '120px 0', background: '#fff' }}>
           <div className="enfono-container">
             <m.div
-              style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px', marginBottom: '52px' }}
+              style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', flexWrap: 'wrap', gap: '24px', marginBottom: '64px' }}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
               variants={fadeUp}
             >
               <div>
-                <div className="e-section-label">Our Work</div>
-                <h2 className="e-section-title" style={{ margin: 0 }}>Real Results for<br />Real Businesses</h2>
+                <div style={{ color: '#10B981', fontSize: '12px', fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '16px' }}>Client Success Stories</div>
+                <h2 style={{ fontSize: 'clamp(32px, 4vw, 56px)', fontWeight: 900, color: '#0f172a', margin: 0, letterSpacing: '-0.03em', lineHeight: 1.1 }}>Real Results for<br />Real Businesses</h2>
               </div>
-              <Link to="/our-work" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontFamily: 'Inter,sans-serif', fontSize: '14px', fontWeight: 600, color: '#10B981', textDecoration: 'none' }}>
-                View All Work <i className="fas fa-arrow-right" style={{ fontSize: '12px' }} />
+              <Link to="/case-studies" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', fontSize: '15px', fontWeight: 700, color: '#10B981', textDecoration: 'none' }}>
+                View All Case Studies <i className="fas fa-arrow-right" style={{ fontSize: '12px' }} />
               </Link>
             </m.div>
+
             <m.div
-              className="e-cs-grid"
+              style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '32px' }}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.1 }}
               variants={stagger}
             >
               {(cmsData.our_work || []).slice(0, 3).map((cs, i) => (
-                <m.div key={cs.id || i} className="e-cs-card" variants={fadeUp}>
-                  <div className="ecc-meta"><i className="fas fa-tag" style={{ marginRight: '6px' }} />{cs.category} · {cs.country}</div>
-                  <div className="ecc-title">{cs.title}</div>
-                  <div className="ecc-desc">{cs.subtitle}</div>
-                  <div className="ecc-result"><i className="fas fa-chart-line" />{cs.metric || cs.outcome}</div>
+                <m.div
+                  key={cs.id || i}
+                  variants={fadeUp}
+                  style={{
+                    background: '#070707',
+                    borderRadius: '32px',
+                    padding: '48px 40px',
+                    position: 'relative',
+                    overflow: 'hidden',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                    minHeight: '440px'
+                  }}
+                >
+                  <div style={{ position: 'absolute', top: 0, right: 0, width: '200px', height: '200px', background: 'radial-gradient(circle at 100% 0%, rgba(16,185,129,0.15) 0%, transparent 70%)', pointerEvents: 'none' }} />
+
+                  <div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#94a3b8', fontSize: '12px', fontWeight: 700, letterSpacing: '0.05em', textTransform: 'uppercase', marginBottom: '24px' }}>
+                      <i className={cs.icon || 'fas fa-tag'} style={{ fontSize: '14px' }} />
+                      <span>{cs.category} · {cs.country}</span>
+                    </div>
+                    <h3 style={{ fontSize: '28px', fontWeight: 900, color: '#fff', marginBottom: '20px', lineHeight: 1.3, letterSpacing: '-0.02em' }}>{cs.title}</h3>
+                    <p style={{ color: '#94a3b8', fontSize: '16px', lineHeight: 1.6, marginBottom: '40px' }}>{cs.subtitle}</p>
+                  </div>
+
+                  <div style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '12px',
+                    background: 'rgba(16,185,129,0.08)',
+                    border: '1px solid rgba(16,185,129,0.15)',
+                    padding: '10px 20px',
+                    borderRadius: '100px',
+                    color: '#10B981',
+                    fontSize: '14px',
+                    fontWeight: 700,
+                    width: 'fit-content'
+                  }}>
+                    <i className="fas fa-chart-line" />
+                    {cs.outcome}
+                  </div>
                 </m.div>
               ))}
             </m.div>
@@ -724,7 +762,7 @@ export default function EnfonoHome() {
               viewport={{ once: true, amount: 0.1 }}
               variants={stagger}
             >
-              {brands.map(b => (
+              {(cmsData.brands || []).map(b => (
                 <m.div key={b.name} variants={fadeUp}>
                   <Link to="/brands" className={`e-brand-card ${b.featured ? 'featured' : ''}`}>
                     <div className="ebc-icon">

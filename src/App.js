@@ -21,6 +21,7 @@ const EnfonoBrands = lazy(() => import("./Pages/Brands/EnfonoBrands"));
 const EnfonoCareers = lazy(() => import("./Pages/Careers/EnfonoCareers"));
 const EnfonoEvents = lazy(() => import("./Pages/Events/EnfonoEvents"));
 const EnfonoBlogs = lazy(() => import("./Pages/Blogs/EnfonoBlogs"));
+const BlogDetail = lazy(() => import("./Pages/Blogs/BlogDetail"));
 
 // ─── Admin Pages ───────────────────────────────────────
 const AdminLayout = lazy(() => import("./Components/Admin/AdminLayout"));
@@ -107,6 +108,7 @@ function App() {
               <Route path="/our-work/:slug" element={<EnfonoCaseStudies />} />
               <Route path="/events" element={<EnfonoEvents />} />
               <Route path="/blogs" element={<EnfonoBlogs />} />
+              <Route path="/blogs/:slug" element={<BlogDetail />} />
               <Route path="/contact" element={<EnfonoContact />} />
               <Route path="/ai-erp" element={<EnfonoAI />} />
               <Route path="/brands" element={<EnfonoBrands />} />
