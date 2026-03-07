@@ -5,7 +5,8 @@ import { initialCmsData } from "../../Data/cms_data";
 export default function EnfonoFooter({
   hideCta = false,
   ctaTitle = <>Ready to Transform<br />Your Business with ERP?</>,
-  ctaSubtitle = "Book a free 60-minute ERP strategy session with our Industry experts. No commitment required."
+  ctaSubtitle = "Book a free 60-minute ERP strategy session with our Industry experts. No commitment required.",
+  mobileMenuOpen
 }) {
   const [cmsData, setCmsData] = useState(initialCmsData);
 

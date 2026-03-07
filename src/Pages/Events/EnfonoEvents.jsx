@@ -7,6 +7,7 @@ import GlobalContext from '../../Context/Context';
 import { initialCmsData } from '../../Data/cms_data';
 
 export default function EnfonoEvents() {
+    const [mobileOpen, setMobileOpen] = useState(false);
     const { cmsData } = useContext(GlobalContext);
     const data = cmsData || initialCmsData;
     const [activeFilter, setActiveFilter] = useState('All');
@@ -28,7 +29,7 @@ export default function EnfonoEvents() {
 
     return (
         <div className="enfono-page-events">
-            <EnfonoHeader />
+            <EnfonoHeader mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} />
 
             {/* ── Hero ── */}
             <section style={{

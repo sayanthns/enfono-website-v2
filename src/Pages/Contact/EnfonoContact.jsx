@@ -30,6 +30,7 @@ const contactSchema = Yup.object().shape({
 })
 
 const EnfonoContact = () => {
+    const [mobileOpen, setMobileOpen] = useState(false);
     const { cmsData } = useContext(GlobalContext);
     const data = cmsData || initialCmsData;
     const [submitted, setSubmitted] = useState(false)
@@ -39,7 +40,7 @@ const EnfonoContact = () => {
 
     return (
         <div style={{ fontFamily: 'Inter, sans-serif' }}>
-            <EnfonoHeader />
+            <EnfonoHeader mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} />
 
             <div className="enfono-page-hero">
                 <Container>

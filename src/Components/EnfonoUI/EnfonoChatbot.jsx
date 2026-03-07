@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useLocation } from 'react-router-dom';
 import { initialCmsData } from '../../Data/cms_data';
 
-const EnfonoChatbot = () => {
+const EnfonoChatbot = ({ mobileMenuOpen }) => {
     const location = useLocation();
     const isAdminPage = location.pathname.startsWith('/admin');
 

@@ -28,11 +28,10 @@ const navLinks = [
   { label: 'Contact', path: '/contact' },
 ]
 
-export default function EnfonoHeader() {
+export default function EnfonoHeader({ mobileOpen, setMobileOpen }) {
   const { cmsData } = useContext(GlobalContext);
   const [scrolled, setScrolled] = useState(false)
   const [hidden, setHidden] = useState(false)
-  const [mobileOpen, setMobileOpen] = useState(false)
   const [activeDropdown, setActiveDropdown] = useState(null)
   const [mobileExpanded, setMobileExpanded] = useState(null)
   const location = useLocation()

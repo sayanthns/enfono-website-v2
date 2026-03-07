@@ -134,7 +134,8 @@ const partners = [
 ]
 
 export default function EnfonoHome() {
-  const [cmsData, setCmsData] = useState(initialCmsData);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const { cmsData, setCmsData } = useContext(GlobalContext);
 
   useEffect(() => {
     const loadData = () => {
@@ -180,7 +181,7 @@ export default function EnfonoHome() {
 
   return (
     <div className="enfono-home-2-1">
-      <EnfonoHeader />
+      <EnfonoHeader mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} />
 
       {/* ── HERO ── */}
       <section className="enfono-hero-new">

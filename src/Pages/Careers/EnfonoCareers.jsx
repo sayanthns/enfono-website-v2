@@ -31,6 +31,7 @@ const values = [
 
 
 export default function EnfonoCareers() {
+  const [mobileOpen, setMobileOpen] = useState(false);
   const { cmsData } = useContext(GlobalContext);
   const data = cmsData || initialCmsData;
   const [activeFilter, setActiveFilter] = useState('All')
@@ -43,7 +44,7 @@ export default function EnfonoCareers() {
 
   return (
     <div className="enfono-careers-page">
-      <EnfonoHeader />
+      <EnfonoHeader mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} />
 
       {/* Hero */}
       <section className="e-page-hero">

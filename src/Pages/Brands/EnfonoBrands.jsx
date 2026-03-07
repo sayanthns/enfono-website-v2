@@ -13,6 +13,7 @@ const stagger = { hidden: {}, visible: { transition: { staggerChildren: 0.1 } } 
 
 
 export default function EnfonoBrands() {
+  const [mobileOpen, setMobileOpen] = useState(false);
   const { cmsData } = useContext(GlobalContext);
   const data = cmsData || initialCmsData;
 
@@ -20,7 +21,7 @@ export default function EnfonoBrands() {
 
   return (
     <div className="enfono-brands-page">
-      <EnfonoHeader />
+      <EnfonoHeader mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} />
 
       {/* Hero */}
       <section className="e-page-hero">
