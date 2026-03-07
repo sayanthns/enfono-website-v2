@@ -10,6 +10,7 @@ import GlobalContext from "./Context/Context";
 // ─── Enfono Pages ──────────────────────────────────────
 import EnfonoHome from "./Pages/Home/EnfonoHome";
 import NotFoundPage from "./Pages/404";
+import { initialCmsData } from "./Data/cms_data";
 
 const EnfonoAbout = lazy(() => import("./Pages/About/EnfonoAbout"));
 const EnfonoServices = lazy(() => import("./Pages/Services/EnfonoServices"));
@@ -59,7 +60,31 @@ function App() {
   const [footerHeight, setFooterHeight] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [customModal, setCustomModal] = useState({ el: null, isOpen: false });
+  const [cmsData, setCmsData] = useState(initialCmsData);
+  const [loading, setLoading] = useState(true);
   const location = useLocation();
+
+  const API_URL = window.location.hostname === 'localhost' ? 'http://localhost:8007' : `http://${window.location.hostname}:8007`;
+
+  useEffect(() => {
+    const fetchCmsData = async () => {
+      try {
+        const res = await fetch(`${API_URL}/api/cms/enfono_cms_data`);
+        if (res.ok) {
+          const data = await res.json();
+          const merged = { ...initialCmsData, ...data };
+          setCmsData(merged);
+          // Sync to localStorage for components still using it
+          localStorage.setItem('enfono_cms_data', JSON.stringify(merged));
+        }
+      } catch (err) {
+        console.error("CMS Fetch error:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchCmsData();
+  }, []);
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
@@ -83,6 +108,8 @@ function App() {
         setIsModalOpen,
         customModal,
         setCustomModal,
+        cmsData,
+        setCmsData
       }}
     >
       <div className="App" style={{ "--header-height": `${headerHeight}px` }}>

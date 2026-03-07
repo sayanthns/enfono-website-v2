@@ -1,9 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Container, Row, Col } from 'react-bootstrap';
-import { m, LazyMotion, domAnimation } from 'framer-motion';
-import EnfonoHeader from '../../Components/EnfonoUI/EnfonoHeader';
-import EnfonoFooter from '../../Components/EnfonoUI/EnfonoFooter';
+import { useContext } from 'react';
+import GlobalContext from '../../Context/Context';
 import { servicesData } from '../../Data/services_data';
 import { initialCmsData } from '../../Data/cms_data';
 
@@ -11,14 +7,10 @@ const fadeIn = { hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, tra
 const staggerContainer = { hidden: {}, visible: { transition: { staggerChildren: 0.1 } } };
 
 const EnfonoServices = () => {
-    const [cmsData, setCmsData] = React.useState(initialCmsData);
+    const { cmsData } = useContext(GlobalContext);
+    const data = cmsData || initialCmsData;
 
-    React.useEffect(() => {
-        const saved = localStorage.getItem('enfono_cms_data');
-        if (saved) setCmsData(JSON.parse(saved));
-    }, []);
-
-    const projectsDelivered = cmsData.stats.find(s => s.label === 'Projects Delivered') || { value: '50', suffix: '+' };
+    const projectsDelivered = data.stats.find(s => s.label === 'Projects Delivered') || { value: '50', suffix: '+' };
 
     return (
         <div className="enfono-services-premium" style={{ background: '#0D0D0D', color: '#fff', fontFamily: 'Inter, sans-serif' }}>
@@ -30,14 +22,14 @@ const EnfonoServices = () => {
                     <m.div className="text-center" initial="hidden" animate="visible" variants={staggerContainer}>
                         <m.div variants={fadeIn} className="enfono-section-label-amber" style={{ display: 'inline-block', marginBottom: '16px', background: 'rgba(16, 185, 129, 0.1)', color: '#10B981', padding: '6px 16px', borderRadius: '20px', fontWeight: 600 }}>Enterprise Solutions</m.div>
                         <m.h1 variants={fadeIn} className="enfono-hero-title" style={{ maxWidth: '900px', margin: '0 auto 24px', fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', fontWeight: 800, lineHeight: 1.1 }}>
-                            {cmsData.services_hero.heading}
+                            {data.services_hero.heading}
                         </m.h1>
                         <m.p variants={fadeIn} className="enfono-hero-subtitle" style={{ maxWidth: '700px', margin: '0 auto 40px', fontSize: '1.125rem', color: 'rgba(255,255,255,0.7)', lineHeight: 1.6 }}>
-                            {cmsData.services_hero.subtext}
+                            {data.services_hero.subtext}
                         </m.p>
                         <m.div variants={fadeIn}>
-                            <a href={cmsData.services_hero.cta_url} target="_blank" rel="noopener noreferrer" className="enf-btn primary" style={{ background: '#10B981', color: '#fff', padding: '18px 40px', borderRadius: '30px', fontWeight: 600, textDecoration: 'none', transition: 'all 0.3s ease', display: 'inline-block', fontSize: '1.1rem' }}>
-                                {cmsData.services_hero.cta_primary} <i className="fas fa-arrow-right" style={{ marginLeft: '8px' }}></i>
+                            <a href={data.services_hero.cta_url} target="_blank" rel="noopener noreferrer" className="enf-btn primary" style={{ background: '#10B981', color: '#fff', padding: '18px 40px', borderRadius: '30px', fontWeight: 600, textDecoration: 'none', transition: 'all 0.3s ease', display: 'inline-block', fontSize: '1.1rem' }}>
+                                {data.services_hero.cta_primary} <i className="fas fa-arrow-right" style={{ marginLeft: '8px' }}></i>
                             </a>
                             <div style={{ marginTop: '24px', display: 'flex', gap: '24px', justifyContent: 'center', opacity: 0.7, fontSize: '0.9rem', fontWeight: 500 }}>
                                 <span><i className="fas fa-check-circle text-emerald-500 mr-2"></i> {`${projectsDelivered.value}${projectsDelivered.suffix}`} Projects Delivered</span>

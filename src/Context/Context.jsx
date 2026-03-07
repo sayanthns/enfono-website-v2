@@ -12,7 +12,9 @@ const GlobalContext = createContext({
         el: null,
         isOpen: false
     },
-    setCustomModal: () => { }
+    setCustomModal: () => { },
+    cmsData: {},
+    setCmsData: () => { }
 });
 
 export default GlobalContext;

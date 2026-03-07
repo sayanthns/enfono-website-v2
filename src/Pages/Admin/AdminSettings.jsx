@@ -1,19 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
+import GlobalContext from '../../Context/Context';
 import { initialCmsData } from "../../Data/cms_data";
 
 const AdminSettings = () => {
-    const [cmsData, setCmsData] = useState(initialCmsData);
+    const { cmsData: globalCmsData, setCmsData: setGlobalCmsData } = useContext(GlobalContext);
+    const [cmsData, setCmsData] = useState(globalCmsData || initialCmsData);
+    const [message, setMessage] = useState('');
 
-    useEffect(() => {
-        const saved = localStorage.getItem('enfono_cms_data');
-        if (saved) {
-            setCmsData(JSON.parse(saved));
+    const API_URL = window.location.hostname === 'localhost' ? 'http://localhost:8007' : `http://${window.location.hostname}:8007`;
+
+    const handleSaveConfig = async () => {
+        try {
+            const res = await fetch(`${API_URL}/api/cms/enfono_cms_data`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(cmsData)
+            });
+            if (res.ok) {
+                setGlobalCmsData(cmsData);
+                setMessage('Global configurations saved successfully!');
+                setTimeout(() => setMessage(''), 3000);
+            }
+        } catch (err) {
+            console.error("Error saving config:", err);
+            setMessage('Error saving configurations.');
+            setTimeout(() => setMessage(''), 3000);
         }
-    }, []);
-
-    const handleSaveConfig = () => {
-        localStorage.setItem('enfono_cms_data', JSON.stringify(cmsData));
-        alert('Global configurations saved successfully!');
     };
 
     const updateContact = (field, value) => {
@@ -35,6 +47,7 @@ const AdminSettings = () => {
             <div className="admin-header">
                 <h1>Global Settings</h1>
                 <p>Manage application-wide configurations and contact details.</p>
+                {message && <div style={{ color: '#10B981', background: 'rgba(16, 185, 129, 0.1)', padding: '10px 16px', borderRadius: '8px', marginTop: '16px', fontSize: '14px' }}>{message}</div>}
             </div>
 
             <div className="admin-content-card">

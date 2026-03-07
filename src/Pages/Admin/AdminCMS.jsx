@@ -1,21 +1,41 @@
-import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { useContext } from 'react';
+import GlobalContext from '../../Context/Context';
 import { initialCmsData } from "../../Data/cms_data";
 
 const AdminCMS = () => {
+    const { cmsData: globalCmsData, setCmsData: setGlobalCmsData } = useContext(GlobalContext);
     const [searchParams, setSearchParams] = useSearchParams();
     const activeTab = searchParams.get('tab') || 'leads';
     const setActiveTab = (tab) => setSearchParams({ tab });
 
-    const [cmsData, setCmsData] = useState(initialCmsData);
+    const [cmsData, setCmsData] = useState(globalCmsData || initialCmsData);
     const [message, setMessage] = useState('');
     const [leads, setLeads] = useState([]);
-    const [mediaFiles, setMediaFiles] = useState(JSON.parse(localStorage.getItem('enfono_media_files') || '[]'));
-    const [chatbotTraining, setChatbotTraining] = useState(localStorage.getItem('enfono_chatbot_training') || '');
+    const [mediaFiles, setMediaFiles] = useState([]);
+    const [chatbotTraining, setChatbotTraining] = useState('');
+
+    const API_URL = window.location.hostname === 'localhost' ? 'http://localhost:8007' : `http://${window.location.hostname}:8007`;
 
     useEffect(() => {
-        const storedLeads = localStorage.getItem('enfono_leads');
-        if (storedLeads) setLeads(JSON.parse(storedLeads));
+        const fetchLeads = async () => {
+            try {
+                const res = await fetch(`${API_URL}/api/leads`);
+                const data = await res.json();
+                setLeads(data);
+            } catch (err) { console.error("Error fetching leads:", err); }
+        };
+        const fetchMedia = async () => {
+            try {
+                const res = await fetch(`${API_URL}/api/cms/enfono_media_files`);
+                if (res.ok) {
+                    const data = await res.json();
+                    setMediaFiles(Array.isArray(data) ? data : []);
+                }
+            } catch (err) { console.error("Error fetching media:", err); }
+        };
+        fetchLeads();
+        fetchMedia();
     }, [activeTab]);
 
     // Active label derived from tab param
@@ -28,40 +48,37 @@ const AdminCMS = () => {
     const activeLabel = tabLabels[activeTab] || activeTab;
 
     useEffect(() => {
-        const saved = localStorage.getItem('enfono_cms_data');
-        if (saved) {
-            let parsed = JSON.parse(saved);
-            // Merge with initialCmsData to ensure new keys exist
-            let merged = { ...initialCmsData, ...parsed };
-            let migrated = false;
-
-            // Migrate success_stories to our_work if needed
-            if ((!merged.our_work || merged.our_work.length === 0) && merged.success_stories) {
-                merged.our_work = merged.success_stories.map(s => ({
-                    id: s.id || Math.random(),
-                    category: s.meta || 'Manufacturing',
-                    country: 'Saudi Arabia',
-                    title: s.title,
-                    subtitle: s.desc,
-                    outcome: s.result,
-                    bullets: [],
-                    results: []
-                }));
-                migrated = true;
-            }
-
-            if (migrated) {
-                localStorage.setItem('enfono_cms_data', JSON.stringify(merged));
-            }
-
-            setCmsData(merged);
-        }
+        const fetchCmsData = async () => {
+            try {
+                const res = await fetch(`${API_URL}/api/cms/enfono_cms_data`);
+                if (res.ok) {
+                    const data = await res.json();
+                    setCmsData({ ...initialCmsData, ...data });
+                }
+            } catch (err) { console.error("Error fetching CMS:", err); }
+        };
+        fetchCmsData();
     }, []);
 
-    const handleSave = () => {
-        localStorage.setItem('enfono_cms_data', JSON.stringify(cmsData));
-        setMessage('Changes saved successfully!');
-        setTimeout(() => setMessage(''), 3000);
+    const handleSave = async () => {
+        try {
+            const res = await fetch(`${API_URL}/api/cms/enfono_cms_data`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(cmsData)
+            });
+            if (res.ok) {
+                setGlobalCmsData(cmsData);
+                setMessage('Changes saved successfully to database!');
+                setTimeout(() => setMessage(''), 3000);
+            } else {
+                setMessage('Error saving to server!');
+                setTimeout(() => setMessage(''), 3000);
+            }
+        } catch (err) {
+            setMessage('Error saving to server!');
+            setTimeout(() => setMessage(''), 3000);
+        }
         // Auto Cloud Backup via webhook
         const webhookUrl = localStorage.getItem('enfono_backup_webhook');
         if (webhookUrl) {
@@ -141,10 +158,18 @@ const AdminCMS = () => {
         reader.readAsDataURL(file);
     };
 
-    const handleDeleteMedia = (id) => {
+    const handleDeleteMedia = async (id) => {
         const updated = mediaFiles.filter(f => f.id !== id);
         setMediaFiles(updated);
-        localStorage.setItem('enfono_media_files', JSON.stringify(updated));
+        try {
+            await fetch(`${API_URL}/api/cms/enfono_media_files`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(updated)
+            });
+            setMessage('File removed from list');
+            setTimeout(() => setMessage(''), 3000);
+        } catch (err) { console.error("Error deleting media ref:", err); }
     };
 
     const saveTraining = () => {
@@ -1537,7 +1562,31 @@ const AdminCMS = () => {
                             }}>
                                 <i className="fas fa-cloud-upload-alt" style={{ fontSize: '24px' }} />
                                 <span>Click to upload image or file</span>
-                                <input type="file" accept="image/*,application/pdf" onChange={handleFileUpload} style={{ display: 'none' }} />
+                                <input type="file" accept="image/*,application/pdf" onChange={async (e) => {
+                                    const file = e.target.files[0];
+                                    if (!file) return;
+                                    const formData = new FormData();
+                                    formData.append('file', file);
+                                    try {
+                                        const res = await fetch(`${API_URL}/api/upload`, {
+                                            method: 'POST',
+                                            body: formData
+                                        });
+                                        if (res.ok) {
+                                            const newFile = await res.json();
+                                            const updatedMedia = [...mediaFiles, { ...newFile, id: Date.now() }];
+                                            setMediaFiles(updatedMedia);
+                                            // Save media list to CMS data
+                                            await fetch(`${API_URL}/api/cms/enfono_media_files`, {
+                                                method: 'POST',
+                                                headers: { 'Content-Type': 'application/json' },
+                                                body: JSON.stringify(updatedMedia)
+                                            });
+                                            setMessage('File uploaded and URL generated!');
+                                            setTimeout(() => setMessage(''), 3000);
+                                        }
+                                    } catch (err) { console.error("Upload error:", err); }
+                                }} style={{ display: 'none' }} />
                             </label>
                             {mediaFiles.length === 0 ? (
                                 <div style={{ textAlign: 'center', padding: '40px', color: '#94a3b8' }}>

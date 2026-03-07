@@ -24,15 +24,13 @@ const useCases = [
   { industry: 'Construction', icon: 'fas fa-hard-hat', headline: 'Automated procurement approvals cut processing time from 5 days to 4 hours', result: '95% faster approvals', color: '#10B981' },
 ]
 
-export default function EnfonoAI() {
-  const [cmsData, setCmsData] = useState(initialCmsData);
+import { useContext } from 'react';
+import GlobalContext from '../../Context/Context';
+import { initialCmsData } from '../../Data/cms_data'
 
-  useEffect(() => {
-    const saved = localStorage.getItem('enfono_cms_data');
-    if (saved) {
-      setCmsData(JSON.parse(saved));
-    }
-  }, []);
+export default function EnfonoAI() {
+  const { cmsData } = useContext(GlobalContext);
+  const data = cmsData || initialCmsData;
 
   return (
     <LazyMotion features={domAnimation}>
@@ -184,12 +182,12 @@ export default function EnfonoAI() {
           <div className="enfono-container">
             <div className="e-cta-inner">
               <div className="e-cta-text">
-                <h2>{cmsData.ai_cta?.heading || 'See AI ERP in Action'}</h2>
-                <p>{cmsData.ai_cta?.subtext || "Book a live demo and see how Enfono's AI layer transforms your ERPNext system."}</p>
+                <h2>{data.ai_cta?.heading || 'See AI ERP in Action'}</h2>
+                <p>{data.ai_cta?.subtext || "Book a live demo and see how Enfono's AI layer transforms your ERPNext system."}</p>
               </div>
               <div className="e-cta-actions">
-                <Link to={cmsData.ai_cta?.btn_primary_url || '/contact'} className="ecta-btn-white"><i className="fas fa-calendar-check" /> {cmsData.ai_cta?.btn_primary_txt || 'Book AI Demo'}</Link>
-                <Link to={cmsData.ai_cta?.btn_secondary_url || '/services'} className="ecta-btn-outline">{cmsData.ai_cta?.btn_secondary_txt || 'All Services'}</Link>
+                <Link to={data.ai_cta?.btn_primary_url || '/contact'} className="ecta-btn-white"><i className="fas fa-calendar-check" /> {data.ai_cta?.btn_primary_txt || 'Book AI Demo'}</Link>
+                <Link to={data.ai_cta?.btn_secondary_url || '/services'} className="ecta-btn-outline">{data.ai_cta?.btn_secondary_txt || 'All Services'}</Link>
               </div>
             </div>
           </div>

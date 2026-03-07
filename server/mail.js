@@ -1,120 +1,180 @@
 const express = require("express");
 const nodemailer = require("nodemailer");
 const cors = require("cors");
-const PORT = 8007;
+const { Pool } = require("pg");
+const axios = require("axios");
+const path = require('path');
+const fs = require('fs');
+const multer = require('multer');
 require("dotenv").config();
 
-const app = express()
-app.use(express.json())
-app.use(cors({
-    origin: 'https://lithoreact.themezaa.com/'
-}))
+const app = express();
+const PORT = process.env.PORT || 8007;
 
-// setup nodemailer configuration
-const transporter = nodemailer.createTransport({
-    host: process.env.REACT_APP_SMTP_HOST,
-    port: process.env.REACT_APP_SMTP_PORT,
-    auth: {
-        user: process.env.REACT_APP_SMTP_EMAIL,
-        pass: process.env.REACT_APP_SMTP_PASS
-    }
-})
+// Middleware
+app.use(express.json({ limit: '50mb' }));
+app.use(cors());
 
-// Verify nodemailer configuration
-transporter.verify((err, success) => {
-    if (err) {
-        console.log("Error", err)
-    } else {
-        console.log("Successfully mail is configured");
+// Serve uploaded files
+const uploadsDir = path.join(__dirname, 'uploads');
+if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir);
+app.use('/uploads', express.static(uploadsDir));
+
+// Multer config
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => cb(null, uploadsDir),
+    filename: (req, file, cb) => cb(null, Date.now() + '-' + file.originalname)
+});
+const upload = multer({ storage });
+
+// Database Connection
+const pool = new Pool({
+    connectionString: process.env.DATABASE_URL || "postgres://enfono:enfonopass@enfono-db:5432/enfono_cms"
+});
+
+// Initialize Database Tables
+const initDb = async () => {
+    try {
+        await pool.query(`
+            CREATE TABLE IF NOT EXISTS cms_data (
+                id SERIAL PRIMARY KEY,
+                key TEXT UNIQUE NOT NULL,
+                content JSONB NOT NULL,
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            );
+            CREATE TABLE IF NOT EXISTS leads (
+                id SERIAL PRIMARY KEY,
+                data JSONB NOT NULL,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            );
+        `);
+        console.log("Database tables initialized");
+    } catch (err) {
+        console.error("Database initialization error:", err);
     }
-})
+};
+initDb();
+
+// ─── CMS Endpoints ────────────────────────────────────
+
+// Get CMS data by key
+app.get("/api/cms/:key", async (req, res) => {
+    try {
+        const { key } = req.params;
+        const result = await pool.query("SELECT content FROM cms_data WHERE key = $1", [key]);
+        if (result.rows.length > 0) {
+            res.json(result.rows[0].content);
+        } else {
+            res.status(404).json({ error: "CMS data not found" });
+        }
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+// Update CMS data
+app.post("/api/cms/:key", async (req, res) => {
+    try {
+        const { key } = req.params;
+        const content = req.body;
+        await pool.query(
+            "INSERT INTO cms_data (key, content, updated_at) VALUES ($1, $2, CURRENT_TIMESTAMP) ON CONFLICT (key) DO UPDATE SET content = $2, updated_at = CURRENT_TIMESTAMP",
+            [key, content]
+        );
+        res.json({ success: true });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+// ─── Leads Endpoints ──────────────────────────────────
+
+app.get("/api/leads", async (req, res) => {
+    try {
+        const result = await pool.query("SELECT * FROM leads ORDER BY created_at DESC");
+        res.json(result.rows.map(row => row.data));
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+app.post("/api/leads", async (req, res) => {
+    try {
+        const data = req.body;
+        await pool.query("INSERT INTO leads (data) VALUES ($1)", [data]);
+        res.json({ success: true });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+// ─── Chatbot Proxy ────────────────────────────────────
+
+app.post("/api/chat", async (req, res) => {
+    try {
+        const { messages, provider } = req.body;
+        const apiKey = process.env.OPENAI_API_KEY;
+
+        if (!apiKey) {
+            return res.status(500).json({ error: "OpenAI API key not configured on server" });
+        }
+
+        if (provider === 'openai') {
+            const response = await axios.post('https://api.openai.com/v1/chat/completions', {
+                model: 'gpt-4o',
+                messages: messages
+            }, {
+                headers: {
+                    'Authorization': `Bearer ${apiKey}`,
+                    'Content-Type': 'application/json'
+                }
+            });
+            res.json(response.data);
+        } else {
+            res.status(400).json({ error: "Unsupported provider" });
+        }
+    } catch (err) {
+        console.error("Chat error:", err.response?.data || err.message);
+        res.status(500).json({ error: "AI service error" });
+    }
+});
+
+// ─── Nodemailer Endpoint ──────────────────────────────
 
 app.post("/send", (req, res) => {
-    const { email, name, phone, comment } = req.body
+    const { email, name, phone, comment } = req.body;
 
-    if ( name !== undefined ) {
-        var mailConfig = {
-            from: process.env.REACT_APP_SMTP_EMAIL,
-            to: email,
-            subject: "Litho - Contact Form",
-            html: `<html>
-            <head>
-            <title>HTML email</title>
-            </head>
-            <body>
-            <table width="50%" border="0" align="center" cellpadding="0" cellspacing="0">
-            <tr>
-            <td colspan="2" align="center" valign="top"><img style=" margin-top: 15px; " src="https://lithoreact.themezaa.com/assets/img/webp/logo-black.webp"></td>
-            </tr>
-            <tr>
-            <td width="50%" align="right">&nbsp;</td>
-            <td align="left">&nbsp;</td>
-            </tr>
-            <tr>
-            <td align="right" valign="top" style="border-top:1px solid #dfdfdf; font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#000; padding:7px 5px 7px 0;">Name:</td>
-            <td align="left" valign="top" style="border-top:1px solid #dfdfdf; font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#000; padding:7px 0 7px 5px;">${name}</td>
-            </tr>
-            <tr>
-            <td align="right" valign="top" style="border-top:1px solid #dfdfdf; font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#000; padding:7px 5px 7px 0;">Email:</td>
-            <td align="left" valign="top" style="border-top:1px solid #dfdfdf; font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#000; padding:7px 0 7px 5px;">${email}</td>
-            </tr>
-            <tr>
-            <td align="right" valign="top" style="border-top:1px solid #dfdfdf; font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#000; padding:7px 5px 7px 0;">Phone:</td>
-            <td align="left" valign="top" style="border-top:1px solid #dfdfdf; font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#000; padding:7px 0 7px 5px;">${phone}</td>
-            </tr>
-            <tr>
-            <td align="right" valign="top" style="border-top:1px solid #dfdfdf; font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#000; padding:7px 5px 7px 0;">Message:</td>
-            <td align="left" valign="top" style="border-top:1px solid #dfdfdf; font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#000; padding:7px 0 7px 5px;">${comment}</td>
-            </tr>
-            </table>
-            </body>
-            </html>`
+    // Transporter config from .env
+    const transporter = nodemailer.createTransport({
+        host: process.env.SMTP_HOST,
+        port: process.env.SMTP_PORT,
+        auth: {
+            user: process.env.SMTP_USER,
+            pass: process.env.SMTP_PASS
         }
-    } else {
-        var mailConfig = {
-            from: process.env.REACT_APP_SMTP_EMAIL,
-            to: email,
-            subject: "Litho - Subscription Form",
-            html: `<html>
-            <head>
-            <title>HTML email</title>
-            </head>
-            <body>
-            <table width="50%" border="0" align="center" cellpadding="0" cellspacing="0">
-            <tr>
-            <td colspan="2" align="center" valign="top">Thank you for subscribing to our email service.</td>
-            </tr>
-            <tr>
-            <td colspan="2" align="center" valign="top"><img style=" margin-top: 15px; " src="https://lithoreact.themezaa.com/assets/img/webp/logo-black.webp"></td>
-            </tr>
-            <tr>
-            <td width="50%" align="right">&nbsp;</td>
-            <td align="left">&nbsp;</td>
-            </tr>
-            <tr>
-            <td align="right" valign="top" style="border-top:1px solid #dfdfdf; font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#000; padding:7px 5px 7px 0;">Email:</td>
-            <td align="left" valign="top" style="border-top:1px solid #dfdfdf; font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#000; padding:7px 0 7px 5px;">${email}</td>
-            </tr>
-            </table>
-            </body>
-            </html>`
-        }
-    }
+    });
 
-    transporter.sendMail(mailConfig, (err, data) => {
+    const mailConfig = {
+        from: process.env.SMTP_USER,
+        to: email, // or your notification email
+        subject: `Enfono - ${name ? 'Contact' : 'Subscription'} Form`,
+        text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nMessage: ${comment}`
+    };
+
+    transporter.sendMail(mailConfig, (err) => {
         if (err) {
-            res.json({
-                status: "fail"
-            })
+            console.error("Mail error:", err);
+            res.json({ status: "fail" });
         } else {
-            console.log("mail is successfully sent");
-            res.json({
-                status: 'success'
-            })
+            res.json({ status: "success" });
         }
-    })
-})
+    });
+});
 
-app.listen(PORT, () => {
-    console.log(`server is started at port ${PORT}`);
-})
+app.post('/api/upload', upload.single('file'), (req, res) => {
+    if (!req.file) return res.status(400).send('No file uploaded.');
+    const fileUrl = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
+    res.json({ url: fileUrl, name: req.file.originalname, type: req.file.mimetype });
+});
+
+app.listen(PORT, () => console.log(`CMS Server running on port ${PORT}`));

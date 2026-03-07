@@ -5,16 +5,18 @@ import { initialCmsData } from '../../Data/cms_data';
 const EnfonoChatbot = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState([
-        { role: 'assistant', content: 'Hi! I\'m the Enfono AI Assistant. How can I help you with ERP, AI in business, or anything about Enfono today?' }
+        { role: 'assistant', content: 'Hello! I am the Enfono AI Assistant. How can I help you today? Whether you are looking for ERPNext implementation, ZATCA compliance, or AI solutions, I am here to guide you.' }
     ]);
-    const [input, setInput] = useState('');
+    const [userInput, setInput] = useState('');
     const [isTyping, setIsTyping] = useState(false);
+    const chatEndRef = useRef(null);
+
+    const API_URL = window.location.hostname === 'localhost' ? 'http://localhost:8007' : `http://${window.location.hostname}:8007`;
     const [leadStep, setLeadStep] = useState(null); // 'name', 'email', 'company', 'message', 'complete'
     const [leadData, setLeadData] = useState({});
-    const messagesEndRef = useRef(null);
 
     const scrollToBottom = () => {
-        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+        chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
     };
 
     useEffect(() => {
@@ -44,7 +46,7 @@ const EnfonoChatbot = () => {
         });
     };
 
-    const handleLeadCapture = (inputVal) => {
+    const handleLeadCapture = async (inputVal) => {
         const currentStep = leadStep;
         let nextStep = null;
         let newData = { ...leadData };
@@ -67,8 +69,7 @@ const EnfonoChatbot = () => {
             newData.message = inputVal;
             nextStep = 'complete';
 
-            const storedLeads = JSON.parse(localStorage.getItem('enfono_leads') || '[]');
-            const newLead = {
+            const collectedData = {
                 id: Date.now(),
                 date: new Date().toLocaleDateString(),
                 name: newData.name,
@@ -78,14 +79,26 @@ const EnfonoChatbot = () => {
                 phone: 'N/A',
                 message: inputVal
             };
-            localStorage.setItem('enfono_leads', JSON.stringify([newLead, ...storedLeads]));
 
-            setMessages(prev => [...prev,
-            { role: 'user', content: inputVal },
-            { role: 'assistant', content: 'Thank you! I\'ve registered your interest for a free consultation. Our team will reach out to you at ' + newData.email + ' very soon.' }
-            ]);
-            setLeadStep(null);
+            setMessages(prev => [...prev, { role: 'user', content: inputVal }]);
+            setIsTyping(true);
+
+            try {
+                await fetch(`${API_URL}/api/leads`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        type: 'chatbot_lead',
+                        ...collectedData,
+                        timestamp: new Date().toISOString()
+                    })
+                });
+            } catch (err) { console.error("Lead sync error:", err); }
+
+            setIsTyping(false);
+            setMessages(prev => [...prev, { role: 'assistant', content: 'Thank you! I have recorded your request for a free consultation. Our team will reach out to you within 24 hours.' }]);
             setInput('');
+            setLeadStep(null);
             return;
         }
 
@@ -96,42 +109,26 @@ const EnfonoChatbot = () => {
 
     const handleSend = async (e) => {
         e?.preventDefault();
-        const userInput = input.trim();
-        if (!userInput || isTyping) return;
+        const userInputTrimmed = userInput.trim();
+        if (!userInputTrimmed || isTyping) return;
 
         if (leadStep) {
-            handleLeadCapture(userInput);
+            handleLeadCapture(userInputTrimmed);
             return;
         }
 
         const bookingKeywords = ['book', 'consultation', 'meeting', 'free consultation', 'talk to sales', 'demo'];
-        if (bookingKeywords.some(k => userInput.toLowerCase().includes(k)) && !leadStep) {
+        if (bookingKeywords.some(k => userInputTrimmed.toLowerCase().includes(k)) && !leadStep) {
             setLeadStep('name');
-            setMessages(prev => [...prev, { role: 'user', content: userInput }, { role: 'assistant', content: 'I can certainly help you book a free consultation! Let\'s start with your full name.' }]);
+            setMessages(prev => [...prev, { role: 'user', content: userInputTrimmed }, { role: 'assistant', content: 'I can certainly help you book a free consultation! Let\'s start with your full name.' }]);
             setInput('');
             return;
         }
 
-        const userMessage = { role: 'user', content: userInput };
+        const userMessage = { role: 'user', content: userInputTrimmed };
         setMessages(prev => [...prev, userMessage]);
         setInput('');
         setIsTyping(true);
-
-        const localStorageKey = localStorage.getItem('enfono_chatbot_api_key');
-        const localStorageProvider = localStorage.getItem('enfono_chatbot_provider');
-        const localStorageTraining = localStorage.getItem('enfono_chatbot_training');
-
-        const apiKey = localStorageKey || initialCmsData.chatbot?.api_key;
-        const apiProvider = localStorageProvider || initialCmsData.chatbot?.provider || 'openai';
-        const customTraining = localStorageTraining || initialCmsData.chatbot?.training_data || '';
-
-        if (!apiKey) {
-            setTimeout(() => {
-                setMessages(prev => [...prev, { role: 'assistant', content: 'Chatbot API key not configured. Contact Enfono Admin to enable AI responses.' }]);
-                setIsTyping(false);
-            }, 1000);
-            return;
-        }
 
         try {
             const systemPrompt = `You are the Enfono AI Assistant. You are an expert in ERP (specifically ERPNext), AI for business optimization, and Enfono's history/services.
@@ -143,7 +140,7 @@ const EnfonoChatbot = () => {
             - Offices: ${initialCmsData.about.offices.map(o => o.country + " (" + o.city + ")").join(', ')}
             - Our Journey: ${initialCmsData.about.journey.map(j => j.year + ": " + j.title).join(', ')}
             - Notable Projects: ${initialCmsData.our_work.slice(0, 5).map(w => w.title).join(', ')}
-            ${customTraining ? `\n\nAdditional Knowledge (use this as a priority source):\n${customTraining}` : ''}
+            ${initialCmsData.chatbot?.training_data ? `\n\nAdditional Knowledge (use this as a priority source):\n${initialCmsData.chatbot?.training_data}` : ''}
             
             Guidelines:
             - Be professional, helpful, and concise.
@@ -152,41 +149,29 @@ const EnfonoChatbot = () => {
             - If the user wants to book a consultation, demo, or meeting, tell them you can help them right here.
             - If you don't know the answer, suggest contacting Enfono.`;
 
-            let response;
-            if (apiProvider === 'openai') {
-                response = await fetch('https://api.openai.com/v1/chat/completions', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${apiKey}` },
-                    body: JSON.stringify({
-                        model: 'gpt-4o-mini',
-                        messages: [
-                            { role: 'system', content: systemPrompt },
-                            ...messages.map(m => ({ role: m.role, content: m.content })),
-                            userMessage
-                        ],
-                        temperature: 0.7
-                    })
-                });
-            } else if (apiProvider === 'claude') {
-                response = await fetch('https://api.anthropic.com/v1/messages', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json', 'x-api-key': apiKey, 'anthropic-version': '2023-06-01' },
-                    body: JSON.stringify({
-                        model: 'claude-3-5-sonnet-20240620',
-                        max_tokens: 1024,
-                        system: systemPrompt,
-                        messages: [...messages.map(m => ({ role: m.role, content: m.content })), userMessage]
-                    })
-                });
-            }
+            const res = await fetch(`${API_URL}/api/chat`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    messages: [
+                        { role: 'system', content: systemPrompt },
+                        ...messages.map(m => ({ role: m.role, content: m.content })),
+                        userMessage
+                    ],
+                    provider: 'openai'
+                })
+            });
 
-            const data = await response.json();
-            const aiContent = apiProvider === 'openai' ? data.choices[0].message.content : data.content[0].text;
-            setMessages(prev => [...prev, { role: 'assistant', content: aiContent }]);
+            if (!res.ok) throw new Error("Server error");
+            const data = await res.json();
+            const aiMessage = data.choices[0].message;
+            setMessages(prev => [...prev, aiMessage]);
         } catch (error) {
-            console.error('Chatbot Error:', error);
-            setMessages(prev => [...prev, { role: 'assistant', content: 'Sorry, I encountered an error. Please check your API configuration.' }]);
-        } finally { setIsTyping(false); }
+            console.error("Chat Error:", error);
+            setMessages(prev => [...prev, { role: 'assistant', content: 'I am sorry, I am having trouble connecting to the AI service right now. Please try again later or contact us directly.' }]);
+        } finally {
+            setIsTyping(false);
+        }
     };
 
     const suggestions = [

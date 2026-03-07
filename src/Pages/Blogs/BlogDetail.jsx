@@ -14,10 +14,15 @@ const categoryColors = {
     'Case Study': '#ef4444',
 };
 
+import { useContext } from 'react';
+import GlobalContext from '../../Context/Context';
+import { initialCmsData } from '../../Data/cms_data';
+
 export default function BlogDetail() {
     const { slug } = useParams();
     const navigate = useNavigate();
-    const [cmsData, setCmsData] = useState(initialCmsData);
+    const { cmsData } = useContext(GlobalContext);
+    const data = cmsData || initialCmsData;
 
     // Scroll progress logic
     const { scrollYProgress } = useScroll();
@@ -28,15 +33,10 @@ export default function BlogDetail() {
     });
 
     useEffect(() => {
-        const saved = localStorage.getItem('enfono_cms_data');
-        if (saved) {
-            const parsed = JSON.parse(saved);
-            setCmsData({ ...initialCmsData, ...parsed });
-        }
         window.scrollTo(0, 0);
     }, [slug]);
 
-    const blogs = cmsData.blogs || [];
+    const blogs = data.blogs || [];
     const blog = blogs.find(b => b.slug === slug);
 
     // Improved Related Logic

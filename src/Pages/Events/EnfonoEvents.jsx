@@ -1,28 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { m, LazyMotion, domAnimation } from 'framer-motion';
-import EnfonoHeader from '../../Components/EnfonoUI/EnfonoHeader';
-import EnfonoFooter from '../../Components/EnfonoUI/EnfonoFooter';
+import { useContext } from 'react';
+import GlobalContext from '../../Context/Context';
 import { initialCmsData } from '../../Data/cms_data';
 
 export default function EnfonoEvents() {
-    const [cmsData, setCmsData] = useState(initialCmsData);
+    const { cmsData } = useContext(GlobalContext);
+    const data = cmsData || initialCmsData;
     const [activeFilter, setActiveFilter] = useState('All');
-
-    useEffect(() => {
-        const loadData = () => {
-            const saved = localStorage.getItem('enfono_cms_data');
-            if (saved) {
-                const parsed = JSON.parse(saved);
-                setCmsData({ ...initialCmsData, ...parsed });
-            }
-        };
-        loadData();
-        const handleStorageChange = (e) => {
-            if (e.key === 'enfono_cms_data') loadData();
-        };
-        window.addEventListener('storage', handleStorageChange);
-        return () => window.removeEventListener('storage', handleStorageChange);
-    }, []);
 
     const fadeUp = {
         hidden: { opacity: 0, y: 20 },
@@ -32,12 +15,12 @@ export default function EnfonoEvents() {
 
     // Collect all unique tag texts for filter
     const allTags = ['All', ...new Set(
-        (cmsData.media_events || []).flatMap(ev => (ev.tags || []).map(t => t.text))
+        (data.media_events || []).flatMap(ev => (ev.tags || []).map(t => t.text))
     )];
 
     const filtered = activeFilter === 'All'
-        ? cmsData.media_events
-        : (cmsData.media_events || []).filter(ev => ev.tags?.some(t => t.text === activeFilter));
+        ? data.media_events
+        : (data.media_events || []).filter(ev => ev.tags?.some(t => t.text === activeFilter));
 
     return (
         <LazyMotion features={domAnimation}>
@@ -71,7 +54,7 @@ export default function EnfonoEvents() {
                             style={{ display: 'flex', gap: '40px', marginTop: '48px', flexWrap: 'wrap' }}
                         >
                             {[
-                                { label: 'Events Participated', value: (cmsData.media_events || []).length + '+' },
+                                { label: 'Events Participated', value: (data.media_events || []).length + '+' },
                                 { label: 'Countries Reached', value: '6+' },
                                 { label: 'Global Summits', value: '3' },
                             ].map((s, i) => (

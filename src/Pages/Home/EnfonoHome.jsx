@@ -1,10 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { m, LazyMotion, domAnimation } from 'framer-motion'
-import CountUp from 'react-countup'
-import { useInView } from 'react-intersection-observer'
-import EnfonoHeader from '../../Components/EnfonoUI/EnfonoHeader'
-import EnfonoFooter from '../../Components/EnfonoUI/EnfonoFooter'
+import { useContext } from 'react';
+import GlobalContext from '../../Context/Context';
 import { initialCmsData } from "../../Data/cms_data";
 
 const fadeUp = {

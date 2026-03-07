@@ -1,17 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import { useContext } from 'react';
+import GlobalContext from '../../Context/Context';
 import { initialCmsData } from "../../Data/cms_data";
 
 const AdminDashboard = () => {
-    const [cmsData, setCmsData] = useState(initialCmsData);
+    const { cmsData } = useContext(GlobalContext);
+    const data = cmsData || initialCmsData;
     const [adUrl, setAdUrl] = useState('https://enfono.com/?utm_source=google&utm_medium=cpc');
     const [message, setMessage] = useState('');
-
-    useEffect(() => {
-        const saved = localStorage.getItem('enfono_cms_data');
-        if (saved) {
-            setCmsData(JSON.parse(saved));
-        }
-    }, []);
 
     const handleUpdateAd = () => {
         setMessage('Ad URL updated successfully!');

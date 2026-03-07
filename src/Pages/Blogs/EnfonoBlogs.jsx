@@ -16,34 +16,22 @@ const categoryColors = {
     'Case Study': '#ef4444',
 };
 
+import { useContext } from 'react';
+import GlobalContext from '../../Context/Context';
+import { initialCmsData } from '../../Data/cms_data';
+
 export default function EnfonoBlogs() {
-    const [cmsData, setCmsData] = useState(initialCmsData);
+    const { cmsData } = useContext(GlobalContext);
+    const data = cmsData || initialCmsData;
     const [activeCategory, setActiveCategory] = useState('All');
     const [scrolled, setScrolled] = useState(false);
     const [navHidden, setNavHidden] = useState(false);
     const lastScrollY = useRef(0);
 
     useEffect(() => {
-        // Load initial data
-        const saved = localStorage.getItem('enfono_cms_data');
-        if (saved) {
-            const parsed = JSON.parse(saved);
-            setCmsData({ ...initialCmsData, ...parsed });
-        }
-
-        // Keep synced with other tabs
-        const handleStorage = (e) => {
-            if (e.key === 'enfono_cms_data') {
-                const parsed = JSON.parse(e.newValue);
-                setCmsData({ ...initialCmsData, ...parsed });
-            }
-        };
-
         const onScroll = () => {
             const currentScrollY = window.scrollY;
             setScrolled(currentScrollY > 30);
-
-            // Match EnfonoHeader logic: hide header on scroll down, show on scroll up
             if (currentScrollY > 100 && currentScrollY > lastScrollY.current) {
                 setNavHidden(true);
             } else {
@@ -51,17 +39,11 @@ export default function EnfonoBlogs() {
             }
             lastScrollY.current = currentScrollY;
         };
-
-        window.addEventListener('storage', handleStorage);
         window.addEventListener('scroll', onScroll, { passive: true });
-
-        return () => {
-            window.removeEventListener('storage', handleStorage);
-            window.removeEventListener('scroll', onScroll);
-        };
+        return () => window.removeEventListener('scroll', onScroll);
     }, []);
 
-    const blogs = cmsData.blogs || [];
+    const blogs = data.blogs || [];
     const filtered = activeCategory === 'All' ? blogs : blogs.filter(b => b.category === activeCategory);
     const featured = filtered.find(b => b.featured) || filtered[0];
     const rest = filtered.filter(b => b !== featured);

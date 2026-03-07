@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useContext, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { Container, Row, Col } from 'react-bootstrap'
 import { m, LazyMotion, domAnimation } from 'framer-motion'
@@ -6,6 +6,7 @@ import CountUp from 'react-countup'
 import { useInView } from 'react-intersection-observer'
 import EnfonoHeader from '../../Components/EnfonoUI/EnfonoHeader'
 import EnfonoFooter from '../../Components/EnfonoUI/EnfonoFooter'
+import GlobalContext from '../../Context/Context'
 import { initialCmsData } from '../../Data/cms_data'
 
 const fadeIn = {
@@ -47,7 +48,8 @@ const StatCounter = ({ end, suffix, label }) => {
 }
 
 const EnfonoAbout = () => {
-    const data = initialCmsData.about;
+    const { cmsData } = useContext(GlobalContext);
+    const data = (cmsData || initialCmsData).about;
 
     // Sorting team by order number
     const sortedTeam = useMemo(() => {
@@ -289,12 +291,12 @@ const EnfonoAbout = () => {
                     </LazyMotion>
                 </Container>
                 <style>{`
-                    .journey-scrollbar-hide::-webkit-scrollbar { display: none; }
-                    @media (max-width: 991px) {
-                        .journey-scrollbar-hide { flex-direction: column; padding: 20px; gap: 20px; }
-                        .enfono-journey-container { border-left: 2px solid #F1F5F9; padding-left: 20px; margin-left: 10px; }
-                    }
-                `}</style>
+    .journey - scrollbar - hide:: -webkit - scrollbar { display: none; }
+@media(max - width: 991px) {
+                        .journey - scrollbar - hide { flex - direction: column; padding: 20px; gap: 20px; }
+                        .enfono - journey - container { border - left: 2px solid #F1F5F9; padding - left: 20px; margin - left: 10px; }
+}
+`}</style>
             </section>
 
             {/* Team Section */}

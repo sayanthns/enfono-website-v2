@@ -1,11 +1,20 @@
 version: '3.8'
+
 services:
+  # ── Frontend (React + Nginx) ────────────────────────
   enfono-website:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: enfono-website-v2
     restart: unless-stopped
+    volumes:
+      - ./.env:/app/.env
+      - ./server/uploads:/app/uploads
     ports:
       - "3005:80"
+    depends_on:
+      - enfono-backend
     healthcheck:
       test: [ "CMD", "curl", "-f", "http://localhost" ]
       interval: 30s
@@ -16,3 +25,52 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
+
+  # ── Backend API (Node.js) ───────────────────────────
+  enfono-backend:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: enfono-backend-v2
+    restart: unless-stopped
+    ports:
+      - "8007:8007"
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgres://enfono:enfonopass@enfono-db:5432/enfono_cms
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - SMTP_HOST=${SMTP_HOST}
+      - SMTP_PORT=${SMTP_PORT}
+      - SMTP_USER=${SMTP_USER}
+      - SMTP_PASS=${SMTP_PASS}
+    depends_on:
+      - enfono-db
+    volumes:
+      - ./server/uploads:/app/uploads
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ── Database (PostgreSQL) ───────────────────────────
+  enfono-db:
+    image: postgres:15-alpine
+    container_name: enfono-db-v2
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=enfono
+      - POSTGRES_PASSWORD=enfonopass
+      - POSTGRES_DB=enfono_cms
+    volumes:
+      - enfono-db-data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  enfono-db-data:

@@ -29,10 +29,17 @@ const contactSchema = Yup.object().shape({
     message: Yup.string().min(10, 'Please provide more detail').required('Message is required'),
 })
 
+import { useContext } from 'react';
+import GlobalContext from '../../Context/Context';
+import { initialCmsData } from '../../Data/cms_data'
+
 const EnfonoContact = () => {
+    const { cmsData } = useContext(GlobalContext);
+    const data = cmsData || initialCmsData;
     const [submitted, setSubmitted] = useState(false)
     const [openFaq, setOpenFaq] = useState(null)
-    const data = initialCmsData;
+
+    const API_URL = window.location.hostname === 'localhost' ? 'http://localhost:8007' : `http://${window.location.hostname}:8007`;
 
     return (
         <div style={{ fontFamily: 'Inter, sans-serif' }}>
@@ -82,12 +89,26 @@ const EnfonoContact = () => {
                                             <Formik
                                                 initialValues={{ name: '', email: '', phone: '', company: '', service: '', country: 'Saudi Arabia', message: '' }}
                                                 validationSchema={contactSchema}
-                                                onSubmit={(values, { setSubmitting }) => {
-                                                    const existingLeads = JSON.parse(localStorage.getItem('enfono_leads') || '[]');
-                                                    const newLead = { ...values, id: Date.now(), date: new Date().toLocaleString(), status: 'New' };
-                                                    localStorage.setItem('enfono_leads', JSON.stringify([newLead, ...existingLeads]));
-
-                                                    setTimeout(() => { setSubmitting(false); setSubmitted(true) }, 1000)
+                                                onSubmit={async (values, { setSubmitting }) => {
+                                                    try {
+                                                        await fetch(`${API_URL}/api/leads`, {
+                                                            method: 'POST',
+                                                            headers: { 'Content-Type': 'application/json' },
+                                                            body: JSON.stringify({
+                                                                ...values,
+                                                                type: 'contact_form_lead',
+                                                                id: Date.now(),
+                                                                date: new Date().toLocaleString(),
+                                                                status: 'New'
+                                                            })
+                                                        });
+                                                        setSubmitted(true);
+                                                    } catch (err) {
+                                                        console.error("Lead submission error:", err);
+                                                        alert("Error sending message. Please try again.");
+                                                    } finally {
+                                                        setSubmitting(false);
+                                                    }
                                                 }}
                                             >
                                                 {({ isSubmitting, errors, touched }) => (

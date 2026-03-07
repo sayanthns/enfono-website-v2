@@ -26,18 +26,16 @@ const values = [
   { icon: 'fas fa-lightbulb', title: 'Stay Curious', desc: 'The ERP and AI landscape changes fast. We invest in staying ahead.' },
 ]
 
+import { useContext } from 'react';
+import GlobalContext from '../../Context/Context';
+import { initialCmsData } from "../../Data/cms_data";
+
 export default function EnfonoCareers() {
+  const { cmsData } = useContext(GlobalContext);
+  const data = cmsData || initialCmsData;
   const [activeFilter, setActiveFilter] = useState('All')
-  const [cmsData, setCmsData] = useState(initialCmsData);
 
-  useEffect(() => {
-    const saved = localStorage.getItem('enfono_cms_data');
-    if (saved) {
-      setCmsData({ ...initialCmsData, ...JSON.parse(saved) });
-    }
-  }, []);
-
-  const roles = cmsData.careers || [];
+  const roles = data.careers || [];
   const filtered = roles.filter(r => {
     if (activeFilter === 'All') return true;
     return r.dept?.toLowerCase().trim() === activeFilter.toLowerCase().trim();

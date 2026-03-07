@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { useContext } from 'react';
+import GlobalContext from '../../Context/Context';
 import { useTheme } from '../../Context/ThemeContext'
 import { initialCmsData } from "../../Data/cms_data";
 
@@ -28,6 +28,7 @@ const navLinks = [
 ]
 
 export default function EnfonoHeader() {
+  const { cmsData } = useContext(GlobalContext);
   const [scrolled, setScrolled] = useState(false)
   const [hidden, setHidden] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -38,14 +39,7 @@ export default function EnfonoHeader() {
   const dropdownTimer = useRef(null)
   const lastScrollY = useRef(0)
   const { isDark, toggleTheme } = useTheme()
-  const [cmsData, setCmsData] = useState(initialCmsData);
-
-  useEffect(() => {
-    const saved = localStorage.getItem('enfono_cms_data');
-    if (saved) {
-      setCmsData(JSON.parse(saved));
-    }
-  }, []);
+  const data = cmsData || initialCmsData;
 
   useEffect(() => {
     const onScroll = () => {

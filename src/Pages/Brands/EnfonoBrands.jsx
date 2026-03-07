@@ -8,17 +8,15 @@ import { initialCmsData } from "../../Data/cms_data";
 const fadeUp = { hidden: { opacity: 0, y: 40 }, visible: (d = 0) => ({ opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: d } }) }
 const stagger = { hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }
 
+import { useContext } from 'react';
+import GlobalContext from '../../Context/Context';
+import { initialCmsData } from "../../Data/cms_data";
+
 export default function EnfonoBrands() {
-  const [cmsData, setCmsData] = useState(initialCmsData);
+  const { cmsData } = useContext(GlobalContext);
+  const data = cmsData || initialCmsData;
 
-  useEffect(() => {
-    const saved = localStorage.getItem('enfono_cms_data');
-    if (saved) {
-      setCmsData({ ...initialCmsData, ...JSON.parse(saved) });
-    }
-  }, []);
-
-  const brands = cmsData.brands || [];
+  const brands = data.brands || [];
 
   return (
     <LazyMotion features={domAnimation}>

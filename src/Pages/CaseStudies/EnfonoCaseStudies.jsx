@@ -26,41 +26,17 @@ const getCategoryStyle = (category) => {
     }
 }
 
+import { useContext } from 'react';
+import GlobalContext from '../../Context/Context';
+import { initialCmsData } from '../../Data/cms_data'
+
 const EnfonoCaseStudies = () => {
-    const [cmsData, setCmsData] = useState(initialCmsData);
+    const { cmsData } = useContext(GlobalContext);
+    const data = cmsData || initialCmsData;
     const [activeCategory, setActiveCategory] = useState('All')
 
-    useEffect(() => {
-        const saved = localStorage.getItem('enfono_cms_data');
-        if (saved) {
-            let parsed = JSON.parse(saved);
-            let merged = { ...initialCmsData, ...parsed };
-            let migrated = false;
-
-            if ((!merged.our_work || merged.our_work.length === 0) && merged.success_stories) {
-                merged.our_work = merged.success_stories.map(s => ({
-                    id: s.id || Math.random(),
-                    category: s.meta || 'Manufacturing',
-                    country: 'Saudi Arabia',
-                    flag: '🇸🇦',
-                    title: s.title,
-                    subtitle: s.desc,
-                    outcome: s.result,
-                    bullets: [],
-                    results: []
-                }));
-                migrated = true;
-            }
-
-            if (migrated) {
-                localStorage.setItem('enfono_cms_data', JSON.stringify(merged));
-            }
-            setCmsData(merged);
-        }
-    }, []);
-
-    const categories = ['All', ...(cmsData.our_work_categories || [])]
-    const filtered = activeCategory === 'All' ? (cmsData.our_work || []) : (cmsData.our_work || []).filter(c => c.category === activeCategory)
+    const categories = ['All', ...(data.our_work_categories || [])]
+    const filtered = activeCategory === 'All' ? (data.our_work || []) : (data.our_work || []).filter(c => c.category === activeCategory)
 
 
     return (
