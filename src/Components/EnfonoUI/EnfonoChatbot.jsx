@@ -117,13 +117,17 @@ const EnfonoChatbot = () => {
         setInput('');
         setIsTyping(true);
 
-        const apiKey = localStorage.getItem('enfono_chatbot_api_key');
-        const apiProvider = localStorage.getItem('enfono_chatbot_provider') || 'openai';
-        const customTraining = localStorage.getItem('enfono_chatbot_training') || '';
+        const localStorageKey = localStorage.getItem('enfono_chatbot_api_key');
+        const localStorageProvider = localStorage.getItem('enfono_chatbot_provider');
+        const localStorageTraining = localStorage.getItem('enfono_chatbot_training');
+
+        const apiKey = localStorageKey || initialCmsData.chatbot?.api_key;
+        const apiProvider = localStorageProvider || initialCmsData.chatbot?.provider || 'openai';
+        const customTraining = localStorageTraining || initialCmsData.chatbot?.training_data || '';
 
         if (!apiKey) {
             setTimeout(() => {
-                setMessages(prev => [...prev, { role: 'assistant', content: 'Chatbot API key not configured. Please set it in the Admin Panel to enable AI responses.' }]);
+                setMessages(prev => [...prev, { role: 'assistant', content: 'Chatbot API key not configured. Contact Enfono Admin to enable AI responses.' }]);
                 setIsTyping(false);
             }, 1000);
             return;

@@ -154,8 +154,8 @@ function App() {
               <Route path="*" element={<NotFoundPage />} />
             </Routes>
 
-            {/* Global AI Chatbot */}
-            <EnfonoChatbot />
+            {/* Global AI Chatbot - Hidden in Admin Portal */}
+            {!location.pathname.startsWith('/admin') && <EnfonoChatbot />}
           </Suspense>
         </AnimatePresence>
       </div>

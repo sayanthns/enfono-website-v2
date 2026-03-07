@@ -1449,13 +1449,30 @@ const AdminCMS = () => {
                     {/* === CHATBOT GLOBAL SETTINGS === */}
                     {activeTab === 'chatbot' && (
                         <div className="admin-content-card">
-                            <h3>AI Chatbot Settings</h3>
-                            <p style={{ color: '#64748b', marginBottom: '24px', fontSize: '14px' }}>
-                                Configure the AI provider and API key for the Enfono AI Assistant.
+                            <h3>Chatbot Settings</h3>
+                            <p style={{ color: '#64748b', marginBottom: '16px', fontSize: '14px' }}>
+                                Configure the AI assistant's API key and primary provider.
                                 <br />
-                                <strong style={{ color: '#ef4444' }}>Note:</strong> API keys are stored in your browser's local storage only.
+                                <span style={{ color: '#f59e0b', fontSize: '12px' }}>
+                                    <strong>Note:</strong> Settings saved here are local to your browser. To make them universal for all visitors, export the backup and contact the developer to update the global config.
+                                </span>
                             </p>
 
+                            {/* Connection Status */}
+                            <div style={{ display: 'flex', gap: '12px', marginBottom: '24px' }}>
+                                <div style={{ flex: 1, padding: '12px', background: initialCmsData.chatbot?.api_key ? 'rgba(16,185,129,0.05)' : 'rgba(239,68,68,0.05)', borderRadius: '12px', border: '1px solid ' + (initialCmsData.chatbot?.api_key ? 'rgba(16,185,129,0.1)' : 'rgba(239,68,68,0.1)') }}>
+                                    <div style={{ fontSize: '11px', color: '#64748b' }}>System Global Key</div>
+                                    <div style={{ fontSize: '13px', fontWeight: 600, color: initialCmsData.chatbot?.api_key ? '#10b981' : '#ef4444' }}>
+                                        {initialCmsData.chatbot?.api_key ? '✔️ Configured' : '❌ Missing'}
+                                    </div>
+                                </div>
+                                <div style={{ flex: 1, padding: '12px', background: localStorage.getItem('enfono_chatbot_api_key') ? 'rgba(16,185,129,0.05)' : 'rgba(241,245,249,0.5)', borderRadius: '12px', border: '1px solid ' + (localStorage.getItem('enfono_chatbot_api_key') ? 'rgba(16,185,129,0.1)' : '#e2e8f0') }}>
+                                    <div style={{ fontSize: '11px', color: '#64748b' }}>Your Local Override</div>
+                                    <div style={{ fontSize: '13px', fontWeight: 600, color: localStorage.getItem('enfono_chatbot_api_key') ? '#10b981' : '#94a3b8' }}>
+                                        {localStorage.getItem('enfono_chatbot_api_key') ? '✔️ Active' : 'None'}
+                                    </div>
+                                </div>
+                            </div>
                             <div style={{ padding: '24px', background: '#f8fafc', borderRadius: '16px', border: '1px solid #e2e8f0', marginBottom: '24px' }}>
                                 <div style={{ marginBottom: '20px' }}>
                                     <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, marginBottom: '8px' }}>AI Provider</label>

@@ -23,6 +23,11 @@ export const initialCmsData = {
         phone: "+966 57 352 8619",
         email: "contact@enfono.com",
     },
+    chatbot: {
+        api_key: "", // To be filled by Admin in the build or via CMS
+        provider: "openai",
+        training_data: ""
+    },
     client_logos: [
         { name: 'Steel Force' }, { name: 'NMCE Logistics' }, { name: 'HSM Shipping' },
         { name: 'Power Creation' }, { name: 'Badriya Sweets' }, { name: 'Logistica.sa' },
