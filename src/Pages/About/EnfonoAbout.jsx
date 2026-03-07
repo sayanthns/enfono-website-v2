@@ -1,7 +1,7 @@
 import React, { useContext, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { Container, Row, Col } from 'react-bootstrap'
-import { m, LazyMotion, domAnimation } from 'framer-motion'
+import { motion } from 'framer-motion'
 import CountUp from 'react-countup'
 import { useInView } from 'react-intersection-observer'
 import EnfonoHeader from '../../Components/EnfonoUI/EnfonoHeader'
@@ -63,21 +63,21 @@ const EnfonoAbout = () => {
             {/* Page Hero */}
             <div className="enfono-page-hero">
                 <Container>
-                    <LazyMotion features={domAnimation}>
-                        <m.div initial="hidden" animate="visible" variants={staggerContainer}>
+                    
+                        <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
                             <nav aria-label="breadcrumb">
                                 <ol className="breadcrumb mb-4">
                                     <li className="breadcrumb-item"><Link to="/">Home</Link></li>
                                     <li className="breadcrumb-item active">About Us</li>
                                 </ol>
                             </nav>
-                            <m.span variants={fadeIn} className="enfono-section-label">Our Story</m.span>
-                            <m.h1 variants={fadeIn} className="page-hero-title mb-4">About Enfono</m.h1>
-                            <m.p variants={fadeIn} className="page-hero-desc" style={{ maxWidth: '600px' }}>
+                            <motion.span variants={fadeIn} className="enfono-section-label">Our Story</motion.span>
+                            <motion.h1 variants={fadeIn} className="page-hero-title mb-4">About Enfono</motion.h1>
+                            <motion.p variants={fadeIn} className="page-hero-desc" style={{ maxWidth: '600px' }}>
                                 A GCC-focused ERP company born from a passion for digital transformation — helping businesses across Saudi Arabia, UAE, and Oman unlock the power of ERPNext and custom ERP solutions.
-                            </m.p>
-                        </m.div>
-                    </LazyMotion>
+                            </motion.p>
+                        </motion.div>
+                    
                 </Container>
             </div>
 
@@ -86,8 +86,8 @@ const EnfonoAbout = () => {
                 <Container>
                     <Row className="align-items-center g-5">
                         <Col lg={6}>
-                            <LazyMotion features={domAnimation}>
-                                <m.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInLeft}>
+                            
+                                <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInLeft}>
                                     <span className="enfono-section-label">Who We Are</span>
                                     <h2 className="enfono-section-title mb-5">
                                         {data.who_we_are.heading}
@@ -103,12 +103,12 @@ const EnfonoAbout = () => {
                                             </div>
                                         ))}
                                     </div>
-                                </m.div>
-                            </LazyMotion>
+                                </motion.div>
+                            
                         </Col>
                         <Col lg={6}>
-                            <LazyMotion features={domAnimation}>
-                                <m.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInRight}>
+                            
+                                <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInRight}>
                                     <Row className="g-4">
                                         {[
                                             { icon: 'fas fa-eye', label: 'Our Vision', text: 'To be the most trusted ERP partner for enterprises across the GCC, enabling every business to reach its full potential through technology.' },
@@ -129,8 +129,8 @@ const EnfonoAbout = () => {
                                             </Col>
                                         ))}
                                     </Row>
-                                </m.div>
-                            </LazyMotion>
+                                </motion.div>
+                            
                         </Col>
                     </Row>
                 </Container>
@@ -139,8 +139,8 @@ const EnfonoAbout = () => {
             {/* Stats Banner */}
             <section style={{ background: 'var(--enfono-gradient)', padding: '70px 0' }}>
                 <Container>
-                    <LazyMotion features={domAnimation}>
-                        <m.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}>
+                    
+                        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}>
                             <Row className="g-4 justify-content-center text-center">
                                 {[
                                     { end: 5, suffix: '+', label: 'Years of Excellence' },
@@ -150,29 +150,29 @@ const EnfonoAbout = () => {
                                     { end: 98, suffix: '%', label: 'Client Satisfaction' },
                                 ].map((s, i) => (
                                     <Col key={i} lg={2} md={4} sm={6}>
-                                        <m.div variants={fadeIn}>
+                                        <motion.div variants={fadeIn}>
                                             <StatCounter {...s} />
-                                        </m.div>
+                                        </motion.div>
                                     </Col>
                                 ))}
                             </Row>
-                        </m.div>
-                    </LazyMotion>
+                        </motion.div>
+                    
                 </Container>
             </section>
 
             {/* Our Values */}
             <section style={{ background: '#F8FAFC', padding: '80px 0' }}>
                 <Container>
-                    <LazyMotion features={domAnimation}>
-                        <m.div className="text-center mb-12" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}>
-                            <m.span variants={fadeIn} className="enfono-section-label">What Drives Us</m.span>
-                            <m.h2 variants={fadeIn} className="enfono-section-title">Our Core Values</m.h2>
-                        </m.div>
+                    
+                        <motion.div className="text-center mb-12" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}>
+                            <motion.span variants={fadeIn} className="enfono-section-label">What Drives Us</motion.span>
+                            <motion.h2 variants={fadeIn} className="enfono-section-title">Our Core Values</motion.h2>
+                        </motion.div>
                         <Row className="g-4">
                             {values.map((v, i) => (
                                 <Col key={i} lg={4} md={6}>
-                                    <m.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}>
+                                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}>
                                         <div style={{ background: '#fff', borderRadius: '12px', padding: '36px', border: '1px solid #E5E7EB', height: '100%', transition: 'all 0.3s ease' }}
                                             onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 20px 50px rgba(16,185,129,0.1)' }}
                                             onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = 'none' }}
@@ -183,22 +183,22 @@ const EnfonoAbout = () => {
                                             <h4 style={{ fontSize: '18px', fontWeight: '700', color: '#111827', fontFamily: 'Poppins, sans-serif', marginBottom: '12px' }}>{v.title}</h4>
                                             <p style={{ fontSize: '14px', lineHeight: '1.75', color: '#6B7280', margin: 0 }}>{v.desc}</p>
                                         </div>
-                                    </m.div>
+                                    </motion.div>
                                 </Col>
                             ))}
                         </Row>
-                    </LazyMotion>
+                    
                 </Container>
             </section>
 
             {/* Our Journey Timeline - Horizontal Experience */}
             <section style={{ background: '#fff', padding: '100px 0', overflow: 'hidden' }}>
                 <Container>
-                    <LazyMotion features={domAnimation}>
-                        <m.div className="text-center mb-12" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}>
-                            <m.span variants={fadeIn} className="enfono-section-label">The Enfono Story</m.span>
-                            <m.h2 variants={fadeIn} className="enfono-section-title">Our Journey</m.h2>
-                        </m.div>
+                    
+                        <motion.div className="text-center mb-12" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}>
+                            <motion.span variants={fadeIn} className="enfono-section-label">The Enfono Story</motion.span>
+                            <motion.h2 variants={fadeIn} className="enfono-section-title">Our Journey</motion.h2>
+                        </motion.div>
 
                         <div className="enfono-journey-container" style={{ position: 'relative', marginTop: '40px' }}>
                             {/* The Timeline Line */}
@@ -222,7 +222,7 @@ const EnfonoAbout = () => {
                                 msOverflowStyle: 'none'
                             }} className="journey-scrollbar-hide">
                                 {data.journey.map((item, i) => (
-                                    <m.div
+                                    <motion.div
                                         key={i}
                                         initial={{ opacity: 0, x: 50 }}
                                         whileInView={{ opacity: 1, x: 0 }}
@@ -284,11 +284,11 @@ const EnfonoAbout = () => {
                                             <h4 style={{ fontSize: '18px', fontWeight: '800', color: '#0F172A', fontFamily: 'Poppins, sans-serif', marginBottom: '10px' }}>{item.title}</h4>
                                             <p style={{ fontSize: '14px', lineHeight: '1.6', color: '#64748B', margin: 0 }}>{item.desc}</p>
                                         </div>
-                                    </m.div>
+                                    </motion.div>
                                 ))}
                             </div>
                         </div>
-                    </LazyMotion>
+                    
                 </Container>
                 <style>{`
                 .journey-scrollbar-hide::-webkit-scrollbar { display: none; }
@@ -302,15 +302,15 @@ const EnfonoAbout = () => {
             {/* Team Section */}
             <section style={{ background: '#F8FAFC', padding: '80px 0' }}>
                 <Container>
-                    <LazyMotion features={domAnimation}>
-                        <m.div className="text-center mb-12" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}>
-                            <m.span variants={fadeIn} className="enfono-section-label">The People Behind Enfono</m.span>
-                            <m.h2 variants={fadeIn} className="enfono-section-title">Meet Our Leadership</m.h2>
-                        </m.div>
+                    
+                        <motion.div className="text-center mb-12" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}>
+                            <motion.span variants={fadeIn} className="enfono-section-label">The People Behind Enfono</motion.span>
+                            <motion.h2 variants={fadeIn} className="enfono-section-title">Meet Our Leadership</motion.h2>
+                        </motion.div>
                         <Row className="g-4 justify-content-center">
                             {sortedTeam.map((member, i) => (
                                 <Col key={i} lg={3} md={6}>
-                                    <m.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}>
+                                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}>
                                         <div style={{ background: '#fff', borderRadius: '12px', padding: '36px 28px', border: '1px solid #E5E7EB', textAlign: 'center', transition: 'all 0.3s ease' }}
                                             onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-5px)'; e.currentTarget.style.boxShadow = '0 20px 50px rgba(16,185,129,0.1)' }}
                                             onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = 'none' }}
@@ -322,26 +322,26 @@ const EnfonoAbout = () => {
                                             <div style={{ fontSize: '13px', color: '#10B981', fontWeight: '600', marginBottom: '14px', letterSpacing: '0.5px' }}>{member.role}</div>
                                             <p style={{ fontSize: '13px', lineHeight: '1.7', color: '#6B7280', margin: 0 }}>{member.desc}</p>
                                         </div>
-                                    </m.div>
+                                    </motion.div>
                                 </Col>
                             ))}
                         </Row>
-                    </LazyMotion>
+                    
                 </Container>
             </section>
 
             {/* Our Offices */}
             <section style={{ background: '#fff', padding: '80px 0' }}>
                 <Container>
-                    <LazyMotion features={domAnimation}>
-                        <m.div className="text-center mb-12" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}>
-                            <m.span variants={fadeIn} className="enfono-section-label">Where We Are</m.span>
-                            <m.h2 variants={fadeIn} className="enfono-section-title">Our Offices</m.h2>
-                        </m.div>
+                    
+                        <motion.div className="text-center mb-12" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}>
+                            <motion.span variants={fadeIn} className="enfono-section-label">Where We Are</motion.span>
+                            <motion.h2 variants={fadeIn} className="enfono-section-title">Our Offices</motion.h2>
+                        </motion.div>
                         <Row className="g-4 justify-content-center">
                             {data.offices.map((office, i) => (
                                 <Col key={i} lg={5} md={6}>
-                                    <m.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}>
+                                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}>
                                         <div style={{ borderRadius: '16px', overflow: 'hidden', border: '1px solid #E5E7EB' }}>
                                             <div style={{ background: office.color, padding: '36px', position: 'relative' }}>
                                                 <div style={{ position: 'absolute', top: '20px', right: '24px', fontSize: '13px', fontWeight: '600', background: 'rgba(255,255,255,0.15)', padding: '4px 12px', borderRadius: '20px', color: 'rgba(255,255,255,0.8)' }}>
@@ -364,11 +364,11 @@ const EnfonoAbout = () => {
                                                 ))}
                                             </div>
                                         </div>
-                                    </m.div>
+                                    </motion.div>
                                 </Col>
                             ))}
                         </Row>
-                    </LazyMotion>
+                    
                 </Container>
             </section>
 
