@@ -64,7 +64,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const location = useLocation();
 
-  const API_URL = window.location.hostname === 'localhost' ? 'http://localhost:8007' : `http://${window.location.hostname}:8007`;
+  const API_URL = window.location.hostname === 'localhost' ? 'http://localhost:8007' : '/api';
 
   useEffect(() => {
     const fetchCmsData = async () => {
