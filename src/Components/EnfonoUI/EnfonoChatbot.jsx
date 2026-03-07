@@ -221,20 +221,6 @@ const EnfonoChatbot = () => {
                                     </div>
                                 </div>
                             </div>
-                            <button
-                                onClick={() => setIsOpen(false)}
-                                style={{
-                                    background: 'none',
-                                    border: 'none',
-                                    fontSize: '18px',
-                                    color: '#fff',
-                                    opacity: 0.5,
-                                    cursor: 'pointer'
-                                }}
-                                aria-label="Close Chat"
-                            >
-                                <i className="fas fa-times"></i>
-                            </button>
                         </div>
 
                         {/* Body / Messages */}

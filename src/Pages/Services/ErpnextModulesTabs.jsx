@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import { m, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const ErpnextModulesTabs = ({ modules }) => {
     const [activeModuleId, setActiveModuleId] = useState(modules[0]?.id || '');
@@ -70,7 +70,7 @@ const ErpnextModulesTabs = ({ modules }) => {
                         <div className="erp-module-content" style={{ padding: '0 0 0 32px' }}>
                             <AnimatePresence mode="wait">
                                 {activeModule && (
-                                    <m.div
+                                    <motion.div
                                         key={activeModule.id}
                                         variants={fadeVariants}
                                         initial="hidden"
@@ -120,7 +120,7 @@ const ErpnextModulesTabs = ({ modules }) => {
                                                 </div>
                                             </div>
                                         )}
-                                    </m.div>
+                                    </motion.div>
                                 )}
                             </AnimatePresence>
                         </div>
