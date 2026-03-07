@@ -35,7 +35,7 @@ const EnfonoContact = () => {
     const [submitted, setSubmitted] = useState(false)
     const [openFaq, setOpenFaq] = useState(null)
 
-    const API_URL = window.location.hostname === 'localhost' ? 'http://localhost:8007' : `http://${window.location.hostname}:8007`;
+    const API_URL = window.location.hostname === 'localhost' ? 'http://localhost:8007' : '/api';
 
     return (
         <div style={{ fontFamily: 'Inter, sans-serif' }}>
