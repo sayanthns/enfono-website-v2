@@ -31,7 +31,7 @@ const values = [
 
 
 export default function EnfonoCareers() {
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false); 
   const { cmsData } = useContext(GlobalContext);
   const data = cmsData || initialCmsData;
   const [activeFilter, setActiveFilter] = useState('All')
@@ -90,7 +90,11 @@ export default function EnfonoCareers() {
             <p className="e-section-sub" style={{ margin: '0 auto' }}>We hire people who are passionate about ERP technology and want to make a real impact in the GCC's digital transformation.</p>
           </motion.div>
           <motion.div
-            style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '20px' }}
+            style={{
+              display: 'grid',
+              gridTemplateColumns: window.innerWidth < 768 ? '1fr' : 'repeat(4,1fr)',
+              gap: '20px'
+            }}
             initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={stagger}
           >
             {values.map(v => (
@@ -102,7 +106,15 @@ export default function EnfonoCareers() {
                 <div style={{ width: '48px', height: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(16, 185, 129, 0.1)', borderRadius: '14px', marginBottom: '16px' }}>
                   <i className={v.icon} style={{ fontSize: '18px', color: '#10B981' }} />
                 </div>
-                <div style={{ fontFamily: 'Poppins,sans-serif', fontSize: '16px', fontWeight: 700, color: '#1A1A1A', marginBottom: '8px' }}>{v.title}</div>
+                <div style={{
+                  fontFamily: 'Poppins,sans-serif',
+                  fontSize: '16px',
+                  fontWeight: 700,
+                  color: '#1A1A1A',
+                  marginBottom: '8px',
+                  whiteSpace: 'normal',
+                  lineBreak: 'anywhere'
+                }}>{v.title}</div>
                 <p style={{ fontFamily: 'Inter,sans-serif', fontSize: '13.5px', lineHeight: 1.6, color: '#64748B', margin: 0 }}>{v.desc}</p>
               </motion.div>
             ))}
@@ -187,9 +199,16 @@ export default function EnfonoCareers() {
                 key={role.title}
                 variants={fadeUp}
                 style={{
-                  display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '20px',
-                  padding: '24px 28px', background: '#fff', border: '1.5px solid #E5E7EB',
-                  borderRadius: '16px', transition: 'all 0.25s',
+                  display: 'flex',
+                  flexDirection: window.innerWidth < 768 ? 'column' : 'row',
+                  alignItems: window.innerWidth < 768 ? 'flex-start' : 'center',
+                  justifyContent: 'space-between',
+                  gap: '20px',
+                  padding: '24px 28px',
+                  background: '#fff',
+                  border: '1.5px solid #E5E7EB',
+                  borderRadius: '16px',
+                  transition: 'all 0.25s',
                 }}
               >
                 <div style={{ flex: 1 }}>
@@ -208,11 +227,11 @@ export default function EnfonoCareers() {
                   </div>
                 </div>
                 {role.apply_url?.startsWith('http') ? (
-                  <a href={role.apply_url} target="_blank" rel="noopener noreferrer" className="e-btn-primary" style={{ flexShrink: 0, whiteSpace: 'nowrap' }}>
+                  <a href={role.apply_url} target="_blank" rel="noopener noreferrer" className="e-btn-primary" style={{ flexShrink: 0, whiteSpace: 'nowrap', width: window.innerWidth < 768 ? '100%' : 'auto', textAlign: 'center' }}>
                     Apply Now <i className="fas fa-arrow-right" />
                   </a>
                 ) : (
-                  <Link to={role.apply_url || '/contact'} className="e-btn-primary" style={{ flexShrink: 0, whiteSpace: 'nowrap' }}>
+                  <Link to={role.apply_url || '/contact'} className="e-btn-primary" style={{ flexShrink: 0, whiteSpace: 'nowrap', width: window.innerWidth < 768 ? '100%' : 'auto', textAlign: 'center' }}>
                     Apply Now <i className="fas fa-arrow-right" />
                   </Link>
                 )}
@@ -231,7 +250,13 @@ export default function EnfonoCareers() {
       {/* Don't see your role CTA */}
       <section className="e-cta-section">
         <div className="enfono-container">
-          <div className="e-cta-inner">
+          <div className="e-cta-inner" style={{
+            display: 'flex',
+            flexDirection: window.innerWidth < 991 ? 'column' : 'row',
+            textAlign: window.innerWidth < 991 ? 'center' : 'left',
+            gap: '30px',
+            alignItems: 'center'
+          }}>
             <div className="e-cta-text">
               <h2>Don't See Your Role?</h2>
               <p>We're always looking for exceptional people. Send us your CV and tell us how you can contribute.</p>
