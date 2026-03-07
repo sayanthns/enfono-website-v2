@@ -10,7 +10,6 @@ const stagger = { hidden: {}, visible: { transition: { staggerChildren: 0.1 } } 
 
 import { useContext } from 'react';
 import GlobalContext from '../../Context/Context';
-import { initialCmsData } from "../../Data/cms_data";
 
 export default function EnfonoBrands() {
   const { cmsData } = useContext(GlobalContext);

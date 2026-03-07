@@ -28,7 +28,6 @@ const getCategoryStyle = (category) => {
 
 import { useContext } from 'react';
 import GlobalContext from '../../Context/Context';
-import { initialCmsData } from '../../Data/cms_data'
 
 const EnfonoCaseStudies = () => {
     const { cmsData } = useContext(GlobalContext);

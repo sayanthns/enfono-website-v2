@@ -291,12 +291,12 @@ const EnfonoAbout = () => {
                     </LazyMotion>
                 </Container>
                 <style>{`
-    .journey - scrollbar - hide:: -webkit - scrollbar { display: none; }
-@media(max - width: 991px) {
-                        .journey - scrollbar - hide { flex - direction: column; padding: 20px; gap: 20px; }
-                        .enfono - journey - container { border - left: 2px solid #F1F5F9; padding - left: 20px; margin - left: 10px; }
-}
-`}</style>
+                .journey-scrollbar-hide::-webkit-scrollbar { display: none; }
+                @media (max-width: 991px) {
+                    .journey-scrollbar-hide { flex-direction: column; padding: 20px; gap: 20px; }
+                    .enfono-journey-container { border-left: 2px solid #F1F5F9; padding-left: 20px; margin-left: 10px; }
+                }
+            `}</style>
             </section>
 
             {/* Team Section */}

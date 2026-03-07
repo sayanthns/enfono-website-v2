@@ -31,7 +31,6 @@ const contactSchema = Yup.object().shape({
 
 import { useContext } from 'react';
 import GlobalContext from '../../Context/Context';
-import { initialCmsData } from '../../Data/cms_data'
 
 const EnfonoContact = () => {
     const { cmsData } = useContext(GlobalContext);

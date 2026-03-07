@@ -26,7 +26,6 @@ const useCases = [
 
 import { useContext } from 'react';
 import GlobalContext from '../../Context/Context';
-import { initialCmsData } from '../../Data/cms_data'
 
 export default function EnfonoAI() {
   const { cmsData } = useContext(GlobalContext);
