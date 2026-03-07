@@ -15,7 +15,7 @@ const AdminCMS = () => {
     const [mediaFiles, setMediaFiles] = useState([]);
     const [chatbotTraining, setChatbotTraining] = useState('');
 
-    const API_URL = window.location.hostname === 'localhost' ? 'http://localhost:8007' : '/api';
+    const API_URL = window.location.hostname === 'localhost' ? 'http://localhost:8007' : '';
 
     useEffect(() => {
         const fetchLeads = async () => {

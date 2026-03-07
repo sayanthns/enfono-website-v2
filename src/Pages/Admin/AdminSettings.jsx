@@ -7,7 +7,7 @@ const AdminSettings = () => {
     const [cmsData, setCmsData] = useState(globalCmsData || initialCmsData);
     const [message, setMessage] = useState('');
 
-    const API_URL = window.location.hostname === 'localhost' ? 'http://localhost:8007' : '/api';
+    const API_URL = window.location.hostname === 'localhost' ? 'http://localhost:8007' : '';
 
     const handleSaveConfig = async () => {
         try {

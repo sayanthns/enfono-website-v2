@@ -15,7 +15,7 @@ const EnfonoChatbot = () => {
     const [isTyping, setIsTyping] = useState(false);
     const chatEndRef = useRef(null);
 
-    const API_URL = window.location.hostname === 'localhost' ? 'http://localhost:8007' : '/api';
+    const API_URL = window.location.hostname === 'localhost' ? 'http://localhost:8007' : '';
     const [leadStep, setLeadStep] = useState(null); // 'name', 'email', 'company', 'message', 'complete'
     const [leadData, setLeadData] = useState({});
 
