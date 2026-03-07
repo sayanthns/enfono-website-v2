@@ -188,7 +188,7 @@ const EnfonoChatbot = () => {
     ];
 
     return (
-        <div style={{ position: 'fixed', bottom: '30px', right: '30px', zIndex: 1000, fontFamily: 'Inter, sans-serif', display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+        <div style={{ position: 'fixed', bottom: '30px', right: '30px', zIndex: 1000, fontFamily: 'Inter, sans-serif' }}>
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
@@ -199,10 +199,11 @@ const EnfonoChatbot = () => {
                         style={{
                             width: '400px',
                             height: '580px',
-                            marginBottom: '20px',
                             maxWidth: 'calc(100vw - 60px)',
                             maxHeight: 'calc(100vh - 120px)',
-                            position: 'relative',
+                            position: 'absolute',
+                            bottom: '80px',
+                            right: '0',
                             display: 'flex',
                             flexDirection: 'column'
                         }}
@@ -221,6 +222,12 @@ const EnfonoChatbot = () => {
                                     </div>
                                 </div>
                             </div>
+                            <button
+                                onClick={() => setIsOpen(false)}
+                                style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,0.5)', cursor: 'pointer', fontSize: '14px' }}
+                            >
+                                <i className="fas fa-times"></i>
+                            </button>
                         </div>
 
                         {/* Body / Messages */}
@@ -327,7 +334,7 @@ const EnfonoChatbot = () => {
                     justifyContent: 'center'
                 }}
             >
-                <i className={isOpen ? "fas fa-times" : "fas fa-robot"}></i>
+                <i className={isOpen ? "fas fa-chevron-down" : "fas fa-comment-alt"}></i>
             </motion.button>
         </div>
     );
