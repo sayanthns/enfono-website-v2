@@ -71,9 +71,18 @@ export default function EnfonoEvents() {
             </section>
 
             {/* ── Filter Bar ── */}
-            <div style={{ background: '#0d1117', borderBottom: '1px solid rgba(255,255,255,0.05)', position: 'sticky', top: '80px', zIndex: 10 }}>
+            <div style={{ background: '#0d1117', borderBottom: '1px solid rgba(255,255,255,0.05)', position: 'sticky', top: '74px', zIndex: 10 }}>
                 <div className="enfono-container">
-                    <div style={{ display: 'flex', gap: '8px', padding: '16px 0', overflowX: 'auto', scrollbarWidth: 'none' }}>
+                    <div style={{
+                        display: 'flex',
+                        gap: '8px',
+                        padding: '16px 4px',
+                        overflowX: 'auto',
+                        scrollbarWidth: 'none',
+                        WebkitOverflowScrolling: 'touch',
+                        paddingLeft: window.innerWidth < 768 ? '16px' : '0',
+                        paddingRight: window.innerWidth < 768 ? '16px' : '0'
+                    }}>
                         {allTags.map(tag => (
                             <button
                                 key={tag}
@@ -161,7 +170,7 @@ export default function EnfonoEvents() {
                 </div>
             </section>
 
-            <EnfonoFooter />
+            <EnfonoFooter mobileMenuOpen={mobileOpen} />
         </div>
     );
 }

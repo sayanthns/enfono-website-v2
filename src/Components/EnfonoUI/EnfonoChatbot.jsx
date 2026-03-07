@@ -188,7 +188,15 @@ const EnfonoChatbot = () => {
     ];
 
     return (
-        <div style={{ position: 'fixed', bottom: '30px', right: '30px', zIndex: 1000, fontFamily: 'Inter, sans-serif' }}>
+        <div style={{
+            position: 'fixed',
+            bottom: window.innerWidth < 768 ? '24px' : '30px',
+            right: window.innerWidth < 768 ? '24px' : '30px',
+            zIndex: 1001,
+            fontFamily: 'Inter, sans-serif',
+            left: 'auto',
+            display: (window.innerWidth < 768 && mobileMenuOpen) ? 'none' : 'block'
+        }}>
             <AnimatePresence>
                 {isOpen && (
                     <motion.div

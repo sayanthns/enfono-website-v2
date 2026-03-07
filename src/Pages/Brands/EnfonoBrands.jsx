@@ -85,10 +85,10 @@ export default function EnfonoBrands() {
                 variants={fadeUp}
                 style={{
                   display: 'grid',
-                  gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr)',
-                  gap: '48px',
+                  gridTemplateColumns: window.innerWidth < 991 ? '1fr' : '1fr 1fr',
+                  gap: window.innerWidth < 991 ? '24px' : '48px',
                   alignItems: 'center',
-                  padding: '40px',
+                  padding: window.innerWidth < 768 ? '24px' : '40px',
                   background: '#fff',
                   border: '1.5px solid #E5E7EB',
                   borderRadius: '24px',
@@ -105,16 +105,17 @@ export default function EnfonoBrands() {
                       <i className={brand.icon} style={{ fontSize: '22px', color: brand.color || '#10B981' }} />
                     </div>
                     <div>
-                      <div style={{ fontFamily: 'Poppins,sans-serif', fontSize: '22px', fontWeight: 800, color: '#1A1A1A', lineHeight: 1 }}>{brand.name}</div>
+                      <div style={{ fontFamily: 'Poppins,sans-serif', fontSize: '22px', fontWeight: 800, color: '#1A1A1A', lineHeight: 1, whiteSpace: 'normal', lineBreak: 'anywhere' }}>{brand.name}</div>
                     </div>
                     <span style={{
                       marginLeft: 'auto',
                       padding: '4px 12px',
-                      background: brand.status === 'Available' ? 'rgba(34,197,94,0.1)' : 'rgba(52,211,153,0.1)',
-                      border: `1px solid ${brand.status === 'Available' ? 'rgba(34,197,94,0.3)' : 'rgba(52,211,153,0.3)'}`,
+                      background: brand.status === 'Available' ? 'rgba(34,197,94,0.1)' : 'rgba(16,185,129,0.1)',
+                      border: `1px solid ${brand.status === 'Available' ? 'rgba(34,197,94,0.3)' : 'rgba(16,185,129,0.3)'}`,
                       borderRadius: '100px',
                       fontSize: '11px', fontWeight: 700,
-                      color: brand.status === 'Available' ? '#16a34a' : '#D97706',
+                      color: brand.status === 'Available' ? '#16a34a' : '#10B981',
+                      whiteSpace: 'nowrap'
                     }}>
                       {brand.status}
                     </span>
@@ -149,9 +150,13 @@ export default function EnfonoBrands() {
                     padding: '32px',
                   }}>
                     <div style={{ fontFamily: 'Poppins,sans-serif', fontSize: '14px', fontWeight: 700, color: '#1A1A1A', marginBottom: '16px' }}>Key Features</div>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr)', gap: '10px' }}>
+                    <div style={{
+                      display: 'grid',
+                      gridTemplateColumns: window.innerWidth < 575 ? '1fr' : '1fr 1fr',
+                      gap: '12px'
+                    }}>
                       {(brand.features || []).map(f => (
-                        <div key={f} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontFamily: 'Inter,sans-serif', fontSize: '13px', color: '#475569' }}>
+                        <div key={f} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontFamily: 'Inter,sans-serif', fontSize: '13px', color: '#475569', whiteSpace: 'normal' }}>
                           <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: brand.color || '#10B981', flexShrink: 0 }} />
                           {f}
                         </div>
@@ -165,7 +170,7 @@ export default function EnfonoBrands() {
         </div>
       </section>
 
-      <EnfonoFooter />
+      <EnfonoFooter mobileMenuOpen={mobileOpen} />
     </div>
   );
 }

@@ -406,13 +406,18 @@ export default function EnfonoHome() {
           </motion.div>
           <motion.div
             className="e-industries-grid"
+            style={{
+              display: 'grid',
+              gridTemplateColumns: window.innerWidth < 768 ? '1fr' : 'repeat(auto-fit, minmax(200px, 1fr))',
+              gap: '20px'
+            }}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.1 }}
             variants={stagger}
           >
             {industries.map(ind => (
-              <motion.div key={ind.label} className="e-industry-card" variants={fadeUp}>
+              <motion.div key={ind.label} className="e-industry-card" variants={fadeUp} style={{ whiteSpace: 'normal', lineBreak: 'anywhere' }}>
                 <i className={ind.icon} />
                 <span>{ind.label}</span>
               </motion.div>
@@ -534,13 +539,18 @@ export default function EnfonoHome() {
             <div className="e-section-label">Why ERPNext with Enfono</div>
             <h2 className="e-section-title">Open-Source ERP Expertise<br />You Can Trust</h2>
           </motion.div>
-          <div className="e-why-grid">
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: window.innerWidth < 991 ? '1fr' : '1.15fr 0.85fr',
+            gap: window.innerWidth < 991 ? '30px' : '60px',
+            alignItems: 'center'
+          }}>
             <motion.div
-              className="e-why-features"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.2 }}
               variants={stagger}
+              style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}
             >
               {[
                 { icon: 'fas fa-unlock-alt', title: 'Lifetime-Free & Open Source', desc: 'Fully open-source ERP with no user limits. Complete ownership of system and codebase with self-hosting or managed options.' },
@@ -548,10 +558,19 @@ export default function EnfonoHome() {
                 { icon: 'fas fa-file-invoice', title: 'GCC & ZATCA Phase II Ready', desc: 'Built-in compliance for ZATCA e-invoicing Phase 1 & 2, VAT reporting, Arabic QR codes, and multi-currency support.' },
                 { icon: 'fas fa-cogs', title: 'Fully Customizable', desc: 'Built on Frappe Framework enabling complete customization. No vendor lock-in — unlike Odoo or Zoho.' },
               ].map(f => (
-                <motion.div key={f.title} className="e-why-feat" variants={fadeUp}>
-                  <div className="ewf-icon"><i className={f.icon} /></div>
-                  <div>
-                    <div className="ewf-title">{f.title}</div>
+                <motion.div key={f.title} className="e-why-feat" variants={fadeUp} style={{
+                  display: 'flex',
+                  flexDirection: window.innerWidth < 575 ? 'column' : 'row',
+                  gap: '20px',
+                  padding: '24px',
+                  background: 'rgba(255, 255, 255, 0.03)',
+                  borderRadius: '16px',
+                  border: '1px solid rgba(255, 255, 255, 0.05)',
+                  width: '100%'
+                }}>
+                  <div className="ewf-icon" style={{ flexShrink: 0 }}><i className={f.icon} /></div>
+                  <div style={{ minWidth: 0, flex: 1 }}>
+                    <div className="ewf-title" style={{ whiteSpace: 'normal', lineBreak: 'anywhere' }}>{f.title}</div>
                     <p className="ewf-desc">{f.desc}</p>
                   </div>
                 </motion.div>
@@ -565,10 +584,14 @@ export default function EnfonoHome() {
               viewport={{ once: true, amount: 0.3 }}
               variants={fadeRight}
             >
-              <div className="e-cert-title">Strategic Partners</div>
-              <div className="e-cert-grid">
+              <div className="e-cert-title" style={{ marginTop: '20px' }}>Strategic Partners</div>
+              <div className="e-cert-grid" style={{
+                display: 'grid',
+                gridTemplateColumns: window.innerWidth < 575 ? '1fr' : '1fr 1fr',
+                gap: '12px'
+              }}>
                 {partners.map(c => (
-                  <div key={c.label} className="e-cert-item">
+                  <div key={c.label} className="e-cert-item" style={{ whiteSpace: 'normal', lineBreak: 'anywhere' }}>
                     <i className={c.icon} />
                     <p className="eci-label">{c.label}</p>
                     <p className="eci-sub">Certified</p>
@@ -576,14 +599,18 @@ export default function EnfonoHome() {
                 ))}
               </div>
               <div className="e-cert-title" style={{ marginTop: '20px' }}>Compliance</div>
-              <div className="e-cert-grid">
+              <div className="e-cert-grid" style={{
+                display: 'grid',
+                gridTemplateColumns: window.innerWidth < 575 ? '1fr' : '1fr 1fr',
+                gap: '12px'
+              }}>
                 {[
                   { icon: 'fas fa-file-invoice-dollar', label: 'ZATCA Phase II', sub: 'e-Invoicing' },
                   { icon: 'fas fa-eye', label: 'Vision 2030', sub: 'Saudi Arabia' },
                   { icon: 'fas fa-shield-alt', label: 'NCA', sub: 'Cybersecurity' },
                   { icon: 'fas fa-language', label: 'Arabic RTL', sub: 'Full Support' },
                 ].map(c => (
-                  <div key={c.label} className="e-cert-item">
+                  <div key={c.label} className="e-cert-item" style={{ whiteSpace: 'normal', lineBreak: 'anywhere' }}>
                     <i className={c.icon} />
                     <p className="eci-label">{c.label}</p>
                     <p className="eci-sub">{c.sub}</p>
@@ -860,7 +887,7 @@ export default function EnfonoHome() {
 
 
 
-      <EnfonoFooter />
+      <EnfonoFooter mobileMenuOpen={mobileOpen} />
     </div>
   );
 }

@@ -25,6 +25,10 @@
   max-width: 1240px;
   margin: 0 auto;
   padding: 0 24px;
+
+  @media (max-width: 767px) {
+    padding: 0 16px;
+  }
 }
 
 /* ================================================================
@@ -438,7 +442,155 @@
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-weight: 900;
+    font-weight: 800;
+  }
+
+  /* Point 7: Adjust Hero/CTA button widths */
+  .enfono-hero-actions {
+    @media (max-width: 575px) {
+      display: grid !important;
+      grid-template-columns: 1fr !important;
+      gap: 12px !important;
+      width: 100% !important;
+
+      .ehero-btn-primary,
+      .ehero-btn-ghost {
+        width: 100% !important;
+        justify-content: center !important;
+        padding: 16px !important;
+      }
+    }
+  }
+
+  /* Point 8: Resolve overlap in Event Cards media/dates */
+  .e-event-card {
+    .eev-image-wrapper {
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+    }
+
+    .eev-date-badge {
+      @media (max-width: 767px) {
+        top: 15px !important;
+        left: 15px !important;
+        right: auto !important;
+        transform: none !important;
+        padding: 8px 12px !important;
+        border-radius: 12px !important;
+      }
+    }
+  }
+
+  /* Point 1: Floating Action Bar (WhatsApp/Phone) Move to Left on Mobile */
+  @media (max-width: 767px) {
+    .enfono-floating-widget {
+      left: 24px !important;
+      right: auto !important;
+      bottom: 24px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 12px !important;
+    }
+  }
+
+  /* Point 3 & 4: Careers Benefits Grid & Vertical Typography */
+  .e-benefits-grid,
+  div[style*="grid-template-columns: repeat(4, 1fr)"],
+  div[style*="grid-template-columns: repeat(3, 1fr)"] {
+    @media (max-width: 991px) {
+      grid-template-columns: 1fr !important;
+      display: grid !important;
+      gap: 20px !important;
+    }
+  }
+
+  .e-benefit-card,
+  .e-industry-card {
+    @media (max-width: 767px) {
+      display: flex !important;
+      flex-direction: row !important;
+      align-items: center !important;
+      width: 100% !important;
+      min-width: 0 !important;
+      white-space: normal !important;
+    }
+  }
+
+  /* Fix for Point 2: Vertical Typography / Point 5: Grid Single Column */
+  .e-why-grid,
+  .e-services-grid,
+  .e-industries-grid,
+  .e-testimonials-grid,
+  .e-brands-grid {
+    @media (max-width: 991px) {
+      grid-template-columns: 1fr !important;
+      gap: 20px !important;
+    }
+  }
+
+  .e-why-feat {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 24px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+
+    @media (max-width: 767px) {
+      flex-direction: column;
+      gap: 12px;
+      padding: 20px;
+    }
+  }
+
+  /* Fix for Point 3 & 4: Benefits Grid & Breadcrumb clipping */
+  .e-benefits-grid,
+  .e-industries-grid,
+  .e-services-grid,
+  .e-testimonials-grid {
+    @media (max-width: 991px) {
+      grid-template-columns: 1fr !important;
+      display: grid !important;
+    }
+  }
+
+  .e-benefit-card {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 16px !important;
+    padding: 24px !important;
+    background: #fff !important;
+    border-radius: 16px !important;
+    border: 1.5px solid #E5E7EB !important;
+    width: 100% !important;
+
+    @media (max-width: 575px) {
+      flex-direction: column !important;
+      gap: 12px !important;
+    }
+  }
+
+  .e-filter-row,
+  .e-breadcrumb,
+  .breadcrumb {
+    @media (max-width: 767px) {
+      display: flex !important;
+      overflow-x: auto !important;
+      white-space: nowrap !important;
+      scrollbar-width: none !important;
+      -ms-overflow-style: none !important;
+
+      &::-webkit-scrollbar {
+        display: none !important;
+      }
+
+      padding-bottom: 8px !important;
+      gap: 12px !important;
+      mask-image: linear-gradient(to right, black 85%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
+    }
   }
 
   &::before {

@@ -125,11 +125,12 @@ const EnfonoContact = () => {
                                                                             padding: '14px 18px',
                                                                             border: `2px solid ${errors[field.name] && touched[field.name] ? '#EF4444' : '#F1F5F9'}`,
                                                                             borderRadius: '12px',
-                                                                            fontSize: '15px',
+                                                                            fontSize: '16px',
                                                                             color: '#0F172A',
                                                                             background: '#F8FAFC',
                                                                             outline: 'none',
-                                                                            transition: 'all 0.2s ease'
+                                                                            transition: 'all 0.2s ease',
+                                                                            height: '54px'
                                                                         }}
                                                                     />
                                                                     <ErrorMessage name={field.name} component="div" style={{ fontSize: '12px', color: '#EF4444', marginTop: '6px', fontWeight: '600' }} />
@@ -266,7 +267,7 @@ const EnfonoContact = () => {
                 </Container>
             </section>
 
-            <EnfonoFooter />
+            <EnfonoFooter mobileMenuOpen={mobileOpen} />
         </div>
     )
 }

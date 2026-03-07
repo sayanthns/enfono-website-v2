@@ -159,7 +159,14 @@ export default function EnfonoHeader() {
       </div>
 
       {/* Mobile Menu */}
-      <div className={`enfono-mobile-menu ${mobileOpen ? 'open' : ''}`}>
+      <div className={`enfono-mobile-menu ${mobileOpen ? 'open' : ''}`} style={{
+        paddingBottom: 'env(safe-area-inset-bottom)',
+        background: 'rgba(13, 13, 13, 0.98)',
+        width: '100vw',
+        left: 0,
+        maxHeight: mobileOpen ? '100vh' : '0',
+        zIndex: 9999
+      }}>
         <div className="enfono-mobile-inner">
           {navLinks.map((link) => (
             <div key={link.label} className="enfono-mobile-item">

@@ -119,26 +119,37 @@ export default function EnfonoCareers() {
             <div className="e-section-label">Benefits</div>
             <h2 className="e-section-title">Why Work at Enfono</h2>
           </motion.div>
-          <motion.div
-            style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '20px' }}
-            initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={stagger}
-          >
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: window.innerWidth < 991 ? '1fr' : 'repeat(3, 1fr)',
+            gap: '20px'
+          }}>
             {perks.map(p => (
               <motion.div
                 key={p.title}
                 variants={fadeUp}
-                style={{ display: 'flex', gap: '16px', padding: '24px', background: '#fff', borderRadius: '16px', border: '1.5px solid #E5E7EB' }}
+                style={{
+                  display: 'flex',
+                  flexDirection: window.innerWidth < 575 ? 'column' : 'row',
+                  gap: '16px',
+                  padding: '24px',
+                  background: '#fff',
+                  borderRadius: '16px',
+                  border: '1.5px solid #E5E7EB',
+                  width: '100%',
+                  minWidth: 0
+                }}
               >
                 <div style={{ width: '48px', height: '48px', minWidth: '48px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(16, 185, 129, 0.1)', borderRadius: '12px' }}>
                   <i className={p.icon} style={{ fontSize: '18px', color: '#10B981' }} />
                 </div>
-                <div>
-                  <div style={{ fontFamily: 'Poppins,sans-serif', fontSize: '15px', fontWeight: 700, color: '#1A1A1A', marginBottom: '6px' }}>{p.title}</div>
+                <div style={{ minWidth: 0, flex: 1 }}>
+                  <div style={{ fontFamily: 'Poppins,sans-serif', fontSize: '15px', fontWeight: 700, color: '#1A1A1A', marginBottom: '6px', whiteSpace: 'normal', lineBreak: 'anywhere' }}>{p.title}</div>
                   <p style={{ fontFamily: 'Inter,sans-serif', fontSize: '13.5px', lineHeight: 1.6, color: '#64748B', margin: 0 }}>{p.desc}</p>
                 </div>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -232,7 +243,7 @@ export default function EnfonoCareers() {
         </div>
       </section>
 
-      <EnfonoFooter hideCta={true} />
+      <EnfonoFooter mobileMenuOpen={mobileOpen} hideCta={true} />
     </div>
   );
 }

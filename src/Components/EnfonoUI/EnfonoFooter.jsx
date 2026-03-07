@@ -36,7 +36,13 @@ export default function EnfonoFooter({
       )}
 
       {/* Floating Contact Widget */}
-      <div className="enfono-floating-widget">
+      <div className="enfono-floating-widget" style={{
+        left: window.innerWidth < 768 ? '24px' : 'auto',
+        right: window.innerWidth < 768 ? 'auto' : '30px',
+        bottom: window.innerWidth < 768 ? '24px' : '110px',
+        zIndex: 1000,
+        display: (window.innerWidth < 768 && mobileMenuOpen) ? 'none' : 'flex'
+      }}>
         <button
           className="efw-item efw-arrow"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
