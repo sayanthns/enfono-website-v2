@@ -1,8 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { m, AnimatePresence, LazyMotion, domAnimation } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useLocation } from 'react-router-dom';
 import { initialCmsData } from '../../Data/cms_data';
 
 const EnfonoChatbot = () => {
+    const location = useLocation();
+    const isAdminPage = location.pathname.startsWith('/admin');
+
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState([
         { role: 'assistant', content: 'Hello! I am the Enfono AI Assistant. How can I help you today? Whether you are looking for ERPNext implementation, ZATCA compliance, or AI solutions, I am here to guide you.' }
@@ -22,6 +26,8 @@ const EnfonoChatbot = () => {
     useEffect(() => {
         scrollToBottom();
     }, [messages, isTyping]);
+
+    if (isAdminPage) return null;
 
     const formatMessage = (text) => {
         if (!text) return text;
@@ -182,159 +188,162 @@ const EnfonoChatbot = () => {
     ];
 
     return (
-        <LazyMotion features={domAnimation}>
-            <div style={{ position: 'fixed', bottom: '30px', right: '30px', zIndex: 1000, fontFamily: 'Inter, sans-serif' }}>
-                <AnimatePresence>
-                    {isOpen && (
-                        <m.div
-                            initial={{ opacity: 0, scale: 0.9, y: 20, transformOrigin: 'bottom right' }}
-                            animate={{ opacity: 1, scale: 1, y: 0 }}
-                            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                            className="enfono-chat-mockup"
-                            style={{
-                                width: '400px',
-                                height: '580px',
-                                marginBottom: '20px',
-                                maxWidth: 'calc(100vw - 60px)',
-                                maxHeight: 'calc(100vh - 120px)',
-                                position: 'relative'
-                            }}
-                        >
-                            {/* Header */}
-                            <div className="ecm-header" style={{ padding: '14px 20px', borderRadius: '16px 16px 0 0' }}>
-                                <div className="ecm-header-left">
-                                    <div className="ecm-avatar" style={{ width: '36px', height: '36px', fontSize: '16px' }}>
-                                        <i className="fas fa-robot"></i>
-                                    </div>
-                                    <div>
-                                        <div className="ecm-title" style={{ fontSize: '14px' }}>Enfono AI Assistant</div>
-                                        <div className="ecm-status" style={{ fontSize: '11px' }}>
-                                            <span className="dot"></span>
-                                            Connected to ERPNext
-                                        </div>
+        <div style={{ position: 'fixed', bottom: '30px', right: '30px', zIndex: 1000, fontFamily: 'Inter, sans-serif' }}>
+            <AnimatePresence>
+                {isOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.9, y: 20, transformOrigin: 'bottom right' }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                        className="enfono-chat-mockup"
+                        style={{
+                            width: '400px',
+                            height: '580px',
+                            marginBottom: '20px',
+                            maxWidth: 'calc(100vw - 60px)',
+                            maxHeight: 'calc(100vh - 120px)',
+                            position: 'relative',
+                            display: 'flex',
+                            flexDirection: 'column'
+                        }}
+                    >
+                        {/* Header */}
+                        <div className="ecm-header" style={{ padding: '14px 20px', borderRadius: '16px 16px 0 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                            <div className="ecm-header-left" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                                <div className="ecm-avatar" style={{ width: '36px', height: '36px', fontSize: '16px' }}>
+                                    <i className="fas fa-robot"></i>
+                                </div>
+                                <div>
+                                    <div className="ecm-title" style={{ fontSize: '14px' }}>Enfono AI Assistant</div>
+                                    <div className="ecm-status" style={{ fontSize: '11px' }}>
+                                        <span className="dot"></span>
+                                        Connected to ERPNext
                                     </div>
                                 </div>
-                                <button
-                                    onClick={() => setIsOpen(false)}
-                                    style={{
-                                        background: 'none',
-                                        border: 'none',
-                                        fontSize: '18px',
-                                        color: '#fff',
-                                        opacity: 0.5,
-                                        cursor: 'pointer',
-                                        position: 'absolute',
-                                        top: '15px',
-                                        right: '15px'
-                                    }}
-                                    aria-label="Close Chat"
-                                >
-                                    <i className="fas fa-times"></i>
-                                </button>
                             </div>
+                            <button
+                                onClick={() => setIsOpen(false)}
+                                style={{
+                                    background: 'none',
+                                    border: 'none',
+                                    fontSize: '18px',
+                                    color: '#fff',
+                                    opacity: 0.5,
+                                    cursor: 'pointer'
+                                }}
+                                aria-label="Close Chat"
+                            >
+                                <i className="fas fa-times"></i>
+                            </button>
+                        </div>
 
-                            {/* Body / Messages */}
-                            <div className="ecm-body" style={{ flex: 1, padding: '20px' }}>
-                                {messages.map((m, i) => (
-                                    <div key={i} className={`ecm-message ${m.role === 'user' ? 'user' : 'ai'}`}>
-                                        {m.role === 'assistant' && (
-                                            <div className="ecm-avatar-small">
-                                                <i className="fas fa-robot"></i>
-                                            </div>
-                                        )}
-                                        <div className="ecm-bubble" style={{ whiteSpace: 'pre-wrap' }}>
-                                            {m.role === 'assistant' ? formatMessage(m.content) : m.content}
-                                        </div>
-                                    </div>
-                                ))}
-
-                                {isTyping && (
-                                    <div className="ecm-message ai thinking">
+                        {/* Body / Messages */}
+                        <div className="ecm-body" style={{ flex: 1, padding: '20px', overflowY: 'auto' }}>
+                            {messages.map((m, i) => (
+                                <div key={i} className={`ecm-message ${m.role === 'user' ? 'user' : 'ai'}`}>
+                                    {m.role === 'assistant' && (
                                         <div className="ecm-avatar-small">
                                             <i className="fas fa-robot"></i>
                                         </div>
-                                        <div className="ecm-bubble">
-                                            <div className="typing-dot"></div>
-                                            <div className="typing-dot"></div>
-                                            <div className="typing-dot"></div>
-                                        </div>
+                                    )}
+                                    <div className="ecm-bubble" style={{ whiteSpace: 'pre-wrap' }}>
+                                        {m.role === 'assistant' ? formatMessage(m.content) : m.content}
                                     </div>
-                                )}
+                                </div>
+                            ))}
 
-                                {messages.length === 1 && !leadStep && (
-                                    <div className="ecm-actions" style={{ flexWrap: 'wrap' }}>
-                                        {suggestions.map((s, i) => (
-                                            <button
-                                                key={i}
-                                                onClick={() => { setInput(s); setTimeout(() => handleSend(), 100) }}
-                                                className="ecm-action-btn"
-                                                style={{ fontSize: '12px', padding: '8px 12px' }}
-                                            >
-                                                {s}
-                                            </button>
-                                        ))}
+                            {isTyping && (
+                                <div className="ecm-message ai thinking">
+                                    <div className="ecm-avatar-small">
+                                        <i className="fas fa-robot"></i>
                                     </div>
-                                )}
-                                <div ref={messagesEndRef} />
-                            </div>
+                                    <div className="ecm-bubble">
+                                        <div className="typing-dot"></div>
+                                        <div className="typing-dot"></div>
+                                        <div className="typing-dot"></div>
+                                    </div>
+                                </div>
+                            )}
 
-                            {/* Footer / Input */}
-                            <div className="ecm-footer">
-                                <form onSubmit={handleSend} className="ecm-input-box">
-                                    <i className={leadStep ? "fas fa-user-edit ecm-input-icon" : "fas fa-chart-line ecm-input-icon"} />
-                                    <input
-                                        type="text"
-                                        value={input}
-                                        onChange={e => setInput(e.target.value)}
-                                        placeholder={leadStep ? "Your answer..." : "Ask Enfono AI about your business..."}
-                                        style={{
-                                            flex: 1,
-                                            background: 'none',
-                                            border: 'none',
-                                            color: '#fff',
-                                            outline: 'none',
-                                            fontSize: '14px',
-                                            padding: '0'
-                                        }}
-                                    />
-                                    <button
-                                        type="submit"
-                                        disabled={!input.trim() || isTyping}
-                                        className="ecm-send-btn"
-                                        style={{ opacity: (!input.trim() || isTyping) ? 0.5 : 1 }}
-                                    >
-                                        <i className="fas fa-paper-plane"></i>
-                                    </button>
-                                </form>
-                            </div>
-                        </m.div>
-                    )}
-                </AnimatePresence>
+                            {messages.length === 1 && !leadStep && (
+                                <div className="ecm-actions" style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '10px' }}>
+                                    {suggestions.map((s, i) => (
+                                        <button
+                                            key={i}
+                                            onClick={() => { setInput(s); setTimeout(() => handleSend(), 100) }}
+                                            className="ecm-action-btn"
+                                            style={{ fontSize: '12px', padding: '8px 12px' }}
+                                        >
+                                            {s}
+                                        </button>
+                                    ))}
+                                </div>
+                            )}
+                            <div ref={chatEndRef} />
+                        </div>
 
-                {/* Toggle Button */}
-                <m.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => setIsOpen(!isOpen)}
-                    style={{
-                        width: '64px',
-                        height: '64px',
-                        background: 'linear-gradient(135deg, #10B981, #059669)',
-                        borderRadius: '20px',
-                        border: 'none',
-                        color: '#fff',
-                        fontSize: '24px',
-                        cursor: 'pointer',
-                        boxShadow: '0 10px 30px rgba(16, 185, 129, 0.3)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center'
-                    }}
-                >
-                    <i className={isOpen ? "fas fa-times" : "fas fa-robot"}></i>
-                </m.button>
-            </div>
-        </LazyMotion>
+                        {/* Footer / Input */}
+                        <div className="ecm-footer" style={{ padding: '15px' }}>
+                            <form onSubmit={handleSend} className="ecm-input-box" style={{ display: 'flex', alignItems: 'center', gap: '10px', background: 'rgba(255,255,255,0.05)', borderRadius: '12px', padding: '10px 15px' }}>
+                                <i className={leadStep ? "fas fa-user-edit ecm-input-icon" : "fas fa-chart-line ecm-input-icon"} style={{ color: 'rgba(255,255,255,0.3)' }} />
+                                <input
+                                    type="text"
+                                    value={userInput}
+                                    onChange={e => setInput(e.target.value)}
+                                    placeholder={leadStep ? "Your answer..." : "Ask Enfono AI about your business..."}
+                                    style={{
+                                        flex: 1,
+                                        background: 'none',
+                                        border: 'none',
+                                        color: '#fff',
+                                        outline: 'none',
+                                        fontSize: '14px',
+                                        padding: '0'
+                                    }}
+                                />
+                                <button
+                                    type="submit"
+                                    disabled={!userInput.trim() || isTyping}
+                                    className="ecm-send-btn"
+                                    style={{
+                                        background: 'none',
+                                        border: 'none',
+                                        color: '#10B981',
+                                        cursor: 'pointer',
+                                        opacity: (!userInput.trim() || isTyping) ? 0.5 : 1
+                                    }}
+                                >
+                                    <i className="fas fa-paper-plane"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            {/* Toggle Button */}
+            <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setIsOpen(!isOpen)}
+                style={{
+                    width: '64px',
+                    height: '64px',
+                    background: 'linear-gradient(135deg, #10B981, #059669)',
+                    borderRadius: '20px',
+                    border: 'none',
+                    color: '#fff',
+                    fontSize: '24px',
+                    cursor: 'pointer',
+                    boxShadow: '0 10px 30px rgba(16, 185, 129, 0.3)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                }}
+            >
+                <i className={isOpen ? "fas fa-times" : "fas fa-robot"}></i>
+            </motion.button>
+        </div>
     );
 };
 

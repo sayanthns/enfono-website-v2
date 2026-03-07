@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Container, Row, Col } from 'react-bootstrap'
-import { m, LazyMotion, domAnimation } from 'framer-motion'
+import { motion } from 'framer-motion'
 import EnfonoHeader from '../../Components/EnfonoUI/EnfonoHeader'
 import EnfonoFooter from '../../Components/EnfonoUI/EnfonoFooter'
 
@@ -127,8 +127,8 @@ const EnfonoTools = () => {
 
             <section style={{ background: '#F8FAFC', padding: '70px 0' }}>
                 <Container>
-                    <LazyMotion features={domAnimation}>
-                        <m.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="d-flex gap-2 mb-12 flex-wrap">
+                    <div className="e-tools-content-wrapper">
+                        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="d-flex gap-2 mb-12 flex-wrap">
                             {toolCategories.map((cat) => (
                                 <button key={cat} onClick={() => setActiveCategory(cat)} style={{
                                     background: activeCategory === cat ? '#1B3A5C' : '#fff',
@@ -137,11 +137,11 @@ const EnfonoTools = () => {
                                     borderRadius: '8px', padding: '10px 22px', fontSize: '14px', fontWeight: '500', cursor: 'pointer', transition: 'all 0.2s ease'
                                 }}>{cat}</button>
                             ))}
-                        </m.div>
+                        </motion.div>
                         <Row className="g-4">
                             {filtered.map((tool, i) => (
                                 <Col key={tool.id} lg={3} md={6}>
-                                    <m.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}>
+                                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn}>
                                         <div style={{ background: '#fff', borderRadius: '14px', overflow: 'hidden', border: '1px solid #E5E7EB', height: '100%', display: 'flex', flexDirection: 'column', transition: 'all 0.3s ease' }}
                                             onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-5px)'; e.currentTarget.style.boxShadow = '0 20px 50px rgba(27,58,92,0.12)' }}
                                             onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = 'none' }}
@@ -173,11 +173,11 @@ const EnfonoTools = () => {
                                                 </button>
                                             </div>
                                         </div>
-                                    </m.div>
+                                    </motion.div>
                                 </Col>
                             ))}
                         </Row>
-                    </LazyMotion>
+                    </div>
                 </Container>
             </section>
 

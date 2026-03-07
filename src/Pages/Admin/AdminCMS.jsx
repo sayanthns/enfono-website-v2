@@ -1,5 +1,5 @@
+import { useState, useEffect, useContext } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { useContext } from 'react';
 import GlobalContext from '../../Context/Context';
 import { initialCmsData } from "../../Data/cms_data";
 

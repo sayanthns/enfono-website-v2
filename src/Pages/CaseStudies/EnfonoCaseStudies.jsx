@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { Container, Row, Col } from 'react-bootstrap'
-import { m, LazyMotion, domAnimation } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { initialCmsData } from '../../Data/cms_data'
 import EnfonoHeader from '../../Components/EnfonoUI/EnfonoHeader'
 import EnfonoFooter from '../../Components/EnfonoUI/EnfonoFooter'
+import GlobalContext from '../../Context/Context'
 
 const fadeIn = {
     hidden: { opacity: 0, y: 30 },
@@ -26,8 +27,7 @@ const getCategoryStyle = (category) => {
     }
 }
 
-import { useContext } from 'react';
-import GlobalContext from '../../Context/Context';
+
 
 const EnfonoCaseStudies = () => {
     const { cmsData } = useContext(GlobalContext);
@@ -57,9 +57,9 @@ const EnfonoCaseStudies = () => {
             {/* Filter + Grid */}
             <section style={{ background: '#F8FAFC', padding: '70px 0' }}>
                 <Container>
-                    <LazyMotion features={domAnimation}>
+                    <div className="e-cs-content-wrapper">
                         {/* Filter Tabs */}
-                        <m.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="d-flex gap-2 mb-12 flex-wrap">
+                        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="d-flex gap-2 mb-12 flex-wrap">
                             {categories.map((cat) => (
                                 <button
                                     key={cat}
@@ -79,7 +79,7 @@ const EnfonoCaseStudies = () => {
                                     {cat}
                                 </button>
                             ))}
-                        </m.div>
+                        </motion.div>
 
                         <Row className="g-4">
                             {filtered.map((cs, i) => {
@@ -90,7 +90,7 @@ const EnfonoCaseStudies = () => {
 
                                 return (
                                     <Col key={cs.id || i} lg={4} md={6}>
-                                        <m.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} style={{ height: '100%' }}>
+                                        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} style={{ height: '100%' }}>
                                             <div style={{ background: '#fff', borderRadius: '16px', overflow: 'hidden', border: '1px solid #E5E7EB', height: '100%', transition: 'all 0.3s ease', display: 'flex', flexDirection: 'column' }}
                                                 onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-6px)'; e.currentTarget.style.boxShadow = '0 25px 60px rgba(27,58,92,0.12)' }}
                                                 onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = 'none' }}
@@ -153,12 +153,12 @@ const EnfonoCaseStudies = () => {
                                                     </div>
                                                 )}
                                             </div>
-                                        </m.div>
+                                        </motion.div>
                                     </Col>
                                 );
                             })}
                         </Row>
-                    </LazyMotion>
+                    </div>
                 </Container>
             </section>
 

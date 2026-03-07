@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { Container, Row, Col } from 'react-bootstrap'
-import { m, LazyMotion, domAnimation } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import EnfonoHeader from '../../Components/EnfonoUI/EnfonoHeader'
 import EnfonoFooter from '../../Components/EnfonoUI/EnfonoFooter'
-
+import GlobalContext from '../../Context/Context'
 import { initialCmsData } from '../../Data/cms_data'
 
 const fadeIn = { hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }
@@ -28,9 +28,6 @@ const contactSchema = Yup.object().shape({
     service: Yup.string().required('Please select a service'),
     message: Yup.string().min(10, 'Please provide more detail').required('Message is required'),
 })
-
-import { useContext } from 'react';
-import GlobalContext from '../../Context/Context';
 
 const EnfonoContact = () => {
     const { cmsData } = useContext(GlobalContext);
@@ -55,8 +52,8 @@ const EnfonoContact = () => {
 
             <section style={{ background: '#F8FAFC', padding: '100px 0' }}>
                 <Container>
-                    <LazyMotion features={domAnimation}>
-                        <m.div
+                    <div className="e-contact-content-wrapper">
+                        <motion.div
                             initial="hidden"
                             whileInView="visible"
                             viewport={{ once: true }}
@@ -77,13 +74,13 @@ const EnfonoContact = () => {
                                         <p style={{ fontSize: '16px', color: '#64748B', marginBottom: '40px', lineHeight: '1.6' }}>Fill out the form and our team of ERP experts will get back to you within 24 hours.</p>
 
                                         {submitted ? (
-                                            <m.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} style={{ textAlign: 'center', padding: '60px 20px' }}>
+                                            <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} style={{ textAlign: 'center', padding: '60px 20px' }}>
                                                 <div style={{ width: '80px', height: '80px', background: '#ECFDF5', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 24px' }}>
                                                     <i className="fas fa-check" style={{ fontSize: '32px', color: '#10B981' }}></i>
                                                 </div>
                                                 <h3 style={{ fontSize: '24px', fontWeight: '800', color: '#0F172A', fontFamily: 'Poppins, sans-serif', marginBottom: '12px' }}>Message Received!</h3>
                                                 <p style={{ fontSize: '16px', color: '#64748B' }}>Thank you for reaching out. Our team will contact you shortly.</p>
-                                            </m.div>
+                                            </motion.div>
                                         ) : (
                                             <Formik
                                                 initialValues={{ name: '', email: '', phone: '', company: '', service: '', country: 'Saudi Arabia', message: '' }}
@@ -230,10 +227,10 @@ const EnfonoContact = () => {
                                     </div>
                                 </Col>
                             </Row>
-                        </m.div>
+                        </motion.div>
 
                         {/* FAQ Section */}
-                        <m.div
+                        <motion.div
                             initial="hidden"
                             whileInView="visible"
                             viewport={{ once: true }}
@@ -257,15 +254,15 @@ const EnfonoContact = () => {
                                             </div>
                                         </button>
                                         {openFaq === i && (
-                                            <m.div initial={{ height: 0 }} animate={{ height: 'auto' }} style={{ overflow: 'hidden' }}>
+                                            <motion.div initial={{ height: 0 }} animate={{ height: 'auto' }} style={{ overflow: 'hidden' }}>
                                                 <div style={{ padding: '0 24px 24px', fontSize: '15px', lineHeight: '1.8', color: '#64748B' }}>{faq.a}</div>
-                                            </m.div>
+                                            </motion.div>
                                         )}
                                     </div>
                                 ))}
                             </div>
-                        </m.div>
-                    </LazyMotion>
+                        </motion.div>
+                    </div>
                 </Container>
             </section>
 

@@ -5,7 +5,6 @@ import App from "./App";
 // Libraries
 import { BrowserRouter } from "react-router-dom";
 import { ParallaxProvider } from "react-scroll-parallax";
-import { LazyMotion, domMax } from "framer-motion";
 import { ThemeProvider } from "./Context/ThemeContext";
 
 // css
@@ -17,12 +16,10 @@ import "./index.scss";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <ThemeProvider>
-    <LazyMotion features={domMax}>
-      <ParallaxProvider>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </ParallaxProvider>
-    </LazyMotion>
+    <ParallaxProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </ParallaxProvider>
   </ThemeProvider>
 );

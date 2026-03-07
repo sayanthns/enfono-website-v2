@@ -1,8 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { m, LazyMotion, domAnimation } from 'framer-motion';
+import { motion } from 'framer-motion';
+import { Container, Row, Col } from 'react-bootstrap';
 import EnfonoHeader from '../../Components/EnfonoUI/EnfonoHeader';
 import EnfonoFooter from '../../Components/EnfonoUI/EnfonoFooter';
+import GlobalContext from '../../Context/Context';
 import { initialCmsData } from '../../Data/cms_data';
 
 const CATEGORIES = ['All', 'AI & ERP', 'ERP', 'AI & Analytics', 'Compliance', 'Automation', 'Case Study'];
@@ -15,9 +17,6 @@ const categoryColors = {
     'Automation': '#3b82f6',
     'Case Study': '#ef4444',
 };
-
-import { useContext } from 'react';
-import GlobalContext from '../../Context/Context';
 
 export default function EnfonoBlogs() {
     const { cmsData } = useContext(GlobalContext);
@@ -50,12 +49,10 @@ export default function EnfonoBlogs() {
     const fadeUp = { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0, transition: { duration: 0.55 } } };
     const stagger = { visible: { transition: { staggerChildren: 0.1 } } };
 
-    // Header height is 74px on desktop, 64px on mobile (<991px)
-    // We adjust the sticky top based on navHidden state
     const stickyTop = navHidden ? '0px' : '74px';
 
     return (
-        <LazyMotion features={domAnimation}>
+        <div className="enfono-blogs-page-wrapper">
             <div className="enfono-page-blogs" style={{ background: '#fff' }}>
                 <EnfonoHeader />
 
@@ -69,7 +66,7 @@ export default function EnfonoBlogs() {
                 }}>
                     <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at 70% 50%, rgba(16,185,129,0.08) 0%, transparent 60%)', pointerEvents: 'none' }} />
                     <div className="enfono-container">
-                        <m.div initial="hidden" animate="visible" variants={fadeUp}>
+                        <motion.div initial="hidden" animate="visible" variants={fadeUp}>
                             <div className="e-section-label">Insights & Stories</div>
                             <h1 className="e-section-title" style={{ color: '#fff', fontSize: 'clamp(32px, 5vw, 60px)', maxWidth: '700px' }}>
                                 Ideas That<br />
@@ -78,7 +75,7 @@ export default function EnfonoBlogs() {
                             <p className="e-section-sub" style={{ opacity: 0.7, maxWidth: '540px', marginTop: '20px' }}>
                                 Deep dives into ERP, AI, compliance, and the real stories of GCC businesses that transformed their operations.
                             </p>
-                        </m.div>
+                        </motion.div>
                     </div>
                 </section>
 
@@ -126,7 +123,7 @@ export default function EnfonoBlogs() {
 
                         {/* Featured Post */}
                         {featured && (
-                            <m.div
+                            <motion.div
                                 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
                                 style={{ marginBottom: '64px' }}
                             >
@@ -158,23 +155,23 @@ export default function EnfonoBlogs() {
                                         </div>
                                     </div>
                                 </Link>
-                            </m.div>
+                            </motion.div>
                         )}
 
                         {/* Blog Grid */}
                         {rest.length > 0 && (
                             <>
-                                <m.div style={{ marginBottom: '32px' }} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
+                                <motion.div style={{ marginBottom: '32px' }} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
                                     <h2 style={{ fontSize: '22px', fontWeight: 700, color: '#0f172a' }}>
                                         {activeCategory === 'All' ? 'More Articles' : activeCategory}
                                     </h2>
-                                </m.div>
-                                <m.div
+                                </motion.div>
+                                <motion.div
                                     style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '32px' }}
                                     initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}
                                 >
                                     {rest.map((blog) => (
-                                        <m.div key={blog.id} variants={fadeUp}>
+                                        <motion.div key={blog.id} variants={fadeUp}>
                                             <Link to={`/blogs/${blog.slug}`} style={{ display: 'block', textDecoration: 'none', background: '#fff', borderRadius: '16px', overflow: 'hidden', border: '1px solid #e2e8f0', transition: 'all 0.25s', boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}
                                                 onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 16px 40px rgba(0,0,0,0.12)'; }}
                                                 onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.04)'; }}
@@ -204,9 +201,9 @@ export default function EnfonoBlogs() {
                                                     </div>
                                                 </div>
                                             </Link>
-                                        </m.div>
+                                        </motion.div>
                                     ))}
-                                </m.div>
+                                </motion.div>
                             </>
                         )}
 
@@ -221,6 +218,6 @@ export default function EnfonoBlogs() {
 
                 <EnfonoFooter />
             </div>
-        </LazyMotion >
+        </div>
     );
 }

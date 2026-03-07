@@ -1,4 +1,9 @@
-import { useContext } from 'react';
+import React, { useContext } from 'react';
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { Container, Row, Col } from 'react-bootstrap';
+import EnfonoHeader from '../../Components/EnfonoUI/EnfonoHeader';
+import EnfonoFooter from '../../Components/EnfonoUI/EnfonoFooter';
 import GlobalContext from '../../Context/Context';
 import { servicesData } from '../../Data/services_data';
 import { initialCmsData } from '../../Data/cms_data';
@@ -19,15 +24,15 @@ const EnfonoServices = () => {
             {/* Page Hero - Outcome Focused */}
             <div className="enfono-hero-new" style={{ padding: '160px 0 100px', position: 'relative', overflow: 'hidden' }}>
                 <Container style={{ position: 'relative', zIndex: 2 }}>
-                    <m.div className="text-center" initial="hidden" animate="visible" variants={staggerContainer}>
-                        <m.div variants={fadeIn} className="enfono-section-label-amber" style={{ display: 'inline-block', marginBottom: '16px', background: 'rgba(16, 185, 129, 0.1)', color: '#10B981', padding: '6px 16px', borderRadius: '20px', fontWeight: 600 }}>Enterprise Solutions</m.div>
-                        <m.h1 variants={fadeIn} className="enfono-hero-title" style={{ maxWidth: '900px', margin: '0 auto 24px', fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', fontWeight: 800, lineHeight: 1.1 }}>
+                    <motion.div className="text-center" initial="hidden" animate="visible" variants={staggerContainer}>
+                        <motion.div variants={fadeIn} className="enfono-section-label-amber" style={{ display: 'inline-block', marginBottom: '16px', background: 'rgba(16, 185, 129, 0.1)', color: '#10B981', padding: '6px 16px', borderRadius: '20px', fontWeight: 600 }}>Enterprise Solutions</motion.div>
+                        <motion.h1 variants={fadeIn} className="enfono-hero-title" style={{ maxWidth: '900px', margin: '0 auto 24px', fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', fontWeight: 800, lineHeight: 1.1 }}>
                             {data.services_hero.heading}
-                        </m.h1>
-                        <m.p variants={fadeIn} className="enfono-hero-subtitle" style={{ maxWidth: '700px', margin: '0 auto 40px', fontSize: '1.125rem', color: 'rgba(255,255,255,0.7)', lineHeight: 1.6 }}>
+                        </motion.h1>
+                        <motion.p variants={fadeIn} className="enfono-hero-subtitle" style={{ maxWidth: '700px', margin: '0 auto 40px', fontSize: '1.125rem', color: 'rgba(255,255,255,0.7)', lineHeight: 1.6 }}>
                             {data.services_hero.subtext}
-                        </m.p>
-                        <m.div variants={fadeIn}>
+                        </motion.p>
+                        <motion.div variants={fadeIn}>
                             <a href={data.services_hero.cta_url} target="_blank" rel="noopener noreferrer" className="enf-btn primary" style={{ background: '#10B981', color: '#fff', padding: '18px 40px', borderRadius: '30px', fontWeight: 600, textDecoration: 'none', transition: 'all 0.3s ease', display: 'inline-block', fontSize: '1.1rem' }}>
                                 {data.services_hero.cta_primary} <i className="fas fa-arrow-right" style={{ marginLeft: '8px' }}></i>
                             </a>
@@ -35,8 +40,8 @@ const EnfonoServices = () => {
                                 <span><i className="fas fa-check-circle text-emerald-500 mr-2"></i> {`${projectsDelivered.value}${projectsDelivered.suffix}`} Projects Delivered</span>
                                 <span><i className="fas fa-check-circle text-emerald-500 mr-2"></i> Certified Experts</span>
                             </div>
-                        </m.div>
-                    </m.div>
+                        </motion.div>
+                    </motion.div>
                 </Container>
                 <div style={{ position: 'absolute', top: '50%', left: '50%', width: '800px', height: '800px', background: 'radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%)', transform: 'translate(-50%, -50%)', filter: 'blur(80px)', pointerEvents: 'none' }} />
             </div>
@@ -76,100 +81,97 @@ const EnfonoServices = () => {
                         <h2 style={{ fontSize: '3rem', fontWeight: 800, marginBottom: '24px' }}>Comprehensive IT Services</h2>
                     </div>
 
-                    <LazyMotion features={domAnimation}>
-                        <div className="e-services-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '32px' }}>
-                            {servicesData.map((svc, i) => (
-                                <m.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeIn}
-                                    className="e-service-card"
-                                    style={{
-                                        background: '#111',
-                                        borderRadius: '24px',
-                                        padding: '40px',
-                                        border: '1px solid rgba(255,255,255,0.05)',
-                                        transition: 'all 0.3s ease',
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        height: '100%',
-                                        position: 'relative',
-                                        overflow: 'hidden'
-                                    }}
-                                    onMouseEnter={(e) => {
-                                        e.currentTarget.style.transform = 'translateY(-10px)';
-                                        e.currentTarget.style.borderColor = 'rgba(16, 185, 129, 0.3)';
-                                        e.currentTarget.style.boxShadow = '0 20px 40px rgba(0,0,0,0.4)';
-                                    }}
-                                    onMouseLeave={(e) => {
-                                        e.currentTarget.style.transform = 'translateY(0)';
-                                        e.currentTarget.style.borderColor = 'rgba(255,255,255,0.05)';
-                                        e.currentTarget.style.boxShadow = 'none';
-                                    }}
-                                >
-                                    <div style={{ width: '64px', height: '64px', background: 'linear-gradient(135deg, #10B981, #059669)', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '32px' }}>
-                                        <i className={svc.features[0].icon} style={{ fontSize: '28px', color: '#fff' }}></i>
-                                    </div>
-                                    <h3 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '16px', color: '#fff' }}>{svc.title}</h3>
-                                    <p style={{ color: 'rgba(255,255,255,0.6)', lineHeight: 1.6, marginBottom: '32px', flexGrow: 1 }}>{svc.short_desc}</p>
+                    <div className="e-services-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '32px' }}>
+                        {servicesData.map((svc, i) => (
+                            <motion.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={fadeIn}
+                                className="e-service-card"
+                                style={{
+                                    background: '#111',
+                                    borderRadius: '24px',
+                                    padding: '40px',
+                                    border: '1px solid rgba(255,255,255,0.05)',
+                                    transition: 'all 0.3s ease',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    height: '100%',
+                                    position: 'relative',
+                                    overflow: 'hidden'
+                                }}
+                                onMouseEnter={(e) => {
+                                    e.currentTarget.style.transform = 'translateY(-10px)';
+                                    e.currentTarget.style.borderColor = 'rgba(16, 185, 129, 0.3)';
+                                    e.currentTarget.style.boxShadow = '0 20px 40px rgba(0,0,0,0.4)';
+                                }}
+                                onMouseLeave={(e) => {
+                                    e.currentTarget.style.transform = 'translateY(0)';
+                                    e.currentTarget.style.borderColor = 'rgba(255,255,255,0.05)';
+                                    e.currentTarget.style.boxShadow = 'none';
+                                }}
+                            >
+                                <div style={{ width: '64px', height: '64px', background: 'linear-gradient(135deg, #10B981, #059669)', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '32px' }}>
+                                    <i className={svc.features[0].icon} style={{ fontSize: '28px', color: '#fff' }}></i>
+                                </div>
+                                <h3 style={{ fontSize: '1.5rem', fontWeight: 700, marginBottom: '16px', color: '#fff' }}>{svc.title}</h3>
+                                <p style={{ color: 'rgba(255,255,255,0.6)', lineHeight: 1.6, marginBottom: '32px', flexGrow: 1 }}>{svc.short_desc}</p>
 
-                                    <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 32px 0', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                                        {svc.tech_stack.slice(0, 3).map((tech, j) => (
-                                            <li key={j} style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.9rem', color: 'rgba(255,255,255,0.8)' }}>
-                                                <i className="fas fa-check" style={{ color: '#10B981', fontSize: '10px' }}></i> {tech.name}
-                                            </li>
-                                        ))}
-                                    </ul>
+                                <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 32px 0', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                                    {svc.tech_stack.slice(0, 3).map((tech, j) => (
+                                        <li key={j} style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.9rem', color: 'rgba(255,255,255,0.8)' }}>
+                                            <i className="fas fa-check" style={{ color: '#10B981', fontSize: '10px' }}></i> {tech.name}
+                                        </li>
+                                    ))}
+                                </ul>
 
-                                    <Link to={`/services/${svc.slug}`} style={{ color: '#10B981', textDecoration: 'none', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '8px', transition: 'all 0.3s ease' }}>
-                                        Explore Scope & Details <i className="fas fa-arrow-right"></i>
-                                    </Link>
-                                </m.div>
-                            ))}
-                        </div>
-                    </LazyMotion>
+                                <Link to={`/services/${svc.slug}`} style={{ color: '#10B981', textDecoration: 'none', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '8px', transition: 'all 0.3s ease' }}>
+                                    Explore Scope & Details <i className="fas fa-arrow-right"></i>
+                                </Link>
+                            </motion.div>
+                        ))}
+                    </div>
                 </Container>
             </section>
 
             {/* Our Process - Timelined */}
             <section className="service-process-section" style={{ background: '#050505', padding: '120px 0', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
                 <Container>
-                    <LazyMotion features={domAnimation}>
-                        <m.div className="text-center" style={{ marginBottom: '80px' }} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}>
-                            <m.span variants={fadeIn} className="enfono-section-label-amber" style={{ color: '#10B981' }}>The Methodology</m.span>
-                            <m.h2 variants={fadeIn} className="enfono-hero-title" style={{ fontSize: '3rem', margin: '16px 0' }}>How We Deliver Excellence</m.h2>
-                        </m.div>
-                        <Row className="justify-content-center g-5">
-                            {[
-                                { step: '01', title: 'Discovery & Audit', desc: 'Deeply understanding your processes, pain points, and digital goals.' },
-                                { step: '02', title: 'Strategy & Mapping', desc: 'Designing the technical architecture and solution blueprints.' },
-                                { step: '03', title: 'Agile Development', desc: 'Iterative sprints for module, API, and platform engineering.' },
-                                { step: '04', title: 'Integration & Sync', desc: 'Ensuring seamless data flow across your existing ecosystem.' },
-                                { step: '05', title: 'UAT & Training', desc: 'Rigorous testing followed by comprehensive team empowerment.' },
-                                { step: '06', title: 'Launch & Support', desc: 'Continuous monitoring and evolution of your digital systems.' }
-                            ].map((p, i) => (
-                                <Col md={6} lg={4} key={i}>
-                                    <m.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} style={{ position: 'relative', height: '100%' }}>
-                                        <div style={{
-                                            width: '64px', height: '64px',
-                                            background: '#111',
-                                            borderRadius: '50%',
-                                            display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                            marginBottom: '24px',
-                                            border: '2px solid #10B981',
-                                            color: '#10B981',
-                                            fontWeight: 700,
-                                            fontSize: '1.25rem',
-                                            position: 'relative',
-                                            zIndex: 2,
-                                            boxShadow: '0 0 20px rgba(16, 185, 129, 0.1)'
-                                        }}>
-                                            {p.step}
-                                        </div>
-                                        <h4 style={{ fontSize: '1.25rem', fontWeight: 700, color: '#fff', marginBottom: '12px' }}>{p.title}</h4>
-                                        <p style={{ fontSize: '0.95rem', lineHeight: 1.6, color: 'rgba(255,255,255,0.6)', margin: 0 }}>{p.desc}</p>
-                                    </m.div>
-                                </Col>
-                            ))}
-                        </Row>
-                    </LazyMotion>
+                    <motion.div className="text-center" style={{ marginBottom: '80px' }} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={staggerContainer}>
+                        <motion.span variants={fadeIn} className="enfono-section-label-amber" style={{ color: '#10B981' }}>The Methodology</motion.span>
+                        <motion.h2 variants={fadeIn} className="enfono-hero-title" style={{ fontSize: '3rem', margin: '16px 0' }}>How We Deliver Excellence</motion.h2>
+                    </motion.div>
+                    <Row className="justify-content-center g-5">
+                        {[
+                            { step: '01', title: 'Discovery & Audit', desc: 'Deeply understanding your processes, pain points, and digital goals.' },
+                            { step: '02', title: 'Strategy & Mapping', desc: 'Designing the technical architecture and solution blueprints.' },
+                            { step: '03', title: 'Agile Development', desc: 'Iterative sprints for module, API, and platform engineering.' },
+                            { step: '04', title: 'Integration & Sync', desc: 'Ensuring seamless data flow across your existing ecosystem.' },
+                            { step: '05', title: 'UAT & Training', desc: 'Rigorous testing followed by comprehensive team empowerment.' },
+                            { step: '06', title: 'Launch & Support', desc: 'Continuous monitoring and evolution of your digital systems.' }
+                        ].map((p, i) => (
+                            <Col md={6} lg={4} key={i}>
+                                <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} style={{ position: 'relative', height: '100%' }}>
+                                    <div style={{
+                                        width: '64px', height: '64px',
+                                        background: '#111',
+                                        borderRadius: '50%',
+                                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                        marginBottom: '24px',
+                                        border: '2px solid #10B981',
+                                        color: '#10B981',
+                                        fontWeight: 700,
+                                        fontSize: '1.25rem',
+                                        position: 'relative',
+                                        zIndex: 2,
+                                        boxShadow: '0 0 20px rgba(16, 185, 129, 0.1)'
+                                    }}>
+                                        {p.step}
+                                    </div>
+                                    <h4 style={{ fontSize: '1.25rem', fontWeight: 700, color: '#fff', marginBottom: '12px' }}>{p.title}</h4>
+                                    <p style={{ fontSize: '0.95rem', lineHeight: 1.6, color: 'rgba(255,255,255,0.6)', margin: 0 }}>{p.desc}</p>
+                                </motion.div>
+                            </Col>
+                        ))}
+                    </Row>
+
                 </Container>
             </section>
 
@@ -190,7 +192,6 @@ const EnfonoServices = () => {
                             { icon: 'fas fa-server', name: 'Redis' },
                             { icon: 'fab fa-aws', name: 'AWS' },
                             { icon: 'fas fa-mobile-alt', name: 'Flutter' },
-                            { icon: 'fab fa-docker', name: 'Docker' },
                             { icon: 'fas fa-network-wired', name: 'IoT / Edge' },
                         ].map((tech, idx) => (
                             <div key={idx} style={{
@@ -226,7 +227,7 @@ const EnfonoServices = () => {
             </section>
 
             <EnfonoFooter />
-        </div>
+        </div >
     )
 }
 
