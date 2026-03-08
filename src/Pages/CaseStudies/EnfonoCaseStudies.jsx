@@ -33,6 +33,7 @@ const EnfonoCaseStudies = () => {
     const { cmsData } = useContext(GlobalContext);
     const data = cmsData || initialCmsData;
     const [activeCategory, setActiveCategory] = useState('All')
+    const [mobileOpen, setMobileOpen] = useState(false)
 
     const categories = ['All', ...(data.our_work_categories || [])]
     const filtered = activeCategory === 'All' ? (data.our_work || []) : (data.our_work || []).filter(c => c.category === activeCategory)
@@ -40,7 +41,7 @@ const EnfonoCaseStudies = () => {
 
     return (
         <div style={{ fontFamily: 'Inter, sans-serif' }}>
-            <EnfonoHeader />
+            <EnfonoHeader mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} />
 
             {/* Hero */}
             <div className="enfono-page-hero">
@@ -59,7 +60,18 @@ const EnfonoCaseStudies = () => {
                 <Container>
                     <div className="e-cs-content-wrapper">
                         {/* Filter Tabs */}
-                        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeIn} className="d-flex gap-2 mb-12 flex-wrap">
+                        <motion.div
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true }}
+                            variants={fadeIn}
+                            className="e-filter-row d-flex gap-2 mb-12 flex-nowrap"
+                            style={{
+                                paddingBottom: '12px',
+                                overflowX: 'auto',
+                                WebkitOverflowScrolling: 'touch'
+                            }}
+                        >
                             {categories.map((cat) => (
                                 <button
                                     key={cat}
@@ -73,7 +85,9 @@ const EnfonoCaseStudies = () => {
                                         fontSize: '14px',
                                         fontWeight: '500',
                                         cursor: 'pointer',
-                                        transition: 'all 0.2s ease'
+                                        transition: 'all 0.2s ease',
+                                        whiteSpace: 'nowrap',
+                                        flexShrink: 0
                                     }}
                                 >
                                     {cat}

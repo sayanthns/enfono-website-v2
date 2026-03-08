@@ -28,7 +28,11 @@ const navLinks = [
   { label: 'Contact', path: '/contact' },
 ]
 
-export default function EnfonoHeader({ mobileOpen, setMobileOpen }) {
+export default function EnfonoHeader({ mobileOpen: propMobileOpen, setMobileOpen: propSetMobileOpen }) {
+  const [internalMobileOpen, setInternalMobileOpen] = useState(false);
+  const mobileOpen = propMobileOpen !== undefined ? propMobileOpen : internalMobileOpen;
+  const setMobileOpen = propSetMobileOpen || setInternalMobileOpen;
+
   const { cmsData } = useContext(GlobalContext);
   const [scrolled, setScrolled] = useState(false)
   const [hidden, setHidden] = useState(false)
@@ -60,10 +64,14 @@ export default function EnfonoHeader({ mobileOpen, setMobileOpen }) {
   }, [])
 
   useEffect(() => {
-    setMobileOpen(false)
+    if (propSetMobileOpen) {
+      propSetMobileOpen(false);
+    } else {
+      setInternalMobileOpen(false);
+    }
     setActiveDropdown(null)
     setMobileExpanded(null)
-  }, [location])
+  }, [location, propSetMobileOpen])
 
   useEffect(() => {
     if (mobileOpen) {

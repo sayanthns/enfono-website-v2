@@ -482,12 +482,12 @@
     }
   }
 
-  /* Point 1: Floating Action Bar (WhatsApp/Phone) Move to Left on Mobile */
+  /* Point 1: Floating Action Bar (WhatsApp/Phone) Move to Right on Mobile */
   @media (max-width: 767px) {
     .enfono-floating-widget {
-      left: 24px !important;
-      right: auto !important;
-      bottom: 24px !important;
+      right: 24px !important;
+      left: auto !important;
+      bottom: 100px !important;
       display: flex !important;
       flex-direction: column !important;
       gap: 12px !important;
@@ -581,12 +581,14 @@
       white-space: nowrap !important;
       scrollbar-width: none !important;
       -ms-overflow-style: none !important;
+      -webkit-overflow-scrolling: touch !important;
 
       &::-webkit-scrollbar {
         display: none !important;
       }
 
-      padding-bottom: 8px !important;
+      padding: 0 4px 12px !important;
+      margin-bottom: 24px !important;
       gap: 12px !important;
       mask-image: linear-gradient(to right, black 85%, transparent 100%);
       -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
@@ -689,8 +691,9 @@
   margin: 0 0 24px;
 
   @media (max-width: 767px) {
-    font-size: 32px;
+    font-size: clamp(28px, 10vw, 48px);
     letter-spacing: -0.5px;
+    line-height: 1.2;
   }
 
   .highlight {

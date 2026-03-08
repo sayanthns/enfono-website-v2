@@ -197,15 +197,42 @@ export default function EnfonoHome() {
               >
 
 
-                <motion.div className="enfono-hero-eyebrow" variants={fadeUp} custom={0.05}>
+                <motion.div
+                  className="enfono-hero-eyebrow"
+                  variants={fadeUp}
+                  custom={0.05}
+                  style={{ display: 'inline-flex', whiteSpace: 'normal', textAlign: 'left' }}
+                >
                   <i className="fas fa-bolt" /> End-to-End ERP Solutions for GCC Enterprises
                 </motion.div>
 
-                <motion.h1 className="enfono-hero-title" variants={fadeUp} custom={0.1}>
+                <motion.h1
+                  className="enfono-hero-title"
+                  variants={fadeUp}
+                  custom={0.1}
+                  style={{
+                    fontSize: 'clamp(32px, 8vw, 64px)',
+                    lineHeight: 1.2,
+                    display: 'block',
+                    width: '100%',
+                    wordBreak: 'normal',
+                    overflowWrap: 'break-word'
+                  }}
+                >
                   {cmsData.hero.heading}
                 </motion.h1>
 
-                <motion.p className="enfono-hero-subtitle" variants={fadeUp} custom={0.15}>
+                <motion.p
+                  className="enfono-hero-subtitle"
+                  variants={fadeUp}
+                  custom={0.15}
+                  style={{
+                    fontSize: 'clamp(16px, 2vw, 20px)',
+                    maxWidth: '580px',
+                    width: '100%',
+                    lineHeight: 1.6
+                  }}
+                >
                   {cmsData.hero.subtext}
                 </motion.p>
 

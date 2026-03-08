@@ -22,14 +22,14 @@ const EnfonoServices = () => {
             <EnfonoHeader />
 
             {/* Page Hero - Outcome Focused */}
-            <div className="enfono-hero-new" style={{ padding: '160px 0 100px', position: 'relative', overflow: 'hidden' }}>
+            <div className="enfono-hero-new" style={{ padding: window.innerWidth < 768 ? '100px 0 60px' : '160px 0 100px', position: 'relative', overflow: 'hidden' }}>
                 <Container style={{ position: 'relative', zIndex: 2 }}>
                     <motion.div className="text-center" initial="hidden" animate="visible" variants={staggerContainer}>
                         <motion.div variants={fadeIn} className="enfono-section-label-amber" style={{ display: 'inline-block', marginBottom: '16px', background: 'rgba(16, 185, 129, 0.1)', color: '#10B981', padding: '6px 16px', borderRadius: '20px', fontWeight: 600 }}>Enterprise Solutions</motion.div>
-                        <motion.h1 variants={fadeIn} className="enfono-hero-title" style={{ maxWidth: '900px', margin: '0 auto 24px', fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', fontWeight: 800, lineHeight: 1.1 }}>
+                        <motion.h1 variants={fadeIn} className="enfono-hero-title" style={{ maxWidth: '900px', margin: '0 auto 24px', fontSize: 'clamp(32px, 7vw, 72px)', fontWeight: 800, lineHeight: 1.15 }}>
                             {data.services_hero.heading}
                         </motion.h1>
-                        <motion.p variants={fadeIn} className="enfono-hero-subtitle" style={{ maxWidth: '700px', margin: '0 auto 40px', fontSize: '1.125rem', color: 'rgba(255,255,255,0.7)', lineHeight: 1.6 }}>
+                        <motion.p variants={fadeIn} className="enfono-hero-subtitle" style={{ maxWidth: '700px', margin: '0 auto 40px', fontSize: 'clamp(16px, 2vw, 18px)', color: 'rgba(255,255,255,0.7)', lineHeight: 1.6 }}>
                             {data.services_hero.subtext}
                         </motion.p>
                         <motion.div variants={fadeIn}>
