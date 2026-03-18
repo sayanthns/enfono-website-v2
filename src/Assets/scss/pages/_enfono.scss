@@ -1443,6 +1443,12 @@
 
   @media (max-width: 575px) {
     grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  @media (max-width: 380px) {
+    grid-template-columns: 1fr;
+    gap: 8px;
   }
 }
 
@@ -1469,6 +1475,24 @@
     font-size: 14px;
     font-weight: 600;
     color: #343A40;
+    word-break: normal;
+    overflow-wrap: break-word;
+    hyphens: none;
+  }
+
+  @media (max-width: 575px) {
+    padding: 14px 12px;
+    gap: 10px;
+
+    i {
+      font-size: 18px;
+      width: 22px;
+    }
+
+    span {
+      font-size: 13px;
+      line-height: 1.3;
+    }
   }
 
   &:hover {
@@ -4702,9 +4726,25 @@ section {
 .enfono-hero-new,
 .service-detail-hero {
   @media (max-width: 767px) {
-    padding-top: 120px !important;
-    padding-bottom: 60px !important;
+    padding-top: 100px !important;
+    padding-bottom: 40px !important;
     min-height: auto !important;
+  }
+}
+
+.enfono-hero-content {
+  @media (max-width: 767px) {
+    padding: 20px 0 !important;
+  }
+}
+
+.enfono-hero-eyebrow {
+  @media (max-width: 767px) {
+    font-size: 9px !important;
+    padding: 6px 12px !important;
+    white-space: normal !important;
+    text-align: left !important;
+    line-height: 1.4 !important;
   }
 }
 

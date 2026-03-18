@@ -447,7 +447,7 @@ export default function EnfonoHome() {
             variants={stagger}
           >
             {industries.map(ind => (
-              <motion.div key={ind.label} className="e-industry-card" variants={fadeUp} style={{ whiteSpace: 'normal', lineBreak: 'anywhere' }}>
+              <motion.div key={ind.label} className="e-industry-card" variants={fadeUp}>
                 <i className={ind.icon} />
                 <span>{ind.label}</span>
               </motion.div>
