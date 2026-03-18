@@ -205,20 +205,20 @@ export default function EnfonoCareers() {
                   flexDirection: isMobile ? 'column' : 'row',
                   alignItems: isMobile ? 'flex-start' : 'center',
                   justifyContent: 'space-between',
-                  gap: '20px',
-                  padding: '24px 28px',
+                  gap: isMobile ? '14px' : '20px',
+                  padding: isMobile ? '18px 20px' : '24px 28px',
                   background: '#fff',
                   border: '1.5px solid #E5E7EB',
-                  borderRadius: '16px',
+                  borderRadius: isMobile ? '14px' : '16px',
                   transition: 'all 0.25s',
                 }}
               >
                 <div style={{ flex: 1 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap', marginBottom: '8px' }}>
-                    <div style={{ fontFamily: 'Poppins,sans-serif', fontSize: '16px', fontWeight: 700, color: '#1A1A1A' }}>{role.title}</div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap', marginBottom: '6px' }}>
+                    <div style={{ fontFamily: 'Poppins,sans-serif', fontSize: isMobile ? '15px' : '16px', fontWeight: 700, color: '#1A1A1A' }}>{role.title}</div>
                     <span style={{ padding: '2px 10px', background: 'rgba(16, 185, 129, 0.1)', borderRadius: '100px', fontSize: '11px', fontWeight: 700, color: '#10B981' }}>{role.dept}</span>
                   </div>
-                  <p style={{ fontFamily: 'Inter,sans-serif', fontSize: '13.5px', lineHeight: 1.6, color: '#64748B', margin: '0 0 12px' }}>{role.desc}</p>
+                  <p style={{ fontFamily: 'Inter,sans-serif', fontSize: '13px', lineHeight: 1.6, color: '#64748B', margin: '0 0 10px' }}>{role.desc}</p>
                   <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
                     <span style={{ fontFamily: 'Inter,sans-serif', fontSize: '12px', color: '#94A3B8', display: 'flex', alignItems: 'center', gap: '5px' }}>
                       <i className="fas fa-map-marker-alt" style={{ color: '#10B981' }} />{role.location}
@@ -229,11 +229,11 @@ export default function EnfonoCareers() {
                   </div>
                 </div>
                 {role.apply_url?.startsWith('http') ? (
-                  <a href={role.apply_url} target="_blank" rel="noopener noreferrer" className="e-btn-primary" style={{ flexShrink: 0, whiteSpace: 'nowrap', width: isMobile ? '100%' : 'auto', textAlign: 'center' }}>
+                  <a href={role.apply_url} target="_blank" rel="noopener noreferrer" className="e-btn-primary" style={{ flexShrink: 0, whiteSpace: 'nowrap', width: isMobile ? 'auto' : 'auto', textAlign: 'center', padding: isMobile ? '10px 24px' : undefined, fontSize: isMobile ? '13px' : undefined }}>
                     Apply Now <i className="fas fa-arrow-right" />
                   </a>
                 ) : (
-                  <Link to={role.apply_url || '/contact'} className="e-btn-primary" style={{ flexShrink: 0, whiteSpace: 'nowrap', width: isMobile ? '100%' : 'auto', textAlign: 'center' }}>
+                  <Link to={role.apply_url || '/contact'} className="e-btn-primary" style={{ flexShrink: 0, whiteSpace: 'nowrap', width: isMobile ? 'auto' : 'auto', textAlign: 'center', padding: isMobile ? '10px 24px' : undefined, fontSize: isMobile ? '13px' : undefined }}>
                     Apply Now <i className="fas fa-arrow-right" />
                   </Link>
                 )}
