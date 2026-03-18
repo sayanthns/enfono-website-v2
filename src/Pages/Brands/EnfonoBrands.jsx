@@ -6,6 +6,7 @@ import EnfonoHeader from '../../Components/EnfonoUI/EnfonoHeader'
 import EnfonoFooter from '../../Components/EnfonoUI/EnfonoFooter'
 import GlobalContext from '../../Context/Context'
 import { initialCmsData } from "../../Data/cms_data";
+import { useWindowSize } from '../../Functions/useWindowSize';
 
 const fadeUp = { hidden: { opacity: 0, y: 40 }, visible: (d = 0) => ({ opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: d } }) }
 const stagger = { hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }
@@ -16,6 +17,7 @@ export default function EnfonoBrands() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const { cmsData } = useContext(GlobalContext);
   const data = cmsData || initialCmsData;
+  const { isMobile, isDesktop, isSmall } = useWindowSize();
 
   const brands = data.brands || [];
 
@@ -86,10 +88,10 @@ export default function EnfonoBrands() {
                 variants={fadeUp}
                 style={{
                   display: 'grid',
-                  gridTemplateColumns: window.innerWidth < 991 ? '1fr' : '1fr 1fr',
-                  gap: window.innerWidth < 991 ? '24px' : '48px',
+                  gridTemplateColumns: isDesktop ? '1fr 1fr' : '1fr',
+                  gap: isDesktop ? '48px' : '24px',
                   alignItems: 'center',
-                  padding: window.innerWidth < 768 ? '24px' : '40px',
+                  padding: isMobile ? '24px' : '40px',
                   background: '#fff',
                   border: '1.5px solid #E5E7EB',
                   borderRadius: '24px',
@@ -153,7 +155,7 @@ export default function EnfonoBrands() {
                     <div style={{ fontFamily: 'Poppins,sans-serif', fontSize: '14px', fontWeight: 700, color: '#1A1A1A', marginBottom: '16px' }}>Key Features</div>
                     <div style={{
                       display: 'grid',
-                      gridTemplateColumns: window.innerWidth < 575 ? '1fr' : '1fr 1fr',
+                      gridTemplateColumns: isSmall ? '1fr' : '1fr 1fr',
                       gap: '12px'
                     }}>
                       {(brand.features || []).map(f => (

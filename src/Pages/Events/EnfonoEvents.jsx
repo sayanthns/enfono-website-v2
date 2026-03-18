@@ -5,9 +5,11 @@ import EnfonoHeader from '../../Components/EnfonoUI/EnfonoHeader';
 import EnfonoFooter from '../../Components/EnfonoUI/EnfonoFooter';
 import GlobalContext from '../../Context/Context';
 import { initialCmsData } from '../../Data/cms_data';
+import { useWindowSize } from '../../Functions/useWindowSize';
 
 export default function EnfonoEvents() {
     const [mobileOpen, setMobileOpen] = useState(false);
+    const { isMobile } = useWindowSize();
     const { cmsData } = useContext(GlobalContext);
     const data = cmsData || initialCmsData;
     const [activeFilter, setActiveFilter] = useState('All');
@@ -81,8 +83,8 @@ export default function EnfonoEvents() {
                         overflowX: 'auto',
                         scrollbarWidth: 'none',
                         WebkitOverflowScrolling: 'touch',
-                        paddingLeft: window.innerWidth < 768 ? '16px' : '0',
-                        paddingRight: window.innerWidth < 768 ? '16px' : '0'
+                        paddingLeft: isMobile ? '16px' : '0',
+                        paddingRight: isMobile ? '16px' : '0'
                     }}>
                         {allTags.map(tag => (
                             <button

@@ -11,6 +11,7 @@ import GlobalContext from "./Context/Context";
 import EnfonoHome from "./Pages/Home/EnfonoHome";
 import NotFoundPage from "./Pages/404";
 import { initialCmsData } from "./Data/cms_data";
+import { frappeApi } from "./Functions/frappeApi";
 
 const EnfonoAbout = lazy(() => import("./Pages/About/EnfonoAbout"));
 const EnfonoServices = lazy(() => import("./Pages/Services/EnfonoServices"));
@@ -64,17 +65,13 @@ function App() {
   const [loading, setLoading] = useState(true);
   const location = useLocation();
 
-  const API_URL = window.location.hostname === 'localhost' ? 'http://localhost:8007' : '';
-
   useEffect(() => {
     const fetchCmsData = async () => {
       try {
-        const res = await fetch(`${API_URL}/api/cms/enfono_cms_data`);
-        if (res.ok) {
-          const data = await res.json();
+        const data = await frappeApi.getCmsData();
+        if (data && Object.keys(data).length > 0) {
           const merged = { ...initialCmsData, ...data };
           setCmsData(merged);
-          // Sync to localStorage for components still using it
           localStorage.setItem('enfono_cms_data', JSON.stringify(merged));
         }
       } catch (err) {

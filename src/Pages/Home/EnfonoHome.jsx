@@ -8,6 +8,7 @@ import EnfonoHeader from '../../Components/EnfonoUI/EnfonoHeader';
 import EnfonoFooter from '../../Components/EnfonoUI/EnfonoFooter';
 import GlobalContext from '../../Context/Context';
 import { initialCmsData } from "../../Data/cms_data";
+import { useWindowSize } from '../../Functions/useWindowSize';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -136,6 +137,7 @@ const partners = [
 export default function EnfonoHome() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const { cmsData, setCmsData } = useContext(GlobalContext);
+  const { isMobile, isDesktop, isSmall } = useWindowSize();
 
   useEffect(() => {
     const loadData = () => {
@@ -436,7 +438,7 @@ export default function EnfonoHome() {
             className="e-industries-grid"
             style={{
               display: 'grid',
-              gridTemplateColumns: window.innerWidth < 768 ? '1fr' : 'repeat(auto-fit, minmax(200px, 1fr))',
+              gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'repeat(auto-fit, minmax(200px, 1fr))',
               gap: '20px'
             }}
             initial="hidden"
@@ -569,8 +571,8 @@ export default function EnfonoHome() {
           </motion.div>
           <div style={{
             display: 'grid',
-            gridTemplateColumns: window.innerWidth < 991 ? '1fr' : '1.15fr 0.85fr',
-            gap: window.innerWidth < 991 ? '30px' : '60px',
+            gridTemplateColumns: isDesktop ? '1.15fr 0.85fr' : '1fr',
+            gap: isDesktop ? '60px' : '30px',
             alignItems: 'center'
           }}>
             <motion.div
@@ -588,7 +590,7 @@ export default function EnfonoHome() {
               ].map(f => (
                 <motion.div key={f.title} className="e-why-feat" variants={fadeUp} style={{
                   display: 'flex',
-                  flexDirection: window.innerWidth < 575 ? 'column' : 'row',
+                  flexDirection: isSmall ? 'column' : 'row',
                   gap: '20px',
                   padding: '24px',
                   background: 'rgba(255, 255, 255, 0.03)',
@@ -615,7 +617,7 @@ export default function EnfonoHome() {
               <div className="e-cert-title" style={{ marginTop: '20px' }}>Strategic Partners</div>
               <div className="e-cert-grid" style={{
                 display: 'grid',
-                gridTemplateColumns: window.innerWidth < 575 ? '1fr' : '1fr 1fr',
+                gridTemplateColumns: isSmall ? '1fr' : '1fr 1fr',
                 gap: '12px'
               }}>
                 {partners.map(c => (
@@ -629,7 +631,7 @@ export default function EnfonoHome() {
               <div className="e-cert-title" style={{ marginTop: '20px' }}>Compliance</div>
               <div className="e-cert-grid" style={{
                 display: 'grid',
-                gridTemplateColumns: window.innerWidth < 575 ? '1fr' : '1fr 1fr',
+                gridTemplateColumns: isSmall ? '1fr' : '1fr 1fr',
                 gap: '12px'
               }}>
                 {[
@@ -651,7 +653,7 @@ export default function EnfonoHome() {
       </section>
 
       {/* ── CASE STUDIES ── */}
-      <section className="e-cs-section" style={{ padding: '120px 0', background: '#fff' }}>
+      <section className="e-cs-section" style={{ padding: isMobile ? '60px 0' : '120px 0', background: '#fff' }}>
         <div className="enfono-container">
           <motion.div
             style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', flexWrap: 'wrap', gap: '24px', marginBottom: '64px' }}
@@ -670,7 +672,7 @@ export default function EnfonoHome() {
           </motion.div>
 
           <motion.div
-            style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '32px' }}
+            style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(350px, 1fr))', gap: isMobile ? '20px' : '32px' }}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.1 }}
@@ -683,7 +685,7 @@ export default function EnfonoHome() {
                 style={{
                   background: '#070707',
                   borderRadius: '32px',
-                  padding: '48px 40px',
+                  padding: isMobile ? '28px 24px' : '48px 40px',
                   position: 'relative',
                   overflow: 'hidden',
                   display: 'flex',

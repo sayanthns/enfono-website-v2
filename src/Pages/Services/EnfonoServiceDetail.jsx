@@ -25,13 +25,13 @@ const EnfonoServiceDetail = () => {
 
             <main className="enf-main-content">
                 {/* Hero Section */}
-                <section className="service-detail-hero" style={{ background: '#0D0D0D', color: '#fff', paddingTop: '160px', paddingBottom: '80px', position: 'relative', overflow: 'hidden' }}>
+                <section className="service-detail-hero" style={{ background: '#0D0D0D', color: '#fff', paddingTop: '120px', paddingBottom: '60px', position: 'relative', overflow: 'hidden' }}>
                     <Container style={{ position: 'relative', zIndex: 2 }}>
                         <div className="hero-content text-center" style={{ maxWidth: '800px', margin: '0 auto' }}>
                             <span className="enf-badge" style={{ background: 'rgba(16, 185, 129, 0.1)', color: '#10B981', padding: '6px 12px', borderRadius: '20px', fontSize: '14px', fontWeight: 600, display: 'inline-block', marginBottom: '16px' }}>Our Services</span>
-                            <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 700, lineHeight: 1.1, marginBottom: '24px' }}>{service.hero_tagline}</h1>
+                            <h1 style={{ fontSize: 'clamp(1.75rem, 5vw, 4rem)', fontWeight: 700, lineHeight: 1.1, marginBottom: '24px' }}>{service.hero_tagline}</h1>
                             <p style={{ fontSize: 'clamp(1rem, 2vw, 1.125rem)', color: 'rgba(255,255,255,0.7)', lineHeight: 1.6, marginBottom: '40px' }}>{service.hero_desc}</p>
-                            <div className="hero-actions" style={{ display: 'flex', gap: '16px', justifyContent: 'center' }}>
+                            <div className="hero-actions" style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
                                 <a href="https://calendly.com/" target="_blank" rel="noopener noreferrer" className="enf-btn primary" style={{ background: '#10B981', color: '#fff', padding: '16px 32px', borderRadius: '30px', fontWeight: 600, textDecoration: 'none', transition: 'all 0.3s ease' }}>Book Free Consultation</a>
                                 <Link to="/services" className="enf-btn outline" style={{ border: '1px solid rgba(255,255,255,0.2)', color: '#fff', padding: '16px 32px', borderRadius: '30px', fontWeight: 600, textDecoration: 'none', transition: 'all 0.3s ease' }}>All Services</Link>
                             </div>
@@ -48,7 +48,7 @@ const EnfonoServiceDetail = () => {
                             <h2 style={{ fontSize: '2.5rem', color: '#fff', marginBottom: '16px' }}>Core Capabilities</h2>
                             <p style={{ color: 'rgba(255,255,255,0.6)', maxWidth: '600px', margin: '0 auto' }}>What you get with our {service.title} service.</p>
                         </div>
-                        <div className="features-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '32px' }}>
+                        <div className="features-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(280px, 100%), 1fr))', gap: '24px' }}>
                             {service.features.map((feature, idx) => (
                                 <div key={idx} className="feature-card" style={{ padding: '32px', background: '#111', borderRadius: '16px', border: '1px solid #222', transition: 'all 0.3s ease' }}>
                                     <div className="icon" style={{ width: '48px', height: '48px', background: 'rgba(16, 185, 129, 0.1)', color: '#10B981', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px', marginBottom: '24px' }}>
@@ -71,7 +71,7 @@ const EnfonoServiceDetail = () => {
                                 <h2 style={{ fontSize: '2.5rem', color: '#fff' }}>Modules & Capabilities</h2>
                                 <p style={{ color: 'rgba(255,255,255,0.6)', maxWidth: '700px', margin: '16px auto 0' }}>Everything you need to run your entire enterprise, connected seamlessly in one centralized database.</p>
                             </div>
-                            <div className="service-modules-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '32px' }}>
+                            <div className="service-modules-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(300px, 100%), 1fr))', gap: '24px' }}>
                                 {service.modules.map((mod, idx) => (
                                     <div key={idx} style={{ background: '#111', borderRadius: '16px', overflow: 'hidden', border: '1px solid #222' }}>
                                         {mod.image && (
@@ -118,7 +118,7 @@ const EnfonoServiceDetail = () => {
                             </div>
                             <div className="service-industries-flex" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '24px' }}>
                                 {service.industries.map((ind, idx) => (
-                                    <div key={idx} style={{ padding: '24px 32px', background: '#111', borderRadius: '16px', border: '1px solid #222', display: 'flex', alignItems: 'center', gap: '16px', minWidth: '250px', transition: 'all 0.3s ease' }}
+                                    <div key={idx} style={{ padding: '16px 24px', background: '#111', borderRadius: '16px', border: '1px solid #222', display: 'flex', alignItems: 'center', gap: '16px', minWidth: 'min(250px, 100%)', flex: '1 1 auto', transition: 'all 0.3s ease' }}
                                         onMouseEnter={(e) => {
                                             e.currentTarget.style.borderColor = 'rgba(16, 185, 129, 0.4)';
                                             e.currentTarget.style.transform = 'translateY(-5px)';

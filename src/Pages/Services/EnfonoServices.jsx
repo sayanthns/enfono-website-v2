@@ -7,6 +7,7 @@ import EnfonoFooter from '../../Components/EnfonoUI/EnfonoFooter';
 import GlobalContext from '../../Context/Context';
 import { servicesData } from '../../Data/services_data';
 import { initialCmsData } from '../../Data/cms_data';
+import { useWindowSize } from '../../Functions/useWindowSize';
 
 const fadeIn = { hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } };
 const staggerContainer = { hidden: {}, visible: { transition: { staggerChildren: 0.1 } } };
@@ -14,6 +15,7 @@ const staggerContainer = { hidden: {}, visible: { transition: { staggerChildren:
 const EnfonoServices = () => {
     const { cmsData } = useContext(GlobalContext);
     const data = cmsData || initialCmsData;
+    const { isMobile } = useWindowSize();
 
     const projectsDelivered = data.stats.find(s => s.label === 'Projects Delivered') || { value: '50', suffix: '+' };
 
@@ -22,7 +24,7 @@ const EnfonoServices = () => {
             <EnfonoHeader />
 
             {/* Page Hero - Outcome Focused */}
-            <div className="enfono-hero-new" style={{ padding: window.innerWidth < 768 ? '100px 0 60px' : '160px 0 100px', position: 'relative', overflow: 'hidden' }}>
+            <div className="enfono-hero-new" style={{ padding: isMobile ? '100px 0 60px' : '160px 0 100px', position: 'relative', overflow: 'hidden' }}>
                 <Container style={{ position: 'relative', zIndex: 2 }}>
                     <motion.div className="text-center" initial="hidden" animate="visible" variants={staggerContainer}>
                         <motion.div variants={fadeIn} className="enfono-section-label-amber" style={{ display: 'inline-block', marginBottom: '16px', background: 'rgba(16, 185, 129, 0.1)', color: '#10B981', padding: '6px 16px', borderRadius: '20px', fontWeight: 600 }}>Enterprise Solutions</motion.div>

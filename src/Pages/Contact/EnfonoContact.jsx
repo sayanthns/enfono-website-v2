@@ -8,6 +8,7 @@ import EnfonoHeader from '../../Components/EnfonoUI/EnfonoHeader'
 import EnfonoFooter from '../../Components/EnfonoUI/EnfonoFooter'
 import GlobalContext from '../../Context/Context'
 import { initialCmsData } from '../../Data/cms_data'
+import { frappeApi } from '../../Functions/frappeApi'
 
 const fadeIn = { hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }
 const fadeInLeft = { hidden: { opacity: 0, x: -40 }, visible: { opacity: 1, x: 0, transition: { duration: 0.7 } } }
@@ -36,7 +37,7 @@ const EnfonoContact = () => {
     const [submitted, setSubmitted] = useState(false)
     const [openFaq, setOpenFaq] = useState(null)
 
-    const API_URL = window.location.hostname === 'localhost' ? 'http://localhost:8007' : '';
+    // API calls now go through frappeApi
 
     return (
         <div style={{ fontFamily: 'Inter, sans-serif' }}>
@@ -88,16 +89,16 @@ const EnfonoContact = () => {
                                                 validationSchema={contactSchema}
                                                 onSubmit={async (values, { setSubmitting }) => {
                                                     try {
-                                                        await fetch(`${API_URL}/api/leads`, {
-                                                            method: 'POST',
-                                                            headers: { 'Content-Type': 'application/json' },
-                                                            body: JSON.stringify({
-                                                                ...values,
-                                                                type: 'contact_form_lead',
-                                                                id: Date.now(),
-                                                                date: new Date().toLocaleString(),
-                                                                status: 'New'
-                                                            })
+                                                        await frappeApi.submitLead({
+                                                            name: values.name,
+                                                            email: values.email,
+                                                            phone: values.phone,
+                                                            company: values.company,
+                                                            service: values.service,
+                                                            country: values.country,
+                                                            message: values.message,
+                                                            lead_type: 'contact_form_lead',
+                                                            source: 'Contact Form',
                                                         });
                                                         setSubmitted(true);
                                                     } catch (err) {

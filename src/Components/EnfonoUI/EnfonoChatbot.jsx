@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLocation } from 'react-router-dom';
 import { initialCmsData } from '../../Data/cms_data';
+import { frappeApi } from '../../Functions/frappeApi';
 
 const EnfonoChatbot = ({ mobileMenuOpen }) => {
     const location = useLocation();
@@ -15,7 +16,7 @@ const EnfonoChatbot = ({ mobileMenuOpen }) => {
     const [isTyping, setIsTyping] = useState(false);
     const chatEndRef = useRef(null);
 
-    const API_URL = window.location.hostname === 'localhost' ? 'http://localhost:8007' : '';
+    // API calls now go through frappeApi
     const [leadStep, setLeadStep] = useState(null); // 'name', 'email', 'company', 'message', 'complete'
     const [leadData, setLeadData] = useState({});
 
@@ -90,14 +91,14 @@ const EnfonoChatbot = ({ mobileMenuOpen }) => {
             setIsTyping(true);
 
             try {
-                await fetch(`${API_URL}/api/leads`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        type: 'chatbot_lead',
-                        ...collectedData,
-                        timestamp: new Date().toISOString()
-                    })
+                await frappeApi.submitLead({
+                    name: collectedData.name,
+                    email: collectedData.email,
+                    company: collectedData.company,
+                    service: 'AI Chatbot Consultation',
+                    message: inputVal,
+                    lead_type: 'chatbot_lead',
+                    source: 'Chatbot',
                 });
             } catch (err) { console.error("Lead sync error:", err); }
 
@@ -155,22 +156,13 @@ const EnfonoChatbot = ({ mobileMenuOpen }) => {
             - If the user wants to book a consultation, demo, or meeting, tell them you can help them right here.
             - If you don't know the answer, suggest contacting Enfono.`;
 
-            const res = await fetch(`${API_URL}/api/chat`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    messages: [
+            const res = await frappeApi.chat([
                         { role: 'system', content: systemPrompt },
                         ...messages.map(m => ({ role: m.role, content: m.content })),
                         userMessage
-                    ],
-                    provider: 'openai'
-                })
-            });
+                    ], 'openai');
 
-            if (!res.ok) throw new Error("Server error");
-            const data = await res.json();
-            const aiMessage = data.choices[0].message;
+            const aiMessage = res.choices[0].message;
             setMessages(prev => [...prev, aiMessage]);
         } catch (error) {
             console.error("Chat Error:", error);

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { initialCmsData } from "../../Data/cms_data";
+import { useWindowSize } from '../../Functions/useWindowSize';
 
 export default function EnfonoFooter({
   hideCta = false,
@@ -9,6 +10,7 @@ export default function EnfonoFooter({
   mobileMenuOpen
 }) {
   const [cmsData, setCmsData] = useState(initialCmsData);
+  const { isMobile } = useWindowSize();
 
   useEffect(() => {
     const saved = localStorage.getItem('enfono_cms_data');
@@ -38,10 +40,7 @@ export default function EnfonoFooter({
 
       {/* Floating Contact Widget */}
       <div className="enfono-floating-widget" style={{
-        right: '24px',
-        bottom: window.innerWidth < 768 ? '100px' : '110px',
-        zIndex: 1000,
-        display: (window.innerWidth < 768 && mobileMenuOpen) ? 'none' : 'flex'
+        display: (isMobile && mobileMenuOpen) ? 'none' : 'flex'
       }}>
         <button
           className="efw-item efw-arrow"

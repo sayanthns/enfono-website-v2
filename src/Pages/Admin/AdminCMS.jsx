@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import GlobalContext from '../../Context/Context';
 import { initialCmsData } from "../../Data/cms_data";
+import { frappeApi } from '../../Functions/frappeApi';
 
 const AdminCMS = () => {
     const { cmsData: globalCmsData, setCmsData: setGlobalCmsData } = useContext(GlobalContext);
@@ -15,23 +16,17 @@ const AdminCMS = () => {
     const [mediaFiles, setMediaFiles] = useState([]);
     const [chatbotTraining, setChatbotTraining] = useState('');
 
-    const API_URL = window.location.hostname === 'localhost' ? 'http://localhost:8007' : '';
-
     useEffect(() => {
         const fetchLeads = async () => {
             try {
-                const res = await fetch(`${API_URL}/api/leads`);
-                const data = await res.json();
-                setLeads(data);
+                const data = await frappeApi.getLeads();
+                setLeads(data || []);
             } catch (err) { console.error("Error fetching leads:", err); }
         };
         const fetchMedia = async () => {
             try {
-                const res = await fetch(`${API_URL}/api/cms/enfono_media_files`);
-                if (res.ok) {
-                    const data = await res.json();
-                    setMediaFiles(Array.isArray(data) ? data : []);
-                }
+                const data = await frappeApi.getMediaFiles();
+                setMediaFiles(Array.isArray(data) ? data : []);
             } catch (err) { console.error("Error fetching media:", err); }
         };
         fetchLeads();
@@ -50,9 +45,8 @@ const AdminCMS = () => {
     useEffect(() => {
         const fetchCmsData = async () => {
             try {
-                const res = await fetch(`${API_URL}/api/cms/enfono_cms_data`);
-                if (res.ok) {
-                    const data = await res.json();
+                const data = await frappeApi.getCmsData();
+                if (data && Object.keys(data).length > 0) {
                     setCmsData({ ...initialCmsData, ...data });
                 }
             } catch (err) { console.error("Error fetching CMS:", err); }
@@ -62,19 +56,10 @@ const AdminCMS = () => {
 
     const handleSave = async () => {
         try {
-            const res = await fetch(`${API_URL}/api/cms/enfono_cms_data`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(cmsData)
-            });
-            if (res.ok) {
-                setGlobalCmsData(cmsData);
-                setMessage('Changes saved successfully to database!');
-                setTimeout(() => setMessage(''), 3000);
-            } else {
-                setMessage('Error saving to server!');
-                setTimeout(() => setMessage(''), 3000);
-            }
+            await frappeApi.updateCmsData('enfono_cms_data', cmsData);
+            setGlobalCmsData(cmsData);
+            setMessage('Changes saved successfully to database!');
+            setTimeout(() => setMessage(''), 3000);
         } catch (err) {
             setMessage('Error saving to server!');
             setTimeout(() => setMessage(''), 3000);
@@ -162,11 +147,7 @@ const AdminCMS = () => {
         const updated = mediaFiles.filter(f => f.id !== id);
         setMediaFiles(updated);
         try {
-            await fetch(`${API_URL}/api/cms/enfono_media_files`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(updated)
-            });
+            await frappeApi.updateMediaFiles(updated);
             setMessage('File removed from list');
             setTimeout(() => setMessage(''), 3000);
         } catch (err) { console.error("Error deleting media ref:", err); }
@@ -1568,23 +1549,12 @@ const AdminCMS = () => {
                                     const formData = new FormData();
                                     formData.append('file', file);
                                     try {
-                                        const res = await fetch(`${API_URL}/api/upload`, {
-                                            method: 'POST',
-                                            body: formData
-                                        });
-                                        if (res.ok) {
-                                            const newFile = await res.json();
-                                            const updatedMedia = [...mediaFiles, { ...newFile, id: Date.now() }];
-                                            setMediaFiles(updatedMedia);
-                                            // Save media list to CMS data
-                                            await fetch(`${API_URL}/api/cms/enfono_media_files`, {
-                                                method: 'POST',
-                                                headers: { 'Content-Type': 'application/json' },
-                                                body: JSON.stringify(updatedMedia)
-                                            });
-                                            setMessage('File uploaded and URL generated!');
-                                            setTimeout(() => setMessage(''), 3000);
-                                        }
+                                        const newFile = await frappeApi.uploadFile(file);
+                                        const updatedMedia = [...mediaFiles, { ...newFile, id: Date.now() }];
+                                        setMediaFiles(updatedMedia);
+                                        await frappeApi.updateMediaFiles(updatedMedia);
+                                        setMessage('File uploaded and URL generated!');
+                                        setTimeout(() => setMessage(''), 3000);
                                     } catch (err) { console.error("Upload error:", err); }
                                 }} style={{ display: 'none' }} />
                             </label>

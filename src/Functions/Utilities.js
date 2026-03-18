@@ -93,14 +93,9 @@ export const InputField = (value) => {
 };
 
 export const sendEmail = async (data) => {
-  const req = await fetch(`${process.env.REACT_APP_API_URL}/send`, {
-    method: "post",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  })
-    .then((res) => res.json())
-    .then((data) => data);
-  return await req;
+  // Now uses Frappe backend via frappeApi
+  const { frappeApi } = await import('./frappeApi');
+  return await frappeApi.sendEmail(data);
 };
 
 export const resetForm = (actions, recaptcha) => {

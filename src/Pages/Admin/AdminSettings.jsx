@@ -1,26 +1,19 @@
 import React, { useState, useContext } from 'react';
 import GlobalContext from '../../Context/Context';
 import { initialCmsData } from "../../Data/cms_data";
+import { frappeApi } from '../../Functions/frappeApi';
 
 const AdminSettings = () => {
     const { cmsData: globalCmsData, setCmsData: setGlobalCmsData } = useContext(GlobalContext);
     const [cmsData, setCmsData] = useState(globalCmsData || initialCmsData);
     const [message, setMessage] = useState('');
 
-    const API_URL = window.location.hostname === 'localhost' ? 'http://localhost:8007' : '';
-
     const handleSaveConfig = async () => {
         try {
-            const res = await fetch(`${API_URL}/api/cms/enfono_cms_data`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(cmsData)
-            });
-            if (res.ok) {
-                setGlobalCmsData(cmsData);
-                setMessage('Global configurations saved successfully!');
-                setTimeout(() => setMessage(''), 3000);
-            }
+            await frappeApi.updateCmsData('enfono_cms_data', cmsData);
+            setGlobalCmsData(cmsData);
+            setMessage('Global configurations saved successfully!');
+            setTimeout(() => setMessage(''), 3000);
         } catch (err) {
             console.error("Error saving config:", err);
             setMessage('Error saving configurations.');

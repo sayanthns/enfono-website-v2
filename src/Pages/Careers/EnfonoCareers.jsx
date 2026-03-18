@@ -6,6 +6,7 @@ import EnfonoHeader from '../../Components/EnfonoUI/EnfonoHeader'
 import EnfonoFooter from '../../Components/EnfonoUI/EnfonoFooter'
 import GlobalContext from '../../Context/Context'
 import { initialCmsData } from "../../Data/cms_data";
+import { useWindowSize } from '../../Functions/useWindowSize';
 
 const fadeUp = { hidden: { opacity: 0, y: 40 }, visible: (d = 0) => ({ opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: d } }) }
 const stagger = { hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }
@@ -31,10 +32,11 @@ const values = [
 
 
 export default function EnfonoCareers() {
-  const [mobileOpen, setMobileOpen] = useState(false); 
+  const [mobileOpen, setMobileOpen] = useState(false);
   const { cmsData } = useContext(GlobalContext);
   const data = cmsData || initialCmsData;
   const [activeFilter, setActiveFilter] = useState('All')
+  const { isMobile, isDesktop, isSmall } = useWindowSize();
 
   const roles = data.careers || [];
   const filtered = roles.filter(r => {
@@ -92,7 +94,7 @@ export default function EnfonoCareers() {
           <motion.div
             style={{
               display: 'grid',
-              gridTemplateColumns: window.innerWidth < 768 ? '1fr' : 'repeat(4,1fr)',
+              gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'repeat(4,1fr)',
               gap: '20px'
             }}
             initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.1 }} variants={stagger}
@@ -134,7 +136,7 @@ export default function EnfonoCareers() {
           </motion.div>
           <div style={{
             display: 'grid',
-            gridTemplateColumns: window.innerWidth < 991 ? '1fr' : 'repeat(3, 1fr)',
+            gridTemplateColumns: isDesktop ? 'repeat(3, 1fr)' : '1fr',
             gap: '20px'
           }}>
             {perks.map(p => (
@@ -143,7 +145,7 @@ export default function EnfonoCareers() {
                 variants={fadeUp}
                 style={{
                   display: 'flex',
-                  flexDirection: window.innerWidth < 575 ? 'column' : 'row',
+                  flexDirection: isSmall ? 'column' : 'row',
                   gap: '16px',
                   padding: '24px',
                   background: '#fff',
@@ -200,8 +202,8 @@ export default function EnfonoCareers() {
                 variants={fadeUp}
                 style={{
                   display: 'flex',
-                  flexDirection: window.innerWidth < 768 ? 'column' : 'row',
-                  alignItems: window.innerWidth < 768 ? 'flex-start' : 'center',
+                  flexDirection: isMobile ? 'column' : 'row',
+                  alignItems: isMobile ? 'flex-start' : 'center',
                   justifyContent: 'space-between',
                   gap: '20px',
                   padding: '24px 28px',
@@ -227,11 +229,11 @@ export default function EnfonoCareers() {
                   </div>
                 </div>
                 {role.apply_url?.startsWith('http') ? (
-                  <a href={role.apply_url} target="_blank" rel="noopener noreferrer" className="e-btn-primary" style={{ flexShrink: 0, whiteSpace: 'nowrap', width: window.innerWidth < 768 ? '100%' : 'auto', textAlign: 'center' }}>
+                  <a href={role.apply_url} target="_blank" rel="noopener noreferrer" className="e-btn-primary" style={{ flexShrink: 0, whiteSpace: 'nowrap', width: isMobile ? '100%' : 'auto', textAlign: 'center' }}>
                     Apply Now <i className="fas fa-arrow-right" />
                   </a>
                 ) : (
-                  <Link to={role.apply_url || '/contact'} className="e-btn-primary" style={{ flexShrink: 0, whiteSpace: 'nowrap', width: window.innerWidth < 768 ? '100%' : 'auto', textAlign: 'center' }}>
+                  <Link to={role.apply_url || '/contact'} className="e-btn-primary" style={{ flexShrink: 0, whiteSpace: 'nowrap', width: isMobile ? '100%' : 'auto', textAlign: 'center' }}>
                     Apply Now <i className="fas fa-arrow-right" />
                   </Link>
                 )}
@@ -252,8 +254,8 @@ export default function EnfonoCareers() {
         <div className="enfono-container">
           <div className="e-cta-inner" style={{
             display: 'flex',
-            flexDirection: window.innerWidth < 991 ? 'column' : 'row',
-            textAlign: window.innerWidth < 991 ? 'center' : 'left',
+            flexDirection: isDesktop ? 'row' : 'column',
+            textAlign: isDesktop ? 'left' : 'center',
             gap: '30px',
             alignItems: 'center'
           }}>
