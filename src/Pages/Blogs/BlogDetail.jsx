@@ -64,7 +64,7 @@ export default function BlogDetail() {
             <motion.div style={{ position: 'fixed', top: 0, left: 0, right: 0, height: '3px', background: catColor, zIndex: 2000, scaleX, transformOrigin: '0%' }} />
 
             {/* Hero */}
-            <section style={{ padding: '140px 0 80px', background: '#070707', position: 'relative', overflow: 'hidden' }}>
+            <section style={{ padding: window.innerWidth <= 767 ? '110px 0 50px' : '140px 0 80px', background: '#070707', position: 'relative', overflow: 'hidden' }}>
                 <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '900px', height: '500px', background: `radial-gradient(circle, ${catColor}18 0%, transparent 70%)`, pointerEvents: 'none' }} />
 
                 <div style={{ maxWidth: '900px', margin: '0 auto', padding: '0 24px', textAlign: 'center' }}>
@@ -119,8 +119,8 @@ export default function BlogDetail() {
             )}
 
             {/* Article Content */}
-            <section style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 24px' }}>
-                <div className="blog-detail-layout" style={{ display: 'grid', gridTemplateColumns: '1fr 300px', gap: '80px', paddingTop: '80px', alignItems: 'start' }}>
+            <section style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 20px' }}>
+                <div className="blog-detail-layout" style={{ display: 'grid', gridTemplateColumns: window.innerWidth <= 767 ? '1fr' : '1fr 300px', gap: window.innerWidth <= 767 ? '40px' : '80px', paddingTop: window.innerWidth <= 767 ? '40px' : '80px', alignItems: 'start' }}>
 
                     {/* Main Article */}
                     <motion.article initial="hidden" animate="visible" variants={fadeUp} className="blog-article-content">

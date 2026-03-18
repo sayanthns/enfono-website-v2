@@ -108,7 +108,7 @@ export default function EnfonoBrands() {
                       <i className={brand.icon} style={{ fontSize: '22px', color: brand.color || '#10B981' }} />
                     </div>
                     <div>
-                      <div style={{ fontFamily: 'Poppins,sans-serif', fontSize: '22px', fontWeight: 800, color: '#1A1A1A', lineHeight: 1, whiteSpace: 'normal', lineBreak: 'anywhere' }}>{brand.name}</div>
+                      <div style={{ fontFamily: 'Poppins,sans-serif', fontSize: isMobile ? '18px' : '22px', fontWeight: 800, color: '#1A1A1A', lineHeight: 1.2 }}>{brand.name}</div>
                     </div>
                     <span style={{
                       marginLeft: 'auto',
@@ -131,7 +131,7 @@ export default function EnfonoBrands() {
                   }}>
                     {brand.tag}
                   </div>
-                  <h3 style={{ fontFamily: 'Poppins,sans-serif', fontSize: '24px', fontWeight: 800, color: '#1A1A1A', margin: '0 0 14px', lineHeight: 1.2 }}>{brand.headline}</h3>
+                  <h3 style={{ fontFamily: 'Poppins,sans-serif', fontSize: isMobile ? '20px' : '24px', fontWeight: 800, color: '#1A1A1A', margin: '0 0 14px', lineHeight: 1.2 }}>{brand.headline}</h3>
                   <p style={{ fontFamily: 'Inter,sans-serif', fontSize: '15px', lineHeight: 1.7, color: '#64748B', margin: '0 0 24px' }}>{brand.desc}</p>
                   <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
                     {brand.status !== 'Coming Soon' ? (

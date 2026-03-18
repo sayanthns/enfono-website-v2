@@ -6,6 +6,7 @@ import EnfonoHeader from '../../Components/EnfonoUI/EnfonoHeader';
 import EnfonoFooter from '../../Components/EnfonoUI/EnfonoFooter';
 import GlobalContext from '../../Context/Context';
 import { initialCmsData } from '../../Data/cms_data';
+import { useWindowSize } from '../../Functions/useWindowSize';
 
 const CATEGORIES = ['All', 'AI & ERP', 'ERP', 'AI & Analytics', 'Compliance', 'Automation', 'Case Study'];
 
@@ -25,6 +26,7 @@ export default function EnfonoBlogs() {
     const [scrolled, setScrolled] = useState(false);
     const [navHidden, setNavHidden] = useState(false);
     const lastScrollY = useRef(0);
+    const { isMobile } = useWindowSize();
 
     useEffect(() => {
         const onScroll = () => {
@@ -58,7 +60,7 @@ export default function EnfonoBlogs() {
 
                 {/* ── Hero ── */}
                 <section style={{
-                    padding: '160px 0 80px',
+                    padding: isMobile ? '120px 0 50px' : '160px 0 80px',
                     background: 'linear-gradient(135deg, #070707 0%, #0d1117 60%, #0f1f12 100%)',
                     color: '#fff',
                     position: 'relative',
@@ -127,14 +129,14 @@ export default function EnfonoBlogs() {
                                 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
                                 style={{ marginBottom: '64px' }}
                             >
-                                <Link to={`/blogs/${featured.slug}`} style={{ textDecoration: 'none', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '48px', alignItems: 'center', background: '#070707', borderRadius: '24px', overflow: 'hidden', color: '#fff' }} className="blog-featured-card">
+                                <Link to={`/blogs/${featured.slug}`} style={{ textDecoration: 'none', display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '0' : '48px', alignItems: 'center', background: '#070707', borderRadius: isMobile ? '16px' : '24px', overflow: 'hidden', color: '#fff' }} className="blog-featured-card">
                                     <div style={{ aspectRatio: '16/10', overflow: 'hidden' }}>
                                         <img src={featured.cover_image} alt={featured.title} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s', display: 'block' }}
                                             onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.04)'}
                                             onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
                                         />
                                     </div>
-                                    <div style={{ padding: '48px 48px 48px 0' }}>
+                                    <div style={{ padding: isMobile ? '24px' : '48px 48px 48px 0' }}>
                                         <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '20px' }}>
                                             <span style={{ background: categoryColors[featured.category] || '#10B981', color: '#fff', padding: '4px 12px', borderRadius: '100px', fontSize: '12px', fontWeight: 700 }}>
                                                 {featured.category}
@@ -167,7 +169,7 @@ export default function EnfonoBlogs() {
                                     </h2>
                                 </motion.div>
                                 <motion.div
-                                    style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '32px' }}
+                                    style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fill, minmax(320px, 1fr))', gap: isMobile ? '20px' : '32px' }}
                                     initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}
                                 >
                                     {rest.map((blog) => (
