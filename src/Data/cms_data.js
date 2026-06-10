@@ -1010,12 +1010,14 @@ export const initialCmsData = {
 
     // ─── CAREERS ──────────────────────────────────────
     careers: [
-        { id: 1, title: 'Senior ERPNext Developer', dept: 'Engineering', location: 'Remote', type: 'Full-time', desc: 'Build and customize ERPNext modules for GCC enterprise clients. Deep Python/Frappe framework experience required.', apply_url: '/contact' },
-        { id: 2, title: 'ERP Consultant — GCC', dept: 'Consulting', location: 'Riyadh, KSA', type: 'On-site', desc: 'Lead end-to-end ERPNext implementations for clients in Saudi Arabia. Arabic language skills preferred.', apply_url: '/contact' },
-        { id: 3, title: 'AI/ML Engineer', dept: 'Engineering', location: 'Remote', type: 'Full-time', desc: 'Build AI features for our ERPInsights platform — predictive models, NLP queries, anomaly detection.', apply_url: '/contact' },
-        { id: 4, title: 'ERP Project Manager', dept: 'Consulting', location: 'Dubai, UAE', type: 'Hybrid', desc: 'Manage ERP implementation projects across UAE clients — coordinate teams, track milestones, ensure on-time delivery.', apply_url: '/contact' },
-        { id: 5, title: 'Business Development Manager', dept: 'Sales', location: 'Riyadh, KSA', type: 'On-site', desc: 'Drive new client acquisition across Saudi Arabia. ERPNext or ERP industry experience highly valued.', apply_url: '/contact' },
-        { id: 6, title: 'DevOps Engineer', dept: 'Engineering', location: 'Remote', type: 'Full-time', desc: 'Manage cloud infrastructure for Enfono\'s SaaS products and client deployments. AWS/GCP experience required.', apply_url: '/contact' }
+        { id: 1, title: 'Senior ERPNext Developer', dept: 'Engineering', location: 'Remote', type: 'Full-time', desc: 'Build and customize ERPNext modules for GCC enterprise clients. Deep Python/Frappe framework experience required.', apply_url: 'https://office.enfono.com/jobs' },
+        { id: 2, title: 'ERP Consultant — GCC', dept: 'Consulting', location: 'Riyadh, KSA', type: 'On-site', desc: 'Lead end-to-end ERPNext implementations for clients in Saudi Arabia. Arabic language skills preferred.', apply_url: 'https://office.enfono.com/jobs' },
+        { id: 3, title: 'AI/ML Engineer', dept: 'Engineering', location: 'Remote', type: 'Full-time', desc: 'Build AI features for our ERPInsights platform — predictive models, NLP queries, anomaly detection.', apply_url: 'https://office.enfono.com/jobs' },
+        { id: 4, title: 'ERP Project Manager', dept: 'Consulting', location: 'Dubai, UAE', type: 'Hybrid', desc: 'Manage ERP implementation projects across UAE clients — coordinate teams, track milestones, ensure on-time delivery.', apply_url: 'https://office.enfono.com/jobs' },
+        { id: 5, title: 'Business Development Manager', dept: 'Sales', location: 'Riyadh, KSA', type: 'On-site', desc: 'Drive new client acquisition across Saudi Arabia. ERPNext or ERP industry experience highly valued.', apply_url: 'https://office.enfono.com/jobs' },
+        { id: 6, title: 'DevOps Engineer', dept: 'Engineering', location: 'Remote', type: 'Full-time', desc: 'Manage cloud infrastructure for Enfono\'s SaaS products and client deployments. AWS/GCP experience required.', apply_url: 'https://office.enfono.com/jobs' },
+        { id: 7, title: 'Business Development Associate — Saudi Market', dept: 'Sales', location: 'Riyadh, KSA', type: 'Full-time', desc: 'Drive B2B sales and client acquisition in the Saudi market. Identify new business opportunities, build client relationships, and grow Enfono\'s footprint across the Kingdom. Performance-based incentives + attractive salary package.', apply_url: 'https://office.enfono.com/jobs' },
+        { id: 8, title: 'ERP Functional Consultant', dept: 'Consulting', location: 'Dubai / Riyadh', type: 'Full-time', desc: 'Implement and configure ERP solutions for clients. Minimum 1 year ERP experience or CMA qualification required. Strong accounting/finance knowledge and business process understanding essential. Relocation opportunity to Dubai or Saudi Arabia.', apply_url: 'https://office.enfono.com/jobs' }
     ],
 
     // ─── ABOUT PAGE ───────────────────────────────────

@@ -26,3 +26,5 @@ yarn-error.log*
 # Claude
 .claude/
 .vercel
+.agentsync/
+graphify-out/

@@ -5,7 +5,7 @@
  * All API calls go through: /api/method/fateh_website.enfono_api.<method>
  */
 
-const FRAPPE_URL = process.env.REACT_APP_FRAPPE_URL ||
+const FRAPPE_URL = import.meta.env.VITE_FRAPPE_URL ||
     (window.location.hostname === 'localhost' ? 'http://127.0.0.1:8000' : 'https://office.enfonoerp.com');
 
 const BASE = `${FRAPPE_URL}/api/method/fateh_website.enfono_api`;

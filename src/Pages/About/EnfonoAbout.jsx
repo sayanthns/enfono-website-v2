@@ -6,6 +6,7 @@ import CountUp from 'react-countup'
 import { useInView } from 'react-intersection-observer'
 import EnfonoHeader from '../../Components/EnfonoUI/EnfonoHeader'
 import EnfonoFooter from '../../Components/EnfonoUI/EnfonoFooter'
+import EnfonoVisionMission from '../../Components/EnfonoUI/EnfonoVisionMission'
 import GlobalContext from '../../Context/Context'
 import { initialCmsData } from '../../Data/cms_data'
 
@@ -15,10 +16,6 @@ const fadeIn = {
 }
 const fadeInLeft = {
     hidden: { opacity: 0, x: -40 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.7 } }
-}
-const fadeInRight = {
-    hidden: { opacity: 0, x: 40 },
     visible: { opacity: 1, x: 0, transition: { duration: 0.7 } }
 }
 const staggerContainer = {
@@ -81,60 +78,31 @@ const EnfonoAbout = () => {
                 </Container>
             </div>
 
-            {/* Mission & Vision */}
-            <section style={{ background: '#fff', padding: '80px 0' }}>
+            {/* Who We Are */}
+            <section style={{ background: '#fff', padding: '80px 0 40px' }}>
                 <Container>
-                    <Row className="align-items-center g-5">
-                        <Col lg={6}>
-                            
-                                <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInLeft}>
-                                    <span className="enfono-section-label">Who We Are</span>
-                                    <h2 className="enfono-section-title mb-5">
-                                        {data.who_we_are.heading}
-                                    </h2>
-                                    <p style={{ fontSize: '16px', lineHeight: '1.85', color: '#4b5563', marginBottom: '36px' }}>
-                                        {data.who_we_are.subtext}
-                                    </p>
-                                    <div style={{ display: 'flex', gap: '40px', flexWrap: 'wrap' }}>
-                                        {data.who_we_are.stats.map((stat, i) => (
-                                            <div key={i}>
-                                                <div style={{ fontSize: '42px', fontWeight: '700', color: '#111827', fontFamily: 'Poppins, sans-serif', lineHeight: 1 }}>{stat.end}{stat.suffix}</div>
-                                                <div style={{ fontSize: '14px', color: '#6b7280', marginTop: '6px' }}>{stat.label}</div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </motion.div>
-                            
-                        </Col>
-                        <Col lg={6}>
-                            
-                                <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInRight}>
-                                    <Row className="g-4">
-                                        {[
-                                            { icon: 'fas fa-eye', label: 'Our Vision', text: 'To be the most trusted ERP partner for enterprises across the GCC, enabling every business to reach its full potential through technology.' },
-                                            { icon: 'fas fa-rocket', label: 'Our Mission', text: 'Delivering ERP solutions that are perfectly tailored to the GCC market — compliant, culturally aligned, and built for long-term growth.' },
-                                        ].map((item, i) => (
-                                            <Col md={12} key={i}>
-                                                <div style={{ background: '#F8FAFC', borderRadius: '12px', padding: '32px', border: '1px solid #E5E7EB' }}>
-                                                    <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
-                                                        <div style={{ width: '50px', height: '50px', background: '#ecfdf5', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                                                            <i className={item.icon} style={{ color: '#10B981', fontSize: '20px' }}></i>
-                                                        </div>
-                                                        <div>
-                                                            <div style={{ fontSize: '11px', fontWeight: '700', letterSpacing: '2px', textTransform: 'uppercase', color: '#10B981', marginBottom: '8px' }}>{item.label}</div>
-                                                            <p style={{ fontSize: '15px', lineHeight: '1.75', color: '#374151', margin: 0 }}>{item.text}</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </Col>
-                                        ))}
-                                    </Row>
-                                </motion.div>
-                            
-                        </Col>
-                    </Row>
+                    <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeInLeft} style={{ maxWidth: '820px' }}>
+                        <span className="enfono-section-label">Who We Are</span>
+                        <h2 className="enfono-section-title mb-4">
+                            {data.who_we_are.heading}
+                        </h2>
+                        <p style={{ fontSize: '16px', lineHeight: '1.85', color: '#4b5563', marginBottom: '36px' }}>
+                            {data.who_we_are.subtext}
+                        </p>
+                        <div style={{ display: 'flex', gap: '40px', flexWrap: 'wrap' }}>
+                            {data.who_we_are.stats.map((stat, i) => (
+                                <div key={i}>
+                                    <div style={{ fontSize: '42px', fontWeight: '700', color: '#111827', fontFamily: 'Poppins, sans-serif', lineHeight: 1 }}>{stat.end}{stat.suffix}</div>
+                                    <div style={{ fontSize: '14px', color: '#6b7280', marginTop: '6px' }}>{stat.label}</div>
+                                </div>
+                            ))}
+                        </div>
+                    </motion.div>
                 </Container>
             </section>
+
+            {/* Mission & Vision — Mountain variant */}
+            <EnfonoVisionMission variant="mountain" />
 
             {/* Stats Banner */}
             <section style={{ background: 'var(--enfono-gradient)', padding: '70px 0' }}>
