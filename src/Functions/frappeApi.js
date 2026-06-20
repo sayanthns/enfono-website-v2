@@ -53,6 +53,9 @@ export const frappeApi = {
     submitLead: (data) => call("submit_lead", data),
     getLeads: () => call("get_leads"),
 
+    // Careers
+    getCareers: () => callGet("get_careers"),
+
     // Chatbot
     chat: (messages, provider = "openai") => call("chat", {
         messages: JSON.stringify(messages),

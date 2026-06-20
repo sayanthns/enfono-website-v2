@@ -7,6 +7,7 @@ import EnfonoFooter from '../../Components/EnfonoUI/EnfonoFooter'
 import GlobalContext from '../../Context/Context'
 import { initialCmsData } from "../../Data/cms_data";
 import { useWindowSize } from '../../Functions/useWindowSize';
+import frappeApi from '../../Functions/frappeApi';
 
 const fadeUp = { hidden: { opacity: 0, y: 40 }, visible: (d = 0) => ({ opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: d } }) }
 const stagger = { hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }
@@ -37,8 +38,15 @@ export default function EnfonoCareers() {
   const data = cmsData || initialCmsData;
   const [activeFilter, setActiveFilter] = useState('All')
   const { isMobile, isDesktop, isSmall } = useWindowSize();
+  const [liveRoles, setLiveRoles] = useState(null);
 
-  const roles = data.careers || [];
+  useEffect(() => {
+    frappeApi.getCareers().then(res => {
+      if (res?.careers?.length) setLiveRoles(res.careers);
+    }).catch(() => {});
+  }, []);
+
+  const roles = liveRoles ?? data.careers ?? [];
   const filtered = roles.filter(r => {
     if (activeFilter === 'All') return true;
     return r.dept?.toLowerCase().trim() === activeFilter.toLowerCase().trim();
