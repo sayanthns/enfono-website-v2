@@ -29,19 +29,22 @@ Two marketing websites (fateherp.com + enfono.com) with a shared Frappe v15 back
 | Repo | GitHub | Branch | Purpose |
 |------|--------|--------|---------|
 | Fateh frontend | `sayanthns/Fatheherp-website` | main | fateherp.com React+Vite+TS SPA |
-| Enfono frontend | `sayanthns/enfono-website-v2` | main | enfono.com React CRA SPA |
+| Enfono frontend | `sayanthns/enfono-website-v2` | main | enfono.com React + Vite SPA (migrated off CRA) |
 | Frappe custom app | `sayanthns/fateh_website` | master | Backend: doctypes, APIs, scheduler |
 
 ## Servers
 
-### VPS — Static Website Hosting (enfono.com + fateherp.com)
-- **IP**: `207.180.209.80`
-- **SSH**: `root` / `30T7mURo5Qf`
+### VPS — Static Website Hosting (enfono.com)
+- **IP**: `194.163.160.83` (Caddy, also the server-manager control box)
+  - ⚠️ OLD IP `207.180.209.80` is DEAD as the static host — reinstalled, now a managed node
+    repurposed for demo apps (Horilla + Twenty CRM). Do NOT deploy the marketing sites there.
+- **SSH**: `root@194.163.160.83` — fetch/confirm creds via the `enfono-servers` skill /
+  server-manager; do NOT rely on any password hardcoded here.
 - **Web server**: Caddy (systemd)
 - **Caddyfile**: `/etc/caddy/Caddyfile`
 - **Document roots**:
   - `/srv/enfono/` — enfono.com build
-  - `/srv/fateh/` — fateherp.com build
+  - `/srv/fateh/` — fateherp.com build (⚠️ fateherp host not re-verified after the 207 move — confirm before deploying Fateh)
 - **Commands**:
   - Restart: `systemctl restart caddy`
   - Logs: `journalctl -u caddy -f`
@@ -57,16 +60,18 @@ Two marketing websites (fateherp.com + enfono.com) with a shared Frappe v15 back
 - **Other sites on this server**: `katcherp`, `spice`, `office` — DO NOT TOUCH
 
 ### DNS
-- `enfono.com` → 207.180.209.80 (Caddy VPS — static frontend)
-- `fateherp.com` → 207.180.209.80 (Caddy VPS — static frontend)
+- `enfono.com` → 194.163.160.83 (Caddy VPS — static frontend)
+- `fateherp.com` → (was 207.180.209.80 — re-verify host after the 207 move)
 - `office.enfonoerp.com` → 156.67.105.6 (Frappe backend)
 
 ## Local Development Paths
 
 ```
-~/Documents/Fateh-website-claude-frappe/     # Fateh frontend (this repo)
-~/Documents/enfono-website-v2/               # Enfono frontend
-/tmp/fateh_website_repo/                     # Frappe app (cloned for editing)
+~/dev/enfono-website/                        # Enfono frontend (THIS repo — moved out of iCloud 2026-06-20)
+~/Documents/Fateh-website-claude-frappe/     # Fateh frontend
+/tmp/fateh_website_repo/                      # Frappe app (cloned for editing)
+# ⚠️ NEVER keep this repo under ~/Documents (iCloud) — it evicts .git/node_modules to
+#    "dataless" stubs → git + vite build hang for minutes. Build at ~/dev = ~3s.
 ```
 
 ## Frappe App Structure (`fateh_website`)
@@ -154,14 +159,18 @@ fateh_website/
 ```bash
 cd ~/Documents/Fateh-website-claude-frappe/client
 npm run build
-sshpass -p '30T7mURo5Qf' scp -r dist/* root@207.180.209.80:/srv/fateh/
+# ⚠️ 207.180.209.80 is the DEAD old host — re-confirm the current fateherp static host
+#    (server-manager / enfono-servers skill) before deploying.
+scp -r dist/* root@<fateh-static-host>:/srv/fateh/
 ```
 
 ### Deploy Enfono Frontend
 ```bash
-cd ~/Documents/enfono-website-v2
-npm run build
-sshpass -p '30T7mURo5Qf' scp -r build/* root@207.180.209.80:/srv/enfono/
+cd ~/dev/enfono-website
+npm run build   # vite → build/  (dev server: npm start, http://127.0.0.1:3007)
+# rsync with keepalive + retry (conn resets on long transfers):
+rsync -az --partial --timeout=30 -e "ssh -o ServerAliveInterval=5 -o ServerAliveCountMax=3" \
+  build/ root@194.163.160.83:/srv/enfono/
 ```
 
 ### Deploy Frappe App Changes

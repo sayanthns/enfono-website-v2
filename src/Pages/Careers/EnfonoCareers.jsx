@@ -12,6 +12,15 @@ import frappeApi from '../../Functions/frappeApi';
 const fadeUp = { hidden: { opacity: 0, y: 40 }, visible: (d = 0) => ({ opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: d } }) }
 const stagger = { hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }
 
+// Frappe rich-text (Quill) fields return desc wrapped in HTML; strip to plain text for the card.
+const stripHtml = (html = '') => {
+  if (typeof html !== 'string' || html.indexOf('<') === -1) return html;
+  if (typeof DOMParser !== 'undefined') {
+    return (new DOMParser().parseFromString(html, 'text/html').body.textContent || '').trim();
+  }
+  return html.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').trim();
+};
+
 const departments = ['All', 'Engineering', 'Consulting', 'Sales', 'Operations', 'Marketing', 'Customer Success', 'Finance']
 
 const perks = [
@@ -226,7 +235,7 @@ export default function EnfonoCareers() {
                     <div style={{ fontFamily: 'Poppins,sans-serif', fontSize: isMobile ? '15px' : '16px', fontWeight: 700, color: '#1A1A1A' }}>{role.title}</div>
                     <span style={{ padding: '2px 10px', background: 'rgba(16, 185, 129, 0.1)', borderRadius: '100px', fontSize: '11px', fontWeight: 700, color: '#10B981' }}>{role.dept}</span>
                   </div>
-                  <p style={{ fontFamily: 'Inter,sans-serif', fontSize: '13px', lineHeight: 1.6, color: '#64748B', margin: '0 0 10px' }}>{role.desc}</p>
+                  <p style={{ fontFamily: 'Inter,sans-serif', fontSize: '13px', lineHeight: 1.6, color: '#64748B', margin: '0 0 10px' }}>{stripHtml(role.desc)}</p>
                   <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
                     <span style={{ fontFamily: 'Inter,sans-serif', fontSize: '12px', color: '#94A3B8', display: 'flex', alignItems: 'center', gap: '5px' }}>
                       <i className="fas fa-map-marker-alt" style={{ color: '#10B981' }} />{role.location}
