@@ -245,15 +245,9 @@ export default function EnfonoCareers() {
                     </span>
                   </div>
                 </div>
-                {role.apply_url?.startsWith('http') ? (
-                  <a href={role.apply_url} target="_blank" rel="noopener noreferrer" className="e-btn-primary" style={{ flexShrink: 0, whiteSpace: 'nowrap', width: isMobile ? 'auto' : 'auto', textAlign: 'center', padding: isMobile ? '10px 24px' : undefined, fontSize: isMobile ? '13px' : undefined }}>
-                    Apply Now <i className="fas fa-arrow-right" />
-                  </a>
-                ) : (
-                  <Link to={role.apply_url || '/contact'} className="e-btn-primary" style={{ flexShrink: 0, whiteSpace: 'nowrap', width: isMobile ? 'auto' : 'auto', textAlign: 'center', padding: isMobile ? '10px 24px' : undefined, fontSize: isMobile ? '13px' : undefined }}>
-                    Apply Now <i className="fas fa-arrow-right" />
-                  </Link>
-                )}
+                <a href="https://office.enfono.com/jobs" target="_blank" rel="noopener noreferrer" className="e-btn-primary" style={{ flexShrink: 0, whiteSpace: 'nowrap', width: isMobile ? 'auto' : 'auto', textAlign: 'center', padding: isMobile ? '10px 24px' : undefined, fontSize: isMobile ? '13px' : undefined }}>
+                  Apply Now <i className="fas fa-arrow-right" />
+                </a>
               </motion.div>
             ))}
           </motion.div>
